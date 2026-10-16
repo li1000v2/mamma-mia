@@ -63,6 +63,47 @@ public enum ContentValidator {
             }
         }
 
+        func check(_ node: DialogueNode, in file: String) {
+            if node.npc.isEmpty { report(file, "node \(node.id) has no lines") }
+            if node.question != nil {
+                for line in node.npc {
+                    guard let answer = line.answer, let distractors = line.distractors, !distractors.isEmpty else {
+                        report(file, "node \(node.id) asks a question but a line has no answer or distractors")
+                        continue
+                    }
+                    if distractors.contains(answer) {
+                        report(file, "node \(node.id) lists its answer \(answer) as a distractor")
+                    }
+                }
+            }
+            if let reply = node.reply {
+                if !reply.choices.contains(where: \.correct) { report(file, "node \(node.id) has no correct choice") }
+                if reply.choices.count < 2 { report(file, "node \(node.id) needs at least two choices") }
+                if let frame = reply.frame, !frameIDs.contains(frame) {
+                    report(file, "node \(node.id) uses unknown frame \(frame)")
+                }
+            }
+        }
+
+        let challengeIDs = Set(course.units.filter { $0.kind == .challenge }.map(\.id))
+        for id in duplicates(bundle.dialogues.map(\.unit)) { report("dialogues/", "more than one file for unit \(id)") }
+        for script in bundle.dialogues {
+            let file = "dialogues/\(script.unit).json"
+            let pool = script.followUps?.pool ?? []
+            if !challengeIDs.contains(script.unit) { report(file, "\(script.unit) is not a challenge in course.json") }
+            if script.nodes.isEmpty { report(file, "has no nodes") }
+            for id in duplicates((script.nodes + pool).map(\.id)) { report(file, "duplicate node id \(id)") }
+            for node in script.nodes + pool { check(node, in: file) }
+            if let followUps = script.followUps {
+                if !script.nodes.contains(where: { $0.id == followUps.after }) {
+                    report(file, "followUps.after \(followUps.after) is not a node")
+                }
+                if followUps.min < 0 || followUps.min > followUps.max || followUps.max > pool.count {
+                    report(file, "followUps needs 0 ≤ min ≤ max ≤ pool size")
+                }
+            }
+        }
+
         if let trip {
             let planner = NeedByPlanner(trip: trip)
             for scene in course.scenes where NeedByPlanner.isWellFormed(scene.neededAt) {

@@ -42,7 +42,7 @@ struct ContentTests {
             scenes: [SceneTag(id: "bar", zh: "咖啡吧", neededAt: "somewhere")],
             units: [CourseUnit(id: "L01", kind: .lesson, week: 1, title: "t", focus: "f", frames: ["vorrei"], scene: "bar", summary: "s")]
         )
-        let lesson = LessonContent(unit: "L02", phrases: [
+        let lesson = LessonContent(unit: "L02", intro: nil, phrases: [
             Phrase(id: "L01-01", it: "Ciao", zh: "你好", frame: nil, scene: "boat", status: .draft, note: nil),
         ])
         let messages = ContentValidator.validate(ContentBundle(course: course, lessons: [lesson], audio: nil))

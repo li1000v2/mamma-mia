@@ -70,5 +70,7 @@ public struct Phrase: Codable, Hashable, Sendable, Identifiable {
 /// Content/lessons/<unit>.json.
 public struct LessonContent: Codable, Sendable {
     public let unit: String
+    /// The micro-lesson: a short Chinese explanation of the frame or grammar point.
+    public let intro: String?
     public let phrases: [Phrase]
 }
