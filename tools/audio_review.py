@@ -46,7 +46,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from gen_audio import AUDIO, CONTENT, MANIFEST, ROOT, Gemini, load_env, load_json, normalized
+from gen_audio import AUDIO, CONTENT, MANIFEST, MAX_PARALLEL, ROOT, Gemini, load_env, load_json, normalized
 
 REVIEWS = ROOT / "reviews"
 CACHE = REVIEWS / "audio-screen-cache.json"
@@ -482,8 +482,9 @@ def main() -> int:
     parser.add_argument("--redo", action="store_true", help="screen the selected clips again even if cached")
     parser.add_argument("--report-only", action="store_true", help="do not call the model; rewrite the report")
     parser.add_argument("--model", default=MODEL)
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, default=4, help=f"clips screened at once (at most {MAX_PARALLEL})")
     args = parser.parse_args()
+    args.workers = max(1, min(args.workers, MAX_PARALLEL))
 
     config = load_json(Path(__file__).resolve().parent / "tts_voices.json")
     voice_names = {voice["id"]: voice["voiceName"] for voice in config["voices"]}

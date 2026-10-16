@@ -19,8 +19,7 @@ reviews/audio-regen-log.json and listed in reviews/audio-regen.md. Afterwards ru
 audio_review.py --report-only --week N to refresh its reports.
 
 If the service refuses a request outright (HTTP 401/403/404), the run stops at once; recordings it had
-not finished stay as they were. Keep --workers modest: on 2026-10-16 the project was blocked "in
-accordance with our terms of use" after a day of 5,000+ requests at up to 40 at once.
+not finished stay as they were. At most MAX_PARALLEL (gen_audio.py) requests are in flight.
 
 Usage (from the repo root):
   python tools/regen_audio.py --dry-run          list the recordings it would work on
@@ -44,7 +43,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import audio_review as review
-from gen_audio import AUDIO, MANIFEST, ROOT, TRIM, ffmpeg, load_env, load_json, normalized, spoken_texts
+from gen_audio import AUDIO, MANIFEST, MAX_PARALLEL, ROOT, TRIM, ffmpeg, load_env, load_json, normalized, spoken_texts
 
 REPORT = ROOT / "reviews" / "audio-regen.md"
 LOG = ROOT / "reviews" / "audio-regen-log.json"
@@ -281,9 +280,11 @@ def main() -> int:
     parser.add_argument("--only", action="append", default=[], metavar="TEXT",
                         help="only recordings whose line contains TEXT (repeatable); flagged or not")
     parser.add_argument("--takes", type=int, default=4, help="new takes to try per recording (default 4)")
-    parser.add_argument("--workers", type=int, default=12, help="recordings worked on at once")
+    parser.add_argument("--workers", type=int, default=4,
+                        help=f"recordings worked on at once (at most {MAX_PARALLEL // 2}: each screens two clips at a time)")
     parser.add_argument("--timeout", type=float, default=300, help="seconds per model request")
     args = parser.parse_args()
+    args.workers = max(1, min(args.workers, MAX_PARALLEL // 2))
 
     config = load_json(Path(__file__).resolve().parent / "tts_voices.json")
     voice_names = {voice["id"]: voice["voiceName"] for voice in config["voices"]}

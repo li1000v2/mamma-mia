@@ -43,6 +43,9 @@ AUDIO = ROOT / "Audio"
 MANIFEST = AUDIO / "manifest.json"
 CONFIG = Path(__file__).resolve().parent / "tts_voices.json"
 ENDPOINT = "https://aiplatform.googleapis.com/v1/projects/{project}/locations/global/publishers/google/models/{model}:generateContent"
+# Requests in flight at once, for every tool here: on 2026-10-16 the project was blocked by Google
+# Cloud Trust & Safety after a day of bursts of up to 40.
+MAX_PARALLEL = 8
 
 
 def audio_key(text: str, voice: str, speed: str) -> str:
@@ -211,8 +214,9 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="only list the missing audio")
     parser.add_argument("--prune", action="store_true", help="delete audio that no line uses any more")
     parser.add_argument("--limit", type=int, default=0, help="generate at most this many clips")
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, default=4, help=f"clips generated at once (at most {MAX_PARALLEL})")
     args = parser.parse_args()
+    args.workers = max(1, min(args.workers, MAX_PARALLEL))
 
     config = load_json(CONFIG)
     manifest = load_json(MANIFEST)

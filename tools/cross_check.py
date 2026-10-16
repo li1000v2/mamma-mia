@@ -29,7 +29,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from gen_audio import load_env, post
+from gen_audio import MAX_PARALLEL, load_env, post
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "Content"
@@ -370,9 +370,10 @@ def main() -> int:
     parser.add_argument("--week", type=int, help="add every unit of this course week")
     parser.add_argument("--thinking", choices=["LOW", "MEDIUM", "HIGH"], default="HIGH")
     parser.add_argument("--batch-size", type=int, default=12, help="most items per request")
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, default=4, help=f"requests at once (at most {MAX_PARALLEL})")
     parser.add_argument("--dry-run", action="store_true", help="print the requests instead of sending them")
     args = parser.parse_args()
+    args.workers = max(1, min(args.workers, MAX_PARALLEL))
 
     units = load_units(args.units, args.week)
     if args.dry_run:
