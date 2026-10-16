@@ -71,12 +71,21 @@ struct DepartureCheckTests {
         #expect(trip.departureCheckTime == TripReminderTime(day: try day("2030-02-28"), hour: Trip.departureCheckHour))
         #expect(Trip(stops: []).departureCheckTime == nil)
 
+        // Two evenings before the signature runs out, and the next in case the first try fails.
         let expires = try italianTime("2030-03-07", hour: 10)
         let onTheWay = SigningPlan(expires: expires, trip: trip)
-        #expect(trip.signingRefreshTime(onTheWay) == TripReminderTime(day: try day("2030-03-05"), hour: Trip.signingRefreshHour))
-        #expect(trip.signingRefreshTime(.coversTrip(expires: expires)) == nil)
-        #expect(trip.signingRefreshTime(.refreshBeforeLeaving(expires: expires)) == nil)
-        #expect(trip.signingRefreshTime(nil) == nil)
+        #expect(trip.signingRefreshTimes(onTheWay) == [
+            TripReminderTime(day: try day("2030-03-05"), hour: Trip.signingRefreshHour),
+            TripReminderTime(day: try day("2030-03-06"), hour: Trip.signingRefreshHour),
+        ])
+        // Only evenings while the signature still lasts.
+        let early = try italianTime("2030-03-02", hour: 10)
+        #expect(trip.signingRefreshTimes(SigningPlan(expires: early, trip: trip)) == [
+            TripReminderTime(day: try day("2030-03-01"), hour: Trip.signingRefreshHour),
+        ])
+        #expect(trip.signingRefreshTimes(.coversTrip(expires: expires)).isEmpty)
+        #expect(trip.signingRefreshTimes(.refreshBeforeLeaving(expires: expires)).isEmpty)
+        #expect(trip.signingRefreshTimes(nil).isEmpty)
 
         let time = TripReminderTime(day: try day("2030-03-05"), hour: 20)
         #expect(time.date(in: rome) == (try italianTime("2030-03-05", hour: 20)))
@@ -126,8 +135,15 @@ struct DepartureCheckTests {
             .manual(.sideStore, doneAt: nil),
             .manual(.offlineMaps, doneAt: nil),
         ])
-        #expect(check(trip: trip, speech: .checking, missingAudio: nil, saved: saved, reminders: .unknown, profile: profile, done: ticked)
-            .items.filter { $0.state == .unknown }.count == 3)
+        // Still finding out isn't ready yet, though there is nothing to do.
+        let checking = check(trip: trip, speech: .checking, missingAudio: nil, saved: saved, reminders: .unknown,
+                             profile: profile, done: ticked)
+        #expect(checking.items.filter { $0.state == .pending }.count == 3)
+        #expect(checking.todo.isEmpty)
+        #expect(checking.isChecking)
+        #expect(!checking.isReady)
+        let downloading = check(trip: trip, speech: .downloading, saved: saved, profile: profile, done: ticked)
+        #expect(!downloading.isReady)
     }
 
     @Test func aCardsFingerprintFollowsWhatIsPrintedOnIt() {

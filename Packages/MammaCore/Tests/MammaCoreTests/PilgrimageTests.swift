@@ -75,6 +75,9 @@ struct PilgrimageTests {
         // Whole seconds, as the file keeps them, oldest first.
         #expect(log.checkIns == [earlier, second])
         #expect(log.firstCheckIn == earlier)
+        // A double tap within the same second checks in once.
+        progress.checkIn(atSpot: "colosseo", on: second.addingTimeInterval(0.2))
+        #expect(progress.spotLogs["colosseo"]?.checkIns == [earlier, second])
 
         progress.setNote("  Il mio posto preferito \n", forSpot: "colosseo")
         #expect(progress.spotLogs["colosseo"]?.note == "Il mio posto preferito")

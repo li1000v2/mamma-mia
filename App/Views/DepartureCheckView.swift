@@ -62,6 +62,10 @@ struct DepartureCheckView: View {
             Label("都准备好了，一路顺风！", systemImage: "checkmark.seal.fill")
                 .font(.headline)
                 .foregroundStyle(.green)
+        } else if check.todo.isEmpty {
+            Label("还在检查……", systemImage: "hourglass")
+                .font(.headline)
+                .foregroundStyle(.secondary)
         } else {
             VStack(alignment: .leading, spacing: 4) {
                 Label("还有 \(check.todo.count) 项要处理", systemImage: "checklist")
@@ -76,8 +80,9 @@ struct DepartureCheckView: View {
 
     private var remindersFooter: String {
         var text = "出发前一晚 \(Trip.departureCheckHour):00 会提醒你做一遍自检"
-        if case .refreshOnTheWay(_, let day)? = model.signingPlan {
-            text += "，\(day.zhShort)晚上 \(Trip.signingRefreshHour):00 提醒你在路上续签"
+        let evenings = model.trip?.signingRefreshTimes(model.signingPlan).map { $0.day.zhShort } ?? []
+        if !evenings.isEmpty {
+            text += "，\(evenings.joined(separator: "和"))晚上 \(Trip.signingRefreshHour):00 提醒你在路上续签"
         }
         return text + "；提醒要开着通知。"
     }
@@ -145,12 +150,12 @@ struct DepartureCheckView: View {
         case .signing(let plan):
             switch plan {
             case .coversTrip(let expires)?:
-                return "签名 \(AppModel.dateTimeText(expires)) 到期，整个行程都够用。"
+                return "签名 \(model.tripTimeText(expires)) 到期，整个行程都够用。"
             case .refreshOnTheWay(let expires, let day)?:
                 let last = model.lastTripDayText.map { "（\($0)）" } ?? ""
-                return "签名 \(AppModel.dateTimeText(expires)) 到期，比行程最后一天\(last)早：\(day.zhShort)晚上会提醒你连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 再续一次。"
+                return "签名 \(model.tripTimeText(expires)) 到期，比行程最后一天\(last)早：\(day.zhShort)晚上会提醒你连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 再续一次。"
             case .refreshBeforeLeaving(let expires)?:
-                return "签名 \(AppModel.dateTimeText(expires)) 就到期了：出发前打开 LocalDevVPN 和 SideStore 刷新一次，再回来看。"
+                return "签名 \(model.tripTimeText(expires)) 就到期了：出发前打开 LocalDevVPN 和 SideStore 刷新一次，再回来看。"
             case nil:
                 return "读不到签名信息：这个安装包不是 SideStore 装的（比如模拟器），没法检查。"
             }
@@ -183,9 +188,9 @@ struct DepartureCheckView: View {
         case .showCards(let unsaved) where !unsaved.isEmpty:
             VStack(alignment: .leading, spacing: 4) {
                 Button {
-                    exportCards()
+                    exportCards(unsaved)
                 } label: {
-                    Label(exporting ? "正在保存…" : "全部存到相册", systemImage: "photo.on.rectangle.angled")
+                    Label(exporting ? "正在保存…" : "把这 \(unsaved.count) 张存到相册", systemImage: "photo.on.rectangle.angled")
                 }
                 .buttonStyle(.bordered)
                 .disabled(exporting)
@@ -206,11 +211,14 @@ struct DepartureCheckView: View {
         }
     }
 
-    private func exportCards() {
+    /// Saves only the cards Photos doesn't have as they are now, so it doesn't fill up with copies.
+    /// A success shows as the row turning green; only a failure leaves a message.
+    private func exportCards(_ ids: [String]) {
         exporting = true
         exportMessage = nil
         Task {
-            exportMessage = await model.exportToPhotos(model.showCards)
+            let result = await model.exportToPhotos(model.showCards.filter { ids.contains($0.id) })
+            exportMessage = result.saved ? nil : result.message
             exporting = false
         }
     }
@@ -264,7 +272,7 @@ private struct ManualCheckRow: View {
     }
 }
 
-/// Done, fine with a note, unknown yet, or to do.
+/// Done, fine with a note, still being checked, unknown, or to do.
 private struct StateIcon: View {
     let state: CheckState
 
@@ -274,6 +282,8 @@ private struct StateIcon: View {
             Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
         case .note:
             Image(systemName: "info.circle.fill").foregroundStyle(.blue)
+        case .pending:
+            ProgressView().controlSize(.small)
         case .unknown:
             Image(systemName: "questionmark.circle").foregroundStyle(.secondary)
         case .todo:

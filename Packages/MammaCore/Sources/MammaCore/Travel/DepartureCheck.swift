@@ -43,8 +43,8 @@ public enum SigningPlan: Hashable, Sendable {
     /// Runs out on or before the first day: refresh before leaving.
     case refreshBeforeLeaving(expires: Date)
 
-    /// The refresh reminder comes this many days before the day the signature runs out, so a
-    /// failed refresh can be tried again the next evening.
+    /// The first refresh reminder comes this many days before the day the signature runs out, and
+    /// another the next evening, so a failed refresh can be tried again.
     public static let reminderLead = 2
 
     /// Nil for a trip without a valid span.
@@ -74,7 +74,9 @@ public enum CheckState: Hashable, Sendable {
     case ok
     /// Fine as it is, with something to know: the signature needs one refresh on the way.
     case note
-    /// The app can't tell, or is still finding out.
+    /// Still finding out: the speech model is being checked or downloaded, the audio counted.
+    case pending
+    /// The app can't tell: a build without a signing profile.
     case unknown
     /// Something to do before leaving.
     case todo
@@ -122,11 +124,11 @@ public struct DepartureCheck: Hashable, Sendable {
                 switch model {
                 case .installed: .ok
                 case .unsupported: .note
-                case .checking, .downloading: .unknown
+                case .checking, .downloading: .pending
                 case .missing, .failed: .todo
                 }
             case .audio(let missing):
-                missing == nil ? .unknown : missing == 0 ? .ok : .todo
+                missing == nil ? .pending : missing == 0 ? .ok : .todo
             case .hotels(let missing):
                 missing.isEmpty ? .ok : .todo
             case .showCards(let unsaved):
@@ -134,7 +136,7 @@ public struct DepartureCheck: Hashable, Sendable {
             case .reminders(let permission):
                 switch permission {
                 case .allowed: .ok
-                case .unknown: .unknown
+                case .unknown: .pending
                 case .notAsked, .denied: .todo
                 }
             case .signing(let plan):
@@ -183,8 +185,14 @@ public struct DepartureCheck: Hashable, Sendable {
         items.filter { $0.state == .todo }
     }
 
+    /// Nothing to do and nothing still being found out.
     public var isReady: Bool {
-        todo.isEmpty
+        !items.contains { $0.state == .todo || $0.state == .pending }
+    }
+
+    /// Something is still being found out, so the check can't say yet.
+    public var isChecking: Bool {
+        items.contains { $0.state == .pending }
     }
 }
 
@@ -217,10 +225,14 @@ extension Trip {
         span.map { TripReminderTime(day: $0.lowerBound.adding(days: -1), hour: Self.departureCheckHour) }
     }
 
-    /// When to remind about refreshing the signature on the way, if it runs out during the trip.
-    public func signingRefreshTime(_ plan: SigningPlan?) -> TripReminderTime? {
-        guard case .refreshOnTheWay(_, let day)? = plan else { return nil }
-        return TripReminderTime(day: day, hour: Self.signingRefreshHour)
+    /// The evenings to remind about refreshing the signature on the way, if it runs out during the
+    /// trip: the planned one and the next, in case the first try fails, while the signature lasts.
+    public func signingRefreshTimes(_ plan: SigningPlan?) -> [TripReminderTime] {
+        guard case .refreshOnTheWay(let expires, let day)? = plan else { return [] }
+        let tripZone = zone ?? TimeZone(identifier: Self.italyTimeZone) ?? LocalDate.utc
+        return [day, day.adding(days: 1)]
+            .map { TripReminderTime(day: $0, hour: Self.signingRefreshHour) }
+            .filter { $0.date(in: tripZone) < expires }
     }
 }
 

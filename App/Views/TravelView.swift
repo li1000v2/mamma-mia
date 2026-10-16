@@ -205,18 +205,20 @@ private struct DepartureCheckEntry: View {
     let today: LocalDate
 
     var body: some View {
-        let left = model.departureCheck?.todo.count ?? 0
+        let check = model.departureCheck
+        let left = check?.todo.count ?? 0
+        let ready = check?.isReady ?? false
         let tonight = trip.departureCheckTime?.day == today
         Label {
             VStack(alignment: .leading, spacing: 2) {
                 Text(tonight ? "今晚做一遍出发前自检" : "出发前自检")
                     .font(.headline)
-                Text(left == 0 ? "都准备好了" : "还有 \(left) 项要处理")
+                Text(left > 0 ? "还有 \(left) 项要处理" : ready ? "都准备好了" : "检查中……")
                     .font(.subheadline)
                     .foregroundStyle(tonight && left > 0 ? Color.orange : Color.secondary)
             }
         } icon: {
-            Image(systemName: left == 0 ? "checkmark.seal" : "checklist")
+            Image(systemName: ready ? "checkmark.seal" : "checklist")
         }
         .task {
             await model.countAudio()
@@ -224,18 +226,27 @@ private struct DepartureCheckEntry: View {
     }
 }
 
-/// On the way, from the evening the reminder comes: refresh the signature before it runs out.
+/// On the way, from the evening the reminder comes, or at once when the signature was meant to be
+/// refreshed before leaving: refresh it before it runs out.
 private struct SigningRefreshRow: View {
     @Environment(AppModel.self) private var model
     let today: LocalDate
 
     var body: some View {
-        if case .refreshOnTheWay(let expires, let day)? = model.signingPlan, today >= day {
-            Label("签名 \(AppModel.dateTimeText(expires)) 到期：今晚连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签一次。",
-                  systemImage: "signature")
-                .font(.subheadline)
-                .foregroundStyle(.orange)
+        switch model.signingPlan {
+        case .refreshOnTheWay(let expires, let day)? where today >= day:
+            row("签名 \(model.tripTimeText(expires)) 到期：今晚连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签一次。")
+        case .refreshBeforeLeaving(let expires)?:
+            row("签名 \(model.tripTimeText(expires)) 就到期：尽快连上 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签。")
+        default:
+            EmptyView()
         }
+    }
+
+    private func row(_ text: String) -> some View {
+        Label(text, systemImage: "signature")
+            .font(.subheadline)
+            .foregroundStyle(.orange)
     }
 }
 

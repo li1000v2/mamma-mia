@@ -44,7 +44,8 @@ final class SpotPhotoStore {
         do {
             try FileManager.default.removeItem(at: url)
         } catch {
-            AppLog.shared.write("A spot photo couldn't be deleted: \(error.localizedDescription)")
+            // The code only: the message would name the file, which says when it was added.
+            AppLog.shared.write("A spot photo couldn't be deleted (error \((error as NSError).code))")
         }
         reload()
     }
@@ -63,10 +64,11 @@ final class SpotPhotoStore {
         photos = found
     }
 
-    /// Names files by when they were added, so a folder lists oldest first.
+    /// Names files by when they were added, in UTC so a folder lists oldest first across time zones.
     private static let stamp: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "yyyyMMdd-HHmmss"
         return formatter
     }()

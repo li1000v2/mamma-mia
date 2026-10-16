@@ -188,10 +188,12 @@ extension ContentBundle {
 }
 
 extension StudyProgress {
-    /// Adds a check-in at `date`, kept to the whole second the file stores.
+    /// Adds a check-in at `date`, kept to the whole second the file stores. A second tap within the
+    /// same second adds nothing.
     public mutating func checkIn(atSpot id: String, on date: Date) {
         let second = Date(timeIntervalSince1970: date.timeIntervalSince1970.rounded(.down))
         var log = spotLogs[id] ?? SpotLog()
+        guard !log.checkIns.contains(second) else { return }
         log.checkIns.append(second)
         log.checkIns.sort()
         spotLogs[id] = log
