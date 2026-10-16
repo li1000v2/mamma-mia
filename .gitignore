@@ -13,9 +13,10 @@ build/
 .swiftpm/
 DerivedData/
 
-# Personal data: imported on the phone, never committed
+# Personal data: entered in the app, never committed. Exported progress backups include the trip.
 Content/trip.json
 *.local.json
+MammaMia-progress-*.json
 
 # Python
 __pycache__/

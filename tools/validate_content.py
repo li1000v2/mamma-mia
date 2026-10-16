@@ -51,7 +51,7 @@ def main() -> int:
     warnings: list[str] = []
 
     if (CONTENT / "trip.json").exists():
-        errors.append("Content/trip.json is personal data and must not be committed; import it on the phone")
+        errors.append("Content/trip.json is personal data and must not be committed; enter the trip in the app")
 
     lesson_files = sorted((CONTENT / "lessons").glob("*.json"))
     dialogue_files = sorted((CONTENT / "dialogues").glob("*.json"))

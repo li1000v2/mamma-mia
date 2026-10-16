@@ -99,7 +99,7 @@ final class AppModel {
 
     /// For a card shown although FSRS doesn't have it due today: the day the trip needs it.
     func boostDay(for card: ReviewCard) -> LocalDate? {
-        guard !card.isNew, card.due > clock.end(of: today) else { return nil }
+        guard card.phase == .review, card.due > clock.end(of: today) else { return nil }
         return needByDays[card.id.phraseID]
     }
 
@@ -136,7 +136,13 @@ final class AppModel {
     // MARK: Trip
 
     /// Personal data: kept in the progress file on this phone and in its backups, never in the log.
-    var trip: Trip? { progress.trip }
+    /// Read through `normalized`, so the stops are in order and the holidays are this build's
+    /// even for a trip saved by an earlier one.
+    var trip: Trip? {
+        guard let saved = progress.trip else { return nil }
+        guard let content else { return saved }
+        return saved.normalized(events: content.course.events)
+    }
 
     /// Today's calendar date where the phone is; the phone switches to Italian time on landing.
     var calendarToday: LocalDate { LocalDate.of(.now, in: .current) }
@@ -177,22 +183,25 @@ final class AppModel {
         defer {
             if accessing { url.stopAccessingSecurityScopedResource() }
         }
-        var imported = try ProgressStore.decode(Data(contentsOf: url))
-        let keptTrip = imported.trip == nil && progress.trip != nil
-        if keptTrip {
-            imported.trip = progress.trip
-        }
-        try store.save(imported)
-        progress = imported
+        let backup = try ProgressStore.decode(Data(contentsOf: url))
+        let (restored, keptTrip) = progress.restoring(backup)
+        try store.save(restored)
+        progress = restored
         refreshNeedBy()
-        AppLog.shared.write("Imported progress: \(imported.cards.count) cards, \(imported.reviews.count) reviews")
+        AppLog.shared.write("Imported progress: \(restored.cards.count) cards, \(restored.reviews.count) reviews")
+        if backup.droppedUnreadableTrip {
+            AppLog.shared.write(Self.unreadableTripNote)
+        }
         return keptTrip
     }
+
+    /// Logged instead of anything about the trip itself.
+    private static let unreadableTripNote = "A trip in the file couldn't be read and was left out"
 
     // MARK: Private
 
     private func refreshNeedBy() {
-        if let content, let trip = progress.trip {
+        if let content, let trip {
             needByDays = content.needByDays(on: trip)
         } else {
             needByDays = [:]
@@ -203,6 +212,9 @@ final class AppModel {
         do {
             progress = try store.load()
             AppLog.shared.write("Progress: \(progress.cards.count) cards, \(progress.reviews.count) reviews")
+            if progress.droppedUnreadableTrip {
+                AppLog.shared.write(Self.unreadableTripNote)
+            }
         } catch {
             storageError = "读取学习进度失败：\(error)"
             AppLog.shared.write("Progress failed to load: \(error)")

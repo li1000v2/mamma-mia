@@ -36,6 +36,9 @@ public struct StudyProgress: Codable, Equatable, Sendable {
     /// Personal: stays on the phone and in its backups. Absent from files written before the trip
     /// form existed.
     public var trip: Trip?
+    /// The file had a trip this build couldn't read, so it was left out. Not saved; it only lets
+    /// the app note the loss in its log without writing anything about the trip itself.
+    public private(set) var droppedUnreadableTrip = false
 
     public init() {}
 
@@ -52,7 +55,12 @@ public struct StudyProgress: Codable, Equatable, Sendable {
         challengeRuns = try container.decodeIfPresent([ChallengeRun].self, forKey: .challengeRuns) ?? []
         // A trip that can't be read is dropped rather than costing the learning record; it can be
         // entered again in a minute.
-        trip = try? container.decodeIfPresent(Trip.self, forKey: .trip)
+        do {
+            trip = try container.decodeIfPresent(Trip.self, forKey: .trip)
+        } catch {
+            trip = nil
+            droppedUnreadableTrip = true
+        }
     }
 }
 
@@ -96,6 +104,16 @@ extension StudyProgress {
 
     public mutating func add(_ run: ChallengeRun) {
         challengeRuns.append(run)
+    }
+
+    /// What restoring `backup` over this progress leaves: the backup's learning records, and its
+    /// trip if it has one. A backup without a trip (every backup made before the trip form, or one
+    /// whose trip couldn't be read) keeps the trip already here; `keptTrip` says so.
+    public func restoring(_ backup: StudyProgress) -> (progress: StudyProgress, keptTrip: Bool) {
+        guard backup.trip == nil, let trip else { return (backup, false) }
+        var restored = backup
+        restored.trip = trip
+        return (restored, true)
     }
 
     /// How many cards had their first-ever review on `day`; the daily new-card cap counts these.

@@ -29,6 +29,15 @@ public struct Trip: Codable, Hashable, Sendable {
             self.to = to
             self.hotel = hotel
         }
+
+        /// Sets the arrival day. The departure stays put unless it would come before the new
+        /// arrival; then it moves along and the stay keeps its length.
+        public mutating func moveArrival(to day: LocalDate) {
+            if to < day {
+                to = day.adding(days: max(0, from.days(until: to)))
+            }
+            from = day
+        }
     }
 
     public struct Event: Codable, Hashable, Sendable {
@@ -212,22 +221,26 @@ extension Trip {
         return events.sorted { ($0.date, $0.id) < ($1.date, $1.id) }
     }
 
-    /// The trip as the form saves it: text trimmed, blank text and empty hotels or diet dropped,
-    /// allergens in annex order, and the events taken from `catalog` for the dates it covers.
+    /// The trip as the form saves it and the app reads it: stops in arrival order, text trimmed,
+    /// blank text and empty hotels or diet dropped, allergens in annex order, and the events taken
+    /// from `catalog` for the dates it covers. Applied on every read too, so events a later course
+    /// adds reach a trip saved before.
     public func normalized(events catalog: [CourseEvent]) -> Trip {
         var trip = self
-        trip.stops = stops.map { stop in
-            var stop = stop
-            let hotel = Hotel(name: Self.cleaned(stop.hotel?.name), address: Self.cleaned(stop.hotel?.address))
-            stop.hotel = hotel.name == nil && hotel.address == nil ? nil : hotel
-            return stop
-        }
+        trip.stops = stops
+            .sorted { ($0.from, $0.to) < ($1.from, $1.to) }
+            .map { stop in
+                var stop = stop
+                let hotel = Hotel(name: Self.cleaned(stop.hotel?.name), address: Self.cleaned(stop.hotel?.address))
+                stop.hotel = hotel.name == nil && hotel.address == nil ? nil : hotel
+                return stop
+            }
         if let diet {
             let allergens = Allergen.allCases.filter { diet.allergens.contains($0) }
             let note = Self.cleaned(diet.note)
             trip.diet = allergens.isEmpty && note == nil ? nil : Diet(allergens: allergens, note: note)
         }
-        trip.events = events(coveredFrom: catalog)
+        trip.events = trip.events(coveredFrom: catalog)
         return trip
     }
 

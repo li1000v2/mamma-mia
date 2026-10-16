@@ -6,7 +6,8 @@ import MammaCore
 struct TripEditorView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
-    @State private var stops: [StopDraft]
+    /// Edited in place; blank hotel text is dropped and the stops sorted when the trip is built.
+    @State private var stops: [Trip.Stop]
     @State private var allergens: Set<Allergen>
     @State private var dietNote: String
     private let isNew: Bool
@@ -16,18 +17,18 @@ struct TripEditorView: View {
         self.today = today
         isNew = trip == nil
         if let trip {
-            _stops = State(initialValue: trip.stops.map(StopDraft.init(stop:)))
+            _stops = State(initialValue: trip.stops)
             _allergens = State(initialValue: Set(trip.diet?.allergens ?? []))
             _dietNote = State(initialValue: trip.diet?.note ?? "")
         } else {
             // The course's cities back to back from today: usually only the dates need changing.
-            var drafts: [StopDraft] = []
+            var stops: [Trip.Stop] = []
             var day = today
             for city in cities {
-                drafts.append(StopDraft(city: city.id, from: day, to: day.adding(days: 2)))
+                stops.append(Trip.Stop(city: city.id, from: day, to: day.adding(days: 2)))
                 day = day.adding(days: 2)
             }
-            _stops = State(initialValue: drafts)
+            _stops = State(initialValue: stops)
             _allergens = State(initialValue: [])
             _dietNote = State(initialValue: "")
         }
@@ -40,7 +41,7 @@ struct TripEditorView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
-            ForEach(stops) { stop in
+            ForEach(stops, id: \.city) { stop in
                 stopSection(stop.city)
             }
             if !remainingCities.isEmpty {
@@ -104,9 +105,9 @@ struct TripEditorView: View {
             DatePicker("到达", selection: arrival(of: stop), displayedComponents: .date)
             DatePicker("离开", selection: departure(of: stop), in: TripDates.date(stop.wrappedValue.from)...,
                        displayedComponents: .date)
-            TextField("酒店名称（可不填）", text: stop.hotelName)
+            TextField("酒店名称（可不填）", text: hotelText(of: stop, \.name))
                 .autocorrectionDisabled()
-            TextField("酒店地址（可不填）", text: stop.hotelAddress, axis: .vertical)
+            TextField("酒店地址（可不填）", text: hotelText(of: stop, \.address), axis: .vertical)
                 .lineLimit(1...4)
                 .textContentType(.fullStreetAddress)
                 .autocorrectionDisabled()
@@ -136,12 +137,11 @@ struct TripEditorView: View {
 
     // MARK: Draft
 
-    /// What saving would store: stops in arrival order, cleaned up by `Trip.normalized`, which also
-    /// adds the course's fixed-date events the dates cover.
+    /// What saving would store. `Trip.normalized` puts the stops in arrival order, drops blank
+    /// text and adds the course's fixed-date events the dates cover.
     private var draft: Trip {
-        let ordered = stops.map(\.stop).sorted { ($0.from, $0.to) < ($1.from, $1.to) }
         let diet = Diet(allergens: Array(allergens), note: dietNote)
-        return Trip(stops: ordered, diet: diet).normalized(events: model.content?.course.events ?? [])
+        return Trip(stops: stops, diet: diet).normalized(events: model.content?.course.events ?? [])
     }
 
     private var issues: [TripIssue] {
@@ -157,7 +157,7 @@ struct TripEditorView: View {
         return names.isEmpty ? "无" : names.joined(separator: "、")
     }
 
-    private func nightsText(_ stop: StopDraft) -> String {
+    private func nightsText(_ stop: Trip.Stop) -> String {
         let nights = stop.from.days(until: stop.to)
         if nights < 0 { return "日期有误" }
         return nights == 0 ? "当天离开" : "\(nights) 晚"
@@ -185,7 +185,7 @@ struct TripEditorView: View {
     /// A new stop starts on the day the trip so far ends: a travel day.
     private func add(_ city: CourseCity) {
         let start = stops.map(\.to).max() ?? today
-        stops.append(StopDraft(city: city.id, from: start, to: start.adding(days: 2)))
+        stops.append(Trip.Stop(city: city.id, from: start, to: start.adding(days: 2)))
     }
 
     private func save() {
@@ -195,9 +195,9 @@ struct TripEditorView: View {
     }
 
     /// Looked up by city on every access, so a removed stop can't leave a dangling index behind.
-    private func binding(for city: String) -> Binding<StopDraft> {
+    private func binding(for city: String) -> Binding<Trip.Stop> {
         Binding(
-            get: { stops.first { $0.city == city } ?? StopDraft(city: city, from: today, to: today) },
+            get: { stops.first { $0.city == city } ?? Trip.Stop(city: city, from: today, to: today) },
             set: { newValue in
                 if let index = stops.firstIndex(where: { $0.city == city }) {
                     stops[index] = newValue
@@ -206,54 +206,35 @@ struct TripEditorView: View {
         )
     }
 
-    /// Moving the arrival moves the whole stay, so the departure can't end up before it.
-    private func arrival(of stop: Binding<StopDraft>) -> Binding<Date> {
+    /// See `Trip.Stop.moveArrival`: the departure only moves when it would fall before the arrival.
+    private func arrival(of stop: Binding<Trip.Stop>) -> Binding<Date> {
         Binding(
             get: { TripDates.date(stop.wrappedValue.from) },
             set: { newValue in
                 var updated = stop.wrappedValue
-                let nights = max(0, updated.from.days(until: updated.to))
-                updated.from = TripDates.day(newValue)
-                updated.to = updated.from.adding(days: nights)
+                updated.moveArrival(to: TripDates.day(newValue))
                 stop.wrappedValue = updated
             }
         )
     }
 
-    private func departure(of stop: Binding<StopDraft>) -> Binding<Date> {
+    private func departure(of stop: Binding<Trip.Stop>) -> Binding<Date> {
         Binding(
             get: { TripDates.date(stop.wrappedValue.to) },
             set: { stop.wrappedValue.to = TripDates.day($0) }
         )
     }
-}
 
-/// One stop as the form edits it: hotel fields as plain strings, blank meaning not given.
-private struct StopDraft: Identifiable {
-    var city: String
-    var from: LocalDate
-    var to: LocalDate
-    var hotelName = ""
-    var hotelAddress = ""
-
-    var id: String { city }
-
-    init(city: String, from: LocalDate, to: LocalDate) {
-        self.city = city
-        self.from = from
-        self.to = to
-    }
-
-    init(stop: Trip.Stop) {
-        city = stop.city
-        from = stop.from
-        to = stop.to
-        hotelName = stop.hotel?.name ?? ""
-        hotelAddress = stop.hotel?.address ?? ""
-    }
-
-    var stop: Trip.Stop {
-        Trip.Stop(city: city, from: from, to: to, hotel: Trip.Hotel(name: hotelName, address: hotelAddress))
+    /// The hotel's name or address as plain text, blank meaning not given.
+    private func hotelText(of stop: Binding<Trip.Stop>, _ field: WritableKeyPath<Trip.Hotel, String?>) -> Binding<String> {
+        Binding(
+            get: { stop.wrappedValue.hotel?[keyPath: field] ?? "" },
+            set: { newValue in
+                var hotel = stop.wrappedValue.hotel ?? Trip.Hotel()
+                hotel[keyPath: field] = newValue
+                stop.wrappedValue.hotel = hotel
+            }
+        )
     }
 }
 

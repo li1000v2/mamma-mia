@@ -79,6 +79,31 @@ struct TripTests {
         #expect(Trip(stops: [venezia], diet: Diet()).normalized(events: []).diet == nil)
     }
 
+    @Test func normalizingSortsTheStops() throws {
+        let venezia = try stop("venezia", "2031-04-02", "2031-04-04")
+        let napoli = try stop("napoli", "2031-04-04", "2031-04-06")
+        let trip = Trip(stops: [napoli, venezia]).normalized(events: [])
+        #expect(trip.stops.map(\.city) == ["venezia", "napoli"])
+        #expect(trip.issues(knownCities: cities).isEmpty)
+    }
+
+    @Test func movingTheArrivalOnlyPushesTheDepartureWhenItMust() throws {
+        // A day later or earlier: the departure, often a booked flight, stays.
+        var stay = try stop("roma", "2030-03-05", "2030-03-08")
+        stay.moveArrival(to: try day("2030-03-06"))
+        let later = try stop("roma", "2030-03-06", "2030-03-08")
+        #expect(stay == later)
+        stay.moveArrival(to: try day("2030-03-04"))
+        let earlier = try stop("roma", "2030-03-04", "2030-03-08")
+        #expect(stay == earlier)
+
+        // Past the departure: the stay moves along and keeps its length.
+        var prefilled = try stop("venezia", "2030-02-05", "2030-02-07")
+        prefilled.moveArrival(to: try day("2030-03-01"))
+        let moved = try stop("venezia", "2030-03-01", "2030-03-03")
+        #expect(prefilled == moved)
+    }
+
     @Test func phaseCountsDownThenFollowsTheStops() throws {
         let venezia = try stop("venezia", "2031-04-02", "2031-04-04")
         let napoli = try stop("napoli", "2031-04-04", "2031-04-05")

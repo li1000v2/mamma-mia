@@ -68,6 +68,33 @@ struct ProgressTests {
         let progress = try ProgressStore.decode(Data(json.utf8))
         #expect(progress.isCompleted("L01"))
         #expect(progress.trip == nil)
+        #expect(progress.droppedUnreadableTrip)
+        let intact = try ProgressStore.decode(ProgressStore.encode(sampleProgress()))
+        #expect(!intact.droppedUnreadableTrip)
+    }
+
+    @Test func restoringKeepsThePhonesTripOnlyWhenTheBackupHasNone() throws {
+        var phone = StudyProgress()
+        phone.trip = try sampleTrip()
+
+        let oldBackup = try sampleProgress()
+        let (restored, kept) = phone.restoring(oldBackup)
+        #expect(kept)
+        #expect(restored.trip == phone.trip)
+        #expect(restored.cards == oldBackup.cards)
+        #expect(restored.reviews == oldBackup.reviews)
+
+        var newBackup = try sampleProgress()
+        var otherTrip = try sampleTrip()
+        otherTrip.stops.removeLast()
+        newBackup.trip = otherTrip
+        let (replaced, keptAgain) = phone.restoring(newBackup)
+        #expect(!keptAgain)
+        #expect(replaced == newBackup)
+
+        let (plain, keptNothing) = StudyProgress().restoring(oldBackup)
+        #expect(!keptNothing)
+        #expect(plain == oldBackup)
     }
 
     @Test func storeKeepsTheTripUntilItIsCleared() throws {

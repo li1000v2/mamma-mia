@@ -69,6 +69,22 @@ struct ContentTests {
         #expect(shorterDays["L08-01"] == LocalDate("2030-03-01"))
     }
 
+    @Test func aSavedTripPicksUpTheCoursesHolidaysWhenRead() throws {
+        let bundle = try Self.loadRepositoryContent()
+        let venezia = Trip.Stop(city: "venezia", from: try #require(LocalDate("2031-12-03")), to: try #require(LocalDate("2031-12-06")))
+        let napoli = Trip.Stop(city: "napoli", from: try #require(LocalDate("2031-12-06")), to: try #require(LocalDate("2031-12-10")))
+        // As an earlier build might have saved it: stops out of order, no holidays.
+        let saved = Trip(stops: [napoli, venezia], events: [])
+        #expect(bundle.needByDays(on: saved)["L18-01"] == nil)
+
+        // The app reads every trip through `normalized` with the current course.
+        let read = saved.normalized(events: bundle.course.events)
+        #expect(read.stops.map(\.city) == ["venezia", "napoli"])
+        let days = bundle.needByDays(on: read)
+        #expect(days["L18-01"] == LocalDate("2031-12-08"))
+        #expect(days["L05-01"] == LocalDate("2031-12-03"))
+    }
+
     @Test func validatorChecksCitiesEventsAndTheTrip() throws {
         let venezia = CourseCity(id: "venezia", zh: "威尼斯", it: "Venezia")
         let course = Course(
