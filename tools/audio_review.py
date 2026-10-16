@@ -304,6 +304,7 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
     md.append(f"- token：输入 {tokens['prompt']:,}，输出 {tokens['output']:,}，思考 {tokens['thoughts']:,}")
     md.append(f"- 花费估算：{len(screened)} 次 × ${USD_PER_CLIP} ≈ ${cost:.2f}（按实测单价；只重筛新片段时实际花费更少）")
     md.append("")
+    REVIEWS.mkdir(exist_ok=True)
     md_path = REVIEWS / f"audio-screen-week{week}.md"
     md_path.write_text("\n".join(md), encoding="utf-8")
 
