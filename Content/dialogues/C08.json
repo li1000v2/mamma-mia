@@ -1,0 +1,120 @@
+{
+  "unit": "C08",
+  "title": "竞技场与圣地",
+  "goal": "在斗兽场的售票处买一张全价票，听清票价；问入口往哪边走；再请这位工作人员帮你拍张照，和她聊上两句。",
+  "speaker": "Addetta",
+  "voice": "f1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "ticket",
+      "npc": [
+        { "it": "Buongiorno! Mi dica.", "zh": "早上好！您要什么？" },
+        { "it": "Buongiorno, prego.", "zh": "早上好，您请说。" }
+      ],
+      "reply": {
+        "intent": "买一张全价票",
+        "frame": "numero",
+        "choices": [
+          { "it": "Un biglietto intero, per favore.", "correct": true },
+          { "it": "Un biglietto ridotto, per favore.", "correct": false, "feedback": "ridotto 是优惠票，要符合条件才能买。这次的任务是买全价票：intero。" },
+          { "it": "Un biglietto per Napoli, per favore.", "correct": false, "feedback": "这是在火车站买去那不勒斯的票（L14）。这里要的是门票：Un biglietto intero。" }
+        ]
+      }
+    },
+    {
+      "id": "price",
+      "npc": [
+        { "it": "Sono sedici euro, grazie. Ecco il biglietto.", "zh": "十六欧，谢谢。这是您的票。", "answer": "16 €", "distractors": ["6 €", "60 €"] },
+        { "it": "Sono diciotto euro, grazie. Ecco il biglietto.", "zh": "十八欧，谢谢。这是您的票。", "answer": "18 €", "distractors": ["8 €", "80 €"] },
+        { "it": "Sono ventiquattro euro, grazie. Ecco il biglietto.", "zh": "二十四欧，谢谢。这是您的票。", "answer": "24 €", "distractors": ["14 €", "40 €"] }
+      ],
+      "question": "票价多少？",
+      "reply": {
+        "intent": "拿到票，问入口在哪儿",
+        "frame": "dove",
+        "choices": [
+          { "it": "Grazie. Dov'è l'ingresso?", "correct": true },
+          { "it": "Grazie. Dov'è l'uscita?", "correct": false, "feedback": "uscita 是出口（L01）。入口是 ingresso：Dov'è l'ingresso?" },
+          { "it": "Grazie. Quanto costa l'ingresso?", "correct": false, "feedback": "票已经买好了，这句又在问门票多少钱。问入口在哪儿：Dov'è l'ingresso?" }
+        ]
+      }
+    },
+    {
+      "id": "entrance",
+      "npc": [
+        { "it": "L'ingresso? Giri a destra, è lì.", "zh": "入口？往右转，就在那儿。", "answer": "往右转", "distractors": ["往左转", "一直往前走"] },
+        { "it": "L'ingresso? Giri a sinistra, è lì.", "zh": "入口？往左转，就在那儿。", "answer": "往左转", "distractors": ["往右转", "一直往前走"] },
+        { "it": "L'ingresso? Vada sempre dritto, è lì.", "zh": "入口？一直往前走，就在那儿。", "answer": "一直往前走", "distractors": ["往右转", "往左转"] }
+      ],
+      "question": "入口往哪边走？",
+      "reply": {
+        "intent": "道谢，再请她帮你拍张照",
+        "frame": "mipuo",
+        "choices": [
+          { "it": "Grazie! Mi può fare una foto?", "correct": true },
+          { "it": "Grazie! Posso fare una foto?", "correct": false, "feedback": "Posso…? 是“我能……吗”，这句是问“我能拍照吗”。请对方帮你拍：Mi può fare una foto?" },
+          { "it": "Grazie! Mi può fare un caffè?", "correct": false, "feedback": "这是请对方给你做一杯咖啡。拍照是 fare una foto。" }
+        ]
+      }
+    },
+    {
+      "id": "photo",
+      "npc": [
+        { "it": "Va bene! Uno, due, tre… ecco fatto. Come mai proprio qui?", "zh": "好！一、二、三……拍好了。怎么特地在这儿拍？" },
+        { "it": "Va bene! Sorrida… ecco fatto. Perché proprio qui?", "zh": "好！笑一个……拍好了。为什么偏偏在这儿拍？" }
+      ],
+      "reply": {
+        "intent": "说你是 JoJo 迷",
+        "frame": "sono",
+        "choices": [
+          { "it": "Sono un fan di JoJo!", "correct": true },
+          { "it": "Sono JoJo!", "correct": false, "feedback": "这成了“我就是 JoJo”。“我是……迷”要说 Sono un fan di…" },
+          { "it": "Ho un fan di JoJo!", "correct": false, "feedback": "Ho 是“我有”，这句成了“我有一个 JoJo 迷”。说自己是什么用 Sono…" }
+        ]
+      }
+    },
+    {
+      "id": "bye",
+      "npc": [
+        { "it": "Ah, JoJo! Qui ne vengono tanti. Buona visita!", "zh": "啊，JoJo！来这儿的粉丝可多了。祝您参观愉快！" },
+        { "it": "Ah, JoJo! Allora benvenuto a Roma. Buona visita!", "zh": "啊，JoJo！那欢迎来到罗马。祝您参观愉快！" }
+      ]
+    }
+  ],
+  "followUps": {
+    "after": "entrance",
+    "min": 1,
+    "max": 1,
+    "pool": [
+      {
+        "id": "ancora",
+        "npc": [
+          { "it": "Certo! Ecco fatto. Va bene così?", "zh": "当然！拍好了。这样行吗？" }
+        ],
+        "reply": {
+          "intent": "请她再拍一张",
+          "choices": [
+            { "it": "Ancora una, per favore.", "correct": true },
+            { "it": "Ancora uno, per favore.", "correct": false, "feedback": "foto 是阴性（la foto），要说 Ancora una。" },
+            { "it": "Ho fatto una foto.", "correct": false, "feedback": "这是“我拍了一张照片”。请对方再拍一张：Ancora una, per favore。" }
+          ]
+        }
+      },
+      {
+        "id": "premere",
+        "npc": [
+          { "it": "Certo! Dove devo premere?", "zh": "当然！按哪里？" }
+        ],
+        "reply": {
+          "intent": "告诉她按这里就行",
+          "choices": [
+            { "it": "Basta premere qui.", "correct": true },
+            { "it": "Basta così.", "correct": false, "feedback": "Basta così 是“就这些”。对方问按哪儿，要说 Basta premere qui。" },
+            { "it": "Devo premere qui?", "correct": false, "feedback": "这是在问“我该按这里吗”。你是要告诉对方按哪儿：Basta premere qui。" }
+          ]
+        }
+      }
+    ]
+  }
+}

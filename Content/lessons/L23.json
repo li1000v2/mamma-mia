@@ -1,0 +1,49 @@
+{
+  "unit": "L23",
+  "intro": "Mi può…? 是请“您”帮我做事：mi（为我）+ può（您能）+ 动词原形。拍照是 fare una foto，所以请人拍照就是 Mi può fare una foto?\n\n和 L06 的 Posso…? 对比：Posso fare una foto? 是“我可以拍照吗”（问这里让不让拍），Mi può fare una foto? 是“您能帮我拍张照吗”（请人帮忙）。\n\n把手机递过去时指一下快门：Basta premere qui（按这里就行）。foto 虽然以 -o 结尾，却是阴性（la foto，fotografia 的简称），所以“再来一张”是 Ancora una，不是 ancora uno。\n\n拍完说 Grazie mille! 对方要是好奇你为什么在这儿拍，就说 Sono un fan di…（我是……迷）。",
+  "phrases": [
+    {
+      "id": "L23-01",
+      "it": "Mi può fare una foto?",
+      "zh": "您能帮我拍张照吗？",
+      "frame": "mipuo",
+      "scene": "sights",
+      "status": "draft",
+      "note": "先说 Scusi 叫住对方，再问这句。fare una foto 是“拍照”。"
+    },
+    {
+      "id": "L23-02",
+      "it": "Basta premere qui.",
+      "zh": "按这里就行。",
+      "scene": "sights",
+      "status": "draft",
+      "note": "basta 是“只要……就行”（Basta così 是“就这些”）。premere≈プレーメレ，“按”。"
+    },
+    {
+      "id": "L23-03",
+      "it": "Ancora una, per favore.",
+      "zh": "请再拍一张。",
+      "scene": "sights",
+      "status": "draft",
+      "note": "una 指的是 la foto（阴性），所以不说 uno。"
+    },
+    {
+      "id": "L23-04",
+      "it": "Posso fare una foto qui?",
+      "zh": "这里可以拍照吗？",
+      "frame": "posso",
+      "scene": "sights",
+      "status": "draft",
+      "note": "进教堂、博物馆先问一句。常听到的回答：Sì, ma senza flash（可以，但别开闪光灯）。"
+    },
+    {
+      "id": "L23-05",
+      "it": "Sono un fan di JoJo.",
+      "zh": "我是 JoJo 迷。",
+      "frame": "sono",
+      "scene": "sights",
+      "status": "draft",
+      "note": "fan 是英语外来词，意大利语里多读≈フェン；男女都用，女生说 una fan。彩蛋：作品里的 giorno、vento、oro 都是日常词——giorno 是“一天、白天”（buongiorno 就是“好的一天”），vento 是“风”，oro 是“金子”。"
+    }
+  ]
+}

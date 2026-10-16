@@ -1,0 +1,50 @@
+{
+  "unit": "L22",
+  "intro": "景点售票处要办三件事：买什么票、多少钱、从哪儿进。\n\n买票：Un biglietto intero（一张全价票）/ ridotto（优惠票）；两张就是 Due biglietti interi。售票员常反问 Intero o ridotto?（全价还是优惠？）intero≈インテーロ，ridotto≈リドット。\n\n问价用 L04 的句框：Quanto costa l'ingresso?（门票多少钱？）ingresso 有两个意思：“入场”和“入口”，所以 Dov'è l'ingresso? 是“入口在哪儿”。\n\nServe…? 是“需要……吗”：Serve la prenotazione?（需要预约吗？）。问关门时间复习 L10 的 A che ora…?：A che ora chiude?\n\n票价、开放时间、预约规定都会变，这里只学怎么问；出发前以官网和现场告示为准。",
+  "phrases": [
+    {
+      "id": "L22-01",
+      "it": "Un biglietto intero, per favore.",
+      "zh": "请给我一张全价票。",
+      "frame": "numero",
+      "scene": "sights",
+      "status": "draft",
+      "note": "售票员常问 Intero o ridotto?。ridotto 是优惠票，谁能买各处规定不同，看窗口告示；不符合就买 intero。"
+    },
+    {
+      "id": "L22-02",
+      "it": "Quanto costa l'ingresso?",
+      "zh": "门票多少钱？",
+      "frame": "quanto",
+      "scene": "sights",
+      "status": "draft",
+      "note": "ingresso 在这里是“入场（费）”。门口写着 Ingresso libero 或 Ingresso gratuito，就是免费入场。"
+    },
+    {
+      "id": "L22-03",
+      "it": "Dov'è l'ingresso?",
+      "zh": "入口在哪儿？",
+      "frame": "dove",
+      "scene": "sights",
+      "status": "draft",
+      "note": "ingresso≈イングレッソ 也是“入口”，有的牌子写 Entrata；出口是 Uscita（L01）。"
+    },
+    {
+      "id": "L22-04",
+      "it": "Serve la prenotazione?",
+      "zh": "需要预约吗？",
+      "scene": "sights",
+      "status": "draft",
+      "note": "serve 是“需要（某样东西）”。回答 Sì, serve 或 No, non serve。热门景点常要提前在网上约时段，出发前查一下官网。"
+    },
+    {
+      "id": "L22-05",
+      "it": "A che ora chiude?",
+      "zh": "几点关门？",
+      "frame": "ache",
+      "scene": "sights",
+      "status": "draft",
+      "note": "回答多用 24 小时制（L10）。很多景点关门前就停止入场，可以接着问 A che ora è l'ultimo ingresso?（最晚几点能进？）"
+    }
+  ]
+}
