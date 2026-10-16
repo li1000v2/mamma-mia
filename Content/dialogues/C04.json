@@ -2,8 +2,8 @@
   "unit": "C04",
   "title": "威尼斯晚餐",
   "goal": "一个人在威尼斯的小餐馆吃晚饭：要一张一个人的桌子，请服务员推荐。这次的设定是你对虾蟹类（crostacei）过敏，服务员问起时要说清楚；不喝酒，要不带气的水。吃完叫结账，听清一共多少钱（coperto 座位费已经算在里面），再问能不能刷卡。",
-  "speaker": "Cameriere",
-  "voice": "m1",
+  "speaker": "Cameriera",
+  "voice": "f1",
   "status": "draft",
   "nodes": [
     {

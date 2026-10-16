@@ -27,102 +27,12 @@ code { font-size: 0.85em; }
 <body>
 <main>
 <h1>示范音频粗筛 · 第 1 周</h1>
-<p class="meta">已筛 194 / 194 段，可疑 9 段（原速 6，慢速 3）。
-模型 gemini-4-argon，花费估算 $0.78。按需要听的先后排列。</p>
-<section class="card">
-  <h2><span class="n">1</span>Napoli</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>2e359c62aa64127a.m4a</code> ·
-    严重度 high · 置信度 0.95</p>
-  <audio controls preload="none" src="../Audio/2e359c62aa64127a.m4a"></audio>
-  <p>单词 Napoli 中间的音节发音不完整，元音 o 缺失，听起来像 Napli。</p>
-  <ul><li><b>漏读</b>「Napoli」：中间的元音 o 被吞掉，听起来像 Napli。</li></ul>
-  <p class="meta">模型听到：Napli</p>
-  <p class="meta">转写模型听到：Napoli（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">2</span>caffè</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>d9890204c1d54ddf.m4a</code> ·
-    严重度 high · 置信度 1.00</p>
-  <audio controls preload="none" src="../Audio/d9890204c1d54ddf.m4a"></audio>
-  <p>该音频直接使用了美式英语的“cafe”发音，而非意大利语的“caffè”。</p>
-  <ul><li><b>读错</b>「caffè」：使用了英语发音（/kæˈfeɪ/），元音与意大利语完全不符。</li></ul>
-  <p class="meta">模型听到：cafe</p>
-  <p class="meta">转写模型听到：Caffè（和原文一致）</p>
-  <p class="meta">双辅音需人工听：caffè</p>
-</section><section class="card">
-  <h2><span class="n">3</span>biglietto</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>e997ccf45977906d.m4a</code> ·
-    严重度 high · 置信度 0.95</p>
-  <audio controls preload="none" src="../Audio/e997ccf45977906d.m4a"></audio>
-  <p>“biglietto”中的“gli”发音错误，被读成了带停顿的“bil-ietto”，会误导初学者。</p>
-  <ul><li><b>读错</b>「biglietto」：词中的“gli”没有发成正确的意大利语硬颚边音，而是被错误地拆开发成了“bil-ietto”。</li></ul>
-  <p class="meta">模型听到：bilietto</p>
-  <p class="meta">转写模型听到：biglietto（和原文一致）</p>
-  <p class="meta">双辅音需人工听：biglietto</p>
-</section><section class="card">
-  <h2><span class="n">4</span>chiesa</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>b057c1e297e53cdf.m4a</code> ·
-    严重度 high · 置信度 0.95</p>
-  <audio controls preload="none" src="../Audio/b057c1e297e53cdf.m4a"></audio>
-  <p>“chiesa”发音错误，被拆成了三个音节且带有浓重的英语口音，不适合作为教学示范。</p>
-  <ul><li><b>读错</b>「chiesa」：将双元音读成了分音节的“ki-e-sa”，且带有明显的英语口音和送气音。</li></ul>
-  <p class="meta">模型听到：chi-e-sa</p>
-  <p class="meta">转写模型听到：chiesa（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">5</span>Posso pagare con la carta?</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>3deae421f12d12c5.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/3deae421f12d12c5.m4a"></audio>
-  <p>“Posso”与“pagare”之间多出了不应有的元音“a”。</p>
-  <ul><li><b>多出来的话</b>「Posso pagare」：两词之间多读了一个“a”音。</li></ul>
-  <p class="meta">模型听到：Posso a pagare con la carta?</p>
-  <p class="meta">转写模型听到：Posso pagare con la carta?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：Posso</p>
-</section><section class="card">
-  <h2><span class="n">6</span>biglietto</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>42950c0514e42b03.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/42950c0514e42b03.m4a"></audio>
-  <p>单词中的gli发音不标准，带有明显外语口音。</p>
-  <ul><li><b>读错</b>「biglietto」：辅音组合gli发音错误，读成了类似l加y的音。</li></ul>
-  <p class="meta">模型听到：bilietto</p>
-  <p class="meta">转写模型听到：Biglietto（和原文一致）</p>
-  <p class="meta">双辅音需人工听：biglietto</p>
-</section><section class="card">
-  <h2><span class="n">7</span>caffè</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>b6f9a4f718d95cdc.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/b6f9a4f718d95cdc.m4a"></audio>
-  <p>单词按英语发音朗读，元音错误。</p>
-  <ul><li><b>读错</b>「caffè」：使用了英语发音而非意大利语发音。</li></ul>
-  <p class="meta">模型听到：caffè (pronuncia inglese)</p>
-  <p class="meta">转写模型听到：café（和原文不同）</p>
-  <p class="meta">双辅音需人工听：caffè</p>
-</section><section class="card">
-  <h2><span class="n">8</span>caffè</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>c51c0dbf7d04ade4.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/c51c0dbf7d04ade4.m4a"></audio>
-  <p>该词按英语发音，元音与重音位置均不正确。</p>
-  <ul><li><b>读错</b>「caffè」：使用了英语元音发音。</li><li><b>重音</b>「caffè」：重音错误地落在了第一音节。</li></ul>
-  <p class="meta">模型听到：cafe</p>
-  <p class="meta">转写模型听到：Caffè（和原文一致）</p>
-  <p class="meta">双辅音需人工听：caffè</p>
-</section><section class="card">
-  <h2><span class="n">9</span>caffè</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>87599519e1091485.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/87599519e1091485.m4a"></audio>
-  <p>单词按英语发音读出，不符合意大利语发音规则。</p>
-  <ul><li><b>读错</b>「caffè」：使用了英语发音，词尾元音读成了双元音。</li></ul>
-  <p class="meta">模型听到：cafe</p>
-  <p class="meta">转写模型听到：caffè（和原文一致）</p>
-  <p class="meta">双辅音需人工听：caffè</p>
-</section>
+<p class="meta">已筛 192 / 192 段，可疑 0 段（原速 0，慢速 0）。
+模型 gemini-4-argon，花费估算 $0.77。按需要听的先后排列。</p>
+<p>没有可疑片段。</p>
 <details class="gem">
 <summary>双辅音需人工听（22 句，原速）</summary>
-<ul><li><p>Buongiorno! Allora, oggi abbiamo cornetti alla crema, al cioccolato e integrali: cosa le do? <span class="meta">— Allora, oggi, abbiamo, cornetti, alla, cioccolato</span></p><label>f1@1<audio controls preload="none" src="../Audio/72f5ed25033342fb.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d16c75572c352964.m4a"></audio></label></li><li><p>Certo, ecco. Grazie e buona giornata! <span class="meta">— ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/0a4b7176a2d6b969.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d92f7f83c5166e72.m4a"></audio></label></li><li><p>Certo. Ecco lo scontrino. <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/2205fe54d4eace3b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f3508478ca1e7f65.m4a"></audio></label></li><li><p>Cornetti: crema, cioccolato o integrale? <span class="meta">— Cornetti, cioccolato</span></p><label>f1@1<audio controls preload="none" src="../Audio/b68e8df6b40441c9.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3ee09d67cf001090.m4a"></audio></label></li><li><p>Dov&#x27;è la fermata del vaporetto? <span class="meta">— vaporetto</span></p><label>f1@1<audio controls preload="none" src="../Audio/f43e2cec0bde894f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/5997a31c70197b7b.m4a"></audio></label></li><li><p>Due biglietti per Napoli, per favore. <span class="meta">— biglietti</span></p><label>f1@1<audio controls preload="none" src="../Audio/3fbf17024325a8b9.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/28b0157d39581358.m4a"></audio></label></li><li><p>Ecco lo scontrino. <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/8eeebe5cac92ca80.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/b498e8d8f4b26e4c.m4a"></audio></label></li><li><p>Grazie mille! <span class="meta">— mille</span></p><label>f1@1<audio controls preload="none" src="../Audio/c570951d33deeebe.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3394597f84bb4c49.m4a"></audio></label></li><li><p>Ho perso il biglietto. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/810fe363eed78c08.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0cdf63924e7aefb3.m4a"></audio></label></li><li><p>Mamma mia! <span class="meta">— Mamma</span></p><label>f1@1<audio controls preload="none" src="../Audio/7d74389ba145a4ee.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0dea86fb2b85f4f2.m4a"></audio></label></li><li><p>Posso avere lo scontrino? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/63c7d6c32081d2dc.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/26a3c24b0ae936b9.m4a"></audio></label></li><li><p>Posso pagare con la carta? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/2d44b2975ab44cdd.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3deae421f12d12c5.m4a"></audio></label></li><li><p>Prendo un cappuccino. <span class="meta">— cappuccino</span></p><label>f1@1<audio controls preload="none" src="../Audio/0ef9edfb5a2eb3e3.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/47dfc84160d48ffe.m4a"></audio></label></li><li><p>Quanto costa un biglietto? <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/9fe3d30c5843b679.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0d023ca07d0fbdf1.m4a"></audio></label></li><li><p>Sono cinque euro e sessanta. <span class="meta">— sessanta</span></p><label>f1@1<audio controls preload="none" src="../Audio/fcb27893ffeab69f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2018f262098f338a.m4a"></audio></label></li><li><p>Sono due euro e ottanta. <span class="meta">— ottanta</span></p><label>f1@1<audio controls preload="none" src="../Audio/510493117c2499f8.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/89a8c5a3b7448cf9.m4a"></audio></label></li><li><p>Un cappuccino e una brioche, per favore. <span class="meta">— cappuccino</span></p><label>f1@1<audio controls preload="none" src="../Audio/145087e271565e7f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/fdbe853280c24300.m4a"></audio></label></li><li><p>Vorrei un caffè, per favore. <span class="meta">— Vorrei, caffè</span></p><label>f1@1<audio controls preload="none" src="../Audio/9e685d2c9b949c54.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a2bbaf960961adda.m4a"></audio></label></li><li><p>biglietto <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/297b7483fa5aaff3.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/42950c0514e42b03.m4a"></audio></label></li><li><p>caffè <span class="meta">— caffè</span></p><label>f1@1<audio controls preload="none" src="../Audio/d9890204c1d54ddf.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c51c0dbf7d04ade4.m4a"></audio></label></li><li><p>gnocchi <span class="meta">— gnocchi</span></p><label>f1@1<audio controls preload="none" src="../Audio/762ac0724d1a54a4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/35942f448aa2a960.m4a"></audio></label></li><li><p>È una palla, non una pala. <span class="meta">— palla</span></p><label>f1@1<audio controls preload="none" src="../Audio/d8b1d2a8ab37891b.m4a"></audio></label></li></ul>
+<ul><li><p>Buongiorno! Allora, oggi abbiamo cornetti alla crema, al cioccolato e integrali: cosa le do? <span class="meta">— Allora, oggi, abbiamo, cornetti, alla, cioccolato</span></p><label>f1@1<audio controls preload="none" src="../Audio/72f5ed25033342fb.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d16c75572c352964.m4a"></audio></label></li><li><p>Certo, ecco. Grazie e buona giornata! <span class="meta">— ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/0a4b7176a2d6b969.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d92f7f83c5166e72.m4a"></audio></label></li><li><p>Certo. Ecco lo scontrino. <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/2205fe54d4eace3b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f3508478ca1e7f65.m4a"></audio></label></li><li><p>Cornetti: crema, cioccolato o integrale? <span class="meta">— Cornetti, cioccolato</span></p><label>f1@1<audio controls preload="none" src="../Audio/b68e8df6b40441c9.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3ee09d67cf001090.m4a"></audio></label></li><li><p>Dov&#x27;è la fermata del vaporetto? <span class="meta">— vaporetto</span></p><label>f1@1<audio controls preload="none" src="../Audio/f43e2cec0bde894f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/5997a31c70197b7b.m4a"></audio></label></li><li><p>Due biglietti per Napoli, per favore. <span class="meta">— biglietti</span></p><label>f1@1<audio controls preload="none" src="../Audio/3fbf17024325a8b9.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/28b0157d39581358.m4a"></audio></label></li><li><p>Ecco lo scontrino. <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/8eeebe5cac92ca80.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/b498e8d8f4b26e4c.m4a"></audio></label></li><li><p>Grazie mille! <span class="meta">— mille</span></p><label>f1@1<audio controls preload="none" src="../Audio/c570951d33deeebe.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3394597f84bb4c49.m4a"></audio></label></li><li><p>Ho perso il biglietto. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/810fe363eed78c08.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0cdf63924e7aefb3.m4a"></audio></label></li><li><p>Mamma mia! <span class="meta">— Mamma</span></p><label>f1@1<audio controls preload="none" src="../Audio/7d74389ba145a4ee.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0dea86fb2b85f4f2.m4a"></audio></label></li><li><p>Posso avere lo scontrino? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/63c7d6c32081d2dc.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/26a3c24b0ae936b9.m4a"></audio></label></li><li><p>Posso pagare con la carta? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/2d44b2975ab44cdd.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3deae421f12d12c5.m4a"></audio></label></li><li><p>Prendo un cappuccino. <span class="meta">— cappuccino</span></p><label>f1@1<audio controls preload="none" src="../Audio/0ef9edfb5a2eb3e3.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/47dfc84160d48ffe.m4a"></audio></label></li><li><p>Quanto costa un biglietto? <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/9fe3d30c5843b679.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0d023ca07d0fbdf1.m4a"></audio></label></li><li><p>Sono cinque euro e sessanta. <span class="meta">— sessanta</span></p><label>f1@1<audio controls preload="none" src="../Audio/fcb27893ffeab69f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2018f262098f338a.m4a"></audio></label></li><li><p>Sono due euro e ottanta. <span class="meta">— ottanta</span></p><label>f1@1<audio controls preload="none" src="../Audio/510493117c2499f8.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/89a8c5a3b7448cf9.m4a"></audio></label></li><li><p>Un cappuccino e una brioche, per favore. <span class="meta">— cappuccino</span></p><label>f1@1<audio controls preload="none" src="../Audio/145087e271565e7f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/fdbe853280c24300.m4a"></audio></label></li><li><p>Vorrei un caffè, per favore. <span class="meta">— Vorrei, caffè</span></p><label>f1@1<audio controls preload="none" src="../Audio/9e685d2c9b949c54.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a2bbaf960961adda.m4a"></audio></label></li><li><p>biglietto <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/297b7483fa5aaff3.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/42950c0514e42b03.m4a"></audio></label></li><li><p>caffè <span class="meta">— caffè</span></p><label>f1@1<audio controls preload="none" src="../Audio/d9890204c1d54ddf.m4a"></audio></label></li><li><p>gnocchi <span class="meta">— gnocchi</span></p><label>f1@1<audio controls preload="none" src="../Audio/762ac0724d1a54a4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/35942f448aa2a960.m4a"></audio></label></li><li><p>È una palla, non una pala. <span class="meta">— palla</span></p><label>f1@1<audio controls preload="none" src="../Audio/d8b1d2a8ab37891b.m4a"></audio></label></li></ul>
 </details>
 </main>
 </body>

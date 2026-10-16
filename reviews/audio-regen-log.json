@@ -182,20 +182,17 @@
     "f1@1|Buone feste!": {
       "voice": "f1@1",
       "text": "Buone feste!",
-      "decision": "suspicious",
+      "decision": "replaced",
       "steps": [
-        "现在的版本复筛：原速被标出（截断），慢速干净",
-        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（截断、放慢失真）",
-        "新版本 2：原速干净，慢速被标出（读错）",
-        "新版本 3：原速干净，慢速被标出（截断）",
-        "新版本 4：原速干净，慢速干净；原速没筛成，慢速没筛成",
-        "都不干净，留下新版本 1"
+        "现在的版本复筛：原速干净，慢速干净；原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速被标出（放慢失真）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
       ],
       "files": {
         "n": "910a4e681f407f34.m4a",
         "s": "2aa0ff15824163b4.m4a"
       },
-      "at": "2026-10-16T12:19:13Z"
+      "at": "2026-10-16T14:04:57Z"
     },
     "f1@1|Buongiorno! Posso aiutarla?": {
       "voice": "f1@1",
@@ -607,6 +604,46 @@
       },
       "at": "2026-10-16T12:18:48Z"
     },
+    "f1@1|Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?": {
+      "voice": "f1@1",
+      "text": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速没筛成，慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2bbf4ea4edb7a903.m4a",
+        "s": "43d5a8616601ff7c.m4a"
+      },
+      "at": "2026-10-16T14:45:02Z"
+    },
+    "f1@1|Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?": {
+      "voice": "f1@1",
+      "text": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "6825927206359580.m4a",
+        "s": "da3eb550ec419035.m4a"
+      },
+      "at": "2026-10-16T14:38:04Z"
+    },
+    "f1@1|Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?": {
+      "voice": "f1@1",
+      "text": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "7d0e5b621f4db9b0.m4a",
+        "s": "de461cb913c46abc.m4a"
+      },
+      "at": "2026-10-16T14:40:58Z"
+    },
     "f1@1|Quanto costa fino all'aeroporto?": {
       "voice": "f1@1",
       "text": "Quanto costa fino all'aeroporto?",
@@ -762,20 +799,17 @@
     "f1@1|caffè": {
       "voice": "f1@1",
       "text": "caffè",
-      "decision": "suspicious",
+      "decision": "replaced",
       "steps": [
         "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
-        "新版本 1：转写和原文对不上，没筛",
-        "新版本 2：转写和原文对不上，没筛",
-        "新版本 3：原速被标出（读错），慢速被标出（读错）",
-        "新版本 4：转写和原文对不上，没筛",
-        "都不干净，留下现在的版本"
+        "新版本 1：原速被标出（读错），慢速被标出（读错）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
       ],
       "files": {
         "n": "d9890204c1d54ddf.m4a",
         "s": "b6f9a4f718d95cdc.m4a"
       },
-      "at": "2026-10-16T12:01:19Z"
+      "at": "2026-10-16T14:03:37Z"
     },
     "f1@1|uscita": {
       "voice": "f1@1",
@@ -960,6 +994,20 @@
         "s": "3ae2bee28bf246ef.m4a"
       },
       "at": "2026-10-16T12:10:57Z"
+    },
+    "m1@1|Chiuso il lunedì.": {
+      "voice": "m1@1",
+      "text": "Chiuso il lunedì.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "6d47455342f53f27.m4a",
+        "s": "afbfdd974eec3ea4.m4a"
+      },
+      "at": "2026-10-16T14:01:59Z"
     },
     "m1@1|Circa venti minuti: oggi c'è tanta gente!": {
       "voice": "m1@1",
@@ -1151,6 +1199,21 @@
       },
       "at": "2026-10-16T12:10:45Z"
     },
+    "m1@1|Napoli": {
+      "voice": "m1@1",
+      "text": "Napoli",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速被标出（读错），慢速干净",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2e359c62aa64127a.m4a",
+        "s": "f62e6cd8b6f4f64f.m4a"
+      },
+      "at": "2026-10-16T14:00:34Z"
+    },
     "m1@1|Oggi chiudiamo alle diciotto.": {
       "voice": "m1@1",
       "text": "Oggi chiudiamo alle diciotto.",
@@ -1165,6 +1228,21 @@
       },
       "at": "2026-10-16T12:18:40Z"
     },
+    "m1@1|Oggi è lunedì.": {
+      "voice": "m1@1",
+      "text": "Oggi è lunedì.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（重音）",
+        "新版本 1：原速被标出（重音），慢速干净",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "89d82110f64a299b.m4a",
+        "s": "2ec0e8d3ba8620db.m4a"
+      },
+      "at": "2026-10-16T14:14:51Z"
+    },
     "m1@1|Paga in contanti o con la carta?": {
       "voice": "m1@1",
       "text": "Paga in contanti o con la carta?",
@@ -1177,6 +1255,59 @@
         "s": "21ba8fe5bc11e23c.m4a"
       },
       "at": "2026-10-16T12:16:39Z"
+    },
+    "m1@1|Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?": {
+      "voice": "m1@1",
+      "text": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "0c7c96b928bb5f7c.m4a",
+        "s": "028b2902f4f13cc0.m4a"
+      },
+      "at": "2026-10-16T14:41:44Z"
+    },
+    "m1@1|Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?": {
+      "voice": "m1@1",
+      "text": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "0b903f79d327751c.m4a",
+        "s": "13e40a6a072c1eb0.m4a"
+      },
+      "at": "2026-10-16T14:47:00Z"
+    },
+    "m1@1|Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?": {
+      "voice": "m1@1",
+      "text": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "4ee58e31dfb8b684.m4a",
+        "s": "8521ff94bbface9f.m4a"
+      },
+      "at": "2026-10-16T14:45:51Z"
+    },
+    "m1@1|Posso pagare con la carta?": {
+      "voice": "m1@1",
+      "text": "Posso pagare con la carta?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（多出来的话），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "3deae421f12d12c5.m4a",
+        "s": "80fca5122596ab04.m4a"
+      },
+      "at": "2026-10-16T14:08:02Z"
     },
     "m1@1|Quant'è?": {
       "voice": "m1@1",
@@ -1205,6 +1336,20 @@
       },
       "at": "2026-10-16T12:12:14Z"
     },
+    "m1@1|Scusi, è libero questo posto?": {
+      "voice": "m1@1",
+      "text": "Scusi, è libero questo posto?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速被标出（语调节奏），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "94757d474122d53b.m4a",
+        "s": "b7ab11442f0f9cd2.m4a"
+      },
+      "at": "2026-10-16T14:15:58Z"
+    },
     "m1@1|Scusi.": {
       "voice": "m1@1",
       "text": "Scusi.",
@@ -1218,6 +1363,20 @@
         "s": "6d2d47712f0301f3.m4a"
       },
       "at": "2026-10-16T12:14:31Z"
+    },
+    "m1@1|Serve la prenotazione?": {
+      "voice": "m1@1",
+      "text": "Serve la prenotazione?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速被标出（重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "08425edc6ba92927.m4a",
+        "s": "4594999d87862fea.m4a"
+      },
+      "at": "2026-10-16T14:12:30Z"
     },
     "m1@1|Si può andare a piedi?": {
       "voice": "m1@1",
@@ -1276,38 +1435,48 @@
     "m1@1|Sono un po' stanco.": {
       "voice": "m1@1",
       "text": "Sono un po' stanco.",
-      "decision": "suspicious",
+      "decision": "replaced",
       "steps": [
         "现在的版本复筛：原速被标出（杂音），慢速干净",
-        "新版本 1：原速干净，慢速干净；原速没筛成，慢速没筛成",
-        "新版本 2：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "新版本 3：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "都不干净，留下现在的版本"
+        "新版本 1：原速干净，慢速被标出（放慢失真）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
       ],
       "files": {
         "n": "8f77ba72762929c7.m4a",
         "s": "23cfc836b616fec4.m4a"
       },
-      "at": "2026-10-16T12:19:31Z"
+      "at": "2026-10-16T14:09:44Z"
     },
     "m1@1|Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.": {
       "voice": "m1@1",
       "text": "Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.",
-      "decision": "suspicious",
+      "decision": "kept",
       "steps": [
-        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
-        "新版本 1：原速干净，慢速干净；原速没筛成，慢速没筛成",
-        "新版本 2：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "新版本 3：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "都不干净，留下新版本 1"
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
       ],
       "files": {
         "n": "1c7ed9a7b848fec3.m4a",
         "s": "962d8ae34cebc270.m4a"
       },
-      "at": "2026-10-16T12:19:55Z"
+      "at": "2026-10-16T14:10:28Z"
+    },
+    "m1@1|Sì, prego, da questa parte. Ecco il menù.": {
+      "voice": "m1@1",
+      "text": "Sì, prego, da questa parte. Ecco il menù.",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速被标出（读错）",
+        "新版本 1：原速被标出（重音），慢速干净",
+        "新版本 2：原速干净，慢速被标出（读错）",
+        "新版本 3：原速被标出（重音），慢速干净",
+        "新版本 4：原速被标出（重音），慢速被标出（重音）",
+        "都不干净，留下新版本 1"
+      ],
+      "files": {
+        "n": "c037de3950ead8f0.m4a",
+        "s": "e1ec1ebe16f64c84.m4a"
+      },
+      "at": "2026-10-16T14:25:52Z"
     },
     "m1@1|Sì: prenda la prima a destra, poi all'incrocio giri a sinistra. La metro è lì.": {
       "voice": "m1@1",
@@ -1321,6 +1490,19 @@
         "s": "5406079a3a8f90c3.m4a"
       },
       "at": "2026-10-16T12:15:32Z"
+    },
+    "m1@1|Un'acqua naturale, per favore.": {
+      "voice": "m1@1",
+      "text": "Un'acqua naturale, per favore.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "b2028a01dcb7ee60.m4a",
+        "s": "692263bad120c543.m4a"
+      },
+      "at": "2026-10-16T14:16:47Z"
     },
     "m1@1|Una margherita, per favore.": {
       "voice": "m1@1",
@@ -1338,20 +1520,48 @@
     "m1@1|Va bene! Sorrida… ecco fatto. Perché proprio qui?": {
       "voice": "m1@1",
       "text": "Va bene! Sorrida… ecco fatto. Perché proprio qui?",
-      "decision": "suspicious",
+      "decision": "replaced",
       "steps": [
-        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速被标出（漏读、多出来的话）",
-        "新版本 1：原速干净，慢速干净；原速没筛成，慢速没筛成",
-        "新版本 2：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "新版本 3：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "都不干净，留下现在的版本"
+        "现在的版本复筛：原速干净，慢速被标出（读错、语调节奏）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（多出来的话）",
+        "新版本 2：原速被标出（其他、截断），慢速被标出（其他）",
+        "新版本 3：原速被标出（读错），慢速被标出（读错）",
+        "新版本 4：原速干净，慢速干净；原速干净，慢速干净"
       ],
       "files": {
         "n": "ade0afef95cc89dd.m4a",
         "s": "1a04265532f09de7.m4a"
       },
-      "at": "2026-10-16T12:19:44Z"
+      "at": "2026-10-16T14:20:49Z"
+    },
+    "m1@1|Va bene, allora niente crostacei. Da bere, un bicchiere di vino?": {
+      "voice": "m1@1",
+      "text": "Va bene, allora niente crostacei. Da bere, un bicchiere di vino?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "c9a2cb0ae6bb1282.m4a",
+        "s": "339848ccc215b50f.m4a"
+      },
+      "at": "2026-10-16T14:18:18Z"
+    },
+    "m1@1|Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?": {
+      "voice": "m1@1",
+      "text": "Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（读错）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "ae07758cce271e1d.m4a",
+        "s": "23e970c1156fba7a.m4a"
+      },
+      "at": "2026-10-16T14:26:04Z"
     },
     "m1@1|Vuole anche qualcosa da bere?": {
       "voice": "m1@1",
@@ -1366,6 +1576,66 @@
         "s": "b58e64661a15a220.m4a"
       },
       "at": "2026-10-16T12:17:52Z"
+    },
+    "m1@1|biglietto": {
+      "voice": "m1@1",
+      "text": "biglietto",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "42950c0514e42b03.m4a",
+        "s": "e997ccf45977906d.m4a"
+      },
+      "at": "2026-10-16T14:22:53Z"
+    },
+    "m1@1|caffè": {
+      "voice": "m1@1",
+      "text": "caffè",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错、重音），慢速被标出（读错）",
+        "新版本 1：原速被标出（读错、重音），慢速被标出（读错、重音）",
+        "新版本 2：原速被标出（读错），慢速被标出（读错）",
+        "新版本 3：原速被标出（读错），慢速被标出（读错）",
+        "新版本 4：原速被标出（读错），慢速被标出（读错）",
+        "都不干净，留下现在的版本"
+      ],
+      "files": {
+        "n": "c51c0dbf7d04ade4.m4a",
+        "s": "87599519e1091485.m4a"
+      },
+      "at": "2026-10-16T14:31:18Z"
+    },
+    "m1@1|chiesa": {
+      "voice": "m1@1",
+      "text": "chiesa",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "b057c1e297e53cdf.m4a",
+        "s": "f171b921b1730fc2.m4a"
+      },
+      "at": "2026-10-16T14:24:41Z"
+    },
+    "m1@1|È aperto anche oggi?": {
+      "voice": "m1@1",
+      "text": "È aperto anche oggi?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（漏读），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "eff9efe98e704ac9.m4a",
+        "s": "7d1a75271bab7eb3.m4a"
+      },
+      "at": "2026-10-16T14:28:20Z"
     }
   }
 }

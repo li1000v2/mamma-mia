@@ -6,24 +6,7 @@
 
 ## 可疑片段
 
-### 1. Va bene! Sorrida… ecco fatto. Perché proprio qui?
-
-- 声线 m1@1（Charon） · 慢速 · `1a04265532f09de7.m4a`
-- 问题：漏读、多出来的话（严重度 medium，置信度 0.70）
-- 理由：“proprio”发音漏音，且音频结尾处有重复的“qui”字残音。
-  - 漏读「proprio」：漏掉了第二个辅音r，发音成了“propio”。
-  - 多出来的话「末尾的qui」：句末多余重复了一次轻声的“qui”并被截断。
-- 模型听到：Va bene! Sorrida… ecco fatto. Perché propio qui? qui
-- 双辅音需人工听：Sorrida, ecco, fatto
-
-### 2. Serve la prenotazione?
-
-- 声线 m1@1（Charon） · 原速 · `08425edc6ba92927.m4a`
-- 问题：重音（严重度 medium，置信度 0.70）
-- 理由：首词重音位置错误，发音不自然。
-  - 重音「Serve」：重音错误地放在了第二个音节。
-- 模型听到：Serve la prenotazione?
-- 转写模型听到：serve la prenotazione（和原文一致）
+没有。
 
 ## 双辅音需人工听
 
@@ -64,7 +47,7 @@
 
 - 本周音频：232 段（原速 116，慢速 116）
 - 已筛：232 段
-- 可疑：2 段（原速 1，慢速 1）
+- 可疑：0 段（原速 0，慢速 0）
 - 含双辅音的句子：30 句
-- token：输入 158,597，输出 26,750，思考 130,744
+- token：输入 158,619，输出 26,538，思考 129,549
 - 花费估算：232 次 × $0.004 ≈ $0.93（按实测单价；只重筛新片段时实际花费更少）

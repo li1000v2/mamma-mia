@@ -234,11 +234,11 @@
       "sha256": "be8afc5e4936aa3b2cd778a9eef56ccf75f1fb4b4e67cbab3c82230ba526bfaf",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:39:36Z",
+      "screenedAt": "2026-10-16T14:41:33Z",
       "usage": {
         "prompt": 859,
-        "output": 84,
-        "thoughts": 430
+        "output": 87,
+        "thoughts": 433
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
@@ -744,29 +744,22 @@
     },
     "08425edc6ba92927.m4a": {
       "key": "m1@1|n|Serve la prenotazione?",
-      "sha256": "1c2fd6354b7d07c77703a9bdcfdbb9d4440605ac4ada835eccf7ca94368449f9",
+      "sha256": "f66d497f11890ee22d0abe0134d6b96b1492c334ec18d928fa26c1bc1431c89f",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:47:50Z",
+      "screenedAt": "2026-10-16T14:12:30Z",
       "usage": {
-        "prompt": 613,
-        "output": 187,
-        "thoughts": 1024
+        "prompt": 611,
+        "output": 102,
+        "thoughts": 577
       },
-      "ok": false,
+      "ok": true,
       "heard": "Serve la prenotazione?",
-      "issues": [
-        {
-          "type": "stress",
-          "where": "Serve",
-          "detail": "重音错误地放在了第二个音节。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "首词重音位置错误，发音不自然。",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "serve la prenotazione"
+      "modelOk": true
     },
     "084c7397a16729ad.m4a": {
       "key": "m1@1|n|Che cos'è il coperto?",
@@ -944,11 +937,11 @@
       "sha256": "b6daa5a469b01e9149e3bd24a2e3e0898aa48709616fa715bfef1db09ed31495",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:49:03Z",
+      "screenedAt": "2026-10-16T14:45:38Z",
       "usage": {
         "prompt": 773,
-        "output": 160,
-        "thoughts": 736
+        "output": 152,
+        "thoughts": 725
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?",
@@ -1058,11 +1051,11 @@
       "sha256": "82208056cc37ea1bf18b3b98662996bbced18575e17e9a9f24871eaaddea5808",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:40:11Z",
+      "screenedAt": "2026-10-16T14:41:44Z",
       "usage": {
         "prompt": 752,
-        "output": 149,
-        "thoughts": 902
+        "output": 157,
+        "thoughts": 575
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
@@ -1818,18 +1811,18 @@
       "sha256": "85717f13ff76dbeb2475bdf5f0a8eddfaf15a7291f8a7fb00e49faa8b0132a23",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:39:41Z",
+      "screenedAt": "2026-10-16T14:47:00Z",
       "usage": {
         "prompt": 888,
-        "output": 83,
-        "thoughts": 421
+        "output": 158,
+        "thoughts": 885
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.98,
+      "confidence": 0.7,
       "modelOk": true
     },
     "13e61bcc7f88d17d.m4a": {
@@ -2138,33 +2131,22 @@
     },
     "1a04265532f09de7.m4a": {
       "key": "m1@1|s|Va bene! Sorrida… ecco fatto. Perché proprio qui?",
-      "sha256": "eeb91564aa11821e67d351734b7e8e835727e74f97b8cb0c2685ae398821431b",
+      "sha256": "084ec0487ab1abe2d2e70628e795df1fdc66e0ef6406173f0c4fad7f1c72a289",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T12:15:36Z",
+      "screenedAt": "2026-10-16T14:20:48Z",
       "usage": {
-        "prompt": 778,
-        "output": 213,
-        "thoughts": 1263
+        "prompt": 792,
+        "output": 75,
+        "thoughts": 311
       },
-      "ok": false,
-      "heard": "Va bene! Sorrida… ecco fatto. Perché propio qui? qui",
-      "issues": [
-        {
-          "type": "omission",
-          "where": "proprio",
-          "detail": "漏掉了第二个辅音r，发音成了“propio”。"
-        },
-        {
-          "type": "extra_speech",
-          "where": "末尾的qui",
-          "detail": "句末多余重复了一次轻声的“qui”并被截断。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“proprio”发音漏音，且音频结尾处有重复的“qui”字残音。",
-      "confidence": 0.7,
-      "modelOk": false
+      "ok": true,
+      "heard": "Va bene! Sorrida… ecco fatto. Perché proprio qui?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
+      "modelOk": true
     },
     "1ac29bc04c3096f0.m4a": {
       "key": "f1@1|n|Ho freddo.",
@@ -2301,29 +2283,22 @@
     },
     "1c7ed9a7b848fec3.m4a": {
       "key": "m1@1|n|Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.",
-      "sha256": "b7415659229652faf88ba5c50842934a3c145ee370c9f099109106feea6d5cc9",
+      "sha256": "f374cebfc1192ef161508deb7b100c0c4e32ff340f63a88771c54ac60ce89095",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:53:31Z",
+      "screenedAt": "2026-10-16T14:10:25Z",
       "usage": {
-        "prompt": 710,
-        "output": 247,
-        "thoughts": 1029
+        "prompt": 714,
+        "output": 151,
+        "thoughts": 580
       },
-      "ok": false,
-      "heard": "Sì, certo. La policia però è un po' lontana: in taxi sono venti minuti.",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "polizia",
-          "detail": "“polizia”中的“z”被误读成了“c”（/tʃ/）的音。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“polizia”发音有误，辅音读错。",
-      "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Sì, certo. La polizia però è un po' lontana. In taxi sono venti minuti."
+      "ok": true,
+      "heard": "Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
+      "modelOk": true
     },
     "1cc54398e7151619.m4a": {
       "key": "m1@1|s|Piacere, mi chiamo…",
@@ -2973,21 +2948,21 @@
     },
     "23cfc836b616fec4.m4a": {
       "key": "m1@1|s|Sono un po' stanco.",
-      "sha256": "7e38956c97de90ea215a71ac834da05a8986b6e327e77e95e01c7ac593772c24",
+      "sha256": "1ec0fe3193d3f58e9f09bc0ed4916cdc2f420969ff058f3c73c1c8c67895b9f1",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T12:13:49Z",
+      "screenedAt": "2026-10-16T14:09:44Z",
       "usage": {
-        "prompt": 694,
-        "output": 122,
-        "thoughts": 278
+        "prompt": 678,
+        "output": 114,
+        "thoughts": 487
       },
       "ok": true,
       "heard": "Sono un po' stanco.",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 1.0,
+      "confidence": 0.7,
       "modelOk": true
     },
     "23dc23ff0c1dc4ac.m4a": {
@@ -3011,29 +2986,22 @@
     },
     "23e970c1156fba7a.m4a": {
       "key": "m1@1|s|Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?",
-      "sha256": "ff9386628c20e38e355c1892f86d922620e41bd94c5aa2d1a6fe253049ce951a",
+      "sha256": "672f9a9a9761c3cb0b23a441d67c32fd5bcd445a333ca47501e1a9f6675ad545",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:04:56Z",
+      "screenedAt": "2026-10-16T14:26:04Z",
       "usage": {
-        "prompt": 822,
-        "output": 240,
-        "thoughts": 988
+        "prompt": 980,
+        "output": 70,
+        "thoughts": 498
       },
-      "ok": false,
-      "heard": "Va bene. Prima chiami il centro dodici, poi vada alla polizia. Ma lei sta bene?",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "112",
-          "detail": "将“centododici”误读为“centro dodici”。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "数字“112”被误读为“centro dodici”，不适合初学者。",
-      "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Va bene. Prima chiami il centododici, poi vada alla polizia. Ma lei sta bene?"
+      "ok": true,
+      "heard": "Va bene. Prima chiami il centododici, poi vada alla polizia. Ma lei sta bene?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
+      "modelOk": true
     },
     "2402c9ea3d43512c.m4a": {
       "key": "m1@1|n|Buongiorno, biglietto, prego.",
@@ -3626,33 +3594,22 @@
     },
     "2aa0ff15824163b4.m4a": {
       "key": "f1@1|s|Buone feste!",
-      "sha256": "6eeb03fd4280d00f1009c82a6b26adcb2652402f196bd8a5bc1acc448cf572dc",
+      "sha256": "4d9d318fcdc849034f1eec5ebb05274dba61092984d0af6788f6950a84e900e9",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T12:03:54Z",
+      "screenedAt": "2026-10-16T14:04:55Z",
       "usage": {
-        "prompt": 671,
-        "output": 190,
-        "thoughts": 1005
+        "prompt": 669,
+        "output": 110,
+        "thoughts": 559
       },
-      "ok": false,
-      "heard": "uone feste",
-      "issues": [
-        {
-          "type": "truncation",
-          "where": "Buone",
-          "detail": "开头辅音 b 被截断，听起来像 uone。"
-        },
-        {
-          "type": "slow_distortion",
-          "where": "feste",
-          "detail": "慢速处理导致词尾声音发颤失真。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "开头辅音疑似被截断，且慢速拉长后音质有明显失真。",
+      "ok": true,
+      "heard": "Buone feste!",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false
+      "modelOk": true
     },
     "2b279185c4da2583.m4a": {
       "key": "f1@1|n|A che ora chiude oggi?",
@@ -3771,21 +3728,21 @@
     },
     "2bbf4ea4edb7a903.m4a": {
       "key": "f1@1|n|Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
-      "sha256": "810fa07052f088eb0b7ef304823035cee1dd1b4c7ec2087b8b976d93f7cee784",
+      "sha256": "43c2d002052047a168dd9933e96f1014a8d3541a4136808f2d65a6e03e672de5",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:39:23Z",
+      "screenedAt": "2026-10-16T14:44:25Z",
       "usage": {
-        "prompt": 760,
-        "output": 51,
-        "thoughts": 0
+        "prompt": 778,
+        "output": 149,
+        "thoughts": 679
       },
       "ok": true,
-      "heard": "Per favore?",
+      "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 1.0,
+      "confidence": 0.75,
       "modelOk": true
     },
     "2bd2b8f1028a4af2.m4a": {
@@ -4018,29 +3975,22 @@
     },
     "2e359c62aa64127a.m4a": {
       "key": "m1@1|n|Napoli",
-      "sha256": "1e8232a319faae3086df5060ba93e69b97a2c256c433d0a0ffd76c3a3ad841a4",
+      "sha256": "09efbf2ace4a12fcdcd43585d42e3ba1cf913a6e1bb0305e0d46001830328111",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:01:53Z",
+      "screenedAt": "2026-10-16T14:00:01Z",
       "usage": {
-        "prompt": 591,
-        "output": 93,
-        "thoughts": 342
+        "prompt": 593,
+        "output": 106,
+        "thoughts": 282
       },
-      "ok": false,
-      "heard": "Napli",
-      "issues": [
-        {
-          "type": "omission",
-          "where": "Napoli",
-          "detail": "中间的元音 o 被吞掉，听起来像 Napli。"
-        }
-      ],
-      "severity": "high",
-      "reason": "单词 Napoli 中间的音节发音不完整，元音 o 缺失，听起来像 Napli。",
-      "confidence": 0.95,
-      "modelOk": false,
-      "checkHeard": "Napoli"
+      "ok": true,
+      "heard": "Napoli",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
     },
     "2e76904fd3de7d5f.m4a": {
       "key": "f1@1|n|Quant'è la tassa di soggiorno?",
@@ -4063,29 +4013,22 @@
     },
     "2ec0e8d3ba8620db.m4a": {
       "key": "m1@1|s|Oggi è lunedì.",
-      "sha256": "7a420f0674c4c8867f20a11e2eda678766a45cf4a9ff6c67dd7d6b5320f23cd7",
+      "sha256": "275cce693b661b5a16eec87feba89cccb5c07fa41428e73565ee4247c4e82b52",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:41:31Z",
+      "screenedAt": "2026-10-16T14:14:51Z",
       "usage": {
-        "prompt": 669,
-        "output": 202,
-        "thoughts": 1326
+        "prompt": 679,
+        "output": 112,
+        "thoughts": 485
       },
-      "ok": false,
+      "ok": true,
       "heard": "Oggi è lunedì.",
-      "issues": [
-        {
-          "type": "stress",
-          "where": "lunedì",
-          "detail": "重音未落在词尾音节 -dì 上。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "lunedì 的重音位置错误，听起来不自然。",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Oggi è lunedì"
+      "modelOk": true
     },
     "2eeba756b05ac40e.m4a": {
       "key": "f1@1|s|Certo, ecco. Grazie e buona giornata!",
@@ -4488,29 +4431,22 @@
     },
     "339848ccc215b50f.m4a": {
       "key": "m1@1|s|Va bene, allora niente crostacei. Da bere, un bicchiere di vino?",
-      "sha256": "330f93bd525d5db80c752f4f6600f9a828b2c1eaee32cdeffdee76b5827afff1",
+      "sha256": "5595d87b51e0fdb70513c6777781e8bf8e8b8e254b90f9615a2c886aea851af2",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:02:43Z",
+      "screenedAt": "2026-10-16T14:18:03Z",
       "usage": {
-        "prompt": 806,
-        "output": 119,
-        "thoughts": 520
+        "prompt": 816,
+        "output": 74,
+        "thoughts": 305
       },
-      "ok": false,
-      "heard": "Va bene, allora niente crostacei. Da vere, un bicchiere di vino?",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "Da bere",
-          "detail": "“bere”中的辅音 b 发音近似于 v，听起来像“Da vere”。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“Da bere”中的“b”发音不准确，听起来像“v”（Da vere），可能会误导初学者。",
-      "confidence": 0.9,
-      "modelOk": false,
-      "checkHeard": "Va bene. Allora niente crostacei. Da bere? Un bicchiere di vino?"
+      "ok": true,
+      "heard": "Va bene, allora niente crostacei. Da bere, un bicchiere di vino?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
+      "modelOk": true
     },
     "33b52058404be318.m4a": {
       "key": "f1@1|s|Le piace questo cappello? Costa quindici euro.",
@@ -5236,29 +5172,22 @@
     },
     "3deae421f12d12c5.m4a": {
       "key": "m1@1|n|Posso pagare con la carta?",
-      "sha256": "c62fcfb5617cf31f008a41e83c3d4db2ae5b5ecfe54b7ee7e98bae9665accf7d",
+      "sha256": "7e72246a82405e8610fafba6b7cf6a62ea85f2886ce6628a150d3f83766cc358",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:02:44Z",
+      "screenedAt": "2026-10-16T14:08:02Z",
       "usage": {
         "prompt": 613,
-        "output": 225,
-        "thoughts": 1121
+        "output": 106,
+        "thoughts": 531
       },
-      "ok": false,
-      "heard": "Posso a pagare con la carta?",
-      "issues": [
-        {
-          "type": "extra_speech",
-          "where": "Posso pagare",
-          "detail": "两词之间多读了一个“a”音。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“Posso”与“pagare”之间多出了不应有的元音“a”。",
+      "ok": true,
+      "heard": "Posso pagare con la carta?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Posso pagare con la carta?"
+      "modelOk": true
     },
     "3e0e5efbc0e214a4.m4a": {
       "key": "m1@1|s|Un biglietto, per favore.",
@@ -5623,29 +5552,22 @@
     },
     "42950c0514e42b03.m4a": {
       "key": "m1@1|n|biglietto",
-      "sha256": "844ab87f611f3a275c854d08aa44857ccbfcee4a8e859c7b6ada6d01a41b5d91",
+      "sha256": "75726b9cd4e904b154e27363cd0f82f0fb84612bf18f18ca00f25784e8c1a3ca",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:09:30Z",
+      "screenedAt": "2026-10-16T14:22:53Z",
       "usage": {
-        "prompt": 598,
-        "output": 142,
-        "thoughts": 1032
+        "prompt": 594,
+        "output": 102,
+        "thoughts": 396
       },
-      "ok": false,
-      "heard": "bilietto",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "biglietto",
-          "detail": "辅音组合gli发音错误，读成了类似l加y的音。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "单词中的gli发音不标准，带有明显外语口音。",
+      "ok": true,
+      "heard": "biglietto",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Biglietto"
+      "modelOk": true
     },
     "4297482fc59a18cc.m4a": {
       "key": "m1@1|s|Ho mal di testa.",
@@ -5706,21 +5628,21 @@
     },
     "43d5a8616601ff7c.m4a": {
       "key": "f1@1|s|Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
-      "sha256": "dd13806ac4c1e43893f2125b73da4949a0a518c2e40aa741115fc99dfdf72974",
+      "sha256": "5e752efde882e10003bd4b907f6b721aadb516e6a5d29a9808a39aaa05ca842b",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:39:29Z",
+      "screenedAt": "2026-10-16T14:45:02Z",
       "usage": {
-        "prompt": 869,
-        "output": 87,
-        "thoughts": 255
+        "prompt": 893,
+        "output": 163,
+        "thoughts": 697
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.98,
+      "confidence": 0.7,
       "modelOk": true
     },
     "4432dc6b0ee3e37b.m4a": {
@@ -5820,14 +5742,14 @@
     },
     "4594999d87862fea.m4a": {
       "key": "m1@1|s|Serve la prenotazione?",
-      "sha256": "5baf5288d67e8cea955a0eb6907931530ea7c6e561f46c4981a08513c0b1ea41",
+      "sha256": "29c178fe65ab817d3883558a346787346ba45880c40a4a3f5fc9bb1906471239",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:48:15Z",
+      "screenedAt": "2026-10-16T14:11:37Z",
       "usage": {
-        "prompt": 682,
-        "output": 117,
-        "thoughts": 779
+        "prompt": 680,
+        "output": 182,
+        "thoughts": 1385
       },
       "ok": true,
       "heard": "Serve la prenotazione?",
@@ -6735,11 +6657,11 @@
       "sha256": "b693c2423cc5f945bf423264a09c5485bc2ffdcf4b7e198ae3b9d2922fecaa05",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:39:55Z",
+      "screenedAt": "2026-10-16T14:45:32Z",
       "usage": {
         "prompt": 748,
-        "output": 82,
-        "thoughts": 324
+        "output": 76,
+        "thoughts": 210
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?",
@@ -8464,11 +8386,11 @@
       "sha256": "fc997e7b12615f7ca283011f118d0b65c4b345f76370564d3740c91b18b10f9d",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:40:00Z",
+      "screenedAt": "2026-10-16T14:37:59Z",
       "usage": {
         "prompt": 771,
-        "output": 153,
-        "thoughts": 820
+        "output": 157,
+        "thoughts": 771
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?",
@@ -8521,11 +8443,11 @@
       "sha256": "cf80dfb346ee445040de122e2993820d7cbbc8e95143a1d870e9bfa384efb49e",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:01:05Z",
+      "screenedAt": "2026-10-16T14:16:04Z",
       "usage": {
         "prompt": 697,
-        "output": 126,
-        "thoughts": 412
+        "output": 123,
+        "thoughts": 353
       },
       "ok": true,
       "heard": "Un'acqua naturale, per favore.",
@@ -8898,29 +8820,22 @@
     },
     "6d47455342f53f27.m4a": {
       "key": "m1@1|n|Chiuso il lunedì.",
-      "sha256": "86d8a438179ede669506c708e9895f05914387b7f2fdda62c6dbd41eed031c79",
+      "sha256": "feab5890f7fe93130cd9587712fac9adef07f6120e8444e1c19aed41ddbf2446",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:21:40Z",
+      "screenedAt": "2026-10-16T14:01:59Z",
       "usage": {
-        "prompt": 610,
-        "output": 212,
-        "thoughts": 1223
+        "prompt": 602,
+        "output": 172,
+        "thoughts": 949
       },
-      "ok": false,
+      "ok": true,
       "heard": "Chiuso il lunedì.",
-      "issues": [
-        {
-          "type": "stress",
-          "where": "lunedì",
-          "detail": "重音错误地落在了第一音节而非尾音节。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“lunedì”一词重音位置明显错误，未落在最后一个带重音符号的音节上。",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Chiuso il lunedì."
+      "modelOk": true
     },
     "6d982f0c9e22d581.m4a": {
       "key": "m1@1|n|A che ora apre?",
@@ -10105,11 +10020,11 @@
       "sha256": "3a30c283367eae03b7e47f7c47796ed7d36ec3bb3df3460cfb058874a1731361",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:40:02Z",
+      "screenedAt": "2026-10-16T14:40:25Z",
       "usage": {
         "prompt": 776,
-        "output": 157,
-        "thoughts": 754
+        "output": 154,
+        "thoughts": 681
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?",
@@ -10121,29 +10036,22 @@
     },
     "7d1a75271bab7eb3.m4a": {
       "key": "m1@1|s|È aperto anche oggi?",
-      "sha256": "cb0ad72647d9a95d448ce3944d73fe605e75f663d6bceb0348bb15ef1747399a",
+      "sha256": "4a48f135b071b095017c9b36873630a2bebab216b16911e8c1b67e3795c750be",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:09:29Z",
+      "screenedAt": "2026-10-16T14:28:20Z",
       "usage": {
-        "prompt": 672,
-        "output": 149,
-        "thoughts": 1291
+        "prompt": 842,
+        "output": 53,
+        "thoughts": 256
       },
-      "ok": false,
-      "heard": "È perto anche oggi?",
-      "issues": [
-        {
-          "type": "omission",
-          "where": "È aperto",
-          "detail": "aperto词首的元音a被吞音，听起来像perto。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "È和aperto连读过重导致词首元音a几乎完全缺失。",
+      "ok": true,
+      "heard": "È aperto anche oggi?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "È aperto anche oggi?"
+      "modelOk": true
     },
     "7d1d1748bf214b40.m4a": {
       "key": "f1@1|s|Lo prendo.",
@@ -10489,14 +10397,14 @@
     },
     "80fca5122596ab04.m4a": {
       "key": "m1@1|s|Posso pagare con la carta?",
-      "sha256": "c04f213287174ca9d6df46a3d1cb2f8cba49cb333446a0f9724825fceb86903d",
+      "sha256": "e55bf54fdd5b29cb1672656052e0139722f44eb2a9de1a882489e6504ca83d39",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:02:55Z",
+      "screenedAt": "2026-10-16T14:07:24Z",
       "usage": {
-        "prompt": 682,
-        "output": 112,
-        "thoughts": 885
+        "prompt": 684,
+        "output": 129,
+        "thoughts": 1876
       },
       "ok": true,
       "heard": "Posso pagare con la carta?",
@@ -10796,11 +10704,11 @@
       "sha256": "70e7f2e3c58b9098c6a87075674bbafcae0d4a78bcabfaa7a88e42dc718dde91",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:40:08Z",
+      "screenedAt": "2026-10-16T14:45:51Z",
       "usage": {
         "prompt": 855,
-        "output": 154,
-        "thoughts": 863
+        "output": 156,
+        "thoughts": 1002
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?",
@@ -11043,11 +10951,11 @@
       "sha256": "dad901b093b95a2b2a4fba80f197e56110c803cfc7c790cd7c85888998f1c557",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:05:24Z",
+      "screenedAt": "2026-10-16T14:22:38Z",
       "usage": {
         "prompt": 654,
-        "output": 199,
-        "thoughts": 723
+        "output": 183,
+        "thoughts": 883
       },
       "ok": false,
       "heard": "cafe",
@@ -11055,14 +10963,14 @@
         {
           "type": "misread",
           "where": "caffè",
-          "detail": "使用了英语发音，词尾元音读成了双元音。"
+          "detail": "使用了英语发音而非意大利语发音。"
         }
       ],
       "severity": "medium",
-      "reason": "单词按英语发音读出，不符合意大利语发音规则。",
+      "reason": "该词按英语发音规则朗读，元音明显错误。",
       "confidence": 0.7,
       "modelOk": false,
-      "checkHeard": "caffè"
+      "checkHeard": "café"
     },
     "8812235e67dd2fc3.m4a": {
       "key": "f1@1|s|Di dov'è?",
@@ -11237,14 +11145,14 @@
     },
     "89d82110f64a299b.m4a": {
       "key": "m1@1|n|Oggi è lunedì.",
-      "sha256": "7e8de410e1dbbf770494eb7e1631729cafe0e76bb49ed0cdc7140fee7bdb73ba",
+      "sha256": "a40bc71e7ee6b520bc9daf35135bee6c720e7fbdefb48d6750b3ad5b811d8673",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:38:43Z",
+      "screenedAt": "2026-10-16T14:08:07Z",
       "usage": {
-        "prompt": 602,
-        "output": 161,
-        "thoughts": 726
+        "prompt": 610,
+        "output": 170,
+        "thoughts": 761
       },
       "ok": true,
       "heard": "Oggi è lunedì.",
@@ -11693,28 +11601,22 @@
     },
     "8f77ba72762929c7.m4a": {
       "key": "m1@1|n|Sono un po' stanco.",
-      "sha256": "02f04df938a395e532893d21084e6ea129e3cd5436d64908235861db3f95721d",
+      "sha256": "4eeaeafd1b602350874a7ef1fdd2fc1273eaa943049b0dcf4be99330142c0df3",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T12:18:35Z",
+      "screenedAt": "2026-10-16T14:09:44Z",
       "usage": {
-        "prompt": 621,
-        "output": 184,
-        "thoughts": 760
+        "prompt": 609,
+        "output": 113,
+        "thoughts": 439
       },
-      "ok": false,
-      "heard": "Psono un po' stanco.",
-      "issues": [
-        {
-          "type": "noise",
-          "where": "Sono",
-          "detail": "开头有明显的爆破杂音，听起来像Psono。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "句首发音带有明显杂音，影响听感。",
+      "ok": true,
+      "heard": "Sono un po' stanco.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false
+      "modelOk": true
     },
     "8fd26da9513c5943.m4a": {
       "key": "f1@1|n|Me lo può indicare sulla mappa?",
@@ -11775,14 +11677,14 @@
     },
     "910a4e681f407f34.m4a": {
       "key": "f1@1|n|Buone feste!",
-      "sha256": "c64689b0c940ce21e76faeb442285309bf0c54b16eac233b4075ec07bff024a4",
+      "sha256": "31dbabb1fa72dca7b851962a5c7abc0436a9e2e4f27747b1ec583144ea0b1bbe",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T12:08:26Z",
+      "screenedAt": "2026-10-16T14:04:57Z",
       "usage": {
-        "prompt": 602,
-        "output": 138,
-        "thoughts": 747
+        "prompt": 600,
+        "output": 104,
+        "thoughts": 577
       },
       "ok": true,
       "heard": "Buone feste!",
@@ -11984,29 +11886,22 @@
     },
     "94757d474122d53b.m4a": {
       "key": "m1@1|n|Scusi, è libero questo posto?",
-      "sha256": "9af0d1ff680d6b1c7728b48b3006d61063073cd5d1aee6e12fdf34fe92e497da",
+      "sha256": "94ceb975a9bfad2baaffbe67b682803308bfeb3cb98019dce4ea8bdf3bcfd67c",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:01:44Z",
+      "screenedAt": "2026-10-16T14:15:58Z",
       "usage": {
-        "prompt": 632,
-        "output": 154,
-        "thoughts": 861
+        "prompt": 628,
+        "output": 106,
+        "thoughts": 495
       },
-      "ok": false,
-      "heard": "Scusi, èèè libero questo posto?",
-      "issues": [
-        {
-          "type": "prosody",
-          "where": "è",
-          "detail": "“è”的发音被异常拉长，听起来像犹豫词。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“è”被过度拉长，导致整体语流不自然。",
+      "ok": true,
+      "heard": "Scusi, è libero questo posto?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Scusi, è libero questo posto?"
+      "modelOk": true
     },
     "9489615add356ac8.m4a": {
       "key": "f1@1|s|Tutto bene? Le piace la carbonara?",
@@ -12181,29 +12076,22 @@
     },
     "962d8ae34cebc270.m4a": {
       "key": "m1@1|s|Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.",
-      "sha256": "7d61fb6ead35dfa98560e7b672489214243b32d2f123952abfc503ea59b93bb9",
+      "sha256": "da5fc782fddefb9253e5efe785e9586b9c2bc29de6dcbcc386ede2dfeb6c964a",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:59:10Z",
+      "screenedAt": "2026-10-16T14:10:28Z",
       "usage": {
-        "prompt": 812,
-        "output": 252,
-        "thoughts": 1111
+        "prompt": 818,
+        "output": 160,
+        "thoughts": 776
       },
-      "ok": false,
-      "heard": "Sì, certo. La policia però è un po' lontana: in taxi sono venti minuti.",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "polizia",
-          "detail": "将“polizia”中的“z”误读成了“c”（/tʃ/）的音。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "“polizia”一词发音明显错误，不适合初学者跟读。",
-      "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "Sì, certo. La polizia però è un po' lontana. In taxi sono venti minuti."
+      "ok": true,
+      "heard": "Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
+      "modelOk": true
     },
     "964803b8c9db397a.m4a": {
       "key": "f1@1|n|Solo andata o andata e ritorno?",
@@ -12813,6 +12701,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "9dd0e36d208ce33e.m4a": {
+      "key": "m1@1|n|Sono cinese, ma vivo in Giappone.",
+      "sha256": "f3ac5582b6e12f5394588aa8f68e6b4a2b07d508725a73ffe68c28f06b14710d",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T14:36:49Z",
+      "usage": {
+        "prompt": 636,
+        "output": 116,
+        "thoughts": 322
+      },
+      "ok": true,
+      "heard": "Sono cinese, ma vivo in Giappone.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "9e248dd6efa79559.m4a": {
       "key": "f1@1|s|Grazie mille!",
       "sha256": "9d22e74db5692034eecec214dac1e2f85ef1c9eab9fbe052a4f173956c461d9f",
@@ -12902,6 +12809,25 @@
       },
       "ok": true,
       "heard": "Vorrei un caffè, per favore.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "9e69b46981404516.m4a": {
+      "key": "f1@1|n|Sono cinese, ma vivo in Giappone.",
+      "sha256": "d7e525a1c49621973b332a7e7d343d80ffcc2791aa82ec67476ed55f1056761f",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T14:33:45Z",
+      "usage": {
+        "prompt": 638,
+        "output": 119,
+        "thoughts": 472
+      },
+      "ok": true,
+      "heard": "Sono cinese, ma vivo in Giappone.",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -14352,6 +14278,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "ac01f8d7e4a4807c.m4a": {
+      "key": "m1@1|s|Sono cinese, ma vivo in Giappone.",
+      "sha256": "04acaf1feff3ab5b18dfd0e176aafedc66175056c0467f943f22445879009088",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T14:33:47Z",
+      "usage": {
+        "prompt": 713,
+        "output": 124,
+        "thoughts": 570
+      },
+      "ok": true,
+      "heard": "Sono cinese, ma vivo in Giappone.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "ac05cefa6a4002a2.m4a": {
       "key": "m1@1|n|È aperto oggi?",
       "sha256": "144828004f1ab4a9584a1e6d5d068dcd29aab1887d408aaf2801b8c33e0530ed",
@@ -14582,40 +14527,40 @@
     },
     "ade0afef95cc89dd.m4a": {
       "key": "m1@1|n|Va bene! Sorrida… ecco fatto. Perché proprio qui?",
-      "sha256": "e8c169f459cc7b3241a8816aa3506bf2c419ac8078d89deb2ad0d41aa68381c1",
+      "sha256": "0464bc6887e983eb3c2186929c09c5eb2fa71281c9910e4afd7a4baea81eedec",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T12:15:25Z",
+      "screenedAt": "2026-10-16T14:20:49Z",
       "usage": {
-        "prompt": 680,
-        "output": 124,
-        "thoughts": 762
+        "prompt": 692,
+        "output": 70,
+        "thoughts": 360
       },
       "ok": true,
       "heard": "Va bene! Sorrida… ecco fatto. Perché proprio qui?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.7,
+      "confidence": 0.98,
       "modelOk": true
     },
     "ae07758cce271e1d.m4a": {
       "key": "m1@1|n|Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?",
-      "sha256": "724ea439a0b5aef3a21124c44c2be86556689d40ba62fbd126799cbfed2712bf",
+      "sha256": "fba620bd252c4c2ca154ef3b65d29a2977feb2561fa0107c534088e44f7dba12",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:03:53Z",
+      "screenedAt": "2026-10-16T14:25:26Z",
       "usage": {
-        "prompt": 714,
-        "output": 74,
-        "thoughts": 397
+        "prompt": 706,
+        "output": 148,
+        "thoughts": 946
       },
       "ok": true,
       "heard": "Va bene. Prima chiami il centododici, poi vada alla polizia. Ma lei sta bene?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.98,
+      "confidence": 0.7,
       "modelOk": true
     },
     "ae101b4c0815518b.m4a": {
@@ -14848,21 +14793,21 @@
     },
     "afbfdd974eec3ea4.m4a": {
       "key": "m1@1|s|Chiuso il lunedì.",
-      "sha256": "0f5fe23dc7962a663812e336c9f298b1c0a5651ff323723da21841f4e6fc5fdc",
+      "sha256": "38733d01e8e78c5cd425afa928156d72fb8d65e51896d96a90238331aab685e1",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:21:26Z",
+      "screenedAt": "2026-10-16T14:01:48Z",
       "usage": {
-        "prompt": 679,
-        "output": 111,
-        "thoughts": 622
+        "prompt": 671,
+        "output": 118,
+        "thoughts": 570
       },
       "ok": true,
       "heard": "Chiuso il lunedì.",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.75,
+      "confidence": 0.7,
       "modelOk": true
     },
     "afd639b4379106b5.m4a": {
@@ -14905,29 +14850,22 @@
     },
     "b057c1e297e53cdf.m4a": {
       "key": "m1@1|n|chiesa",
-      "sha256": "e1b9b4e1e21c3882753f5bd5c17892eb5cb080512dd5f8037c1865cc8fb705f2",
+      "sha256": "387cfd8b4e47a2861cecd2ab6546a65843cf776508f96771baf077f8e754bd8e",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:05:31Z",
+      "screenedAt": "2026-10-16T14:24:41Z",
       "usage": {
         "prompt": 591,
-        "output": 115,
-        "thoughts": 650
+        "output": 101,
+        "thoughts": 801
       },
-      "ok": false,
-      "heard": "chi-e-sa",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "chiesa",
-          "detail": "将双元音读成了分音节的“ki-e-sa”，且带有明显的英语口音和送气音。"
-        }
-      ],
-      "severity": "high",
-      "reason": "“chiesa”发音错误，被拆成了三个音节且带有浓重的英语口音，不适合作为教学示范。",
-      "confidence": 0.95,
-      "modelOk": false,
-      "checkHeard": "chiesa"
+      "ok": true,
+      "heard": "chiesa",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
     },
     "b06682cc5dfd36cb.m4a": {
       "key": "f1@1|s|Guardi, è un po' lontano da qui. Le conviene prendere la metro.",
@@ -15010,26 +14948,19 @@
       "sha256": "6bd8b61b7086d4bbb65ede1a4a25f8a64c2dd54aff530c0ae55f2c491823860f",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:19:45Z",
+      "screenedAt": "2026-10-16T14:16:47Z",
       "usage": {
         "prompt": 624,
-        "output": 125,
-        "thoughts": 596
+        "output": 111,
+        "thoughts": 379
       },
-      "ok": false,
-      "heard": "Una qua naturale, per favore.",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "Un'acqua",
-          "detail": "将本应连读的“Un'acqua”错误拆读成了“Una”和“qua”两个部分，且重音错误地落在了首音节上。"
-        }
-      ],
-      "severity": "high",
-      "reason": "“Un'acqua”受撇号影响被TTS错误切分，导致重音位置和连读发音明显错误。",
-      "confidence": 0.95,
-      "modelOk": false,
-      "checkHeard": "Un'acqua naturale, per favore."
+      "ok": true,
+      "heard": "Un'acqua naturale, per favore.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
     },
     "b206758b72da4721.m4a": {
       "key": "f1@1|s|Parlo solo un po' d'italiano.",
@@ -15527,29 +15458,22 @@
     },
     "b6f9a4f718d95cdc.m4a": {
       "key": "f1@1|s|caffè",
-      "sha256": "07435cc105c5e5fb35350174c9a4c63cea418dc50dbadc9822952becd4e0cfce",
+      "sha256": "e1d40b54bf8f1c25fdda04a494e1d61a5605048645caab5a768aa2f99dc6b346",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T11:54:53Z",
+      "screenedAt": "2026-10-16T14:02:19Z",
       "usage": {
         "prompt": 654,
-        "output": 191,
-        "thoughts": 794
+        "output": 180,
+        "thoughts": 880
       },
-      "ok": false,
-      "heard": "caffè (pronuncia inglese)",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "caffè",
-          "detail": "使用了英语发音而非意大利语发音。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "单词按英语发音朗读，元音错误。",
+      "ok": true,
+      "heard": "caffè",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "café"
+      "modelOk": true
     },
     "b7535cb5fcda6163.m4a": {
       "key": "m1@1|s|Dov'è la fermata del vaporetto?",
@@ -15572,21 +15496,21 @@
     },
     "b7ab11442f0f9cd2.m4a": {
       "key": "m1@1|s|Scusi, è libero questo posto?",
-      "sha256": "035d252bb975fff8dc5c2eeac7a175e1789f27708f7084310ce5521f52917566",
+      "sha256": "3cdf2b9e8de08a241695126a9d6ab80417c1b0a0724c11f48105beaa0ebf4149",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:48:03Z",
+      "screenedAt": "2026-10-16T14:13:53Z",
       "usage": {
-        "prompt": 707,
-        "output": 119,
-        "thoughts": 660
+        "prompt": 701,
+        "output": 64,
+        "thoughts": 222
       },
       "ok": true,
       "heard": "Scusi, è libero questo posto?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.7,
+      "confidence": 0.98,
       "modelOk": true
     },
     "b7d6acb3fb8f3ae5.m4a": {
@@ -16199,29 +16123,29 @@
     },
     "c037de3950ead8f0.m4a": {
       "key": "m1@1|n|Sì, prego, da questa parte. Ecco il menù.",
-      "sha256": "37f9ae7fb0e58b5e2a4fdb92888f5d831e4214c62b53bb494aeb2e440e2a086d",
+      "sha256": "df025fe6f5024c2cb97ffbf0d832ea951f847bdeb4f5c32ef8c3f177e5234b4c",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:55:56Z",
+      "screenedAt": "2026-10-16T14:14:54Z",
       "usage": {
-        "prompt": 653,
-        "output": 253,
-        "thoughts": 1294
+        "prompt": 657,
+        "output": 230,
+        "thoughts": 1347
       },
       "ok": false,
-      "heard": "Sì, prego da questa parte. Ecco il menu.",
+      "heard": "Sì, prego, da questa parte. Ecco il menu.",
       "issues": [
         {
           "type": "stress",
           "where": "menù",
-          "detail": "重音错误地落在了第一音节（读成了 ME-nu），而不是带重音符号的尾音节（me-NÙ）。"
+          "detail": "重音错误地落在了第一音节，未按重音符号重读末音节。"
         }
       ],
       "severity": "medium",
-      "reason": "“menù”一词重音位置错误，不符合带重音符号的标准意大利语发音。",
+      "reason": "句末单词“menù”重音位置明显错误。",
       "confidence": 0.7,
       "modelOk": false,
-      "checkHeard": "Sì, prego, da questa parte. Ecco il menu."
+      "checkHeard": "Sì, prego, da questa parte. Ecco il menù."
     },
     "c03f7bbeb2d59ccd.m4a": {
       "key": "f1@1|s|Dove posso comprare il biglietto?",
@@ -16646,11 +16570,11 @@
       "sha256": "7759198d312edb0abd3bc6b13276883d8b36992f3d8e4494c29dcf152e39dfd9",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:07:24Z",
+      "screenedAt": "2026-10-16T14:23:21Z",
       "usage": {
         "prompt": 591,
         "output": 255,
-        "thoughts": 920
+        "thoughts": 989
       },
       "ok": false,
       "heard": "cafe",
@@ -16658,16 +16582,16 @@
         {
           "type": "misread",
           "where": "caffè",
-          "detail": "使用了英语元音发音。"
+          "detail": "使用了英语元音发音而非意大利语发音。"
         },
         {
           "type": "stress",
           "where": "caffè",
-          "detail": "重音错误地落在了第一音节。"
+          "detail": "重音错误地落在了第一个音节上。"
         }
       ],
       "severity": "medium",
-      "reason": "该词按英语发音，元音与重音位置均不正确。",
+      "reason": "音频按英语发音规则朗读了单词，元音和重音均不正确。",
       "confidence": 0.7,
       "modelOk": false,
       "checkHeard": "Caffè"
@@ -16957,6 +16881,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "c82d7d7a17dab1f8.m4a": {
+      "key": "f1@1|s|Sono cinese, ma vivo in Giappone.",
+      "sha256": "be1e90145bdd71fad99cde6b43c04d2f6da41ddd2cb947bd0a11548d872a3ea3",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T14:33:47Z",
+      "usage": {
+        "prompt": 715,
+        "output": 123,
+        "thoughts": 575
+      },
+      "ok": true,
+      "heard": "Sono cinese, ma vivo in Giappone.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "c8553d7bba9d5774.m4a": {
       "key": "m1@1|n|Buonasera! Desidera?",
       "sha256": "eea5b85163b0ba323e9fc6168176d1df28f9c3f147ad59edcab21e83b82e5dd0",
@@ -17054,14 +16997,14 @@
     },
     "c9a2cb0ae6bb1282.m4a": {
       "key": "m1@1|n|Va bene, allora niente crostacei. Da bere, un bicchiere di vino?",
-      "sha256": "fd71d093dd2704fbe66ccff4c3a251d58d37ea9b81e747aad5e5f977ffa58afa",
+      "sha256": "5c37750948bcf80ab720e6490141225f9cb455499828940d09d87b1adde602b7",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:03:32Z",
+      "screenedAt": "2026-10-16T14:18:18Z",
       "usage": {
-        "prompt": 702,
-        "output": 145,
-        "thoughts": 699
+        "prompt": 712,
+        "output": 141,
+        "thoughts": 589
       },
       "ok": true,
       "heard": "Va bene, allora niente crostacei. Da bere, un bicchiere di vino?",
@@ -18232,29 +18175,22 @@
     },
     "d9890204c1d54ddf.m4a": {
       "key": "f1@1|n|caffè",
-      "sha256": "fe0474aac682dd9466339fdc8408c2a2a7d6f4eb31f04d49d156d6a51cddb5e3",
+      "sha256": "58eb30b5d3e2cea10d3410de9c4f410304919edc5852afa117f096381f2c2651",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T11:54:49Z",
+      "screenedAt": "2026-10-16T14:03:37Z",
       "usage": {
-        "prompt": 591,
-        "output": 98,
-        "thoughts": 564
+        "prompt": 589,
+        "output": 94,
+        "thoughts": 396
       },
-      "ok": false,
-      "heard": "cafe",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "caffè",
-          "detail": "使用了英语发音（/kæˈfeɪ/），元音与意大利语完全不符。"
-        }
-      ],
-      "severity": "high",
-      "reason": "该音频直接使用了美式英语的“cafe”发音，而非意大利语的“caffè”。",
-      "confidence": 1.0,
-      "modelOk": false,
-      "checkHeard": "Caffè"
+      "ok": true,
+      "heard": "caffè",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
     },
     "da005c8d36b7b68f.m4a": {
       "key": "m1@1|n|uscita",
@@ -18299,11 +18235,11 @@
       "sha256": "36268f3baece74bd581723d189b620d3709c9f9933d2d97d129015a67a48a8f5",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:39:53Z",
+      "screenedAt": "2026-10-16T14:38:04Z",
       "usage": {
         "prompt": 882,
-        "output": 168,
-        "thoughts": 605
+        "output": 159,
+        "thoughts": 1172
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?",
@@ -18698,18 +18634,18 @@
       "sha256": "14fff1433cb1338b670feb1b3397edd28e8eedcc867422ae22af5c252722d3b8",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:43:44Z",
+      "screenedAt": "2026-10-16T14:40:58Z",
       "usage": {
         "prompt": 891,
-        "output": 159,
-        "thoughts": 796
+        "output": 162,
+        "thoughts": 820
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.75,
+      "confidence": 0.7,
       "modelOk": true
     },
     "de9a1e737c7ee935.m4a": {
@@ -19113,29 +19049,22 @@
     },
     "e1ec1ebe16f64c84.m4a": {
       "key": "m1@1|s|Sì, prego, da questa parte. Ecco il menù.",
-      "sha256": "d44b55d5b38d471c2fac38fa99837e8f987b8e4f5313f27838a2b0c93fc121da",
+      "sha256": "ff0f9b26b2e2cd3d70e9970c950cacf0fd24211158d5a493356ca18b6d538b05",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:02:25Z",
+      "screenedAt": "2026-10-16T14:17:04Z",
       "usage": {
-        "prompt": 734,
-        "output": 207,
-        "thoughts": 1111
+        "prompt": 738,
+        "output": 132,
+        "thoughts": 756
       },
-      "ok": false,
-      "heard": "Sì, prego, da questa parte. Ecco il menu.",
-      "issues": [
-        {
-          "type": "stress",
-          "where": "menù",
-          "detail": "重音错误地放在了第一音节而非末音节。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "末尾单词“menù”重音位置有误，其余发音清晰。",
-      "confidence": 0.75,
-      "modelOk": false,
-      "checkHeard": "Sì, prego, da questa parte. Ecco il menu."
+      "ok": true,
+      "heard": "Sì, prego, da questa parte. Ecco il menù.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
     },
     "e239d246416b3140.m4a": {
       "key": "f1@1|n|Serve la prenotazione?",
@@ -19786,29 +19715,22 @@
     },
     "e997ccf45977906d.m4a": {
       "key": "m1@1|s|biglietto",
-      "sha256": "897da0547d3fab9de7ebab31458dfb8363aad08ab411d07fc8868bf7a9d6078c",
+      "sha256": "0e8fcc24fb6cfd3defb669e352d8750344b69a530cf3b1ef08f418b293d79c00",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:07:29Z",
+      "screenedAt": "2026-10-16T14:21:41Z",
       "usage": {
-        "prompt": 665,
-        "output": 116,
-        "thoughts": 877
+        "prompt": 659,
+        "output": 109,
+        "thoughts": 485
       },
-      "ok": false,
-      "heard": "bilietto",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "biglietto",
-          "detail": "词中的“gli”没有发成正确的意大利语硬颚边音，而是被错误地拆开发成了“bil-ietto”。"
-        }
-      ],
-      "severity": "high",
-      "reason": "“biglietto”中的“gli”发音错误，被读成了带停顿的“bil-ietto”，会误导初学者。",
-      "confidence": 0.95,
-      "modelOk": false,
-      "checkHeard": "biglietto"
+      "ok": true,
+      "heard": "biglietto",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
+      "modelOk": true
     },
     "e9b3ea11faedab65.m4a": {
       "key": "f1@1|n|Perfetto. Con questo traffico ci vogliono quaranta minuti.",
@@ -20325,29 +20247,22 @@
     },
     "eff9efe98e704ac9.m4a": {
       "key": "m1@1|n|È aperto anche oggi?",
-      "sha256": "00dd64eb35dabfc26bd3adff6ceb71d3a075678520ef2d1a42c1ff74999f8ce9",
+      "sha256": "3ef2242c0891e7e893779c4f0980e57665524dc0df0c94078ad9a8545b3a1ceb",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T09:06:57Z",
+      "screenedAt": "2026-10-16T14:28:16Z",
       "usage": {
         "prompt": 605,
-        "output": 193,
-        "thoughts": 832
+        "output": 101,
+        "thoughts": 564
       },
-      "ok": false,
-      "heard": "È perto anche oggi?",
-      "issues": [
-        {
-          "type": "omission",
-          "where": "aperto",
-          "detail": "词首元音a发音缺失，听起来像perto。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "aperto的词首元音被吞音，发音不完整。",
+      "ok": true,
+      "heard": "È aperto anche oggi?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
       "confidence": 0.7,
-      "modelOk": false,
-      "checkHeard": "È aperto anche oggi?"
+      "modelOk": true
     },
     "f07739f1cea83d87.m4a": {
       "key": "f1@1|s|Allora, cosa le porto?",
@@ -20484,14 +20399,14 @@
     },
     "f171b921b1730fc2.m4a": {
       "key": "m1@1|s|chiesa",
-      "sha256": "0592467cbc0698bfa4f0db91bc738bf78ae72c438a7c841f86f4121d24e050f5",
+      "sha256": "6ff7c1dc27b5eecfddd7145c16fe5085ec57d4f66bdbb17447d78402470c0bec",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:06:19Z",
+      "screenedAt": "2026-10-16T14:24:34Z",
       "usage": {
         "prompt": 656,
-        "output": 188,
-        "thoughts": 1611
+        "output": 104,
+        "thoughts": 581
       },
       "ok": true,
       "heard": "chiesa",
@@ -20921,21 +20836,21 @@
     },
     "f62e6cd8b6f4f64f.m4a": {
       "key": "m1@1|s|Napoli",
-      "sha256": "a445f4e24b3205cebf1c3ef1eafaa76f9054fc55f60c9bd95a78da5505d7dd7b",
+      "sha256": "47991cb8fd2d941039e807a0fe20e77fe5a55ffaf8ae438f46b2124b2ac64bc5",
       "model": "gemini-4-argon",
       "promptRev": 1,
-      "screenedAt": "2026-10-16T08:03:36Z",
+      "screenedAt": "2026-10-16T14:00:34Z",
       "usage": {
         "prompt": 656,
-        "output": 52,
-        "thoughts": 837
+        "output": 166,
+        "thoughts": 1255
       },
       "ok": true,
       "heard": "Napoli",
       "issues": [],
       "severity": "none",
       "reason": "",
-      "confidence": 0.9,
+      "confidence": 0.7,
       "modelOk": true
     },
     "f63915e55991f843.m4a": {

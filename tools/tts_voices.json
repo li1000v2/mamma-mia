@@ -8,6 +8,8 @@
   ],
   "lineVoices": {
     "È una palla, non una pala.": ["f1"],
-    "All'aeroporto di Fiumicino, per favore.": ["f1"]
+    "All'aeroporto di Fiumicino, per favore.": ["f1"],
+    "caffè": ["f1"],
+    "Sì, prego, da questa parte. Ecco il menù.": ["f1"]
   }
 }

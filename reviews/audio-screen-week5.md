@@ -6,15 +6,7 @@
 
 ## 可疑片段
 
-### 1. Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?
-
-- 声线 m1@1（Charon） · 慢速 · `23e970c1156fba7a.m4a`
-- 问题：读错（严重度 medium，置信度 0.70）
-- 理由：数字“112”被误读为“centro dodici”，不适合初学者。
-  - 读错「112」：将“centododici”误读为“centro dodici”。
-- 模型听到：Va bene. Prima chiami il centro dodici, poi vada alla polizia. Ma lei sta bene?
-- 转写模型听到：Va bene. Prima chiami il centododici, poi vada alla polizia. Ma lei sta bene?（和原文不同）
-- 双辅音需人工听：alla
+没有。
 
 ## 双辅音需人工听
 
@@ -53,6 +45,7 @@
 - Perfetto. Con questo traffico ci vogliono quaranta minuti. — Perfetto, traffico
 - Quanto costa fino all'aeroporto? — all
 - Quanto costa questo ombrello? Va bene, lo prendo. — ombrello
+- Sono cinese, ma vivo in Giappone. — Giappone
 - Tutto bene? Le piace la carbonara? — Tutto
 - Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene? — alla
 - Vorrei fare una denuncia. — Vorrei
@@ -60,8 +53,8 @@
 ## 统计
 
 - 本周音频：262 段（原速 131，慢速 131）
-- 已筛：260 段，未筛 2 段
-- 可疑：1 段（原速 0，慢速 1）
-- 含双辅音的句子：36 句
-- token：输入 181,397，输出 29,453，思考 149,633
-- 花费估算：260 次 × $0.004 ≈ $1.04（按实测单价；只重筛新片段时实际花费更少）
+- 已筛：262 段
+- 可疑：0 段（原速 0，慢速 0）
+- 含双辅音的句子：37 句
+- token：输入 182,909，输出 29,774，思考 151,189
+- 花费估算：262 次 × $0.004 ≈ $1.05（按实测单价；只重筛新片段时实际花费更少）
