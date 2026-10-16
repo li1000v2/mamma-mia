@@ -60,18 +60,20 @@ extension ContentBundle {
 extension ReviewScheduler {
     /// The cards the packs open at `now` still put into reviews. A pack takes its arrival's cards in
     /// review state, the lowest predicted recall at the start of the arrival day first, up to
-    /// `CityPack.size` less its cards already reviewed since it opened. Reviewing a card only shortens
-    /// the rest, so the set doesn't change while you work through it.
+    /// `CityPack.size` less its cards already reviewed since the eve's study day began. Reviewing a
+    /// card only shortens the rest, so the set doesn't change while you work through it — nor when
+    /// the phone changes time zone between the eve at home and the arrival, which moves every
+    /// local moment by hours but leaves an evening's reviews well after the eve's 4 a.m.
     public func packCards(cards: [ReviewCard], packs: [CityPack], now: Date, clock: StudyClock) -> [ReviewCard] {
         var chosen: [ReviewCard] = []
         var seen = Set<CardID>()
         for pack in packs where pack.isOpen(at: now, clock: clock) {
-            let opened = pack.opens(clock)
+            let since = clock.start(of: pack.eve)
             let mine = cards.filter { pack.phraseIDs.contains($0.id.phraseID) }
-            let done = mine.filter { ($0.lastReview ?? .distantPast) >= opened }.count
+            let done = mine.filter { ($0.lastReview ?? .distantPast) >= since }.count
             let deadline = clock.start(of: pack.arrival)
             let ranked = mine
-                .filter { $0.phase == .review && ($0.lastReview ?? .distantPast) < opened }
+                .filter { $0.phase == .review && ($0.lastReview ?? .distantPast) < since }
                 .map { (card: $0, recall: retrievability(of: $0, at: deadline)) }
                 .sorted { ($0.recall, $0.card.id.description) < ($1.recall, $1.card.id.description) }
             for entry in ranked.prefix(max(0, CityPack.size - done)) where seen.insert(entry.card.id).inserted {

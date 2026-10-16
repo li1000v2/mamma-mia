@@ -260,6 +260,31 @@ struct TravelTests {
         #expect(scheduler.packCards(cards: cards, packs: [pack], now: pack.closes(clock), clock: clock).isEmpty)
     }
 
+    @Test func aPackKeepsItsSetWhenThePhoneLandsInAnotherTimeZone() throws {
+        let home = StudyClock(timeZone: try #require(TimeZone(secondsFromGMT: 8 * 3600)), dayStartHour: 4)
+        let italy = StudyClock(timeZone: try #require(TimeZone(secondsFromGMT: 3600)), dayStartHour: 4)
+        let arrival = try day("2030-03-01")
+        let ids = (1...40).map { "L09-\($0 < 10 ? "0" : "")\($0)" }
+        let pack = CityPack(city: "venezia", arrival: arrival, scenes: [], phraseIDs: Set(ids))
+        let cards = ids.enumerated().map { index, id in
+            reviewedCard(id, stability: Double(index + 1) * 3, lastReviewDaysAgo: 10, now: home.start(of: arrival))
+        }
+
+        // The evening before, at home: the pack opens and five of its cards are done.
+        let evening = pack.opens(home).addingTimeInterval(1800)
+        let pending = scheduler.packCards(cards: cards, packs: [pack], now: evening, clock: home)
+        var reviewed = cards
+        for card in pending.prefix(5) {
+            let index = try #require(reviewed.firstIndex { $0.id == card.id })
+            reviewed[index] = try scheduler.review(card, grade: .good, at: evening).card
+        }
+
+        // Landed: the same pack, minus what was done, though every local moment moved by seven hours.
+        let landed = italy.start(of: arrival).addingTimeInterval(8 * 3600)
+        let rest = scheduler.packCards(cards: reviewed, packs: [pack], now: landed, clock: italy)
+        #expect(rest.map(\.id) == pending.dropFirst(5).map(\.id))
+    }
+
     @Test func packCardsJoinTheReviewsWhileThePackIsOpen() throws {
         let arrival = try day("2030-03-03")
         let pack = CityPack(city: "napoli", arrival: arrival, scenes: [], phraseIDs: ["L14-01", "L14-02"])
