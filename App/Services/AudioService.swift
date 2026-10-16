@@ -25,11 +25,12 @@ final class AudioService: NSObject {
 
     /// Whether `text` has a generated recording rather than the built-in voice.
     func hasRecording(for text: String) -> Bool {
-        bundledFile(for: text, speed: .normal) != nil
+        bundledFile(for: text, speed: .normal, voice: nil) != nil
     }
 
-    func say(_ text: String, speed: Speed = .normal) async {
-        if let url = bundledFile(for: text, speed: speed) {
+    /// `voice` is a manifest voice id ("f1") to keep one person's lines in one voice.
+    func say(_ text: String, speed: Speed = .normal, voice: String? = nil) async {
+        if let url = bundledFile(for: text, speed: speed, voice: voice) {
             await play(url: url)
             return
         }
@@ -81,9 +82,9 @@ final class AudioService: NSObject {
         continuation = nil
     }
 
-    private func bundledFile(for text: String, speed: Speed) -> URL? {
-        guard let manifest, let audioDirectory, let voice = manifest.voices.first,
-              let name = manifest.file(text: text, voice: voice, speed: speed)
+    private func bundledFile(for text: String, speed: Speed, voice: String?) -> URL? {
+        guard let manifest, let audioDirectory,
+              let name = manifest.file(for: text, speed: speed, preferring: voice)
         else { return nil }
         return audioDirectory.appendingPathComponent(name)
     }

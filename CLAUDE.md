@@ -22,6 +22,14 @@
 - swift-fsrs 固定在 main 的一个提交：FSRS-6 只在 main 上，最新 tag v5.0.0 还是 FSRS-5。升级时改 `Package.swift` 里的 revision。
 - 本地没有 Mac，编译错误只能从 CI 日志看（`gh run view --log-failed`）。
 
+## 示范音频
+
+- `python tools/gen_audio.py` 生成缺的音频（`--dry-run` 只列清单，`--prune` 删掉没人用的）。需要 ffmpeg，key 从环境变量或仓库根目录的 `.env` 读（`GOOGLE_API_KEY`、`GOOGLE_CLOUD_PROJECT_NUMBER`）。`.env` 已 gitignore，key 不许打印、不许提交。
+- 声线和模型在 `tools/tts_voices.json`；改了声线就把它的 `rev` 加一，对应音频会全部重生成。
+- 原速只把意大利语原文发给 TTS，不带风格指令：实测带指令时模型会把指令也念出来，systemInstruction 也不支持。慢速是原速录音用 ffmpeg `atempo` 放慢。
+- 每段新音频都用 `checkModel` 转写回来和原文比对，对不上会重试；还对不上就在输出里报 warning，需要人去听。
+- app 里没有音频的句子会退回 iOS 自带的意大利语语音。挑战剧本可以用 `voice` 指定角色的声线。
+
 ## 免费 Apple ID 的限制
 
 - 只有一个 app target，不加任何扩展（小组件等）：扩展也占 3 个侧载名额。
@@ -42,6 +50,8 @@
 - 句子里不写用到日：由场景的 `neededAt`（`first` / `last` / `city:<id>` / `event:<id>`）和导入的行程推算。
 - 音频文件名是哈希；manifest 的键是 `"<voice>|<speed>|<text>"`，必须和 `AudioManifest.key` 以及 `tools/` 里的实现保持一致。
 - 单元 id 是 `Lxx` / `Cxx`，句子 id 是 `Lxx-nn`；`lessons/Lxx.json` 的文件名要和 `unit` 一致。
+- 只有复习里的自评会更新 FSRS 记忆状态。上课只是把句子的卡加进来（新卡），挑战只记成绩，都不改卡片状态。
+- 每句默认两张卡：听辨（listen）和回忆（recall），各自调度；复习时同一句的两张卡不连着出。
 
 ## 工作方式
 

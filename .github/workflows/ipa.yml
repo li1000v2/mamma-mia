@@ -74,6 +74,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" build/MammaMia.ipa \
+          # Tags like v0.2.0-beta.1 are test builds: publish them as pre-releases.
+          prerelease=()
+          [[ "$GITHUB_REF_NAME" == *-* ]] && prerelease=(--prerelease)
+          gh release create "$GITHUB_REF_NAME" build/MammaMia.ipa "${prerelease[@]}" \
             --title "$GITHUB_REF_NAME" \
             --notes "Unsigned build ${GITHUB_SHA::7} (run ${{ github.run_number }}). Install it with SideStore."

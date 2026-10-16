@@ -1,0 +1,9 @@
+{
+  "ttsModel": "gemini-3.8-flash-tts",
+  "checkModel": "gemini-3.8-flash",
+  "slowTempo": 0.75,
+  "voices": [
+    { "id": "f1", "rev": 1, "voiceName": "Kore" },
+    { "id": "m1", "rev": 1, "voiceName": "Charon" }
+  ]
+}

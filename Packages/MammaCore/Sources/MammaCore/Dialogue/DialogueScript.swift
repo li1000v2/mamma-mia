@@ -50,6 +50,8 @@ public struct DialogueScript: Codable, Sendable, Identifiable {
     public let goal: String
     /// Role name of the other person, e.g. "Cassiere".
     public let speaker: String
+    /// Voice id from the audio manifest ("f1", "m1") so the role keeps one voice throughout.
+    public let voice: String?
     public let status: ReviewStatus
     /// The main conversation in order.
     public let nodes: [DialogueNode]

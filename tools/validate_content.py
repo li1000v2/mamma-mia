@@ -77,6 +77,13 @@ def main() -> int:
             errors.append(f"{rel(manifest_path)}: {name} (for {key!r}) is missing from Audio/")
 
     phrases = [phrase for path in lesson_files for phrase in load(path)["phrases"]]
+    first_with_text: dict[str, str] = {}
+    for phrase in phrases:
+        text = " ".join(phrase["it"].lower().split())
+        if text in first_with_text:
+            warnings.append(f"{phrase['id']}: same Italian as {first_with_text[text]}; reuse one phrase or note why both exist")
+        else:
+            first_with_text[text] = phrase["id"]
     for phrase in phrases:
         if phrase["status"] == "draft":
             continue

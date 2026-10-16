@@ -103,8 +103,8 @@ struct ChallengePlayerView: View {
                     .foregroundStyle(.secondary)
             }
             HStack {
-                Button("再听") { Task { await model.audio.say(beat.line.it) } }
-                Button("慢速") { Task { await model.audio.say(beat.line.it, speed: .slow) } }
+                Button("再听") { Task { await model.audio.say(beat.line.it, voice: script.voice) } }
+                Button("慢速") { Task { await model.audio.say(beat.line.it, speed: .slow, voice: script.voice) } }
                 Button("原文") { showItalian = true }
                     .disabled(showItalian)
                 Button("中文（算提示）") {
@@ -302,7 +302,7 @@ struct ChallengePlayerView: View {
         feedback = nil
         answered = nil
         if let beat {
-            Task { await model.audio.say(beat.line.it) }
+            Task { await model.audio.say(beat.line.it, voice: script.voice) }
         } else {
             finish()
         }
@@ -329,7 +329,7 @@ struct ChallengePlayerView: View {
         said = [:]
         result = nil
         if let first = beats.first {
-            Task { await model.audio.say(first.line.it) }
+            Task { await model.audio.say(first.line.it, voice: script.voice) }
         }
     }
 }

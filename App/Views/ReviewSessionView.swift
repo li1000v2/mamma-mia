@@ -124,24 +124,30 @@ private struct ReviewCardView: View {
 
     private var gradeButtons: some View {
         let outcomes = model.outcomes(for: card)
-        return HStack(spacing: 8) {
-            ForEach(Grade.allCases, id: \.self) { grade in
-                Button {
-                    onGrade(grade)
-                } label: {
-                    VStack(spacing: 2) {
-                        Text(grade.label)
-                            .font(.headline)
-                        if let due = outcomes[grade] {
-                            Text(IntervalText.short(due.timeIntervalSinceNow))
-                                .font(.caption2)
+        return VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                ForEach(Grade.allCases, id: \.self) { grade in
+                    Button {
+                        onGrade(grade)
+                    } label: {
+                        VStack(spacing: 2) {
+                            Text(grade.label)
+                                .font(.headline)
+                            if let due = outcomes[grade] {
+                                Text(IntervalText.short(due.timeIntervalSinceNow))
+                                    .font(.caption2)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: .infinity)
+                    .buttonStyle(.bordered)
+                    .tint(grade.tint)
                 }
-                .buttonStyle(.bordered)
-                .tint(grade.tint)
             }
+            Text("重来：没想出来 · 困难：想了很久才对 · 记得：想得出来 · 轻松：脱口而出")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
         }
     }
 

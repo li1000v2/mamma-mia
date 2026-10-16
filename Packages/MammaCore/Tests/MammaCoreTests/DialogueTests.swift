@@ -81,6 +81,7 @@ struct DialogueTests {
             title: "t",
             goal: "g",
             speaker: "s",
+            voice: nil,
             status: .draft,
             nodes: [DialogueNode(
                 id: "a",
