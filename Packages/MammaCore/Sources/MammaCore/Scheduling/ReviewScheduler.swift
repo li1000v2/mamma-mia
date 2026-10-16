@@ -94,6 +94,8 @@ public struct DailyPlan: Sendable {
     /// Cards FSRS would next show only after the trip day that needs them (see `boostCandidates`).
     /// They are ordinary reviews: the grade updates them like any other.
     public let boosted: [ReviewCard]
+    /// City-pack cards (see `packCards`) that aren't already due or boosted. Ordinary reviews too.
+    public let packed: [ReviewCard]
     public let new: [ReviewCard]
 }
 
@@ -143,21 +145,26 @@ public struct ReviewScheduler: Sendable {
 
     /// `cards` must be in course order; new cards are introduced in that order. `needBy` gives the
     /// trip day a card is first needed on; without a trip it returns nil and nothing is boosted.
+    /// `packs` are the trip's city packs; only the ones open at `now` add cards.
     public func plan(
         cards: [ReviewCard],
         newIntroducedToday: Int,
         now: Date,
         clock: StudyClock,
         needBy: (ReviewCard) -> LocalDate? = { _ in nil },
-        boostPolicy: BoostPolicy = BoostPolicy()
+        boostPolicy: BoostPolicy = BoostPolicy(),
+        packs: [CityPack] = []
     ) -> DailyPlan {
         let endOfToday = clock.end(of: clock.day(of: now))
         let due = cards.filter { !$0.isNew && $0.due <= endOfToday }
         let boosted = boostCandidates(cards: cards, needBy: needBy, now: now, clock: clock, policy: boostPolicy).map(\.card)
+        let queued = Set((due + boosted).map(\.id))
+        let packed = packCards(cards: cards, packs: packs, now: now, clock: clock).filter { !queued.contains($0.id) }
         let budget = max(0, config.newCardsPerDay - newIntroducedToday)
         return DailyPlan(
             due: neededSoonestFirst(due, now: now, clock: clock, needBy: needBy, policy: boostPolicy),
             boosted: neededSoonestFirst(boosted, now: now, clock: clock, needBy: needBy, policy: boostPolicy),
+            packed: neededSoonestFirst(packed, now: now, clock: clock, needBy: needBy, policy: boostPolicy),
             new: Array(cards.filter(\.isNew).prefix(budget))
         )
     }

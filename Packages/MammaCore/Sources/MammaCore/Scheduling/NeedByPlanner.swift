@@ -7,6 +7,48 @@ public enum NeedByError: Error, Equatable, Sendable {
     case emptyTrip
 }
 
+/// A scene's `neededAt`, parsed: the trip's first or last day, the arrival in a city, or a
+/// fixed-date event.
+public enum NeedAnchor: Hashable, Sendable {
+    case first
+    case last
+    case city(String)
+    case event(String)
+
+    /// Nil when `neededAt` isn't one of "first", "last", "city:<id>" or "event:<id>".
+    public init?(_ neededAt: String) {
+        switch neededAt {
+        case "first":
+            self = .first
+        case "last":
+            self = .last
+        default:
+            let parts = neededAt.split(separator: ":", maxSplits: 1).map(String.init)
+            guard parts.count == 2, !parts[1].isEmpty else { return nil }
+            switch parts[0] {
+            case "city": self = .city(parts[1])
+            case "event": self = .event(parts[1])
+            default: return nil
+            }
+        }
+    }
+
+    /// How narrowly the anchor picks its day, lowest first: a holiday, a city's arrival, the
+    /// last day, then the first day, from which everything general is needed.
+    var specificity: Int {
+        switch self {
+        case .event: 0
+        case .city: 1
+        case .last: 2
+        case .first: 3
+        }
+    }
+}
+
+extension SceneTag {
+    public var anchor: NeedAnchor? { NeedAnchor(neededAt) }
+}
+
 /// Turns a scene's `neededAt` ("first", "last", "city:<id>", "event:<id>") into the trip day
 /// on which that content is first used.
 public struct NeedByPlanner: Sendable {
@@ -17,38 +59,30 @@ public struct NeedByPlanner: Sendable {
     }
 
     public func resolve(_ neededAt: String) throws -> LocalDate {
-        switch neededAt {
-        case "first":
+        guard let anchor = NeedAnchor(neededAt) else { throw NeedByError.malformed(neededAt) }
+        switch anchor {
+        case .first:
             guard let stop = trip.stops.first else { throw NeedByError.emptyTrip }
             return stop.from
-        case "last":
+        case .last:
             guard let stop = trip.stops.last else { throw NeedByError.emptyTrip }
             return stop.to
-        default:
-            let parts = neededAt.split(separator: ":", maxSplits: 1).map(String.init)
-            guard parts.count == 2, !parts[1].isEmpty else { throw NeedByError.malformed(neededAt) }
-            switch parts[0] {
-            case "city":
-                guard let stop = trip.stops.first(where: { $0.city == parts[1] }) else {
-                    throw NeedByError.unknownCity(parts[1])
-                }
-                return stop.from
-            case "event":
-                guard let event = trip.events.first(where: { $0.id == parts[1] }) else {
-                    throw NeedByError.unknownEvent(parts[1])
-                }
-                return event.date
-            default:
-                throw NeedByError.malformed(neededAt)
+        case .city(let city):
+            guard let stop = trip.stops.first(where: { $0.city == city }) else {
+                throw NeedByError.unknownCity(city)
             }
+            return stop.from
+        case .event(let id):
+            guard let event = trip.events.first(where: { $0.id == id }) else {
+                throw NeedByError.unknownEvent(id)
+            }
+            return event.date
         }
     }
 
     /// Syntax check that needs no trip, for validating course.json on its own.
     public static func isWellFormed(_ neededAt: String) -> Bool {
-        if neededAt == "first" || neededAt == "last" { return true }
-        let parts = neededAt.split(separator: ":", maxSplits: 1)
-        return parts.count == 2 && ["city", "event"].contains(String(parts[0])) && !parts[1].isEmpty
+        NeedAnchor(neededAt) != nil
     }
 }
 

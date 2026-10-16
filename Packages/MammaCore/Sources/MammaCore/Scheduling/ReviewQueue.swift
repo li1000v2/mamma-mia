@@ -22,14 +22,15 @@ extension ReviewCard {
 extension ReviewScheduler {
     /// The card to show next in a review session:
     /// 1. learning-step cards whose step is up, earliest first;
-    /// 2. review cards due any time today, plus the trip boosts (`boostCandidates`): those needed
-    ///    within the boost window first, the soonest need-by day first, then lowest predicted recall;
+    /// 2. review cards due any time today, plus the trip boosts (`boostCandidates`) and the open city
+    ///    packs (`packCards`): those needed within the boost window first, the soonest need-by day
+    ///    first, then lowest predicted recall;
     /// 3. new cards in course order while today's new-card budget lasts;
     /// 4. otherwise a learning-step card due within `learnAhead`, so the session doesn't stall on a 10-minute step.
     ///
     /// A card of `avoidingPhrase` (the phrase just shown) is skipped while anything else is available:
     /// answering the recall card right after hearing the same sentence only tests short-term memory.
-    /// Without a trip `needBy` returns nil and the order is plain FSRS.
+    /// Without a trip `needBy` returns nil, there are no packs, and the order is plain FSRS.
     public func nextCard(
         from cards: [ReviewCard],
         newBudget: Int,
@@ -37,6 +38,7 @@ extension ReviewScheduler {
         clock: StudyClock,
         needBy: (ReviewCard) -> LocalDate? = { _ in nil },
         boostPolicy: BoostPolicy = BoostPolicy(),
+        packs: [CityPack] = [],
         learnAhead: TimeInterval = 20 * 60,
         avoidingPhrase avoided: String? = nil
     ) -> ReviewCard? {
@@ -44,9 +46,11 @@ extension ReviewScheduler {
         let learning = cards.filter { $0.phase == .learning }
         let dueLearning = learning.filter { $0.due <= now }.sorted { $0.due < $1.due }
         let dueReviews = cards.filter { $0.phase == .review && $0.due <= endOfToday }
-        // Boosts are never due today, so they can't duplicate a due review.
+        // Boosts are never due today, so they can't duplicate a due review; pack cards can.
         let boosted = boostCandidates(cards: cards, needBy: needBy, now: now, clock: clock, policy: boostPolicy).map(\.card)
-        let reviews = neededSoonestFirst(dueReviews + boosted, now: now, clock: clock, needBy: needBy, policy: boostPolicy)
+        let queued = Set((dueReviews + boosted).map(\.id))
+        let packed = packCards(cards: cards, packs: packs, now: now, clock: clock).filter { !queued.contains($0.id) }
+        let reviews = neededSoonestFirst(dueReviews + boosted + packed, now: now, clock: clock, needBy: needBy, policy: boostPolicy)
         let newCards = newBudget > 0 ? Array(cards.filter(\.isNew).prefix(newBudget)) : []
         let ahead = learning
             .filter { $0.due > now && $0.due <= now.addingTimeInterval(learnAhead) }
