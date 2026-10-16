@@ -56,7 +56,7 @@ struct ShowCardsView: View {
                         .font(.footnote)
                 }
             } footer: {
-                Text("每张卡存成一张图片放进「照片」。app 签名过期打不开时，也能从相册里拿出来给人看。改了行程要再存一次。")
+                Text("每张卡存成一张图片放进「照片」。app 签名过期打不开时，也能从相册里拿出来给人看。改了行程要再存一次。图片里有酒店地址和忌口，开着 iCloud 照片的话也会同步上去。")
             }
         }
         .navigationTitle("出示卡")
