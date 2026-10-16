@@ -78,6 +78,9 @@ struct TripEditorView: View {
             }
         }
         .environment(\.timeZone, TripDates.zone)
+        .scrollDismissesKeyboard(.interactively)
+        // Typed addresses shouldn't vanish with a stray swipe: leave through 取消 or 保存.
+        .interactiveDismissDisabled()
         .navigationTitle(isNew ? "填写行程" : "编辑行程")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
