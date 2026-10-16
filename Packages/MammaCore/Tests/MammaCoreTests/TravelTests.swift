@@ -152,6 +152,24 @@ struct TravelTests {
         }
     }
 
+    @Test func everyFixedLineHasModelAudioAtBothSpeeds() throws {
+        let bundle = try ContentTests.loadRepositoryContent()
+        let audio = try #require(bundle.audio)
+        var trip = try ContentTests.loadExampleTrip()
+        trip.diet = Diet(allergens: Allergen.allCases)
+        let texts = bundle.showCards(for: trip).flatMap(\.lines).compactMap { line -> String? in
+            guard case .model(let text)? = line.speech else { return nil }
+            return text
+        }
+        // Hotel 2, diet 1 + 14 allergens + 2, write 1, slowly 1, 112 card 2.
+        #expect(texts.count == 2 + 17 + 1 + 1 + 2)
+        for text in texts {
+            for speed in Speed.allCases {
+                #expect(audio.file(for: text, speed: speed, preferring: "f1") != nil, "no \(speed) audio for \(text)")
+            }
+        }
+    }
+
     @Test func onlyLatinTextIsReadByTheItalianVoice() {
         #expect(ShowCard.isLatinScript("Niente maiale, perché…"))
         #expect(ShowCard.isLatinScript("Calle Finta 1, 30121 Venezia"))
