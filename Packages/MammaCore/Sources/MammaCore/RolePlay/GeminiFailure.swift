@@ -53,6 +53,11 @@ public struct GeminiFailure: Error, Hashable, Sendable, CustomStringConvertible 
         GeminiFailure(kind: .network, status: 0, reason: nil, detail: description)
     }
 
+    /// Connected, but nothing came back in time.
+    public static func timedOut(_ description: String) -> GeminiFailure {
+        GeminiFailure(kind: .network, status: 0, reason: "TIMEOUT", detail: description)
+    }
+
     public static func malformed(_ description: String) -> GeminiFailure {
         GeminiFailure(kind: .malformed, status: 0, reason: nil, detail: description)
     }
@@ -79,6 +84,8 @@ public struct GeminiFailure: Error, Hashable, Sendable, CustomStringConvertible 
             return "这把 key 限定了 iOS 应用，不包括这个 app（\(status)）：把「在线对话设置」里显示的 bundle ID 加进 key 的限制。"
         case "CONSUMER_SUSPENDED", "SUSPENDED":
             return "这个 Google Cloud 项目被停用了（\(status)），在线对话用不了。离线挑战照常能练。"
+        case "TIMEOUT":
+            return "等了太久没有回应（网络慢或服务忙）：再试一次。"
         default:
             break
         }

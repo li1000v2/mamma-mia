@@ -272,6 +272,9 @@ struct RolePlayTests {
         #expect(Self.failure(503, "<html>Service Unavailable</html>").kind == .server)
         #expect(Self.failure(400, #"{"error": {"code": 400, "message": "Invalid value at 'contents'", "status": "INVALID_ARGUMENT"}}"#).kind == .badRequest)
         #expect(!GeminiFailure.network("offline").stopsSession)
+        #expect(GeminiFailure.network("offline").message.contains("离线挑战照常"))
+        #expect(!GeminiFailure.timedOut("slow").stopsSession)
+        #expect(GeminiFailure.timedOut("slow").message.contains("太久"))
     }
 
     @Test func theKeyNeverEndsUpInAFailure() {

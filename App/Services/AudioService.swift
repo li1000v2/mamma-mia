@@ -1,9 +1,9 @@
 import AVFoundation
 import MammaCore
 
-/// Plays model audio: the bundled TTS file when the manifest has one, otherwise iOS's own Italian
-/// voice, so lessons work before the audio is generated. Each call returns when playback ends or
-/// is interrupted by the next one.
+/// Plays model audio: the bundled TTS file when the manifest has one, then a recording saved for a
+/// role-play phrase, otherwise iOS's own Italian voice, so lessons work before the audio is
+/// generated. Each call returns when playback ends or is interrupted by the next one.
 @MainActor
 final class AudioService: NSObject {
     private var manifest: AudioManifest?
@@ -34,6 +34,26 @@ final class AudioService: NSObject {
             await play(url: url)
             return
         }
+        // A sentence from role-play feedback, recorded when it was added.
+        if let url = PracticeAudio.recording(for: text) {
+            await play(url: url, rate: speed == .slow ? 0.75 : 1)
+            return
+        }
+        await sayWithSystemVoice(text, speed: speed)
+    }
+
+    /// The bundled recording of `text` in exactly this voice; false, with nothing played, when
+    /// there is none. The role-play's fillers must sound like the role or not at all.
+    func playRecording(_ text: String, voice: String, speed: Speed = .normal) async -> Bool {
+        guard let manifest, let audioDirectory,
+              let name = manifest.file(for: text, speed: speed, onlyIn: voice)
+        else { return false }
+        await play(url: audioDirectory.appendingPathComponent(name))
+        return true
+    }
+
+    /// iOS's own Italian voice, for text no recording covers.
+    func sayWithSystemVoice(_ text: String, speed: Speed = .normal) async {
         stop()
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "it-IT")

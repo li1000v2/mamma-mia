@@ -73,6 +73,11 @@ private struct ReviewCardView: View {
                         .font(.caption)
                         .foregroundStyle(.orange)
                 }
+                if card.id.phraseID.hasPrefix(PracticePhrase.idPrefix) {
+                    Label("来自 AI 角色扮演的反馈", systemImage: "waveform.and.mic")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
             ScrollView {
                 VStack(spacing: 20) {
