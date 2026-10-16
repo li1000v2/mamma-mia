@@ -17,7 +17,7 @@ struct RootView: View {
         TabView {
             Tab("今日", systemImage: "sun.max") { TodayView() }
             Tab("课程", systemImage: "book") { LessonsView() }
-            Tab("对话", systemImage: "bubble.left.and.bubble.right") { DialogueView() }
+            Tab("对话", systemImage: "bubble.left.and.bubble.right") { ChallengesView() }
             Tab("随身", systemImage: "map") { TravelView() }
         }
     }

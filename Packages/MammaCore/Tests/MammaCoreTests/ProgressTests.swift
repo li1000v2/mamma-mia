@@ -7,8 +7,8 @@ struct ProgressTests {
     // Whole seconds: the file stores ISO 8601 dates without fractions.
     let start = Date(timeIntervalSince1970: 1_900_000_000)
 
-    func sampleProgress() throws -> Progress {
-        var progress = Progress()
+    func sampleProgress() throws -> StudyProgress {
+        var progress = StudyProgress()
         let ids = [CardID(phraseID: "L05-01", kind: .listen), CardID(phraseID: "L05-01", kind: .recall)]
         progress.completeLesson("L05", cards: ids, scheduler: scheduler, at: start)
         let (card, record) = try scheduler.review(progress.cards[0], grade: .good, at: start.addingTimeInterval(60))
@@ -40,7 +40,7 @@ struct ProgressTests {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         defer { try? FileManager.default.removeItem(at: directory) }
         let store = ProgressStore(directory: directory)
-        #expect(try store.load() == Progress())
+        #expect(try store.load() == StudyProgress())
 
         let first = try sampleProgress()
         try store.save(first)
@@ -66,7 +66,7 @@ struct ProgressTests {
 
     @Test func countsNewCardsByTheirFirstReview() throws {
         let clock = StudyClock(timeZone: LocalDate.utc, dayStartHour: 0)
-        var progress = Progress()
+        var progress = StudyProgress()
         let ids = (1...3).map { CardID(phraseID: "L05-0\($0)", kind: .recall) }
         progress.completeLesson("L05", cards: ids, scheduler: scheduler, at: start)
         for card in progress.cards {

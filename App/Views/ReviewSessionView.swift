@@ -1,0 +1,154 @@
+import SwiftUI
+import MammaCore
+
+/// One review session: cards come from the FSRS queue one at a time until nothing is due.
+struct ReviewSessionView: View {
+    @Environment(AppModel.self) private var model
+    @State private var card: ReviewCard?
+    @State private var revealed = false
+    @State private var reviewed = 0
+    @State private var started = false
+
+    var body: some View {
+        Group {
+            if let card, let phrase = model.phrase(for: card) {
+                ReviewCardView(card: card, phrase: phrase, revealed: $revealed) { grade in
+                    model.grade(card, grade)
+                    reviewed += 1
+                    advance()
+                }
+            } else if started {
+                ContentUnavailableView(
+                    "今天的复习完成了",
+                    systemImage: "checkmark.seal",
+                    description: Text("这次复习了 \(reviewed) 张。还在学习步骤里的卡，过几分钟会再出现。")
+                )
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            if !started {
+                advance()
+                started = true
+            }
+        }
+        .onDisappear { model.audio.stop() }
+    }
+
+    private var title: String {
+        reviewed > 0 ? "复习 · 已做 \(reviewed) 张" : "复习"
+    }
+
+    private func advance() {
+        revealed = false
+        card = model.nextReviewCard()
+    }
+}
+
+private struct ReviewCardView: View {
+    @Environment(AppModel.self) private var model
+    let card: ReviewCard
+    let phrase: Phrase
+    @Binding var revealed: Bool
+    let onGrade: (Grade) -> Void
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text(card.id.kind == .listen ? "听：这句是什么意思？" : "说：用意大利语怎么说？")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Spacer()
+            prompt
+            if revealed {
+                answer
+            }
+            Spacer()
+            if revealed {
+                gradeButtons
+            } else {
+                Button {
+                    reveal()
+                } label: {
+                    Text("显示答案")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+            }
+        }
+        .padding()
+        .task(id: card.id) {
+            if card.id.kind == .listen {
+                await model.audio.say(phrase.it)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var prompt: some View {
+        if card.id.kind == .listen {
+            HStack(spacing: 40) {
+                SpeakButton(text: phrase.it)
+                SpeakButton(text: phrase.it, speed: .slow)
+            }
+            .font(.largeTitle)
+        } else {
+            Text(phrase.zh)
+                .font(.title2.weight(.semibold))
+                .multilineTextAlignment(.center)
+        }
+    }
+
+    private var answer: some View {
+        VStack(spacing: 8) {
+            Text(phrase.it)
+                .font(.title2.weight(.semibold))
+                .multilineTextAlignment(.center)
+            Text(phrase.zh)
+                .foregroundStyle(.secondary)
+            if let note = phrase.note {
+                Text(note)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            if card.id.kind != .listen {
+                HStack(spacing: 28) {
+                    SpeakButton(text: phrase.it)
+                    SpeakButton(text: phrase.it, speed: .slow)
+                }
+            }
+        }
+    }
+
+    private var gradeButtons: some View {
+        let outcomes = model.outcomes(for: card)
+        return HStack(spacing: 8) {
+            ForEach(Grade.allCases, id: \.self) { grade in
+                Button {
+                    onGrade(grade)
+                } label: {
+                    VStack(spacing: 2) {
+                        Text(grade.label)
+                            .font(.headline)
+                        if let due = outcomes[grade] {
+                            Text(IntervalText.short(due.timeIntervalSinceNow))
+                                .font(.caption2)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(grade.tint)
+            }
+        }
+    }
+
+    private func reveal() {
+        revealed = true
+        if card.id.kind != .listen {
+            Task { await model.audio.say(phrase.it) }
+        }
+    }
+}

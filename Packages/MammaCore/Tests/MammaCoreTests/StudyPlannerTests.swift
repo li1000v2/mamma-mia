@@ -28,7 +28,7 @@ struct StudyPlannerTests {
 
     @Test func recommendsLessonsInOrderAndChallengesAfterTheirLessons() {
         let planner = makePlanner()
-        var progress = Progress()
+        var progress = StudyProgress()
         #expect(planner.nextLesson(in: progress)?.id == "L01")
         #expect(planner.readyChallenges(in: progress).isEmpty)
         #expect(planner.lessons(before: "C02").map(\.id) == ["L03"])

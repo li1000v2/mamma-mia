@@ -11,7 +11,7 @@ public struct StudyPlanner: Sendable {
     }
 
     /// The first lesson in course order that hasn't been finished.
-    public func nextLesson(in progress: Progress) -> CourseUnit? {
+    public func nextLesson(in progress: StudyProgress) -> CourseUnit? {
         content.course.units.first { $0.kind == .lesson && !progress.isCompleted($0.id) }
     }
 
@@ -30,7 +30,7 @@ public struct StudyPlanner: Sendable {
     }
 
     /// Challenges whose lessons are all finished but which haven't been passed yet, in course order.
-    public func readyChallenges(in progress: Progress) -> [CourseUnit] {
+    public func readyChallenges(in progress: StudyProgress) -> [CourseUnit] {
         content.course.units.filter { unit in
             unit.kind == .challenge
                 && !progress.hasPassed(unit.id)

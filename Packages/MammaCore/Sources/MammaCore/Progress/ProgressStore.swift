@@ -5,7 +5,7 @@ public enum ProgressError: Error, Equatable, Sendable {
     case newerVersion(Int)
 }
 
-/// Keeps `Progress` as JSON in one folder. Each save first copies the previous file to a backup,
+/// Keeps `StudyProgress` as JSON in one folder. Each save first copies the previous file to a backup,
 /// and loading falls back to that backup when the main file can't be read.
 public struct ProgressStore: Sendable {
     public let fileURL: URL
@@ -16,13 +16,13 @@ public struct ProgressStore: Sendable {
         backupURL = directory.appendingPathComponent("progress.backup.json")
     }
 
-    public func load() throws -> Progress {
+    public func load() throws -> StudyProgress {
         let manager = FileManager.default
         guard manager.fileExists(atPath: fileURL.path) else {
             if manager.fileExists(atPath: backupURL.path) {
                 return try Self.decode(Data(contentsOf: backupURL))
             }
-            return Progress()
+            return StudyProgress()
         }
         do {
             return try Self.decode(Data(contentsOf: fileURL))
@@ -32,7 +32,7 @@ public struct ProgressStore: Sendable {
         }
     }
 
-    public func save(_ progress: Progress) throws {
+    public func save(_ progress: StudyProgress) throws {
         let manager = FileManager.default
         try manager.createDirectory(at: fileURL.deletingLastPathComponent(), withIntermediateDirectories: true)
         let data = try Self.encode(progress)
@@ -46,18 +46,18 @@ public struct ProgressStore: Sendable {
     }
 
     /// The same format is used for the file on disk and for exported backups.
-    public static func encode(_ progress: Progress) throws -> Data {
+    public static func encode(_ progress: StudyProgress) throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
         return try encoder.encode(progress)
     }
 
-    public static func decode(_ data: Data) throws -> Progress {
+    public static func decode(_ data: Data) throws -> StudyProgress {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let progress = try decoder.decode(Progress.self, from: data)
-        guard progress.version <= Progress.currentVersion else {
+        let progress = try decoder.decode(StudyProgress.self, from: data)
+        guard progress.version <= StudyProgress.currentVersion else {
             throw ProgressError.newerVersion(progress.version)
         }
         return progress
