@@ -1,0 +1,51 @@
+{
+  "unit": "L07",
+  "intro": "意大利语的名词分阳性和阴性，前面的冠词跟着变。先看词尾：-o 结尾的多是阳性（biglietto、vaporetto），-a 结尾的多是阴性（fermata、camera）；-e 结尾的两种都有（il pesce 鱼是阳性，la chiave 钥匙是阴性），只能一个个记。\n\n“一个”（不定冠词，像中文的“一张、一个”）：阳性用 un（un biglietto），阴性用 una（una fermata）。阳性词以 s+辅音（sp、st、sc）或 z 开头时用 uno（uno spritz、uno zaino）；阴性词以元音开头时，una 缩成 un'（un'acqua）；阳性词元音开头照样用 un（un aeroporto）。\n\n“这个、那个”（定冠词，双方都知道说的是哪一个）：阳性用 il（il vaporetto），阴性用 la（la fermata）。s+辅音或 z 开头的阳性词用 lo（第 1 周学过的 lo scontrino）；元音开头的词不分阴阳，都用 l'（l'uscita、l'aeroporto）。\n\n所以问附近有没有车站说 una fermata（随便哪一个），问车站在哪儿说 la fermata（就是要去的那个）。中文和日语都没有冠词，说错了对方照样听得懂，先把名词说对。\n\n复数先认得就行：-o 变 -i，-a 变 -e，冠词 il 变 i、la 变 le：i biglietti、le fermate。lo 和 l' 的阳性复数是 gli：gli spaghetti。",
+  "phrases": [
+    {
+      "id": "L07-01",
+      "it": "Un biglietto, per favore.",
+      "zh": "请给我一张票。",
+      "frame": "prendo",
+      "scene": "general",
+      "status": "draft",
+      "note": "biglietto 以 -o 结尾，是阳性，所以用 un。说“那张票”是 il biglietto，两张票是 due biglietti。"
+    },
+    {
+      "id": "L07-02",
+      "it": "C'è una fermata qui vicino?",
+      "zh": "这附近有车站吗？",
+      "frame": "avete",
+      "scene": "general",
+      "status": "draft",
+      "note": "fermata 以 -a 结尾，是阴性，用 una。C'è…? 是“有……吗”，qui vicino 是“这附近”。fermata 指公交、水上巴士的站；火车站是 la stazione。"
+    },
+    {
+      "id": "L07-03",
+      "it": "Quanto costa il vaporetto?",
+      "zh": "坐水上巴士要多少钱？",
+      "frame": "quanto",
+      "scene": "boat",
+      "status": "draft",
+      "note": "vaporetto 是威尼斯的水上巴士，阳性，用 il。tt 停一拍：≈ヴァポレット。口语里说 il vaporetto 就是在问船票的价钱。"
+    },
+    {
+      "id": "L07-04",
+      "it": "Uno spritz, per favore.",
+      "zh": "请给我一杯 spritz。",
+      "frame": "prendo",
+      "scene": "bar",
+      "status": "draft",
+      "note": "spritz 以 s+辅音开头，不用 un，用 uno。spritz 是威尼斯一带常喝的橙色开胃酒，含酒精。同类的词：uno zaino（一个背包）、uno sconto（一个折扣）。succo（果汁）的 s 后面是元音，所以还是 un succo。"
+    },
+    {
+      "id": "L07-05",
+      "it": "Dov'è l'uscita?",
+      "zh": "出口在哪里？",
+      "frame": "dove",
+      "scene": "general",
+      "status": "draft",
+      "note": "uscita 以元音开头，la 缩成 l'，和后面连读：≈ルッシータ。同样的还有 l'aeroporto（机场）、l'hotel（h 不发音，算元音开头）。"
+    }
+  ]
+}

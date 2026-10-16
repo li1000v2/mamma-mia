@@ -1,0 +1,48 @@
+{
+  "unit": "L10",
+  "intro": "句框 A che ora…?（几点……？）后面接动词：A che ora apre?（几点开门？）、A che ora chiude?（几点关门？）。问的是店、博物馆，所以用“它”的形式 apre、chiude。L09 学过的 A che ora è la colazione? 也是这个句框。\n\n回答“几点”用 alle + 数字：alle nove（9 点）、alle dieci（10 点）。只有 1 点特殊，说 all'una。\n\n时刻表和营业时间都用 24 小时制，读法是“小时 e 分钟”，和日语「15時30分」一样把两个数连起来：15:30 = alle quindici e trenta，21:15 = alle ventuno e quindici。口语里也常用 12 小时制：alle tre e mezza（三点半）。营业时间常说成 dalle… alle…（从……到……）：dalle nove alle diciotto（9 点到 18 点）。\n\n门口的牌子：APERTO（营业中）、CHIUSO（关门）。小店中午可能关一段时间，节假日也常有变化。营业时间会变，以当天门口的告示和官网为准。",
+  "phrases": [
+    {
+      "id": "L10-01",
+      "it": "A che ora apre?",
+      "zh": "几点开门？",
+      "frame": "ache",
+      "scene": "general",
+      "status": "draft",
+      "note": "apre≈アープレ，是 aprire（开）的“它”的形式。回答：Alle nove（9 点）、Alle dieci e mezza（10 点半）。"
+    },
+    {
+      "id": "L10-02",
+      "it": "A che ora chiude?",
+      "zh": "几点关门？",
+      "frame": "ache",
+      "scene": "general",
+      "status": "draft",
+      "note": "chiude≈キューデ，ch 是硬音 k。问具体的地方就加在后面：A che ora chiude il museo?"
+    },
+    {
+      "id": "L10-03",
+      "it": "È aperto oggi?",
+      "zh": "今天开门吗？",
+      "scene": "general",
+      "status": "draft",
+      "note": "aperto 是“开着的”，反义词是 chiuso（关着的）。也跟着阴阳性变（L07）：il museo、il negozio 用 aperto；la farmacia、la chiesa 用 aperta：È aperta oggi?"
+    },
+    {
+      "id": "L10-04",
+      "it": "No, oggi è chiuso.",
+      "zh": "不，今天不开门。",
+      "scene": "general",
+      "status": "draft",
+      "note": "听懂就行。门口写着 CHIUSO 就是关门；chiuso per ferie 是“休假，暂停营业”。"
+    },
+    {
+      "id": "L10-05",
+      "it": "Alle quindici e trenta.",
+      "zh": "下午三点半（15:30）。",
+      "scene": "general",
+      "status": "draft",
+      "note": "24 小时制：alle + 小时 + e + 分钟。quindici（15）别听成 cinque（5），trenta（30）别听成 tredici（13）。口语也说 alle tre e mezza。"
+    }
+  ]
+}

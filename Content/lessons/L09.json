@@ -1,0 +1,51 @@
+{
+  "unit": "L09",
+  "intro": "句框 Ho + 过去分词 说已经做过的事。ho 是“我有”，后面接过去分词，整句就是“我……了”。第 1 周学过的 Non ho capito（我没听懂）就是这个结构。\n\n过去分词大多有规律：-are 动词把 -are 换成 -ato：prenotare（预订）→ prenotato，pagare（付钱）→ pagato，lasciare（留下）→ lasciato；-ire 动词换成 -ito：capire（明白）→ capito。也有不规则的，先认两个：prendere（拿、坐）→ preso，perdere（丢）→ perso。\n\n入住时先说 Ho prenotato una camera（我订了一间房），再报订房用的姓：a nome di…（用……的名字）。前台还会要证件：Un documento, per favore，把护照递过去就行。\n\n另外三件事：早餐几点（A che ora è la colazione?）、能不能先寄存行李（Posso lasciare i bagagli?），还有城市税 tassa di soggiorno。意大利很多城市按人按晚收城市税，一般在酒店当场付；金额各地不同，也会调整，问一句 Quant'è? 就行。",
+  "phrases": [
+    {
+      "id": "L09-01",
+      "it": "Ho prenotato una camera a nome di…",
+      "zh": "我用……的名字订了一间房。",
+      "frame": "passato",
+      "scene": "hotel",
+      "status": "draft",
+      "note": "prenotare（预订）→ prenotato。…处说你订房时用的姓（cognome）。外国姓前台常听不清，可以拼一遍或写下来。前台也可能先问 A che nome?（用什么名字订的？）。"
+    },
+    {
+      "id": "L09-02",
+      "it": "Ho già pagato online.",
+      "zh": "我已经在网上付过了。",
+      "frame": "passato",
+      "scene": "hotel",
+      "status": "draft",
+      "note": "pagare → pagato；già 是“已经”，放在 ho 和过去分词中间。online 照英语读。前台要你付房费、可你订房时已经付过，就这样说。"
+    },
+    {
+      "id": "L09-03",
+      "it": "A che ora è la colazione?",
+      "zh": "早餐几点？",
+      "frame": "ache",
+      "scene": "hotel",
+      "status": "draft",
+      "note": "colazione≈コラツィオーネ。A che ora…? 是 L10 的句框，这里先整句记。想问含不含早餐：La colazione è inclusa?"
+    },
+    {
+      "id": "L09-04",
+      "it": "Posso lasciare i bagagli?",
+      "zh": "可以寄存行李吗？",
+      "frame": "posso",
+      "scene": "hotel",
+      "status": "draft",
+      "note": "lasciare 是“留下、放下”。到得早房间还没好，或者退房后还想逛，都能这样问。bagagli≈バガッリ，是复数：il bagaglio → i bagagli（L07）。"
+    },
+    {
+      "id": "L09-05",
+      "it": "Quant'è la tassa di soggiorno?",
+      "zh": "城市税是多少钱？",
+      "frame": "quanto",
+      "scene": "hotel",
+      "status": "draft",
+      "note": "tassa di soggiorno 是城市税（住宿税），一般按人按晚算，在酒店付。soggiorno≈ソッジョルノ，gg 停一拍。"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "unit": "C03",
+  "title": "抵达威尼斯",
+  "goal": "从机场进威尼斯：先在机场售票处买一张去 Piazzale Roma（威尼斯的汽车总站）的票；坐巴士到了 Piazzale Roma，问哪条船去 Rialto、要不要验票；再到酒店报名字入住，听清城市税一共多少钱，选刷卡。对方依次是机场售票员、船站的工作人员和酒店前台。",
+  "speaker": "Personale",
+  "voice": "f1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "aeroporto",
+      "npc": [
+        { "it": "Buongiorno, mi dica!", "zh": "早上好，您要什么？" },
+        { "it": "Buongiorno! Prego.", "zh": "早上好！请讲。" }
+      ],
+      "reply": {
+        "intent": "要一张去 Piazzale Roma 的票",
+        "frame": "numero",
+        "choices": [
+          { "it": "Buongiorno! Un biglietto per Piazzale Roma, per favore.", "correct": true },
+          { "it": "Buongiorno! Una biglietto per Piazzale Roma, per favore.", "correct": false, "feedback": "biglietto 以 -o 结尾，是阳性，要用 un：un biglietto。" },
+          { "it": "Buongiorno! Ho un biglietto per Piazzale Roma.", "correct": false, "feedback": "Ho 是“我有”，这句成了“我有一张票”。买票直接说要的东西，再加 per favore。" }
+        ]
+      }
+    },
+    {
+      "id": "piazzale",
+      "npc": [
+        { "it": "Buongiorno! Posso aiutarla?", "zh": "您好！需要帮忙吗？" },
+        { "it": "Buongiorno, mi dica.", "zh": "您好，请说。" }
+      ],
+      "reply": {
+        "intent": "问哪条船去 Rialto，再问要不要验票",
+        "choices": [
+          { "it": "Scusi, quale linea va a Rialto? E devo validare il biglietto?", "correct": true },
+          { "it": "Scusi, dov'è Rialto? E devo validare il biglietto?", "correct": false, "feedback": "Dov'è Rialto? 是问 Rialto 在哪儿。要问坐哪条船：Quale linea va a Rialto?" },
+          { "it": "Scusi, quale linea va a Rialto? E ho validato il biglietto?", "correct": false, "feedback": "ho validato 是“我验过了”，这句成了“我验过票了吗？”。问要不要验票用 Devo validare il biglietto?" }
+        ]
+      }
+    },
+    {
+      "id": "linea",
+      "npc": [
+        { "it": "Per Rialto, la linea uno. E sì, il biglietto si valida prima di salire.", "zh": "去 Rialto 坐 1 号线。对，票要在上船前验。", "answer": "1 号线", "distractors": ["11 号线", "2 号线"] },
+        { "it": "Prenda la linea due. E il biglietto lo deve validare prima di salire.", "zh": "坐 2 号线。票得在上船前验一下。", "answer": "2 号线", "distractors": ["12 号线", "1 号线"] }
+      ],
+      "question": "去 Rialto 坐几号线？"
+    },
+    {
+      "id": "hotel",
+      "npc": [
+        { "it": "Buonasera e benvenuto! Ha una prenotazione?", "zh": "晚上好，欢迎！您有预订吗？" },
+        { "it": "Buonasera! Ha prenotato?", "zh": "晚上好！您预订了吗？" }
+      ],
+      "reply": {
+        "intent": "说你订了一间房，再报订房用的姓",
+        "frame": "passato",
+        "choices": [
+          { "it": "Sì, ho prenotato una camera a nome di…", "correct": true },
+          { "it": "Sì, prenotato una camera a nome di…", "correct": false, "feedback": "少了 ho：说已经做过的事要用 ho + 过去分词，ho prenotato。" },
+          { "it": "Sì, ho prenotare una camera a nome di…", "correct": false, "feedback": "prenotare 是原形。ho 后面要接过去分词：ho prenotato。" }
+        ]
+      }
+    },
+    {
+      "id": "tassa",
+      "npc": [
+        { "it": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?", "zh": "好的，谢谢。另外还有城市税，一共十二欧。现金还是刷卡？", "answer": "12 €", "distractors": ["2 €", "20 €"] },
+        { "it": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta?", "zh": "好的，谢谢。另外还有城市税，一共十五欧。现金还是刷卡？", "answer": "15 €", "distractors": ["5 €", "50 €"] },
+        { "it": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta?", "zh": "好的，谢谢。另外还有城市税，一共十六欧。现金还是刷卡？", "answer": "16 €", "distractors": ["6 €", "60 €"] }
+      ],
+      "question": "城市税一共多少钱？",
+      "reply": {
+        "intent": "说刷卡",
+        "choices": [
+          { "it": "Con la carta, grazie.", "correct": true },
+          { "it": "Con la camera, grazie.", "correct": false, "feedback": "camera 是“房间”。刷卡是 con la carta。" },
+          { "it": "Sì, grazie.", "correct": false, "feedback": "对方问的是现金还是刷卡，二选一，回答 Sì 等于没回答。" }
+        ]
+      }
+    }
+  ],
+  "followUps": {
+    "after": "hotel",
+    "min": 1,
+    "max": 2,
+    "pool": [
+      {
+        "id": "documento",
+        "npc": [
+          { "it": "Mi dà un documento, per favore?", "zh": "请给我一下您的证件。" },
+          { "it": "Il passaporto, per favore.", "zh": "请出示护照。" }
+        ],
+        "reply": {
+          "intent": "把护照递给对方",
+          "choices": [
+            { "it": "Ecco il passaporto.", "correct": true },
+            { "it": "Ecco lo scontrino.", "correct": false, "feedback": "scontrino 是小票。前台要的是证件：Ecco il passaporto。" },
+            { "it": "No, grazie.", "correct": false, "feedback": "入住登记一定要看证件，不能说“不用了”。递过去说 Ecco il passaporto。" }
+          ]
+        }
+      },
+      {
+        "id": "cognome",
+        "npc": [
+          { "it": "Come si scrive il cognome?", "zh": "您的姓怎么拼？" },
+          { "it": "Scusi, come si scrive?", "zh": "不好意思，怎么拼？" }
+        ],
+        "reply": {
+          "intent": "说你来写",
+          "choices": [
+            { "it": "Lo scrivo io.", "correct": true },
+            { "it": "Me lo può scrivere?", "correct": false, "feedback": "这是请对方写下来，可对方正是不知道怎么拼你的姓。你来写：Lo scrivo io。" },
+            { "it": "Sì, grazie.", "correct": false, "feedback": "对方问的是怎么拼，回答 Sì 等于没回答。" }
+          ]
+        }
+      }
+    ]
+  }
+}

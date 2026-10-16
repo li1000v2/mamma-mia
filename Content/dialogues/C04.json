@@ -1,0 +1,127 @@
+{
+  "unit": "C04",
+  "title": "威尼斯晚餐",
+  "goal": "一个人在威尼斯的小餐馆吃晚饭：要一张一个人的桌子，请服务员推荐。这次的设定是你对虾蟹类（crostacei）过敏，服务员问起时要说清楚；不喝酒，要不带气的水。吃完叫结账，听清一共多少钱（coperto 座位费已经算在里面），再问能不能刷卡。",
+  "speaker": "Cameriere",
+  "voice": "m1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "tavolo",
+      "npc": [
+        { "it": "Buonasera! Prego.", "zh": "晚上好！请进。" },
+        { "it": "Buonasera, benvenuto!", "zh": "晚上好，欢迎光临！" }
+      ],
+      "reply": {
+        "intent": "问有没有一个人的位子",
+        "frame": "avete",
+        "choices": [
+          { "it": "Buonasera! Avete un tavolo per una persona?", "correct": true },
+          { "it": "Buonasera! Ho un tavolo per una persona?", "correct": false, "feedback": "Ho 是“我有”。问店里有没有位子用 Avete…?；订过位才说 Ho prenotato un tavolo。" },
+          { "it": "Buonasera! Sono un tavolo per una persona.", "correct": false, "feedback": "Sono 是“我是”，这句成了“我是一张一人桌”。" }
+        ]
+      }
+    },
+    {
+      "id": "menu",
+      "npc": [
+        { "it": "Certo, si accomodi. Ecco il menù.", "zh": "有，请坐。这是菜单。" },
+        { "it": "Sì, prego, da questa parte. Ecco il menù.", "zh": "有，请这边走。这是菜单。" }
+      ],
+      "reply": {
+        "intent": "请服务员推荐",
+        "choices": [
+          { "it": "Grazie. Che cosa mi consiglia?", "correct": true },
+          { "it": "Grazie. Che cosa le consiglio?", "correct": false, "feedback": "le consiglio 是“我推荐给您”，主客颠倒了。请对方推荐说 Che cosa mi consiglia?" },
+          { "it": "Grazie. Il conto, per favore.", "correct": false, "feedback": "Il conto 是结账，你才刚坐下。" }
+        ]
+      }
+    },
+    {
+      "id": "consiglio",
+      "npc": [
+        { "it": "Le consiglio il risotto al nero di seppia, è tipico di Venezia. Ha allergie o intolleranze?", "zh": "我推荐墨鱼汁烩饭，是威尼斯特色。您有过敏或不耐受吗？" },
+        { "it": "Stasera le sarde in saor sono buonissime. Ha qualche allergia?", "zh": "今晚的醋渍沙丁鱼特别好吃。您有什么过敏吗？" },
+        { "it": "Le consiglio gli spaghetti alle vongole. Ha allergie?", "zh": "我推荐蛤蜊意面。您有过敏吗？" }
+      ],
+      "reply": {
+        "intent": "说你对虾蟹类过敏",
+        "frame": "sono",
+        "choices": [
+          { "it": "Sì, sono allergico ai crostacei.", "correct": true },
+          { "it": "Sì, ho allergico ai crostacei.", "correct": false, "feedback": "说自己的状态用 Sono：Sono allergico a…。ho 是“我有”，后面不能接 allergico。" },
+          { "it": "Sì, sono crostacei.", "correct": false, "feedback": "少了 allergico ai，这句成了“我是虾蟹”。" }
+        ]
+      }
+    },
+    {
+      "id": "dolce",
+      "npc": [
+        { "it": "Tutto bene? Desidera un dolce o un caffè?", "zh": "还满意吗？要甜点或咖啡吗？" },
+        { "it": "Allora, tutto bene? Un dolce, un caffè?", "zh": "怎么样，还满意吗？来份甜点、来杯咖啡吗？" }
+      ],
+      "reply": {
+        "intent": "说不用了，请结账",
+        "choices": [
+          { "it": "No, grazie. Il conto, per favore.", "correct": true },
+          { "it": "No, grazie. Il coperto, per favore.", "correct": false, "feedback": "coperto 是座位费。叫结账说 Il conto, per favore。" },
+          { "it": "No, grazie. Il menù, per favore.", "correct": false, "feedback": "这是要菜单。吃完了要结账：Il conto, per favore。" }
+        ]
+      }
+    },
+    {
+      "id": "conto",
+      "npc": [
+        { "it": "Ecco il conto: sono ventotto euro, coperto compreso.", "zh": "这是账单：一共二十八欧，含座位费。", "answer": "28 €", "distractors": ["8 €", "38 €"] },
+        { "it": "Ecco a lei: trentasei euro, con il coperto.", "zh": "给您：三十六欧，含座位费。", "answer": "36 €", "distractors": ["6 €", "26 €"] },
+        { "it": "Sono quarantadue euro, coperto compreso.", "zh": "一共四十二欧，含座位费。", "answer": "42 €", "distractors": ["32 €", "24 €"] }
+      ],
+      "question": "一共要付多少钱？",
+      "reply": {
+        "intent": "问能不能刷卡",
+        "frame": "posso",
+        "choices": [
+          { "it": "Posso pagare con la carta?", "correct": true },
+          { "it": "Posso pagare con il coperto?", "correct": false, "feedback": "coperto 是座位费，不是付款方式。问能不能刷卡：Posso pagare con la carta?" },
+          { "it": "Ho pagato con la carta?", "correct": false, "feedback": "这句是“我刷卡付过了吗？”。问能不能刷卡用 Posso pagare con la carta?" }
+        ]
+      }
+    }
+  ],
+  "followUps": {
+    "after": "consiglio",
+    "min": 1,
+    "max": 1,
+    "pool": [
+      {
+        "id": "acqua",
+        "npc": [
+          { "it": "Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?", "zh": "好的，那就不放虾蟹。喝点什么？不带气的水还是带气的？" }
+        ],
+        "reply": {
+          "intent": "要不带气的水",
+          "choices": [
+            { "it": "Naturale, grazie.", "correct": true },
+            { "it": "Sì, grazie.", "correct": false, "feedback": "对方问的是不带气还是带气，二选一，回答 Sì 等于没回答。" },
+            { "it": "Il conto, per favore.", "correct": false, "feedback": "Il conto 是结账，饭还没吃呢。" }
+          ]
+        }
+      },
+      {
+        "id": "vino",
+        "npc": [
+          { "it": "Va bene, allora niente crostacei. Da bere, un bicchiere di vino?", "zh": "好的，那就不放虾蟹。喝的呢，来杯葡萄酒吗？" }
+        ],
+        "reply": {
+          "intent": "不要酒，要一瓶不带气的水",
+          "frame": "prendo",
+          "choices": [
+            { "it": "No, grazie. Un'acqua naturale, per favore.", "correct": true },
+            { "it": "No, grazie. Uno acqua naturale, per favore.", "correct": false, "feedback": "acqua 是阴性、元音开头，要说 un'acqua。uno 只用在 s+辅音或 z 开头的阳性词前。" },
+            { "it": "No, grazie. Sono allergico all'acqua.", "correct": false, "feedback": "这句成了“我对水过敏”。要水就说 Un'acqua naturale, per favore。" }
+          ]
+        }
+      }
+    ]
+  }
+}
