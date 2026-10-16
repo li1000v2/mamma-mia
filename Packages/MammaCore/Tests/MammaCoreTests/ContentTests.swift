@@ -42,7 +42,7 @@ struct ContentTests {
             scenes: [SceneTag(id: "bar", zh: "咖啡吧", neededAt: "somewhere")],
             units: [CourseUnit(id: "L01", kind: .lesson, week: 1, title: "t", focus: "f", frames: ["vorrei"], scene: "bar", summary: "s")]
         )
-        let lesson = LessonContent(unit: "L02", phrases: [
+        let lesson = LessonContent(unit: "L02", intro: nil, phrases: [
             Phrase(id: "L01-01", it: "Ciao", zh: "你好", frame: nil, scene: "boat", status: .draft, note: nil),
         ])
         let messages = ContentValidator.validate(ContentBundle(course: course, lessons: [lesson], audio: nil))
@@ -60,5 +60,21 @@ struct ContentTests {
         let manifest = AudioManifest(version: 1, voices: ["f1@1"], entries: ["f1@1|n|Ciao!": "0123456789abcdef.m4a"])
         #expect(manifest.file(text: "Ciao!", voice: "f1@1", speed: .normal) == "0123456789abcdef.m4a")
         #expect(manifest.file(text: "Ciao!", voice: "f1@1", speed: .slow) == nil)
+    }
+
+    @Test func picksAStableVoiceAndFallsBack() {
+        let manifest = AudioManifest(version: 1, voices: ["f1@2", "m1@1"], entries: [
+            "f1@2|n|Ciao!": "aaaaaaaaaaaaaaaa.m4a",
+            "m1@1|n|Ciao!": "bbbbbbbbbbbbbbbb.m4a",
+            "m1@1|n|Altro?": "cccccccccccccccc.m4a",
+        ])
+        #expect(manifest.file(for: "Ciao!", speed: .normal, preferring: "f1") == "aaaaaaaaaaaaaaaa.m4a")
+        #expect(manifest.file(for: "Ciao!", speed: .normal, preferring: "m1") == "bbbbbbbbbbbbbbbb.m4a")
+        // Only one voice has this line, so it's used whatever the preference.
+        #expect(manifest.file(for: "Altro?", speed: .normal, preferring: "f1") == "cccccccccccccccc.m4a")
+        #expect(manifest.file(for: "Ciao!", speed: .normal) == manifest.file(for: "Ciao!", speed: .normal))
+        #expect(manifest.file(for: "Assente", speed: .normal) == nil)
+        #expect(AudioManifest.stableHash("Ciao!") == AudioManifest.stableHash("Ciao!"))
+        #expect(AudioManifest.stableHash("") == 0xcbf2_9ce4_8422_2325)
     }
 }

@@ -46,6 +46,12 @@ jobs:
 
       - name: Archive without signing
         run: |
+          # A tag build takes its version from the tag: v0.2.0 and v0.2.0-beta.1 both become 0.2.0.
+          version_args=()
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            version="${GITHUB_REF_NAME#v}"
+            version_args=(MARKETING_VERSION="${version%%-*}")
+          fi
           xcodebuild archive -quiet \
             -project MammaMia.xcodeproj -scheme MammaMia -configuration Release \
             -destination 'generic/platform=iOS' \
@@ -53,7 +59,8 @@ jobs:
             -derivedDataPath build/DerivedData \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
-            MM_GIT_COMMIT="${GITHUB_SHA::7}"
+            MM_GIT_COMMIT="${GITHUB_SHA::7}" \
+            "${version_args[@]}"
 
       - name: Package IPA
         run: |
@@ -74,6 +81,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" build/MammaMia.ipa \
+          # Tags like v0.2.0-beta.1 are test builds: publish them as pre-releases.
+          prerelease=()
+          [[ "$GITHUB_REF_NAME" == *-* ]] && prerelease=(--prerelease)
+          gh release create "$GITHUB_REF_NAME" build/MammaMia.ipa "${prerelease[@]}" \
             --title "$GITHUB_REF_NAME" \
             --notes "Unsigned build ${GITHUB_SHA::7} (run ${{ github.run_number }}). Install it with SideStore."

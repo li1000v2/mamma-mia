@@ -1,0 +1,83 @@
+{
+  "unit": "C01",
+  "title": "听不懂也不慌",
+  "goal": "店员说了一长串，你没听懂。用救场的话把对话接下去：请对方说慢一点，买到一个巧克力羊角面包；价格没听清就请对方写下来。",
+  "speaker": "Commessa",
+  "voice": "f1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "fast",
+      "npc": [
+        { "it": "Buongiorno! Allora, oggi abbiamo cornetti alla crema, al cioccolato e integrali: cosa le do?", "zh": "早上好！今天有奶油、巧克力和全麦的羊角面包，您要什么？" }
+      ],
+      "reply": {
+        "intent": "说没听懂，请对方慢一点",
+        "frame": "non",
+        "choices": [
+          { "it": "Scusi, non ho capito. Più piano, per favore.", "correct": true },
+          { "it": "Sì, grazie.", "correct": false, "feedback": "还没听懂就说“好的，谢谢”，对方会以为你已经选好了。先说没听懂。" },
+          { "it": "Non capito.", "correct": false, "feedback": "少了 ho：要说 Non ho capito。" }
+        ]
+      }
+    },
+    {
+      "id": "slow",
+      "npc": [
+        { "it": "Cornetti: crema, cioccolato o integrale?", "zh": "羊角面包：奶油的、巧克力的，还是全麦的？" }
+      ],
+      "reply": {
+        "intent": "要一个巧克力的羊角面包",
+        "frame": "prendo",
+        "choices": [
+          { "it": "Un cornetto al cioccolato, per favore.", "correct": true },
+          { "it": "Una cioccolata, per favore.", "correct": false, "feedback": "cioccolata 是热巧克力饮料。巧克力馅的面包说 al cioccolato。" },
+          { "it": "Ho un cornetto al cioccolato.", "correct": false, "feedback": "Ho 是“我有”。点东西直接说要的东西，再加 per favore。" }
+        ]
+      }
+    },
+    {
+      "id": "price",
+      "npc": [
+        { "it": "Sono un euro e venti.", "zh": "一共一欧二十。" },
+        { "it": "Un euro e trenta, grazie.", "zh": "一欧三十，谢谢。" }
+      ],
+      "reply": {
+        "intent": "数字没听清，请对方写下来",
+        "frame": "mipuo",
+        "choices": [
+          { "it": "Me lo può scrivere?", "correct": true },
+          { "it": "Lo scrivo io.", "correct": false, "feedback": "这是“我来写”。要请对方写：Me lo può scrivere?" },
+          { "it": "Può pagare?", "correct": false, "feedback": "这是“您能付钱吗”，变成你让店员付钱了。" }
+        ]
+      }
+    },
+    {
+      "id": "bye",
+      "npc": [
+        { "it": "Certo, ecco. Grazie e buona giornata!", "zh": "当然，给您。谢谢，祝您今天愉快！" }
+      ]
+    }
+  ],
+  "followUps": {
+    "after": "slow",
+    "min": 0,
+    "max": 1,
+    "pool": [
+      {
+        "id": "altro",
+        "npc": [
+          { "it": "Altro?", "zh": "还要别的吗？" }
+        ],
+        "reply": {
+          "intent": "说不用了，就这些",
+          "choices": [
+            { "it": "No, grazie. Basta così.", "correct": true },
+            { "it": "Sì, grazie. Basta così.", "correct": false, "feedback": "Sì 是“要”，和 Basta così（就这些）矛盾。" },
+            { "it": "No, prego.", "correct": false, "feedback": "prego 是“不客气”或“请”，拒绝时说 No, grazie。" }
+          ]
+        }
+      }
+    ]
+  }
+}

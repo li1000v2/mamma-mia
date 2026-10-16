@@ -54,16 +54,19 @@ def main() -> int:
         errors.append("Content/trip.json is personal data and must not be committed; import it on the phone")
 
     lesson_files = sorted((CONTENT / "lessons").glob("*.json"))
+    dialogue_files = sorted((CONTENT / "dialogues").glob("*.json"))
     manifest_path = AUDIO / "manifest.json"
     errors += schema_errors("course.schema.json", CONTENT / "course.json")
     errors += schema_errors("trip.schema.json", CONTENT / "trip.example.json")
     errors += schema_errors("audio-manifest.schema.json", manifest_path)
     for path in lesson_files:
         errors += schema_errors("lesson.schema.json", path)
+    for path in dialogue_files:
+        errors += schema_errors("dialogue.schema.json", path)
     if errors:  # the checks below assume well-formed files
         return report(errors, warnings)
 
-    for path in lesson_files:
+    for path in lesson_files + dialogue_files:
         unit = load(path)["unit"]
         if path.stem != unit:
             errors.append(f"{rel(path)}: file should be named {unit}.json")
@@ -74,6 +77,13 @@ def main() -> int:
             errors.append(f"{rel(manifest_path)}: {name} (for {key!r}) is missing from Audio/")
 
     phrases = [phrase for path in lesson_files for phrase in load(path)["phrases"]]
+    first_with_text: dict[str, str] = {}
+    for phrase in phrases:
+        text = " ".join(phrase["it"].lower().split())
+        if text in first_with_text:
+            warnings.append(f"{phrase['id']}: same Italian as {first_with_text[text]}; reuse one phrase or note why both exist")
+        else:
+            first_with_text[text] = phrase["id"]
     for phrase in phrases:
         if phrase["status"] == "draft":
             continue
@@ -97,7 +107,7 @@ def main() -> int:
     drafts = sum(1 for phrase in phrases if phrase["status"] == "draft")
     print(
         f"OK: {len(lesson_files)} lesson files, {len(phrases)} phrases ({drafts} draft), "
-        f"{len(manifest['entries'])} audio files"
+        f"{len(dialogue_files)} dialogues, {len(manifest['entries'])} audio files"
     )
     return 0
 

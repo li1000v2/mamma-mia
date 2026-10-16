@@ -1,0 +1,46 @@
+{
+  "unit": "L06",
+  "intro": "句框 Posso…?（我可以……吗？）后面直接接动词原形：Posso pagare…?（我可以付……吗？）、Posso avere…?（可以给我……吗？）。\n\n20–100：venti, trenta, quaranta, cinquanta, sessanta, settanta, ottanta, novanta, cento。21、28 这类数字要去掉一个元音：ventuno、ventotto。sessanta（60）和 settanta（70）只差一个辅音，要听仔细。\n\n付款时店员常问 Contanti o carta?（现金还是刷卡）。付完会给你小票 scontrino，在吧台要凭小票取饮料，先别扔。",
+  "phrases": [
+    {
+      "id": "L06-01",
+      "it": "Posso pagare con la carta?",
+      "zh": "可以刷卡吗？",
+      "frame": "posso",
+      "scene": "bar",
+      "status": "draft"
+    },
+    {
+      "id": "L06-02",
+      "it": "Contanti o carta?",
+      "zh": "现金还是刷卡？",
+      "scene": "bar",
+      "status": "draft",
+      "note": "店员常问的话，听懂就行。"
+    },
+    {
+      "id": "L06-03",
+      "it": "Con la carta, grazie.",
+      "zh": "刷卡，谢谢。",
+      "scene": "bar",
+      "status": "draft",
+      "note": "回答上一句。付现金就说 In contanti。"
+    },
+    {
+      "id": "L06-04",
+      "it": "Ecco lo scontrino.",
+      "zh": "给您小票。",
+      "scene": "bar",
+      "status": "draft",
+      "note": "Ecco 是“给您／这就是”。在吧台要凭小票取饮料。"
+    },
+    {
+      "id": "L06-05",
+      "it": "Posso avere lo scontrino?",
+      "zh": "可以给我小票吗？",
+      "frame": "posso",
+      "scene": "bar",
+      "status": "draft"
+    }
+  ]
+}

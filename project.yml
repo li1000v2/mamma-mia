@@ -9,7 +9,7 @@ options:
   developmentLanguage: zh-Hans
 settings:
   base:
-    MARKETING_VERSION: "0.1.0"
+    MARKETING_VERSION: "0.2.0"
     CURRENT_PROJECT_VERSION: "1"
     # CI passes the short commit hash; shown on the 诊断 screen.
     MM_GIT_COMMIT: ""

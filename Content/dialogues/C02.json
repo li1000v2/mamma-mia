@@ -1,0 +1,84 @@
+{
+  "unit": "C02",
+  "title": "咖啡吧全流程",
+  "goal": "在收银台点一杯卡布奇诺和一个羊角面包，站在吧台喝，刷卡付款，拿到小票。",
+  "speaker": "Cassiere",
+  "voice": "m1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "order",
+      "npc": [
+        { "it": "Buongiorno, dica!", "zh": "早上好，您要点什么？" }
+      ],
+      "reply": {
+        "intent": "打个招呼，点一杯卡布奇诺和一个羊角面包",
+        "frame": "prendo",
+        "choices": [
+          { "it": "Buongiorno! Un cappuccino e una brioche, per favore.", "correct": true },
+          { "it": "Buongiorno! Ho un cappuccino e una brioche.", "correct": false, "feedback": "Ho 是“我有”。点单直接说要的东西加 per favore，或者用 Prendo…" },
+          { "it": "Buongiorno! Sono un cappuccino e una brioche.", "correct": false, "feedback": "Sono 是“我是”，这句成了“我是一杯卡布奇诺和一个羊角面包”。" }
+        ]
+      }
+    },
+    {
+      "id": "price",
+      "npc": [
+        { "it": "Sono tre euro e cinquanta.", "zh": "一共三欧五十。", "answer": "3.50 €", "distractors": ["3.15 €", "13.50 €"] },
+        { "it": "Sono due euro e ottanta.", "zh": "一共两欧八十。", "answer": "2.80 €", "distractors": ["2.18 €", "12.80 €"] },
+        { "it": "Sono cinque euro e sessanta.", "zh": "一共五欧六十。", "answer": "5.60 €", "distractors": ["5.16 €", "15.60 €"] }
+      ],
+      "question": "要付多少钱？",
+      "reply": {
+        "intent": "问能不能刷卡",
+        "frame": "posso",
+        "choices": [
+          { "it": "Posso pagare con la carta?", "correct": true },
+          { "it": "Posso pagare in contanti?", "correct": false, "feedback": "这句是问能不能付现金，这次的任务是刷卡。" },
+          { "it": "Posso mangiare con la carta?", "correct": false, "feedback": "mangiare 是“吃”。付钱是 pagare。" }
+        ]
+      }
+    },
+    {
+      "id": "receipt",
+      "npc": [
+        { "it": "Certo. Ecco lo scontrino.", "zh": "当然。这是您的小票。" }
+      ]
+    }
+  ],
+  "followUps": {
+    "after": "order",
+    "min": 1,
+    "max": 2,
+    "pool": [
+      {
+        "id": "banco",
+        "npc": [
+          { "it": "Al banco o al tavolo?", "zh": "站在吧台喝，还是坐下？" }
+        ],
+        "reply": {
+          "intent": "说站在吧台喝",
+          "choices": [
+            { "it": "Al banco.", "correct": true },
+            { "it": "Al tavolo, per favore.", "correct": false, "feedback": "这是要坐下，坐下通常更贵。这次的任务是站着喝。" },
+            { "it": "Al bagno.", "correct": false, "feedback": "bagno 是洗手间。" }
+          ]
+        }
+      },
+      {
+        "id": "altro",
+        "npc": [
+          { "it": "Altro?", "zh": "还要别的吗？" }
+        ],
+        "reply": {
+          "intent": "说不用了，就这些",
+          "choices": [
+            { "it": "No, grazie. Basta così.", "correct": true },
+            { "it": "Sì, grazie. Basta così.", "correct": false, "feedback": "Sì 是“要”，和 Basta così（就这些）矛盾。" },
+            { "it": "No, prego.", "correct": false, "feedback": "prego 是“不客气”或“请”，拒绝时说 No, grazie。" }
+          ]
+        }
+      }
+    ]
+  }
+}
