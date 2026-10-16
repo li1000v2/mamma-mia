@@ -1,6 +1,6 @@
 {
   "unit": "L08",
-  "intro": "威尼斯本岛没有汽车，公共交通就是水上巴士 vaporetto（≈ヴァポレット）。坐船三步：找站、问线路、验票。\n\nDov'è…?（……在哪儿？）后面接定冠词加名词：Dov'è la fermata?。“水上巴士的站”是 la fermata del vaporetto，del = di（的）+ il。意大利语把“的”放在中间，顺序和中文相反，和日语「水上バスの乗り場」也正好倒过来：fermata（站）在前，vaporetto（水上巴士）在后。\n\nQuale…?（哪一个……？）：Quale linea va a San Marco?（哪条线去圣马可？）。va a… 是“去……”，后面直接接地名。linea（线路）的重音在第一个音节：LI-nea≈リーネア。回答一般是一个数字，就是线路号。同一条线有两个方向，上船前看站台牌子上的方向，拿不准就问 Questo vaporetto va a…?（这班船去……吗？）。\n\nDevo…?（我得……吗？）和 Posso…? 一样，后面接动词原形：Devo validare il biglietto?（要验票吗？）。validare 就是上船前在读卡机上刷一下票。\n\n线路、票价和买票的方式都会调整，到了以站台的牌子和售票处为准。",
+  "intro": "威尼斯本岛没有汽车，公共交通就是水上巴士 vaporetto。坐船三步：找站、问线路、验票。\n\nDov'è…?（……在哪儿？）后面接定冠词加名词：Dov'è la fermata?。“水上巴士的站”是 la fermata del vaporetto，del = di（的）+ il。意大利语把“的”放在中间，顺序和中文相反，和日语「水上バスの乗り場」也正好倒过来：fermata（站）在前，vaporetto（水上巴士）在后。\n\nQuale…?（哪一个……？）：Quale linea va a San Marco?（哪条线去圣马可？）。va a… 是“去……”，后面直接接地名。linea（线路）是三个音节，重音在第一个：LI-ne-a。回答一般是一个数字，就是线路号。同一条线有两个方向，上船前看站台牌子上的方向，拿不准就问 Questo vaporetto va a…?（这班船去……吗？）。\n\nDevo…?（我得……吗？）和 Posso…? 一样，后面接动词原形：Devo validare il biglietto?（要验票吗？）。validare 就是上船前在读卡机上刷一下票。\n\n发音先听示范音频，标准是音频；note 里的近似说法只帮你找音，不是读法。这一课辅音连缀多：questo 的 st、comprare 的 mpr，辅音之间都不加元音。\n\n线路、票价和买票的方式都会调整，到了以站台的牌子和售票处为准。",
   "phrases": [
     {
       "id": "L08-01",
@@ -9,7 +9,7 @@
       "frame": "dove",
       "scene": "boat",
       "status": "draft",
-      "note": "del = di + il（……的）。威尼斯的船站是水边浮着的小平台，站名写在上面。"
+      "note": "del = di + il（……的）。del 以 l 结尾，读完直接接 vaporetto，中间不加元音。威尼斯的船站是水边浮着的小平台，站名写在上面。"
     },
     {
       "id": "L08-02",
@@ -17,7 +17,7 @@
       "zh": "哪条线去圣马可？",
       "scene": "boat",
       "status": "draft",
-      "note": "quale≈クアーレ，是“哪一个”。把 San Marco 换成要去的站名就行：Quale linea va a Rialto?"
+      "note": "quale 是“哪一个”，重音 QUA-le。qu 像英语 quick 的 qu；哪里不像：英语的 k 送气，这里不送气。把 San Marco 换成要去的站名就行：Quale linea va a Rialto?"
     },
     {
       "id": "L08-03",
@@ -25,7 +25,7 @@
       "zh": "这班船去里亚托吗？",
       "scene": "boat",
       "status": "draft",
-      "note": "上船前跟船员确认方向。questo 是“这个”；Rialto≈リアルト。对方说 No, è dall'altra parte，意思是要到对面坐反方向的船。"
+      "note": "上船前跟船员确认方向。questo 是“这个”：QUE-sto，st 中间不加元音。Rialto 读 ri-AL-to，l 紧接 t，像英语 salt 的 lt；哪里不像：英语 t 前的 l 发得暗，这里的 l 清亮，舌尖顶住上齿龈。对方说 No, è dall'altra parte，意思是要到对面坐反方向的船。"
     },
     {
       "id": "L08-04",
@@ -42,7 +42,7 @@
       "frame": "dove",
       "scene": "boat",
       "status": "draft",
-      "note": "dove（哪里）+ posso（我可以）+ 动词原形。售票处叫 biglietteria，也有自动售票机。"
+      "note": "dove（哪里）+ posso（我可以）+ 动词原形。comprare 读 com-PRA-re：m、p、r 连着发，p 和 r 中间不加元音。售票处叫 biglietteria，也有自动售票机。"
     }
   ]
 }
