@@ -35,6 +35,21 @@ struct QueueTests {
         #expect(next([fresh], budget: 0) == nil)
     }
 
+    @Test func keepsTheSamePhrasesCardsApart() {
+        let cards = [
+            scheduler.makeCard(CardID(phraseID: "L05-01", kind: .listen), now: now),
+            scheduler.makeCard(CardID(phraseID: "L05-01", kind: .recall), now: now),
+            scheduler.makeCard(CardID(phraseID: "L05-02", kind: .listen), now: now),
+        ]
+        let afterFirst = scheduler.nextCard(from: Array(cards.dropFirst()), newBudget: 5, now: now, clock: clock,
+                                            avoidingPhrase: "L05-01")
+        #expect(afterFirst?.id == CardID(phraseID: "L05-02", kind: .listen))
+        // With nothing else left, the sibling still comes up.
+        let onlySibling = scheduler.nextCard(from: [cards[1]], newBudget: 5, now: now, clock: clock,
+                                             avoidingPhrase: "L05-01")
+        #expect(onlySibling?.id == CardID(phraseID: "L05-01", kind: .recall))
+    }
+
     @Test func learnsAheadWhenNothingElseIsLeft() {
         let soon = card("soon", state: .learning, due: now.addingTimeInterval(5 * 60), stability: 1, lastReview: now)
         let later = card("later", state: .learning, due: now.addingTimeInterval(45 * 60), stability: 1, lastReview: now)

@@ -1,0 +1,46 @@
+{
+  "unit": "L02",
+  "intro": "元音：a e i o u 五个纯元音，读得像日语あいうえお，口型不滑动。u 要圆唇，像中文的“乌”。\n\n双辅音：mm、tt、ll 这类写两遍的辅音，要先停一拍再发，像日语的促音っ和拨音ン：mamma≈マンマ，fatto≈ファット。读短了会变成另一个词：pala（铲子）／palla（球）、caro（贵的）／carro（车）、sete（渴）／sette（七）、nono（第九）／nonno（爷爷）。注意 anno（年）读短了是一个不雅的词，说 Buon anno 时 nn 一定要拉长。\n\n不送气：p、t、c 发音时不喷气，接近拼音 b、d、g，不是 p、t、k。prego 的 p 像拼音 b。\n\n重音：多数词重音在倒数第二个音节（ve-NE-zia）；带重音符号的在最后（caf-FÈ、cit-TÀ）；也有例外要单独记，比如 NA-po-li。意大利语的重音是读得更响、更长，不是日语那样的高低音。",
+  "phrases": [
+    {
+      "id": "L02-01",
+      "it": "Mamma mia!",
+      "zh": "我的天哪！",
+      "scene": "general",
+      "status": "draft",
+      "note": "mm 是双辅音：闭上嘴停一拍再发 m，≈マンマ・ミーア。"
+    },
+    {
+      "id": "L02-02",
+      "it": "caffè",
+      "zh": "咖啡（意式浓缩）",
+      "scene": "general",
+      "status": "draft",
+      "note": "ff 双辅音≈カッフェ；带重音符号的 è 在最后，要读重。"
+    },
+    {
+      "id": "L02-03",
+      "it": "Napoli",
+      "zh": "那不勒斯",
+      "scene": "general",
+      "status": "draft",
+      "note": "重音在第一个音节：NA-po-li≈ナーポリ。这是例外，不按“倒数第二个音节”的规则。"
+    },
+    {
+      "id": "L02-04",
+      "it": "Venezia",
+      "zh": "威尼斯",
+      "scene": "general",
+      "status": "draft",
+      "note": "重音在倒数第二个音节：ve-NE-zia≈ヴェネーツィア。z 读 ts，像日语ツ、拼音 z。"
+    },
+    {
+      "id": "L02-05",
+      "it": "Grazie mille!",
+      "zh": "太感谢了！",
+      "scene": "general",
+      "status": "draft",
+      "note": "grazie≈グラーツィエ，z 读 ts；mille 的 ll 是双辅音≈ミッレ。"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ struct ReviewSessionView: View {
                 ReviewCardView(card: card, phrase: phrase, revealed: $revealed) { grade in
                     model.grade(card, grade)
                     reviewed += 1
-                    advance()
+                    advance(after: card)
                 }
             } else if started {
                 ContentUnavailableView(
@@ -40,9 +40,9 @@ struct ReviewSessionView: View {
         reviewed > 0 ? "复习 · 已做 \(reviewed) 张" : "复习"
     }
 
-    private func advance() {
+    private func advance(after previous: ReviewCard? = nil) {
         revealed = false
-        card = model.nextReviewCard()
+        card = model.nextReviewCard(after: previous)
     }
 }
 

@@ -1,0 +1,46 @@
+{
+  "unit": "L01",
+  "intro": "意大利语基本是怎么写就怎么读，这一课只记四条规则。\n\n1. c、g 在 e、i 前读软音：ci≈チ、ce≈チェ（ciao、cena），gi≈ジ、ge≈ジェ（gelato、giorno）。在 a、o、u 前读硬音：ca≈カ（caffè）、go≈ゴ。\n2. 想在 e、i 前读硬音，就加一个 h：chi≈キ、che≈ケ（chiesa、anche），ghi≈ギ、ghe≈ゲ（spaghetti）。h 本身不发音。\n3. gn≈にゃ行：gnocchi≈ニョッキ。gli 的 g 不发音，舌面贴上颚，接近「リャ」行：biglietto、famiglia。\n4. sc 在 e、i 前≈シ／シェ（uscita、pesce），在 a、o、u 前读 sk（scusi≈スクージ）。\n\n先听原速，再跟着慢速读；每个词都对照上面的规则看一眼。",
+  "phrases": [
+    {
+      "id": "L01-01",
+      "it": "Ciao!",
+      "zh": "你好！／再见！",
+      "scene": "general",
+      "status": "draft",
+      "note": "ci 在元音 a 前读软音：ciao≈チャオ。只对朋友用；对店员、陌生人说 Buongiorno。"
+    },
+    {
+      "id": "L01-02",
+      "it": "chiesa",
+      "zh": "教堂",
+      "scene": "general",
+      "status": "draft",
+      "note": "ch 是硬音 k：chie≈キエ，整个词≈キエーザ。s 夹在两个元音之间常读成 z。"
+    },
+    {
+      "id": "L01-03",
+      "it": "gnocchi",
+      "zh": "意式土豆团子",
+      "scene": "general",
+      "status": "draft",
+      "note": "gno≈ニョ，cchi 是双辅音加硬音≈ッキ，合起来就是日语里的ニョッキ。"
+    },
+    {
+      "id": "L01-04",
+      "it": "biglietto",
+      "zh": "票",
+      "scene": "general",
+      "status": "draft",
+      "note": "gli 的 g 不发音，接近リェ；tt 要停一拍：≈ビリエット。买船票、火车票、门票都用这个词。"
+    },
+    {
+      "id": "L01-05",
+      "it": "uscita",
+      "zh": "出口",
+      "scene": "general",
+      "status": "draft",
+      "note": "sci≈シ，夹在元音之间要读长一点：≈ウッシータ。车站和景点到处是 USCITA 的牌子。"
+    }
+  ]
+}

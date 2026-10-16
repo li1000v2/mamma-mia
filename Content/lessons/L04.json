@@ -1,0 +1,48 @@
+{
+  "unit": "L04",
+  "intro": "0–20：zero, uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci, undici, dodici, tredici, quattordici, quindici, sedici, diciassette, diciotto, diciannove, venti。\n\n11–16 以 -dici 结尾，17–19 以 dici- 开头。最容易听混的是 due（2）／dodici（12）、tre（3）／tredici（13）、sei（6）／sedici（16）：听到 -dici 就是十几。\n\n价格的说法是“几 euro e 几十”：tre euro e cinquanta = 3.50 欧。口语里常省掉 euro，只说 tre e cinquanta。店员报总价常用 Sono…：Sono dodici euro。",
+  "phrases": [
+    {
+      "id": "L04-01",
+      "it": "Quanto costa?",
+      "zh": "多少钱？",
+      "frame": "quanto",
+      "scene": "general",
+      "status": "draft",
+      "note": "问一样东西的价钱。问好几样时用 Quanto costano?"
+    },
+    {
+      "id": "L04-02",
+      "it": "Quanto costa un biglietto?",
+      "zh": "一张票多少钱？",
+      "frame": "quanto",
+      "scene": "general",
+      "status": "draft"
+    },
+    {
+      "id": "L04-03",
+      "it": "Quant'è?",
+      "zh": "一共多少钱？",
+      "frame": "quanto",
+      "scene": "general",
+      "status": "draft",
+      "note": "结账时问总价最常用，是 Quanto è 的缩写。"
+    },
+    {
+      "id": "L04-04",
+      "it": "Sono dodici euro.",
+      "zh": "一共十二欧。",
+      "scene": "general",
+      "status": "draft",
+      "note": "店员报价的说法。dodici（12）别听成 due（2）。"
+    },
+    {
+      "id": "L04-05",
+      "it": "Tre euro e cinquanta.",
+      "zh": "三欧五十（3.50 欧）。",
+      "scene": "general",
+      "status": "draft",
+      "note": "cinquanta（50）和 quindici（15）容易混：-anta 是几十，-dici 是十几。"
+    }
+  ]
+}

@@ -79,9 +79,10 @@ final class AppModel {
         progress.reviewCount(on: today, clock: clock)
     }
 
-    func nextReviewCard() -> ReviewCard? {
+    func nextReviewCard(after previous: ReviewCard? = nil) -> ReviewCard? {
         let budget = max(0, scheduler.config.newCardsPerDay - newCardsStartedToday)
-        return scheduler.nextCard(from: activeCards, newBudget: budget, now: .now, clock: clock)
+        return scheduler.nextCard(from: activeCards, newBudget: budget, now: .now, clock: clock,
+                                  avoidingPhrase: previous?.id.phraseID)
     }
 
     func outcomes(for card: ReviewCard) -> [Grade: Date] {

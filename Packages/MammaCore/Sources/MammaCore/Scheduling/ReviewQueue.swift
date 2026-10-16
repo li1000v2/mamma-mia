@@ -25,30 +25,31 @@ extension ReviewScheduler {
     /// 2. review cards due any time today, lowest predicted recall first;
     /// 3. new cards in course order while today's new-card budget lasts;
     /// 4. otherwise a learning-step card due within `learnAhead`, so the session doesn't stall on a 10-minute step.
+    ///
+    /// A card of `avoidingPhrase` (the phrase just shown) is skipped while anything else is available:
+    /// answering the recall card right after hearing the same sentence only tests short-term memory.
     public func nextCard(
         from cards: [ReviewCard],
         newBudget: Int,
         now: Date,
         clock: StudyClock,
-        learnAhead: TimeInterval = 20 * 60
+        learnAhead: TimeInterval = 20 * 60,
+        avoidingPhrase avoided: String? = nil
     ) -> ReviewCard? {
-        let learning = cards.filter { $0.phase == .learning }
-        if let card = learning.filter({ $0.due <= now }).min(by: { $0.due < $1.due }) {
-            return card
-        }
         let endOfToday = clock.end(of: clock.day(of: now))
+        let learning = cards.filter { $0.phase == .learning }
+        let dueLearning = learning.filter { $0.due <= now }.sorted { $0.due < $1.due }
         let dueReviews = cards
             .filter { $0.phase == .review && $0.due <= endOfToday }
             .map { (card: $0, recall: retrievability(of: $0, at: now)) }
-        if let lowest = dueReviews.min(by: { $0.recall < $1.recall }) {
-            return lowest.card
-        }
-        if newBudget > 0, let card = cards.first(where: \.isNew) {
-            return card
-        }
-        return learning
-            .filter { $0.due <= now.addingTimeInterval(learnAhead) }
-            .min { $0.due < $1.due }
+            .sorted { $0.recall < $1.recall }
+            .map(\.card)
+        let newCards = newBudget > 0 ? Array(cards.filter(\.isNew).prefix(newBudget)) : []
+        let ahead = learning
+            .filter { $0.due > now && $0.due <= now.addingTimeInterval(learnAhead) }
+            .sorted { $0.due < $1.due }
+        let ordered = dueLearning + dueReviews + newCards + ahead
+        return ordered.first { $0.id.phraseID != avoided } ?? ordered.first
     }
 
     /// When each grade would schedule the card next, for the labels on the answer buttons.

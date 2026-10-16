@@ -1,5 +1,6 @@
 {
   "unit": "L05",
+  "intro": "点单句框 Prendo… / Vorrei…：Prendo 是“我要”，直接；Vorrei 是“我想要”，更客气。后面直接接东西，再加 per favore：Prendo un cappuccino. / Vorrei un caffè, per favore.\n\n在意大利点 un caffè，端上来的就是一小杯浓缩咖啡。\n\n吧台的流程：客人多的吧台通常先到收银台（cassa）点单付款、拿小票（scontrino），再把小票交给吧台。收银员常问 Al banco o al tavolo?：站在吧台喝（al banco）比坐下（al tavolo）便宜。也有小店是先喝后付，拿不准就问 Si paga prima?（是先付钱吗？）。",
   "phrases": [
     {
       "id": "L05-01",
@@ -34,6 +35,14 @@
       "scene": "bar",
       "status": "draft",
       "note": "羊角面包在威尼斯常叫 brioche，在那不勒斯和罗马叫 cornetto。"
+    },
+    {
+      "id": "L05-05",
+      "it": "Al banco o al tavolo?",
+      "zh": "站在吧台喝，还是坐下？",
+      "scene": "bar",
+      "status": "draft",
+      "note": "收银员常问的话，听懂就行。回答 Al banco 或 Al tavolo。"
     }
   ]
 }
