@@ -22,33 +22,36 @@ extension ReviewCard {
 extension ReviewScheduler {
     /// The card to show next in a review session:
     /// 1. learning-step cards whose step is up, earliest first;
-    /// 2. review cards due any time today, lowest predicted recall first;
+    /// 2. review cards due any time today, plus the trip boosts (`boostCandidates`): those needed
+    ///    within the boost window first, the soonest need-by day first, then lowest predicted recall;
     /// 3. new cards in course order while today's new-card budget lasts;
     /// 4. otherwise a learning-step card due within `learnAhead`, so the session doesn't stall on a 10-minute step.
     ///
     /// A card of `avoidingPhrase` (the phrase just shown) is skipped while anything else is available:
     /// answering the recall card right after hearing the same sentence only tests short-term memory.
+    /// Without a trip `needBy` returns nil and the order is plain FSRS.
     public func nextCard(
         from cards: [ReviewCard],
         newBudget: Int,
         now: Date,
         clock: StudyClock,
+        needBy: (ReviewCard) -> LocalDate? = { _ in nil },
+        boostPolicy: BoostPolicy = BoostPolicy(),
         learnAhead: TimeInterval = 20 * 60,
         avoidingPhrase avoided: String? = nil
     ) -> ReviewCard? {
         let endOfToday = clock.end(of: clock.day(of: now))
         let learning = cards.filter { $0.phase == .learning }
         let dueLearning = learning.filter { $0.due <= now }.sorted { $0.due < $1.due }
-        let dueReviews = cards
-            .filter { $0.phase == .review && $0.due <= endOfToday }
-            .map { (card: $0, recall: retrievability(of: $0, at: now)) }
-            .sorted { $0.recall < $1.recall }
-            .map(\.card)
+        let dueReviews = cards.filter { $0.phase == .review && $0.due <= endOfToday }
+        // Boosts are never due today, so they can't duplicate a due review.
+        let boosted = boostCandidates(cards: cards, needBy: needBy, now: now, clock: clock, policy: boostPolicy).map(\.card)
+        let reviews = neededSoonestFirst(dueReviews + boosted, now: now, clock: clock, needBy: needBy, policy: boostPolicy)
         let newCards = newBudget > 0 ? Array(cards.filter(\.isNew).prefix(newBudget)) : []
         let ahead = learning
             .filter { $0.due > now && $0.due <= now.addingTimeInterval(learnAhead) }
             .sorted { $0.due < $1.due }
-        let ordered = dueLearning + dueReviews + newCards + ahead
+        let ordered = dueLearning + reviews + newCards + ahead
         return ordered.first { $0.id.phraseID != avoided } ?? ordered.first
     }
 

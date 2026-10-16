@@ -87,9 +87,13 @@ public struct SchedulerConfig: Codable, Hashable, Sendable {
     }
 }
 
-/// Today's queue: reviews due before the study day ends, then the new cards the daily cap allows.
+/// Today's queue: reviews due before the study day ends, extra reviews for the trip, then the new
+/// cards the daily cap allows.
 public struct DailyPlan: Sendable {
     public let due: [ReviewCard]
+    /// Cards FSRS would next show only after the trip day that needs them (see `boostCandidates`).
+    /// They are ordinary reviews: the grade updates them like any other.
+    public let boosted: [ReviewCard]
     public let new: [ReviewCard]
 }
 
@@ -137,15 +141,49 @@ public struct ReviewScheduler: Sendable {
         fsrs.getRetrievability(card: card.memory, now: date).number
     }
 
-    /// `cards` must be in course order; new cards are introduced in that order.
-    public func plan(cards: [ReviewCard], newIntroducedToday: Int, now: Date, clock: StudyClock) -> DailyPlan {
+    /// `cards` must be in course order; new cards are introduced in that order. `needBy` gives the
+    /// trip day a card is first needed on; without a trip it returns nil and nothing is boosted.
+    public func plan(
+        cards: [ReviewCard],
+        newIntroducedToday: Int,
+        now: Date,
+        clock: StudyClock,
+        needBy: (ReviewCard) -> LocalDate? = { _ in nil },
+        boostPolicy: BoostPolicy = BoostPolicy()
+    ) -> DailyPlan {
         let endOfToday = clock.end(of: clock.day(of: now))
-        let due = cards
-            .filter { !$0.isNew && $0.due <= endOfToday }
-            .map { (card: $0, recall: retrievability(of: $0, at: now)) }
-            .sorted { $0.recall < $1.recall }
-            .map(\.card)
+        let due = cards.filter { !$0.isNew && $0.due <= endOfToday }
+        let boosted = boostCandidates(cards: cards, needBy: needBy, now: now, clock: clock, policy: boostPolicy).map(\.card)
         let budget = max(0, config.newCardsPerDay - newIntroducedToday)
-        return DailyPlan(due: due, new: Array(cards.filter(\.isNew).prefix(budget)))
+        return DailyPlan(
+            due: neededSoonestFirst(due, now: now, clock: clock, needBy: needBy, policy: boostPolicy),
+            boosted: neededSoonestFirst(boosted, now: now, clock: clock, needBy: needBy, policy: boostPolicy),
+            new: Array(cards.filter(\.isNew).prefix(budget))
+        )
+    }
+
+    /// Review order: cards needed on the trip within the boost window come first, the soonest
+    /// need-by day first; then the rest. Lowest predicted recall first within each.
+    func neededSoonestFirst(
+        _ cards: [ReviewCard],
+        now: Date,
+        clock: StudyClock,
+        needBy: (ReviewCard) -> LocalDate?,
+        policy: BoostPolicy
+    ) -> [ReviewCard] {
+        let today = clock.day(of: now)
+        return cards
+            .map { card -> (card: ReviewCard, daysLeft: Int, recall: Double) in
+                var daysLeft = Int.max
+                if let day = needBy(card) {
+                    let left = today.days(until: day)
+                    if left >= 0 && left <= policy.windowDays {
+                        daysLeft = left
+                    }
+                }
+                return (card, daysLeft, retrievability(of: card, at: now))
+            }
+            .sorted { ($0.daysLeft, $0.recall) < ($1.daysLeft, $1.recall) }
+            .map(\.card)
     }
 }

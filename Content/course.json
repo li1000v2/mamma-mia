@@ -32,6 +32,14 @@
     { "id": "taxi", "zh": "打车与去机场", "neededAt": "last" },
     { "id": "smalltalk", "zh": "闲聊", "neededAt": "first" }
   ],
+  "cities": [
+    { "id": "venezia", "zh": "威尼斯", "it": "Venezia" },
+    { "id": "napoli", "zh": "那不勒斯", "it": "Napoli" },
+    { "id": "roma", "zh": "罗马", "it": "Roma" }
+  ],
+  "events": [
+    { "id": "immacolata", "zh": "圣母无染原罪节（全国假日）", "it": "Immacolata Concezione", "month": 12, "day": 8 }
+  ],
   "units": [
     { "id": "L01", "kind": "lesson", "week": 1, "title": "发音①：拼读规则", "focus": "c/g 软硬音、gn、gli、sc", "frames": [], "scene": "general", "summary": "ciao · chiesa · gnocchi · biglietto · uscita" },
     { "id": "L02", "kind": "lesson", "week": 1, "title": "发音②：元音、重音、双辅音", "focus": "双辅音≈っ/ン", "frames": [], "scene": "general", "summary": "Mamma mia · pala / palla · Napoli · caffè" },

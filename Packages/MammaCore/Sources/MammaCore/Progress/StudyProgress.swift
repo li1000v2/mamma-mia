@@ -22,8 +22,9 @@ public struct ChallengeRun: Codable, Hashable, Sendable {
 }
 
 /// Everything the learner has done: card states, the full review history, finished lessons and
-/// challenge runs. Saved as one JSON file. Every field decodes with a default, so files written by
-/// older builds keep loading after fields are added — the app is reinstalled every week.
+/// challenge runs, plus the trip they entered. Saved as one JSON file, which is also the backup
+/// format. Every field decodes with a default, so files written by older builds keep loading after
+/// fields are added — the app is reinstalled every week.
 public struct StudyProgress: Codable, Equatable, Sendable {
     public static let currentVersion = 1
 
@@ -32,11 +33,17 @@ public struct StudyProgress: Codable, Equatable, Sendable {
     public var reviews: [ReviewRecord] = []
     public var completedUnits: [String: Date] = [:]
     public var challengeRuns: [ChallengeRun] = []
+    /// Personal: stays on the phone and in its backups. Absent from files written before the trip
+    /// form existed.
+    public var trip: Trip?
+    /// The file had a trip this build couldn't read, so it was left out. Not saved; it only lets
+    /// the app note the loss in its log without writing anything about the trip itself.
+    public private(set) var droppedUnreadableTrip = false
 
     public init() {}
 
     private enum CodingKeys: String, CodingKey {
-        case version, cards, reviews, completedUnits, challengeRuns
+        case version, cards, reviews, completedUnits, challengeRuns, trip
     }
 
     public init(from decoder: Decoder) throws {
@@ -46,6 +53,14 @@ public struct StudyProgress: Codable, Equatable, Sendable {
         reviews = try container.decodeIfPresent([ReviewRecord].self, forKey: .reviews) ?? []
         completedUnits = try container.decodeIfPresent([String: Date].self, forKey: .completedUnits) ?? [:]
         challengeRuns = try container.decodeIfPresent([ChallengeRun].self, forKey: .challengeRuns) ?? []
+        // A trip that can't be read is dropped rather than costing the learning record; it can be
+        // entered again in a minute.
+        do {
+            trip = try container.decodeIfPresent(Trip.self, forKey: .trip)
+        } catch {
+            trip = nil
+            droppedUnreadableTrip = true
+        }
     }
 }
 
@@ -89,6 +104,16 @@ extension StudyProgress {
 
     public mutating func add(_ run: ChallengeRun) {
         challengeRuns.append(run)
+    }
+
+    /// What restoring `backup` over this progress leaves: the backup's learning records, and its
+    /// trip if it has one. A backup without a trip (every backup made before the trip form, or one
+    /// whose trip couldn't be read) keeps the trip already here; `keptTrip` says so.
+    public func restoring(_ backup: StudyProgress) -> (progress: StudyProgress, keptTrip: Bool) {
+        guard backup.trip == nil, let trip else { return (backup, false) }
+        var restored = backup
+        restored.trip = trip
+        return (restored, true)
     }
 
     /// How many cards had their first-ever review on `day`; the daily new-card cap counts these.

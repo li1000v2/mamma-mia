@@ -84,7 +84,8 @@ extension ReviewScheduler {
     ) -> [BoostCandidate] {
         let today = clock.day(of: now)
         return cards.compactMap { card -> BoostCandidate? in
-            guard !card.isNew, let day = needBy(card) else { return nil }
+            // New and learning-step cards have their own schedule within the day.
+            guard card.phase == .review, let day = needBy(card) else { return nil }
             let daysLeft = today.days(until: day)
             guard daysLeft > 0, daysLeft <= policy.windowDays else { return nil }
             let deadline = clock.start(of: day)

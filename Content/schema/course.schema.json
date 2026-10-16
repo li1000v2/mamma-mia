@@ -1,14 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "course.schema.json",
-  "title": "Course map: frames, scenes, lessons and challenges",
+  "title": "Course map: frames, scenes, lessons and challenges, and the cities and events scenes are needed at",
   "type": "object",
-  "required": ["version", "frames", "scenes", "units"],
+  "required": ["version", "frames", "scenes", "cities", "events", "units"],
   "additionalProperties": false,
   "properties": {
     "version": { "type": "integer", "minimum": 1 },
     "frames": { "type": "array", "items": { "$ref": "#/$defs/frame" } },
     "scenes": { "type": "array", "items": { "$ref": "#/$defs/scene" } },
+    "cities": { "type": "array", "items": { "$ref": "#/$defs/city" } },
+    "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
     "units": { "type": "array", "items": { "$ref": "#/$defs/unit" } }
   },
   "$defs": {
@@ -37,6 +39,30 @@
           "type": "string",
           "pattern": "^(first|last|city:[a-z]+|event:[a-z0-9_-]+)$"
         }
+      }
+    },
+    "city": {
+      "description": "A city the trip form offers; scenes refer to it as city:<id>.",
+      "type": "object",
+      "required": ["id", "zh", "it"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z]+$" },
+        "zh": { "$ref": "#/$defs/text" },
+        "it": { "$ref": "#/$defs/text" }
+      }
+    },
+    "event": {
+      "description": "A day with the same date every year; scenes refer to it as event:<id>, and a trip covering the date gets it automatically.",
+      "type": "object",
+      "required": ["id", "zh", "it", "month", "day"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+        "zh": { "$ref": "#/$defs/text" },
+        "it": { "$ref": "#/$defs/text" },
+        "month": { "type": "integer", "minimum": 1, "maximum": 12 },
+        "day": { "type": "integer", "minimum": 1, "maximum": 31 }
       }
     },
     "unit": {

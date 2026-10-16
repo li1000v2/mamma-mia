@@ -23,9 +23,26 @@ public enum ContentValidator {
         for id in duplicates(course.frames.map(\.id)) { report("course.json", "duplicate frame id \(id)") }
         for id in duplicates(course.scenes.map(\.id)) { report("course.json", "duplicate scene id \(id)") }
         for id in duplicates(course.units.map(\.id)) { report("course.json", "duplicate unit id \(id)") }
+        for id in duplicates(course.cities.map(\.id)) { report("course.json", "duplicate city id \(id)") }
+        for id in duplicates(course.events.map(\.id)) { report("course.json", "duplicate event id \(id)") }
 
-        for scene in course.scenes where !NeedByPlanner.isWellFormed(scene.neededAt) {
-            report("course.json", "scene \(scene.id) has malformed neededAt \"\(scene.neededAt)\"")
+        // 2000 is a leap year, so only dates that never exist fail.
+        for event in course.events where event.date(in: 2000) == nil {
+            report("course.json", "event \(event.id) has no valid date \(event.month)/\(event.day)")
+        }
+        for scene in course.scenes {
+            guard NeedByPlanner.isWellFormed(scene.neededAt) else {
+                report("course.json", "scene \(scene.id) has malformed neededAt \"\(scene.neededAt)\"")
+                continue
+            }
+            let parts = scene.neededAt.split(separator: ":", maxSplits: 1).map(String.init)
+            guard parts.count == 2 else { continue }
+            if parts[0] == "city", course.city(parts[1]) == nil {
+                report("course.json", "scene \(scene.id) needs unknown city \(parts[1])")
+            }
+            if parts[0] == "event", course.event(parts[1]) == nil {
+                report("course.json", "scene \(scene.id) needs unknown event \(parts[1])")
+            }
         }
         for unit in course.units {
             let prefix = unit.kind == .lesson ? "L" : "C"
@@ -105,6 +122,9 @@ public enum ContentValidator {
         }
 
         if let trip {
+            for issue in trip.issues(knownCities: Set(course.cities.map(\.id))) {
+                report("trip", "\(issue)")
+            }
             let planner = NeedByPlanner(trip: trip)
             for scene in course.scenes where NeedByPlanner.isWellFormed(scene.neededAt) {
                 do {

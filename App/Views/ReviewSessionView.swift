@@ -63,9 +63,17 @@ private struct ReviewCardView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text(card.id.kind == .listen ? "听：这句是什么意思？" : "说：用意大利语怎么说？")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+            VStack(spacing: 4) {
+                Text(card.id.kind == .listen ? "听：这句是什么意思？" : "说：用意大利语怎么说？")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                // Not due yet, but needed on the trip soon; graded like any other review.
+                if let day = model.boostDay(for: card) {
+                    Label("行程加练 · \(day.zhShort)要用", systemImage: "airplane")
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                }
+            }
             ScrollView {
                 VStack(spacing: 20) {
                     prompt

@@ -16,6 +16,42 @@ public struct SceneTag: Codable, Hashable, Sendable, Identifiable {
     public let neededAt: String
 }
 
+/// A city the course has scenes for (`neededAt: "city:<id>"`). The trip form offers these.
+public struct CourseCity: Codable, Hashable, Sendable, Identifiable {
+    public let id: String
+    public let zh: String
+    public let it: String
+
+    public init(id: String, zh: String, it: String) {
+        self.id = id
+        self.zh = zh
+        self.it = it
+    }
+}
+
+/// A day that falls on the same date every year and changes what you need to say, such as a
+/// national holiday (`neededAt: "event:<id>"`). A trip that covers the date gets it automatically.
+public struct CourseEvent: Codable, Hashable, Sendable, Identifiable {
+    public let id: String
+    public let zh: String
+    public let it: String
+    public let month: Int
+    public let day: Int
+
+    public init(id: String, zh: String, it: String, month: Int, day: Int) {
+        self.id = id
+        self.zh = zh
+        self.it = it
+        self.month = month
+        self.day = day
+    }
+
+    /// The event's date in `year`; nil when it doesn't exist that year (29 February).
+    public func date(in year: Int) -> LocalDate? {
+        LocalDate(year: year, month: month, day: day)
+    }
+}
+
 public enum UnitKind: String, Codable, Sendable {
     case lesson
     case challenge
@@ -35,12 +71,23 @@ public struct CourseUnit: Codable, Hashable, Sendable, Identifiable {
     public let summary: String
 }
 
-/// Content/course.json: the frames, scenes and the ordered course map.
+/// Content/course.json: the frames, scenes and the ordered course map, plus the cities and
+/// fixed-date events the scenes' `neededAt` refers to.
 public struct Course: Codable, Sendable {
     public let version: Int
     public let frames: [Frame]
     public let scenes: [SceneTag]
     public let units: [CourseUnit]
+    public var cities: [CourseCity] = []
+    public var events: [CourseEvent] = []
+
+    public func city(_ id: String) -> CourseCity? {
+        cities.first { $0.id == id }
+    }
+
+    public func event(_ id: String) -> CourseEvent? {
+        events.first { $0.id == id }
+    }
 }
 
 /// Where a phrase is in the drafting → cross-check → native check → audio review pipeline.
