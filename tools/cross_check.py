@@ -405,7 +405,7 @@ def main() -> int:
                 print(f"{unit.id}: FAILED {error}")
                 continue
             path = REVIEWS / f"cross-check-{unit.id}.md"
-            path.write_text(render(unit, reviews, args.thinking), encoding="utf-8")
+            path.write_text(render(unit, reviews, args.thinking), encoding="utf-8", newline="\n")
             revise = sum(1 for review in reviews.values() if review.verdict == "revise")
             print(f"{unit.id}: {len(reviews) - revise} OK, {revise} to revise → {path.relative_to(ROOT)}")
     for line in failures:

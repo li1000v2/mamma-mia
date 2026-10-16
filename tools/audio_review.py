@@ -306,7 +306,7 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
     md.append("")
     REVIEWS.mkdir(exist_ok=True)
     md_path = REVIEWS / f"audio-screen-week{week}.md"
-    md_path.write_text("\n".join(md), encoding="utf-8")
+    md_path.write_text("\n".join(md), encoding="utf-8", newline="\n")
 
     def esc(value: str) -> str:
         return html.escape(value, quote=True)
@@ -381,7 +381,7 @@ code {{ font-size: 0.85em; }}
 </html>
 """
     html_path = REVIEWS / f"audio-screen-week{week}.html"
-    html_path.write_text(page, encoding="utf-8")
+    html_path.write_text(page, encoding="utf-8", newline="\n")
     return md_path, html_path, suspicious
 
 

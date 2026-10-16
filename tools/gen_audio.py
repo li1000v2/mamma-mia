@@ -159,7 +159,9 @@ class Gemini:
         body = {
             "contents": [{"role": "user", "parts": [
                 {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(wav).decode("ascii")}},
-                {"text": "Transcribe exactly every word spoken in this audio, in whatever language it is. Output only the transcript."},
+                {"text": "Transcribe exactly every word spoken in this audio, in whatever language it is. "
+                         "Write numbers, prices and times as words, the way they are spoken (ventiquattro, not 24). "
+                         "Output only the transcript."},
             ]}],
             "generationConfig": {"temperature": 0},
         }
