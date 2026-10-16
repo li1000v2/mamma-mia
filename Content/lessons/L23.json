@@ -1,6 +1,6 @@
 {
   "unit": "L23",
-  "intro": "Mi può…? 是请“您”帮我做事：mi（为我）+ può（您能）+ 动词原形。拍照是 fare una foto，所以请人拍照就是 Mi può fare una foto?\n\n和 L06 的 Posso…? 对比：Posso fare una foto? 是“我可以拍照吗”（问这里让不让拍），Mi può fare una foto? 是“您能帮我拍张照吗”（请人帮忙）。\n\n把手机递过去时指一下快门：Basta premere qui（按这里就行）。foto 虽然以 -o 结尾，却是阴性（la foto，fotografia 的简称），所以“再来一张”是 Ancora una，不是 ancora uno。\n\n拍完说 Grazie mille! 对方要是好奇你为什么在这儿拍，就说 Sono un fan di…（我是……迷）。",
+  "intro": "Mi può…? 是请“您”帮我做事：mi（为我）+ può（您能）+ 动词原形。拍照是 fare una foto，所以请人拍照就是 Mi può fare una foto?\n\n和 L06 的 Posso…? 对比：Posso fare una foto? 是“我可以拍照吗”（问这里让不让拍），Mi può fare una foto? 是“您能帮我拍张照吗”（请人帮忙）。\n\n把手机递过去时指一下快门：Basta premere qui（按这里就行）。foto 虽然以 -o 结尾，却是阴性（la foto，fotografia 的简称），所以“再来一张”是 Ancora una，不是 ancora uno。\n\n拍完说 Grazie mille! 对方要是好奇你为什么在这儿拍，就说 Sono un fan di…（我是……迷）。\n\n发音：先听示范音频，以音频为准。foto 是 FO-to，两个 o 都是纯元音，不能滑成英语 photo 的 ou，外来语的读法也不可信；f 要上齿轻碰下唇，不是日语フ那样两片嘴唇吹气。premere、prego 的 pr 中间不加元音。una、uno 的 u 要圆唇撅起来，日语的う是扁的。",
   "phrases": [
     {
       "id": "L23-01",
@@ -9,7 +9,7 @@
       "frame": "mipuo",
       "scene": "sights",
       "status": "draft",
-      "note": "先说 Scusi 叫住对方，再问这句。fare una foto 是“拍照”。"
+      "note": "先说 Scusi 叫住对方，再问这句。fare una foto 是“拍照”。può 只有一个音节，重音在 ò 上。"
     },
     {
       "id": "L23-02",
@@ -17,7 +17,7 @@
       "zh": "按这里就行。",
       "scene": "sights",
       "status": "draft",
-      "note": "basta 是“只要……就行”（Basta così 是“就这些”）。premere≈プレーメレ，“按”。"
+      "note": "basta 是“只要……就行”（Basta così 是“就这些”）：BA-sta，st 中间不加元音。premere 是“按”，重音在倒数第三个音节：PRE-me-re。"
     },
     {
       "id": "L23-03",
@@ -25,7 +25,7 @@
       "zh": "请再拍一张。",
       "scene": "sights",
       "status": "draft",
-      "note": "una 指的是 la foto（阴性），所以不说 uno。"
+      "note": "una 指的是 la foto（阴性），所以不说 uno。ancora 重音在 CO：an-CO-ra；重音放到 AN 上就成了“船锚”。"
     },
     {
       "id": "L23-04",
@@ -34,7 +34,7 @@
       "frame": "posso",
       "scene": "sights",
       "status": "draft",
-      "note": "进教堂、博物馆先问一句。常听到的回答：Sì, ma senza flash（可以，但别开闪光灯）。"
+      "note": "进教堂、博物馆先问一句。常听到的回答：Sì, ma senza flash（可以，但别开闪光灯）。flash 照英语读，词尾的 sh 后面不加元音。"
     },
     {
       "id": "L23-05",
@@ -43,7 +43,7 @@
       "frame": "sono",
       "scene": "sights",
       "status": "draft",
-      "note": "fan 是英语外来词，意大利语里多读≈フェン；男女都用，女生说 una fan。彩蛋：作品里的 giorno、vento、oro 都是日常词——giorno 是“一天、白天”（buongiorno 就是“好的一天”），vento 是“风”，oro 是“金子”。"
+      "note": "fan 是英语外来词，意大利语里元音多读得像 e，词尾的 n 后面不加元音；日语外来语的读法在这里不可信。男女都用，女生说 una fan。彩蛋：作品里的 giorno、vento、oro 都是日常词——giorno 是“一天、白天”（buongiorno 就是“好的一天”），vento 是“风”，oro 是“金子”。"
     }
   ]
 }
