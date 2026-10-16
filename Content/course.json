@@ -69,7 +69,7 @@
     { "id": "L26", "kind": "lesson", "week": 5, "title": "丢失与求助", "focus": "Ho + 过去分词", "frames": ["passato"], "scene": "emergency", "summary": "Aiuto! · Ho perso il passaporto · Mi hanno rubato il portafoglio" },
     { "id": "L27", "kind": "lesson", "week": 5, "title": "打车与去机场", "focus": "Mi può…?", "frames": ["mipuo"], "scene": "taxi", "summary": "Mi può chiamare un taxi? · All'aeroporto di Fiumicino, per favore" },
     { "id": "C09", "kind": "challenge", "week": 5, "title": "挑战⑨：突发状况", "focus": "—", "frames": [], "scene": "emergency", "summary": "钱包被偷 → 求助 → 去药店 → 打车" },
-    { "id": "L28", "kind": "lesson", "week": 5, "title": "自我介绍与闲聊", "focus": "Sono… · Vivo a…", "frames": ["sono"], "scene": "smalltalk", "summary": "Mi chiamo… · Vivo a… · È la mia prima volta in Italia" },
+    { "id": "L28", "kind": "lesson", "week": 5, "title": "自我介绍与闲聊", "focus": "Sono… · Vivo a / in…", "frames": ["sono"], "scene": "smalltalk", "summary": "Mi chiamo… · Vivo in… · È la mia prima volta in Italia" },
     { "id": "L29", "kind": "lesson", "week": 5, "title": "天气与感受", "focus": "Fa… · Che…!", "frames": [], "scene": "smalltalk", "summary": "Fa freddo · Piove? · Che bello! · C'è l'acqua alta?" },
     { "id": "L30", "kind": "lesson", "week": 5, "title": "总复习", "focus": "12 个句框串讲", "frames": [], "scene": "general", "summary": "100 句高频句速听" },
     { "id": "C10", "kind": "challenge", "week": 5, "title": "挑战⑩：罗马一日通关", "focus": "—", "frames": [], "scene": "sights", "summary": "早餐 → 地铁 → 景点 → 午餐 → 购物 → 打车去机场" }
