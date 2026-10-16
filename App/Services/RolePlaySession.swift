@@ -256,27 +256,22 @@ final class RolePlaySession {
         let speaker = ReplySpeaker(client: client, voiceName: voiceName, player: player, audio: model.audio,
                                    rate: slow ? 0.75 : 1, after: filler)
         self.speaker = speaker
-        var chunker = SentenceChunker()
-        var raw = ""
-        var firstText: Date?
-        var stopReason: String?
+        let draft = ReplyDraft()
+        var answeredBy = service.replyModel
         do {
             let body = conversation.replyRequest()
-            for try await event in client.stream(model: service.replyModel.rawValue, body: body) {
-                switch event {
-                case .text(let delta):
-                    firstText = firstText ?? .now
-                    raw += delta
-                    for sentence in chunker.append(delta) {
-                        speaker.say(sentence)
-                    }
-                case .blocked(let reason), .finished(let reason):
-                    stopReason = reason == "STOP" ? nil : reason
-                case .audio, .usage:
-                    break
+            if answeredBy == .argon {
+                let fallback = try await stream(body, from: .argon, client: client, into: draft, speaker: speaker,
+                                                 cutoff: Self.slowArgonCutoff)
+                if let fallback {
+                    AppLog.shared.write("RolePlay \(role.unit): no text from Argon (\(fallback)); asking Flash")
+                    answeredBy = .flash
+                    _ = try await stream(body, from: .flash, client: client, into: draft, speaker: speaker, cutoff: nil)
                 }
+            } else {
+                _ = try await stream(body, from: answeredBy, client: client, into: draft, speaker: speaker, cutoff: nil)
             }
-            for sentence in chunker.finish() {
+            for sentence in draft.chunker.finish() {
                 speaker.say(sentence)
             }
         } catch is CancellationError {
@@ -291,12 +286,12 @@ final class RolePlaySession {
             speaker.cancel()
             return
         }
-        guard conversation.addRole(raw: raw) != nil else {
+        guard conversation.addRole(raw: draft.raw) != nil else {
             speaker.cancel()
             phase = .listening
             work = nil
-            notice = stopReason.map { "对方没有回答（\($0)）。换个说法再试。" } ?? "对方没有回答，再试一次。"
-            AppLog.shared.write("RolePlay \(role.unit): empty reply (\(stopReason ?? "no reason"))")
+            notice = draft.stopReason.map { "对方没有回答（\($0)）。换个说法再试。" } ?? "对方没有回答，再试一次。"
+            AppLog.shared.write("RolePlay \(role.unit): empty reply (\(draft.stopReason ?? "no reason"))")
             return
         }
         if learnerTurn {
@@ -311,7 +306,7 @@ final class RolePlaySession {
             notice = "语音合成被拒绝（\(refusal.status)），这次对话改用手机自带的意大利语声音。"
         }
         let turn = learnerTurn ? "turn \(conversation.learnerTurns)" : "opening"
-        AppLog.shared.write("RolePlay \(role.unit) \(turn): first text \(Self.offset(firstText, from: start)), first audio \(Self.offset(speaker.firstAudio, from: start)), \(service.replyModel.rawValue)")
+        AppLog.shared.write("RolePlay \(role.unit) \(turn): first text \(Self.offset(draft.firstText, from: start)), first audio \(Self.offset(speaker.firstAudio, from: start)), \(answeredBy.rawValue)")
         self.speaker = nil
         work = nil
         if conversation.isFull {
@@ -320,6 +315,60 @@ final class RolePlaySession {
         } else {
             phase = .listening
         }
+    }
+
+    /// Argon has twice taken 20 s to say its first word in a dozen tries; after this long without
+    /// one, the same request goes to Flash, which answers in about a second.
+    static let slowArgonCutoff: Duration = .seconds(6)
+
+    /// Streams the reply from `replyModel` into the draft, handing finished sentences to the
+    /// speaker. With a cutoff, returns why it gave up (too slow, or a rate limit or server error
+    /// before any text) instead of throwing, so the caller can ask another model; nil when it answered.
+    private func stream(_ body: JSONValue, from replyModel: ReplyModel, client: GeminiClient, into draft: ReplyDraft,
+                        speaker: ReplySpeaker, cutoff: Duration?) async throws -> String? {
+        draft.gaveUp = false
+        let consumer = Task { @MainActor in
+            for try await event in client.stream(model: replyModel.rawValue, body: body) {
+                switch event {
+                case .text(let delta):
+                    draft.firstText = draft.firstText ?? .now
+                    draft.raw += delta
+                    for sentence in draft.chunker.append(delta) {
+                        speaker.say(sentence)
+                    }
+                case .blocked(let reason), .finished(let reason):
+                    draft.stopReason = reason == "STOP" ? nil : reason
+                case .audio, .usage:
+                    break
+                }
+            }
+        }
+        let watchdog = cutoff.map { cutoff in
+            Task { @MainActor in
+                try? await Task.sleep(for: cutoff)
+                if !Task.isCancelled, draft.firstText == nil {
+                    draft.gaveUp = true
+                    consumer.cancel()
+                }
+            }
+        }
+        defer { watchdog?.cancel() }
+        do {
+            try await withTaskCancellationHandler {
+                try await consumer.value
+            } onCancel: {
+                consumer.cancel()
+            }
+        } catch is CancellationError where draft.gaveUp && !Task.isCancelled {
+            // Given up on below. (A cancelled stream usually just ends rather than throwing.)
+        } catch let failure as GeminiFailure
+            where cutoff != nil && draft.firstText == nil && [.rateLimited, .server].contains(failure.kind) {
+            return failure.description
+        }
+        if draft.gaveUp, !Task.isCancelled {
+            return "nothing after \(cutoff.map { "\($0)" } ?? "the cutoff")"
+        }
+        return nil
     }
 
     private func fail(_ error: Error) {
@@ -460,4 +509,15 @@ final class RolePlaySession {
         guard let date else { return "-" }
         return String(format: "%.1fs", date.timeIntervalSince(start))
     }
+}
+
+/// What one reply has come to so far, kept across the switch from Argon to Flash.
+@MainActor
+private final class ReplyDraft {
+    var chunker = SentenceChunker()
+    var raw = ""
+    var firstText: Date?
+    var stopReason: String?
+    /// The cutoff passed without a word, and the stream was cancelled for it.
+    var gaveUp = false
 }
