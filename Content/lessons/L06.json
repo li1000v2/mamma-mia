@@ -1,6 +1,6 @@
 {
   "unit": "L06",
-  "intro": "句框 Posso…?（我可以……吗？）后面直接接动词原形：Posso pagare…?（我可以付……吗？）、Posso avere…?（可以给我……吗？）。\n\n20–100：venti, trenta, quaranta, cinquanta, sessanta, settanta, ottanta, novanta, cento。21、28 这类数字要去掉一个元音：ventuno、ventotto。sessanta（60）和 settanta（70）只差一个辅音，要听仔细。\n\n付款时店员常问 Contanti o carta?（现金还是刷卡）。付完会给你小票 scontrino，在吧台要凭小票取饮料，先别扔。",
+  "intro": "句框 Posso…?（我可以……吗？）后面直接接动词原形：Posso pagare…?（我可以付……吗？）、Posso avere…?（可以给我……吗？）。\n\n20–100：venti, trenta, quaranta, cinquanta, sessanta, settanta, ottanta, novanta, cento。两位数是十位直接连上个位：ventidue（22）、trentacinque（35）。个位是 uno、otto 时去掉十位最后的元音：ventuno、ventotto；个位是 tre 时加重音符号：ventitré。sessanta（60）和 settanta（70）只差一个辅音，要听仔细。\n\n付款时店员常问 Contanti o carta?（现金还是刷卡）。在先付款的吧台，付完会给你小票 scontrino，要凭小票到吧台取饮料，先别扔。",
   "phrases": [
     {
       "id": "L06-01",
@@ -8,7 +8,8 @@
       "zh": "可以刷卡吗？",
       "frame": "posso",
       "scene": "bar",
-      "status": "draft"
+      "status": "draft",
+      "note": "Posso 的 ss 是双辅音，s 要拉长：POS-so；pagare 重音在 GA：pa-GA-re。"
     },
     {
       "id": "L06-02",
@@ -16,7 +17,7 @@
       "zh": "现金还是刷卡？",
       "scene": "bar",
       "status": "draft",
-      "note": "店员常问的话，听懂就行。"
+      "note": "店员常问的话，听懂就行。也可能听到 bancomat（借记卡）。"
     },
     {
       "id": "L06-03",
@@ -32,7 +33,7 @@
       "zh": "给您小票。",
       "scene": "bar",
       "status": "draft",
-      "note": "Ecco 是“给您／这就是”。在吧台要凭小票取饮料。"
+      "note": "Ecco 是“给您／这就是”，cc 要停一拍≈エッコ。scontrino 的 sc 在 o 前读 sk：scon-TRI-no。在先付款的吧台，要凭小票取饮料。"
     },
     {
       "id": "L06-05",
