@@ -145,12 +145,12 @@ struct DepartureCheckView: View {
         case .signing(let plan):
             switch plan {
             case .coversTrip(let expires)?:
-                return "签名\(AppModel.expiryText(expires))到期，整个行程都够用。"
+                return "签名 \(AppModel.dateTimeText(expires)) 到期，整个行程都够用。"
             case .refreshOnTheWay(let expires, let day)?:
                 let last = model.lastTripDayText.map { "（\($0)）" } ?? ""
-                return "签名\(AppModel.expiryText(expires))到期，比行程最后一天\(last)早：\(day.zhShort)晚上会提醒你连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 再续一次。"
+                return "签名 \(AppModel.dateTimeText(expires)) 到期，比行程最后一天\(last)早：\(day.zhShort)晚上会提醒你连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 再续一次。"
             case .refreshBeforeLeaving(let expires)?:
-                return "签名\(AppModel.expiryText(expires))就到期了：出发前打开 LocalDevVPN 和 SideStore 刷新一次，再回来看。"
+                return "签名 \(AppModel.dateTimeText(expires)) 就到期了：出发前打开 LocalDevVPN 和 SideStore 刷新一次，再回来看。"
             case nil:
                 return "读不到签名信息：这个安装包不是 SideStore 装的（比如模拟器），没法检查。"
             }
@@ -235,7 +235,7 @@ private struct ManualCheckRow: View {
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
                 if let doneAt {
-                    Text("已确认 · \(AppModel.expiryText(doneAt))")
+                    Text("已确认 · \(AppModel.dateTimeText(doneAt))")
                         .font(.caption)
                         .foregroundStyle(.green)
                 }

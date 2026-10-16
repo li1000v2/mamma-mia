@@ -54,6 +54,17 @@ extension AppModel {
         }
     }
 
+    /// What the badges a check-in just earned stand for: "威尼斯的巡礼点都打过卡了。"
+    func earnedText(_ badges: [SpotBadge]) -> String {
+        badges.map { badge in
+            switch badge.scope {
+            case .city(let city): "\(cityName(city))的巡礼点都打过卡了"
+            case .all: "全部巡礼点都打过卡了"
+            }
+        }
+        .joined(separator: "；") + "。"
+    }
+
     /// An SF Symbol for each badge: the lagoon's boats, Vesuvius, the columns of Rome.
     func badgeSymbol(_ badge: SpotBadge) -> String {
         switch badge.scope {

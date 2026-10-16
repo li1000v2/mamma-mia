@@ -40,7 +40,7 @@ struct DiagnosticsView: View {
             Section("版本") {
                 LabeledContent("版本", value: "\(BuildInfo.version) (\(BuildInfo.build))")
                 LabeledContent("提交", value: BuildInfo.commit)
-                LabeledContent("签名到期", value: model.checks.profile.map { AppModel.expiryText($0.expires) } ?? "读不到")
+                LabeledContent("签名到期", value: model.checks.profile.map { AppModel.dateTimeText($0.expires) } ?? "读不到")
                 LabeledContent("系统", value: ProcessInfo.processInfo.operatingSystemVersionString)
                 LabeledContent("时区", value: TimeZone.current.identifier)
             }

@@ -230,7 +230,7 @@ private struct SigningRefreshRow: View {
 
     var body: some View {
         if case .refreshOnTheWay(let expires, let day)? = model.signingPlan, today >= day {
-            Label("签名\(AppModel.expiryText(expires))到期：今晚连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签一次。",
+            Label("签名 \(AppModel.dateTimeText(expires)) 到期：今晚连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签一次。",
                   systemImage: "signature")
                 .font(.subheadline)
                 .foregroundStyle(.orange)

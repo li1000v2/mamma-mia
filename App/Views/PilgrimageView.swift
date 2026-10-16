@@ -112,7 +112,7 @@ private struct SpotRows: View {
                             .foregroundStyle(.secondary)
                     }
                     if let first = log.firstCheckIn {
-                        Text(photos > 0 ? "\(AppModel.expiryText(first)) 打卡 · 照片 \(photos) 张" : "\(AppModel.expiryText(first)) 打卡")
+                        Text(photos > 0 ? "\(AppModel.dateTimeText(first)) 打卡 · 照片 \(photos) 张" : "\(AppModel.dateTimeText(first)) 打卡")
                             .font(.caption)
                             .foregroundStyle(.green)
                     }
@@ -169,7 +169,9 @@ struct SpotDetailView: View {
             }
             Section {
                 if network.isOnline {
-                    Map(initialPosition: .region(MKCoordinateRegion(center: spot.coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500))) {
+                    // For looking only, like the city maps; Apple Maps is a tap away for getting there.
+                    Map(initialPosition: .region(MKCoordinateRegion(center: spot.coordinate, latitudinalMeters: 1500, longitudinalMeters: 1500)),
+                        interactionModes: []) {
                         Marker(spot.zh, systemImage: "star.fill", coordinate: spot.coordinate)
                     }
                     .frame(height: 200)
@@ -205,7 +207,7 @@ struct SpotDetailView: View {
                     Label(log.checkIns.isEmpty ? "打卡" : "再打一次卡", systemImage: "checkmark.seal")
                 }
                 ForEach(log.checkIns.reversed(), id: \.self) { date in
-                    Label(AppModel.expiryText(date), systemImage: "checkmark.seal.fill")
+                    Label(AppModel.dateTimeText(date), systemImage: "checkmark.seal.fill")
                         .foregroundStyle(.green)
                         .swipeActions {
                             Button("删除", role: .destructive) {
@@ -265,7 +267,7 @@ struct SpotDetailView: View {
         )) {
             Button("好") { earned = [] }
         } message: {
-            Text(earned.map { model.badgeTitle($0) }.joined(separator: "、") + "的巡礼点都打卡了。")
+            Text(model.earnedText(earned))
         }
         .sensoryFeedback(.success, trigger: checkIns)
     }

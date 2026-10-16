@@ -61,14 +61,14 @@ extension AppModel {
                 id: CityPackNotifier.departurePrefix + "signing",
                 fireDate: time.date(in: .current),
                 title: "今晚续签 Mamma mia!",
-                body: "app 的签名\(Self.expiryText(plan.expires))到期。连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 刷新一次；没成功明晚再试。"
+                body: "app 的签名 \(Self.dateTimeText(plan.expires)) 到期。连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 刷新一次；没成功明晚再试。"
             ))
         }
         return reminders
     }
 
     /// "12月11日 18:00", in the phone's time zone.
-    static func expiryText(_ date: Date) -> String {
+    static func dateTimeText(_ date: Date) -> String {
         date.formatted(.dateTime.month().day().hour().minute())
     }
 

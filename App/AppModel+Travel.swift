@@ -58,7 +58,7 @@ extension AppModel {
     /// Asks for notification permission, then schedules the trip's reminders.
     func enableReminders() async {
         if await notifier.requestPermission() {
-            await notifier.reschedule(cityPackReminders)
+            await notifier.reschedule(cityPackReminders, prefix: CityPackNotifier.idPrefix)
             await notifier.reschedule(departureReminders, prefix: CityPackNotifier.departurePrefix)
         }
     }
@@ -69,7 +69,7 @@ extension AppModel {
         let packs = cityPackReminders
         let departure = departureReminders
         Task {
-            await notifier.reschedule(packs)
+            await notifier.reschedule(packs, prefix: CityPackNotifier.idPrefix)
             await notifier.reschedule(departure, prefix: CityPackNotifier.departurePrefix)
         }
     }

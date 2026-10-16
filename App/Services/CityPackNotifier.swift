@@ -49,7 +49,7 @@ final class CityPackNotifier {
 
     /// Replaces the scheduled reminders whose ids start with `prefix` with those of `reminders` still
     /// ahead. Without permission it only clears the old ones.
-    func reschedule(_ reminders: [Reminder], prefix: String = CityPackNotifier.idPrefix) async {
+    func reschedule(_ reminders: [Reminder], prefix: String) async {
         let center = UNUserNotificationCenter.current()
         let old = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(prefix) }
         center.removePendingNotificationRequests(withIdentifiers: old)
