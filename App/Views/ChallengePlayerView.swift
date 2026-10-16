@@ -216,7 +216,7 @@ struct ChallengePlayerView: View {
                 }
             }
             if model.speech.isUsable {
-                SayItButton(recordingID: "reply", title: "直接说出来", prominent: false) { attempt in
+                SayItButton(recordingID: "reply", title: "直接说出来", prominent: false, requiresRecognition: true) { attempt in
                     hear(attempt, for: reply)
                 }
             } else {

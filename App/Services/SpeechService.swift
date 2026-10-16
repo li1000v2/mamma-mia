@@ -1,4 +1,5 @@
 import AVFoundation
+import CoreMedia
 import Foundation
 import Observation
 import Speech
@@ -198,22 +199,49 @@ final class SpeechService {
         }
     }
 
+    /// Lets the analyzer read the recording file itself first. Buffers must already be in a format
+    /// the analyzer supports, and the docs don't say whether the file path converts, so when that
+    /// fails or hears nothing the audio is converted to the analyzer's format and fed as a buffer.
     private func transcribe(_ url: URL) async throws -> String {
         guard let engine, let locale else { throw CocoaError(.featureUnsupported) }
+        var heardNothing = false
+        do {
+            let text = try await Self.transcribe(url, engine: engine, locale: locale, converting: false)
+            if !text.isEmpty { return text }
+            heardNothing = true
+            AppLog.shared.write("Speech: nothing heard reading the file directly; retrying with converted audio")
+        } catch {
+            AppLog.shared.write("Speech: reading the file directly failed (\(error)); retrying with converted audio")
+        }
+        do {
+            return try await Self.transcribe(url, engine: engine, locale: locale, converting: true)
+        } catch let error where heardNothing {
+            // The first pass worked and the recording really was silent (or too short to convert).
+            AppLog.shared.write("Speech: converted retry failed too (\(error)); treating it as silence")
+            return ""
+        }
+    }
+
+    private static func transcribe(_ url: URL, engine: Engine, locale: Locale, converting: Bool) async throws -> String {
         let file = try AVAudioFile(forReading: url)
         switch engine {
         case .transcriber:
             let module = SpeechTranscriber(locale: locale, preset: .transcription)
-            return try await Self.analyze(file, with: module, results: module.results) { String($0.text.characters) }
+            return try await analyze(file, converting: converting, with: module, results: module.results) {
+                String($0.text.characters)
+            }
         case .dictation:
             let module = DictationTranscriber(locale: locale, preset: .shortDictation)
-            return try await Self.analyze(file, with: module, results: module.results) { String($0.text.characters) }
+            return try await analyze(file, converting: converting, with: module, results: module.results) {
+                String($0.text.characters)
+            }
         }
     }
 
-    /// Reads the whole file through the analyzer and joins the finalized results.
+    /// Runs the whole recording through a fresh analyzer and joins the finalized results.
     private static func analyze<Results: AsyncSequence>(
         _ file: AVAudioFile,
+        converting: Bool,
         with module: any SpeechModule,
         results: Results,
         text: @escaping (Results.Element) -> String
@@ -228,16 +256,61 @@ final class SpeechService {
         }
         let analyzer = SpeechAnalyzer(modules: [module])
         do {
-            if let lastSample = try await analyzer.analyzeSequence(from: file) {
+            let lastSample: CMTime?
+            if converting {
+                guard let format = await SpeechAnalyzer.bestAvailableAudioFormat(compatibleWith: [module]) else {
+                    throw CocoaError(.featureUnsupported)
+                }
+                let buffer = try convert(file, to: format)
+                let (inputs, builder) = AsyncStream.makeStream(of: AnalyzerInput.self)
+                builder.yield(AnalyzerInput(buffer: buffer))
+                builder.finish()
+                lastSample = try await analyzer.analyzeSequence(inputs)
+            } else {
+                lastSample = try await analyzer.analyzeSequence(from: file)
+            }
+            if let lastSample {
                 try await analyzer.finalizeAndFinish(through: lastSample)
             } else {
                 await analyzer.cancelAndFinishNow()
             }
         } catch {
+            await analyzer.cancelAndFinishNow()
             collector.cancel()
             throw error
         }
         return try await collector.value
+    }
+
+    /// Decodes the whole recording into one buffer in `format`, the one the analyzer asked for.
+    nonisolated private static func convert(_ file: AVAudioFile, to format: AVAudioFormat) throws -> AVAudioPCMBuffer {
+        let source = file.processingFormat
+        guard file.length > 0,
+              let input = AVAudioPCMBuffer(pcmFormat: source, frameCapacity: AVAudioFrameCount(file.length))
+        else { throw CocoaError(.fileReadCorruptFile) }
+        try file.read(into: input)
+        guard let converter = AVAudioConverter(from: source, to: format) else {
+            throw CocoaError(.fileReadUnsupportedScheme)
+        }
+        let frames = (Double(input.frameLength) * format.sampleRate / source.sampleRate).rounded(.up)
+        guard let output = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(frames) + 4096) else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        let supplied = ConverterInput()
+        var conversionError: NSError?
+        let status = converter.convert(to: output, error: &conversionError) { _, inputStatus in
+            if supplied.done {
+                inputStatus.pointee = .endOfStream
+                return nil
+            }
+            supplied.done = true
+            inputStatus.pointee = .haveData
+            return input
+        }
+        if status == .error {
+            throw conversionError ?? CocoaError(.fileReadCorruptFile)
+        }
+        return output
     }
 
     // MARK: Helpers
@@ -294,4 +367,9 @@ final class SpeechService {
             }
         }
     }
+}
+
+/// Whether an AVAudioConverter has had its one input buffer yet.
+private final class ConverterInput {
+    var done = false
 }

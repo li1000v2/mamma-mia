@@ -17,6 +17,9 @@ struct SayItButton: View {
     let recordingID: String
     var title = "开口说"
     var prominent = true
+    /// Don't record when recognition turns out to be unusable (speech permission just denied):
+    /// the attempt would have nothing to be matched against.
+    var requiresRecognition = false
     let onFinish: (SpokenAttempt) -> Void
     @State private var recognizing = false
     @State private var micDenied = false
@@ -68,6 +71,7 @@ struct SayItButton: View {
             model.audio.stop()
             Task {
                 await model.speech.requestPermissionIfNeeded()
+                if requiresRecognition, !model.speech.isUsable { return }
                 micDenied = !(await model.recorder.start(recordingID))
             }
         }

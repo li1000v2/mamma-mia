@@ -91,7 +91,7 @@ struct DiagnosticsView: View {
             }
             LabeledContent("权限", value: speech.permissionText)
             switch speech.status {
-            case .needsDownload, .failed where speech.engine != nil:
+            case .needsDownload, .failed:
                 Button {
                     Task { await speech.downloadModel() }
                 } label: {
