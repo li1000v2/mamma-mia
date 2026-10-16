@@ -188,7 +188,17 @@ struct RolePlayView: View {
                 }
                 .font(.callout)
             case .finished:
-                EmptyView()
+                Button {
+                    session.leave()
+                    let next = RolePlaySession(model: model, unit: unit, role: role)
+                    self.session = next
+                    next.start()
+                } label: {
+                    Label("再来一场", systemImage: "arrow.counterclockwise")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(!session.canSend || session.remainingTurns == 0 || session.feedback == .loading)
             }
         }
     }

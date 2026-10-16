@@ -63,7 +63,18 @@ final class StreamingSpeechPlayer {
     /// Returns when everything scheduled has been heard, or playback was stopped.
     func waitUntilDone() async {
         guard !(inputEnded && pending == 0) else { return }
+        // An interruption (a call, a route change) stops the engine without the buffers'
+        // callbacks: give up a little after the audio should have ended rather than wait forever.
+        let seconds = Double(bufferedFrames) / Self.sampleRate / Double(max(timePitch.rate, 0.25)) + 3
+        let current = generation
+        let watchdog = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(seconds))
+            guard let self, !Task.isCancelled, self.generation == current, !self.waiters.isEmpty else { return }
+            AppLog.shared.write("RolePlay: playback never reported its end; stopped it")
+            self.stop()
+        }
         await withCheckedContinuation { waiters.append($0) }
+        watchdog.cancel()
     }
 
     /// Plays the last reply again.

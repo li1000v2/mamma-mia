@@ -102,6 +102,10 @@ final class RolePlaySession {
     /// On appear: the role opens if it's its turn. Does nothing while something is going on.
     func start() {
         guard phase == .listening, work == nil, canSend, conversation.needsOpening else { return }
+        guard remainingTurns > 0 else {
+            notice = usedUpNotice
+            return
+        }
         notice = nil
         phase = .opening
         let started = Date.now
@@ -136,7 +140,7 @@ final class RolePlaySession {
         phase = .transcribing
         let filler = playFiller()
         work = Task {
-            let result = await model.speech.recognize(model.recorder.url(for: Self.recordingID))
+            let result = await model.speech.recognize(model.recorder.url(for: Self.recordingID), logText: false)
             guard !Task.isCancelled else { return }
             let transcript = result.transcript?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             AppLog.shared.write("RolePlay \(role.unit): recognized in \(RolePlayService.seconds(since: stoppedAt))")
@@ -203,18 +207,20 @@ final class RolePlaySession {
         }
     }
 
-    /// Leaving the screen: everything in flight stops; the conversation stays as it was.
+    /// Leaving the screen: the conversation stops where it was. A finished one keeps going in the
+    /// background until its feedback and recordings are in, so its sentences still reach reviews.
     func leave() {
-        cancelWork()
         model.recorder.stop()
+        if phase == .finished {
+            stopAudio()
+            return
+        }
+        cancelWork()
         switch phase {
         case .opening, .recording, .transcribing, .waiting, .speaking:
             phase = .listening
         case .listening, .finished:
             break
-        }
-        if case .loading = feedback {
-            feedback = .failed("反馈没取完，点「重试」再要一次。")
         }
     }
 

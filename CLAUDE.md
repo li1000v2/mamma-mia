@@ -41,6 +41,16 @@
 - 判定在 MammaCore 的 `Speech/`：识别结果和目标句逐词对齐，忽略大小写、标点和重音，只判断“对方能不能听懂”，不打发音分。
 - 识别只是提示：复习照旧自评打分。挑战里说出的回复按选项的词匹配，对不上就点选；选项之间要差至少一个听得出的词，只差标点或重音的两个选项只能点选。
 
+## 在线 AI 角色扮演
+
+- 每个挑战一个角色，在 `Content/roleplay.json`：`setting` 是给模型的英文设定，`task` 是给学习者的中文任务，`voice` 是 manifest 的声线 id，`scene` 决定反馈句子归哪个场景，`opens` 表示角色先开口。`fillers` 是学习者说完时马上用角色声线播的语气词（Allora… 等），由 `gen_audio.py` 生成、`validate_content.py` 检查每个声线都有。
+- 一回合：录音 → 离线识别（同时播语气词）→ Argon（`thinkingLevel` LOW，流式；设置里可换 Gemini 3.8 Flash）→ 回复按句切开（`SentenceChunker`，只念第一行的意大利语，第二行是中文翻译）→ 每句送 gemini-3.8-flash-tts 流式合成、边收边播（`StreamingSpeechPlayer`，24 kHz 16 位 PCM，实为小端）。合成失败的句子用 iOS 自带语音念。live 声线名从 manifest 的 `voiceNames` 读，和示范音频同一个声音。
+- 提示词、请求体、SSE 解析、错误分类、反馈解析、每日上限都在 MammaCore 的 `RolePlay/`，有测试。Argon 只收 LOW／MEDIUM／HIGH，传 `thinking_budget` 会 400。
+- key 由用户在「对话 → 在线对话设置」粘贴，存 iOS 钥匙串（只限本机），不进仓库、安装包和备份。401／403／404 或 key 无效：整个功能停发请求，直到改设置或「测试连接」通过；不自动重试被拒的项目。
+- 每天回合上限默认 40（两场 × 每场 20 回合），可调；开场白和反馈卡不算。只作加练：不写挑战成绩。
+- 结束后的反馈卡用 Argon MEDIUM：最多 3 处纠正 + 1 个新表达，请求里带上挑战前几课的句子，避免“纠正”课程本身教的说法。句子作为 `StudyProgress.practicePhrases`（id `RP-` + 哈希）加两张新卡，课程里已有的句子不重复加；录音用角色声线合成后存在 Application Support/PracticeAudio。只有复习自评会改卡片状态。
+- 对话内容（识别出的文字）不写进 `AppLog`，日志只记延迟和错误码。
+
 ## 行程与用到日
 
 - 用户在「随身 → 填写行程」里填：`course.json` 的 `cities` 里各城市的到达日和离开日（意大利当地日期，换城市那天首尾相接），每站可选酒店名称和地址，可选忌口（欧盟 1169/2011 附件二的 14 类过敏原，加一句备注）。`course.json` 的 `events` 是每年日期固定的节日，行程覆盖到就自动加上。
