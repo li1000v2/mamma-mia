@@ -36,6 +36,9 @@ public struct StudyProgress: Codable, Equatable, Sendable {
     /// Personal: stays on the phone and in its backups. Absent from files written before the trip
     /// form existed.
     public var trip: Trip?
+    /// Sentences from role-play feedback, reviewed like lesson phrases. Absent from files written
+    /// before the online role-play existed.
+    public var practicePhrases: [PracticePhrase] = []
     /// The file had a trip this build couldn't read, so it was left out. Not saved; it only lets
     /// the app note the loss in its log without writing anything about the trip itself.
     public private(set) var droppedUnreadableTrip = false
@@ -43,7 +46,7 @@ public struct StudyProgress: Codable, Equatable, Sendable {
     public init() {}
 
     private enum CodingKeys: String, CodingKey {
-        case version, cards, reviews, completedUnits, challengeRuns, trip
+        case version, cards, reviews, completedUnits, challengeRuns, trip, practicePhrases
     }
 
     public init(from decoder: Decoder) throws {
@@ -60,6 +63,22 @@ public struct StudyProgress: Codable, Equatable, Sendable {
         } catch {
             trip = nil
             droppedUnreadableTrip = true
+        }
+        // Like the trip: unreadable role-play phrases don't cost the rest of the record.
+        practicePhrases = (try? container.decodeIfPresent([PracticePhrase].self, forKey: .practicePhrases)) ?? []
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(version, forKey: .version)
+        try container.encode(cards, forKey: .cards)
+        try container.encode(reviews, forKey: .reviews)
+        try container.encode(completedUnits, forKey: .completedUnits)
+        try container.encode(challengeRuns, forKey: .challengeRuns)
+        try container.encodeIfPresent(trip, forKey: .trip)
+        // Left out until there is one, so the file reads the same to builds from before the role-play.
+        if !practicePhrases.isEmpty {
+            try container.encode(practicePhrases, forKey: .practicePhrases)
         }
     }
 }
@@ -104,6 +123,32 @@ extension StudyProgress {
 
     public mutating func add(_ run: ChallengeRun) {
         challengeRuns.append(run)
+    }
+
+    /// Adds role-play phrases with new cards, like finishing a lesson. A phrase already here keeps
+    /// its cards and their history. Returns the phrases that were new.
+    @discardableResult
+    public mutating func addPractice(_ phrases: [PracticePhrase], scheduler: ReviewScheduler, at now: Date) -> [PracticePhrase] {
+        var added: [PracticePhrase] = []
+        for phrase in phrases where !practicePhrases.contains(where: { $0.id == phrase.id }) {
+            practicePhrases.append(phrase)
+            let existing = Set(cards.map(\.id))
+            for id in ContentBundle.cards(for: phrase.phrase) where !existing.contains(id) {
+                cards.append(scheduler.makeCard(id, now: now))
+            }
+            added.append(phrase)
+        }
+        return added
+    }
+
+    /// Takes a role-play phrase back out of the reviews, cards included; the review log stays.
+    public mutating func removePractice(_ id: String) {
+        practicePhrases.removeAll { $0.id == id }
+        cards.removeAll { $0.id.phraseID == id }
+    }
+
+    public func practicePhrase(_ id: String) -> PracticePhrase? {
+        practicePhrases.first { $0.id == id }
     }
 
     /// What restoring `backup` over this progress leaves: the backup's learning records, and its
