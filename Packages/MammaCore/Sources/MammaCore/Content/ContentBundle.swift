@@ -63,6 +63,25 @@ public struct ContentBundle: Sendable {
         return try? planner.resolve(scene.neededAt)
     }
 
+    /// The day each phrase is first needed on `trip`, by phrase id. Phrases whose scene the trip
+    /// doesn't place (a city it skips, an event it doesn't cover) are left out.
+    public func needByDays(on trip: Trip) -> [String: LocalDate] {
+        let planner = NeedByPlanner(trip: trip)
+        var sceneDays: [String: LocalDate] = [:]
+        for scene in course.scenes {
+            if let day = try? planner.resolve(scene.neededAt) {
+                sceneDays[scene.id] = day
+            }
+        }
+        var days: [String: LocalDate] = [:]
+        for phrase in phrases {
+            if let day = sceneDays[phrase.scene] {
+                days[phrase.id] = day
+            }
+        }
+        return days
+    }
+
     /// The cards a phrase gets: hear it and understand, see the intent and say it.
     public static func cards(for phrase: Phrase) -> [CardID] {
         [CardID(phraseID: phrase.id, kind: .listen), CardID(phraseID: phrase.id, kind: .recall)]

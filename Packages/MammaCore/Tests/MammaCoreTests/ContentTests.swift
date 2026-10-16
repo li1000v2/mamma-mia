@@ -19,10 +19,15 @@ struct ContentTests {
         )
     }
 
+    /// Made-up dates; the real trip is entered on the phone.
+    static func loadExampleTrip() throws -> Trip {
+        let data = try Data(contentsOf: repoRoot.appendingPathComponent("Content/trip.example.json"))
+        return try JSONDecoder().decode(Trip.self, from: data)
+    }
+
     @Test func repositoryContentIsConsistent() throws {
         let bundle = try Self.loadRepositoryContent()
-        let tripData = try Data(contentsOf: Self.repoRoot.appendingPathComponent("Content/trip.example.json"))
-        let trip = try JSONDecoder().decode(Trip.self, from: tripData)
+        let trip = try Self.loadExampleTrip()
 
         let issues = ContentValidator.validate(bundle, trip: trip)
         #expect(issues.isEmpty, "\(issues.map(\.description).joined(separator: "\n"))")
@@ -33,6 +38,62 @@ struct ContentTests {
         #expect(units.filter { $0.kind == .lesson }.count == 30)
         #expect(units.filter { $0.kind == .challenge }.count == 10)
         #expect(Set(units.map(\.week)) == Set(1...5))
+    }
+
+    @Test func courseNamesItsCitiesAndTheHoliday() throws {
+        let course = try Self.loadRepositoryContent().course
+        #expect(course.cities.map(\.id) == ["venezia", "napoli", "roma"])
+        let immacolata = try #require(course.event("immacolata"))
+        #expect(immacolata.month == 12 && immacolata.day == 8)
+    }
+
+    @Test func needByDaysFollowEachPhrasesScene() throws {
+        let bundle = try Self.loadRepositoryContent()
+        let trip = try Self.loadExampleTrip()
+        let days = bundle.needByDays(on: trip)
+        #expect(days["L05-01"] == LocalDate("2030-03-01")) // bar: the first day
+        #expect(days["L08-01"] == LocalDate("2030-03-01")) // boat: Venice
+        #expect(days["L14-01"] == LocalDate("2030-03-03")) // train: Naples
+        #expect(days["L18-01"] == LocalDate("2030-03-04")) // holiday: the event
+        #expect(days["L21-01"] == LocalDate("2030-03-05")) // metro: Rome
+        #expect(days["L27-01"] == LocalDate("2030-03-08")) // taxi: the last day
+        #expect(days.count == bundle.phrases.count)
+
+        // A trip without Naples or the holiday leaves those phrases to plain FSRS.
+        var shorter = trip
+        shorter.stops.removeAll { $0.city == "napoli" }
+        shorter.events = []
+        let shorterDays = bundle.needByDays(on: shorter)
+        #expect(shorterDays["L14-01"] == nil)
+        #expect(shorterDays["L18-01"] == nil)
+        #expect(shorterDays["L08-01"] == LocalDate("2030-03-01"))
+    }
+
+    @Test func validatorChecksCitiesEventsAndTheTrip() throws {
+        let venezia = CourseCity(id: "venezia", zh: "威尼斯", it: "Venezia")
+        let course = Course(
+            version: 1,
+            frames: [],
+            scenes: [
+                SceneTag(id: "boat", zh: "坐船", neededAt: "city:venezia"),
+                SceneTag(id: "metro", zh: "地铁", neededAt: "city:milano"),
+                SceneTag(id: "holiday", zh: "节日", neededAt: "event:ferragosto"),
+            ],
+            units: [],
+            cities: [venezia, venezia],
+            events: [CourseEvent(id: "never", zh: "没有这天", it: "Mai", month: 2, day: 30)]
+        )
+        let day = try #require(LocalDate("2030-03-01"))
+        let trip = Trip(stops: [Trip.Stop(city: "milano", from: day, to: day.adding(days: 2))])
+        let messages = ContentValidator.validate(ContentBundle(course: course, lessons: [], audio: nil), trip: trip)
+            .map(\.message)
+
+        #expect(messages.contains("duplicate city id venezia"))
+        #expect(messages.contains("event never has no valid date 2/30"))
+        #expect(messages.contains("scene metro needs unknown city milano"))
+        #expect(messages.contains("scene holiday needs unknown event ferragosto"))
+        #expect(messages.contains("\(TripIssue.unknownCity("milano"))"))
+        #expect(!messages.contains { $0.contains("scene boat needs") })
     }
 
     @Test func validatorCatchesBrokenReferences() {

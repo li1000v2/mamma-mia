@@ -18,9 +18,71 @@ struct ProgressTests {
         return progress
     }
 
+    /// Made-up, like everything trip-shaped in the repository.
+    func sampleTrip() throws -> Trip {
+        Trip(
+            stops: [
+                Trip.Stop(city: "venezia", from: try #require(LocalDate("2030-03-01")), to: try #require(LocalDate("2030-03-03")),
+                          hotel: Trip.Hotel(name: "Albergo Esempio", address: "Calle Finta 1, Venezia")),
+                Trip.Stop(city: "roma", from: try #require(LocalDate("2030-03-03")), to: try #require(LocalDate("2030-03-06"))),
+            ],
+            diet: Diet(allergens: [.nuts, .milk], note: "示例")
+        )
+    }
+
     @Test func roundTripsThroughJSON() throws {
         let progress = try sampleProgress()
         #expect(try ProgressStore.decode(ProgressStore.encode(progress)) == progress)
+    }
+
+    @Test func backupRoundTripsWithATrip() throws {
+        var progress = try sampleProgress()
+        progress.trip = try sampleTrip()
+        let restored = try ProgressStore.decode(ProgressStore.encode(progress))
+        #expect(restored == progress)
+        #expect(restored.trip?.stops.first?.hotel?.address == "Calle Finta 1, Venezia")
+        #expect(restored.trip?.diet?.allergens == [.nuts, .milk])
+        #expect(restored.cards == progress.cards)
+    }
+
+    @Test func backupsWithoutATripStillImport() throws {
+        let progress = try sampleProgress()
+        let data = try ProgressStore.encode(progress)
+        // No trip, no key: the file reads like one written before the trip form existed.
+        #expect(!String(decoding: data, as: UTF8.self).contains("\"trip\""))
+        let restored = try ProgressStore.decode(data)
+        #expect(restored == progress)
+        #expect(restored.trip == nil)
+
+        let old = #"{"version": 1, "cards": [], "reviews": [], "completedUnits": {"L01": "2030-03-01T08:00:00Z"}, "challengeRuns": []}"#
+        let fromOldBuild = try ProgressStore.decode(Data(old.utf8))
+        #expect(fromOldBuild.trip == nil)
+        #expect(fromOldBuild.isCompleted("L01"))
+    }
+
+    @Test func aDamagedTripDoesNotCostTheLearningRecord() throws {
+        let json = #"""
+        {"version": 1, "completedUnits": {"L01": "2030-03-01T08:00:00Z"},
+         "trip": {"timeZone": "Europe/Rome", "stops": [{"city": "roma", "from": "2030-02-30", "to": "2030-03-02"}], "events": []}}
+        """#
+        let progress = try ProgressStore.decode(Data(json.utf8))
+        #expect(progress.isCompleted("L01"))
+        #expect(progress.trip == nil)
+    }
+
+    @Test func storeKeepsTheTripUntilItIsCleared() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let store = ProgressStore(directory: directory)
+        var progress = try sampleProgress()
+        progress.trip = try sampleTrip()
+        try store.save(progress)
+        #expect(try ProgressStore(directory: directory).load() == progress)
+
+        progress.trip = nil
+        try store.save(progress)
+        #expect(try store.load().trip == nil)
+        #expect(try store.load().cards == progress.cards)
     }
 
     @Test func missingFieldsDecodeAsEmpty() throws {

@@ -106,6 +106,61 @@ struct SchedulingTests {
         #expect(recall > 0.9 && recall < 0.95)
     }
 
+    @Test func reviewsNeededSoonestComeFirstAndBoostsJoinTheQueue() throws {
+        let clock = StudyClock(timeZone: LocalDate.utc, dayStartHour: 0)
+        let today = try #require(LocalDate("2030-03-02"))
+        let now = clock.start(of: today).addingTimeInterval(10 * 3600)
+        let deadline = clock.start(of: today.adding(days: 3))
+
+        // Not due until after the day it's needed, and below 0.95 recall by then: a boost.
+        let boost = reviewedCard("L08-01", stability: 30, lastReviewDaysAgo: 20, now: deadline)
+        // Due today anyway: needed tomorrow, in five days, and not tied to the trip.
+        let tomorrow = reviewedCard("L09-01", stability: 10, lastReviewDaysAgo: 11, now: now)
+        let inFiveDays = reviewedCard("L21-01", stability: 10, lastReviewDaysAgo: 11, now: now)
+        let offTrip = reviewedCard("L01-01", stability: 2, lastReviewDaysAgo: 8, now: now)
+        let days: [String: LocalDate] = [
+            "L08-01": today.adding(days: 3),
+            "L09-01": today.adding(days: 1),
+            "L21-01": today.adding(days: 5),
+        ]
+        let needBy: (ReviewCard) -> LocalDate? = { days[$0.id.phraseID] }
+        let all = [offTrip, inFiveDays, boost, tomorrow]
+
+        var left = all
+        var order: [String] = []
+        while let next = scheduler.nextCard(from: left, newBudget: 0, now: now, clock: clock, needBy: needBy) {
+            order.append(next.id.phraseID)
+            left.removeAll { $0.id == next.id }
+        }
+        #expect(order == ["L09-01", "L08-01", "L21-01", "L01-01"])
+
+        let plan = scheduler.plan(cards: all, newIntroducedToday: 0, now: now, clock: clock, needBy: needBy)
+        #expect(plan.boosted.map(\.id.phraseID) == ["L08-01"])
+        #expect(plan.due.map(\.id.phraseID) == ["L09-01", "L21-01", "L01-01"])
+
+        // Without a trip it's plain FSRS: the boost isn't due and the weakest review goes first.
+        let plain = scheduler.plan(cards: all, newIntroducedToday: 0, now: now, clock: clock)
+        #expect(plain.boosted.isEmpty)
+        #expect(plain.due.first?.id.phraseID == "L01-01")
+        #expect(scheduler.nextCard(from: [boost], newBudget: 0, now: now, clock: clock) == nil)
+    }
+
+    @Test func aBoostedCardIsAnOrdinaryReview() throws {
+        let clock = StudyClock(timeZone: LocalDate.utc, dayStartHour: 0)
+        let needByDay = try #require(LocalDate("2030-03-05"))
+        let deadline = clock.start(of: needByDay)
+        let now = deadline.addingTimeInterval(-2 * 86_400 + 9 * 3600)
+        let boost = reviewedCard("L08-01", stability: 30, lastReviewDaysAgo: 20, now: deadline)
+        let needBy: (ReviewCard) -> LocalDate? = { _ in needByDay }
+
+        #expect(scheduler.nextCard(from: [boost], newBudget: 0, now: now, clock: clock, needBy: needBy)?.id == boost.id)
+        let (graded, record) = try scheduler.review(boost, grade: .good, at: now)
+        #expect(record.grade == .good)
+        #expect(graded.reps == boost.reps + 1)
+        // Reviewed today, so it isn't boosted again today.
+        #expect(scheduler.nextCard(from: [graded], newBudget: 0, now: now.addingTimeInterval(60), clock: clock, needBy: needBy) == nil)
+    }
+
     static func exampleTrip() throws -> Trip {
         try JSONDecoder().decode(Trip.self, from: Data(exampleTripJSON.utf8))
     }

@@ -3,6 +3,7 @@ import MammaCore
 
 struct TodayView: View {
     @Environment(AppModel.self) private var model
+    @State private var editingTrip = false
 
     var body: some View {
         NavigationStack {
@@ -24,6 +25,8 @@ struct TodayView: View {
                     }
                 }
 
+                tripSection
+
                 if model.content != nil {
                     reviewSection
                     nextSection
@@ -35,13 +38,38 @@ struct TodayView: View {
                 }
             }
             .navigationTitle("今日")
+            .sheet(isPresented: $editingTrip) {
+                TripEditorSheet()
+                    .environment(model)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var tripSection: some View {
+        if let trip = model.trip {
+            Section("行程") {
+                TripStatus(trip: trip)
+            }
+        } else {
+            Section {
+                Button {
+                    editingTrip = true
+                } label: {
+                    Label("填写行程", systemImage: "airplane")
+                }
+            } header: {
+                Text("行程")
+            } footer: {
+                Text("填了每座城市的到达日期，复习会赶在用到之前，把要用的句子提前过一遍。以后在「随身」里修改。")
+            }
         }
     }
 
     private var reviewSection: some View {
         let plan = model.todayPlan
         return Section("复习") {
-            if plan.due.isEmpty && plan.new.isEmpty {
+            if plan.due.isEmpty && plan.boosted.isEmpty && plan.new.isEmpty {
                 Label("今天的复习都做完了", systemImage: "checkmark.circle")
                     .foregroundStyle(.secondary)
             } else {
@@ -51,13 +79,23 @@ struct TodayView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("开始复习")
                             .font(.headline)
-                        Text("到期 \(plan.due.count) 张 · 新卡 \(plan.new.count) 张")
+                        Text(planSummary(plan))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
                 }
             }
         }
+    }
+
+    /// "到期 12 张 · 行程加练 5 张 · 新卡 10 张"; the boost count only appears near the trip.
+    private func planSummary(_ plan: DailyPlan) -> String {
+        var parts = ["到期 \(plan.due.count) 张"]
+        if !plan.boosted.isEmpty {
+            parts.append("行程加练 \(plan.boosted.count) 张")
+        }
+        parts.append("新卡 \(plan.new.count) 张")
+        return parts.joined(separator: " · ")
     }
 
     @ViewBuilder

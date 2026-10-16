@@ -1,11 +1,15 @@
 {
   "timeZone": "Europe/Rome",
   "stops": [
-    { "city": "venezia", "from": "2030-03-01", "to": "2030-03-03" },
+    {
+      "city": "venezia", "from": "2030-03-01", "to": "2030-03-03",
+      "hotel": { "name": "Albergo Esempio", "address": "Calle Finta 1, Venezia" }
+    },
     { "city": "napoli", "from": "2030-03-03", "to": "2030-03-05" },
     { "city": "roma", "from": "2030-03-05", "to": "2030-03-08" }
   ],
   "events": [
     { "id": "immacolata", "date": "2030-03-04" }
-  ]
+  ],
+  "diet": { "allergens": ["nuts"], "note": "示例：不吃生的海鲜" }
 }

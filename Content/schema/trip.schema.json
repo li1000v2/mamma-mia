@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "trip.schema.json",
-  "title": "Itinerary (the real one stays on the phone; only trip.example.json is committed)",
+  "title": "Itinerary (the real one is entered in the app and stays on the phone; only trip.example.json is committed)",
   "type": "object",
   "required": ["timeZone", "stops", "events"],
   "additionalProperties": false,
@@ -17,7 +17,15 @@
         "properties": {
           "city": { "type": "string", "pattern": "^[a-z]+$" },
           "from": { "$ref": "#/$defs/date" },
-          "to": { "$ref": "#/$defs/date" }
+          "to": { "$ref": "#/$defs/date" },
+          "hotel": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": { "$ref": "#/$defs/text" },
+              "address": { "$ref": "#/$defs/text" }
+            }
+          }
         }
       }
     },
@@ -32,9 +40,28 @@
           "date": { "$ref": "#/$defs/date" }
         }
       }
+    },
+    "diet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allergens": {
+          "description": "The 14 allergens of Regulation (EU) No 1169/2011, Annex II, in annex order.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "gluten", "crustaceans", "eggs", "fish", "peanuts", "soybeans", "milk",
+              "nuts", "celery", "mustard", "sesame", "sulphites", "lupin", "molluscs"
+            ]
+          }
+        },
+        "note": { "$ref": "#/$defs/text" }
+      }
     }
   },
   "$defs": {
-    "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+    "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "text": { "type": "string", "minLength": 1 }
   }
 }

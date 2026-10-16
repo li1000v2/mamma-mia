@@ -11,6 +11,8 @@ final class AppModel {
     private(set) var progress = StudyProgress()
     private(set) var storageError: String?
     private(set) var phrasesByID: [String: Phrase] = [:]
+    /// The trip day each phrase is first needed on, by phrase id; empty without a trip.
+    private(set) var needByDays: [String: LocalDate] = [:]
 
     let scheduler = ReviewScheduler()
     let audio = AudioService()
@@ -25,6 +27,7 @@ final class AppModel {
         configureAudioSession()
         loadContent()
         loadProgress()
+        refreshNeedBy()
         Task { await speech.refresh() }
     }
 
@@ -74,7 +77,8 @@ final class AppModel {
     }
 
     var todayPlan: DailyPlan {
-        scheduler.plan(cards: activeCards, newIntroducedToday: newCardsStartedToday, now: .now, clock: clock)
+        scheduler.plan(cards: activeCards, newIntroducedToday: newCardsStartedToday, now: .now, clock: clock,
+                       needBy: needBy)
     }
 
     var reviewsToday: Int {
@@ -84,7 +88,19 @@ final class AppModel {
     func nextReviewCard(after previous: ReviewCard? = nil) -> ReviewCard? {
         let budget = max(0, scheduler.config.newCardsPerDay - newCardsStartedToday)
         return scheduler.nextCard(from: activeCards, newBudget: budget, now: .now, clock: clock,
-                                  avoidingPhrase: previous?.id.phraseID)
+                                  needBy: needBy, avoidingPhrase: previous?.id.phraseID)
+    }
+
+    /// The trip day a card is first needed on, for the review queue.
+    private var needBy: (ReviewCard) -> LocalDate? {
+        let days = needByDays
+        return { days[$0.id.phraseID] }
+    }
+
+    /// For a card shown although FSRS doesn't have it due today: the day the trip needs it.
+    func boostDay(for card: ReviewCard) -> LocalDate? {
+        guard !card.isNew, card.due > clock.end(of: today) else { return nil }
+        return needByDays[card.id.phraseID]
     }
 
     func outcomes(for card: ReviewCard) -> [Grade: Date] {
@@ -117,6 +133,32 @@ final class AppModel {
         AppLog.shared.write("Challenge \(run.unit) \(run.passed ? "passed" : "not passed"), hints \(run.hintsUsed), mistakes \(run.mistakes)")
     }
 
+    // MARK: Trip
+
+    /// Personal data: kept in the progress file on this phone and in its backups, never in the log.
+    var trip: Trip? { progress.trip }
+
+    /// Today's calendar date where the phone is; the phone switches to Italian time on landing.
+    var calendarToday: LocalDate { LocalDate.of(.now, in: .current) }
+
+    var cities: [CourseCity] { content?.course.cities ?? [] }
+
+    func cityName(_ id: String) -> String {
+        content?.course.city(id)?.zh ?? id
+    }
+
+    func eventName(_ id: String) -> String {
+        content?.course.event(id)?.zh ?? id
+    }
+
+    /// Saves the trip from the form, or clears it with nil. Learning records are untouched.
+    func saveTrip(_ trip: Trip?) {
+        progress.trip = trip
+        save()
+        refreshNeedBy()
+        AppLog.shared.write(trip == nil ? "Trip cleared" : "Trip saved")
+    }
+
     // MARK: Backup
 
     /// Writes the progress to a temporary file named for today, for sharing or saving to Files.
@@ -127,18 +169,35 @@ final class AppModel {
     }
 
     /// Replaces the progress with an exported file; the current one is kept as the backup copy.
-    func importProgress(from url: URL) throws {
+    /// A backup without a trip (older ones have none) keeps the trip already on the phone; the
+    /// result says whether that happened.
+    @discardableResult
+    func importProgress(from url: URL) throws -> Bool {
         let accessing = url.startAccessingSecurityScopedResource()
         defer {
             if accessing { url.stopAccessingSecurityScopedResource() }
         }
-        let imported = try ProgressStore.decode(Data(contentsOf: url))
+        var imported = try ProgressStore.decode(Data(contentsOf: url))
+        let keptTrip = imported.trip == nil && progress.trip != nil
+        if keptTrip {
+            imported.trip = progress.trip
+        }
         try store.save(imported)
         progress = imported
+        refreshNeedBy()
         AppLog.shared.write("Imported progress: \(imported.cards.count) cards, \(imported.reviews.count) reviews")
+        return keptTrip
     }
 
     // MARK: Private
+
+    private func refreshNeedBy() {
+        if let content, let trip = progress.trip {
+            needByDays = content.needByDays(on: trip)
+        } else {
+            needByDays = [:]
+        }
+    }
 
     private func loadProgress() {
         do {

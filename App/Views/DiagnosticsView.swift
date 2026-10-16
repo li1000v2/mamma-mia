@@ -12,7 +12,7 @@ struct DiagnosticsView: View {
 
     var body: some View {
         List {
-            Section("学习进度备份") {
+            Section {
                 if let exportURL {
                     ShareLink(item: exportURL) {
                         Label("导出进度", systemImage: "square.and.arrow.up")
@@ -25,9 +25,16 @@ struct DiagnosticsView: View {
                 }
                 LabeledContent("卡片", value: "\(model.progress.cards.count)")
                 LabeledContent("复习记录", value: "\(model.progress.reviews.count)")
+                LabeledContent("行程", value: model.trip == nil ? "没有" : "已填写")
                 if let backupMessage {
                     Text(backupMessage)
                         .font(.footnote)
+                }
+            } header: {
+                Text("学习进度备份")
+            } footer: {
+                if model.trip != nil {
+                    Text("备份文件里也有行程，包括酒店地址和忌口，只存到自己的地方。")
                 }
             }
             speechSection
@@ -69,7 +76,7 @@ struct DiagnosticsView: View {
             Button("覆盖", role: .destructive) { restore() }
             Button("取消", role: .cancel) { pendingImport = nil }
         } message: {
-            Text("当前进度会先存成备份副本。")
+            Text("当前进度会先存成备份副本。备份里没有行程的话，保留手机上现在的行程。")
         }
         .onAppear {
             log = AppLog.shared.read()
@@ -130,9 +137,9 @@ struct DiagnosticsView: View {
         guard let url = pendingImport else { return }
         pendingImport = nil
         do {
-            try model.importProgress(from: url)
+            let keptTrip = try model.importProgress(from: url)
             exportURL = try? model.exportFile()
-            backupMessage = "已从备份恢复。"
+            backupMessage = keptTrip ? "已从备份恢复。备份里没有行程，保留了手机上现在的行程。" : "已从备份恢复。"
         } catch {
             backupMessage = "恢复失败：\(error)"
         }
