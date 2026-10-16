@@ -1,0 +1,48 @@
+{
+  "unit": "L14",
+  "intro": "句框 Un / Due… per…：数量 + 东西 + per + 目的地。per 在这里是“去往”：Un biglietto per Napoli（一张去那不勒斯的票）。两张以上名词要变复数，-o 变 -i：Due biglietti per Roma。城市名前不加冠词。\n\n票分两种：solo andata（单程）和 andata e ritorno（往返）。andata 是“去”，ritorno 是“回”。售票员常问 Solo andata o andata e ritorno?\n\n买完票问站台：Da quale binario parte?（从几号站台出发？）。quale 是“哪个”，binario 是站台，parte 是“（它）出发”。回答一般是 Dal binario tre（从 3 号站台）。\n\n车次、票价、站台号每次都可能不一样，不用背，以车票、出发大屏（tabellone）和广播为准。\n\n发音：binario≈ビナーリオ，重音在 na；andata≈アンダータ；ritorno 的 r 要弹舌。",
+  "phrases": [
+    {
+      "id": "L14-01",
+      "it": "Un biglietto per Napoli, per favore.",
+      "zh": "一张去那不勒斯的票，谢谢。",
+      "frame": "numero",
+      "scene": "train",
+      "status": "draft",
+      "note": "第一个 per 是“去往”，per favore 是“请”。"
+    },
+    {
+      "id": "L14-02",
+      "it": "Solo andata o andata e ritorno?",
+      "zh": "单程还是往返？",
+      "scene": "train",
+      "status": "draft",
+      "note": "售票员常问的话，听懂就行。"
+    },
+    {
+      "id": "L14-03",
+      "it": "Solo andata, per favore.",
+      "zh": "单程，谢谢。",
+      "scene": "train",
+      "status": "draft",
+      "note": "要往返就说 Andata e ritorno, per favore。"
+    },
+    {
+      "id": "L14-04",
+      "it": "Da quale binario parte?",
+      "zh": "从几号站台出发？",
+      "scene": "train",
+      "status": "draft",
+      "note": "回答一般是 Dal binario tre（从 3 号站台）。站台号没听清就请对方写下来：Me lo può scrivere?"
+    },
+    {
+      "id": "L14-05",
+      "it": "A che ora parte il prossimo treno per Roma?",
+      "zh": "下一班去罗马的火车几点开？",
+      "frame": "ache",
+      "scene": "train",
+      "status": "draft",
+      "note": "prossimo 是“下一个”。回答用 24 小时制，比如 Alle quattordici e dieci（14:10）。"
+    }
+  ]
+}

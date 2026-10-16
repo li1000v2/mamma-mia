@@ -1,0 +1,48 @@
+{
+  "unit": "L17",
+  "intro": "点单还是用 Vorrei… / Prendo…：Vorrei una margherita（我想要一个玛格丽特）。在披萨店说 una margherita 就是一整个披萨，不用再说 pizza；pizza 是阴性词，所以用 una。\n\n那不勒斯是披萨的故乡，最经典的两款：margherita（番茄、马苏里拉奶酪、罗勒）和 marinara（番茄、大蒜、牛至，没有奶酪）。街边还有 pizza a portafoglio：对折再对折，用纸包着边走边吃，portafoglio 本来是“钱包”。\n\n店员常问 Qui o da portare via?（在这儿吃还是外带？）。外带说 da portare via，招牌上也常写 da asporto 或 asporto。\n\n问要等多久：Quanto devo aspettare?（我得等多久？）。devo 是“我得、我必须”，aspettare 是“等”。回答多半是 Dieci minuti（10 分钟）或 Un quarto d'ora（一刻钟，15 分钟）。\n\n发音：margherita 的 ghe 是硬音≈マルゲリータ；aspettare 的 tt 停一拍≈アスペッターレ。",
+  "phrases": [
+    {
+      "id": "L17-01",
+      "it": "Una margherita, per favore.",
+      "zh": "请给我一个玛格丽特披萨。",
+      "frame": "prendo",
+      "scene": "pizzeria",
+      "status": "draft",
+      "note": "margherita 本身就指这款披萨，不用再说 pizza。"
+    },
+    {
+      "id": "L17-02",
+      "it": "Vorrei una pizza a portafoglio.",
+      "zh": "我想要一个折起来吃的街头披萨。",
+      "frame": "prendo",
+      "scene": "pizzeria",
+      "status": "draft",
+      "note": "对折再对折、边走边吃的那不勒斯街头披萨。Vorrei 比 Prendo 客气。"
+    },
+    {
+      "id": "L17-03",
+      "it": "Qui o da portare via?",
+      "zh": "在这儿吃还是外带？",
+      "scene": "pizzeria",
+      "status": "draft",
+      "note": "店员常问的话，听懂就行。"
+    },
+    {
+      "id": "L17-04",
+      "it": "Da portare via, per favore.",
+      "zh": "外带，谢谢。",
+      "scene": "pizzeria",
+      "status": "draft",
+      "note": "在店里吃就说 Qui, per favore。"
+    },
+    {
+      "id": "L17-05",
+      "it": "Quanto devo aspettare?",
+      "zh": "要等多久？",
+      "scene": "pizzeria",
+      "status": "draft",
+      "note": "回答常是 Dieci minuti（10 分钟）或 Un quarto d'ora（一刻钟，15 分钟）。"
+    }
+  ]
+}

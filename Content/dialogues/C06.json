@@ -1,0 +1,119 @@
+{
+  "unit": "C06",
+  "title": "节日里的那不勒斯",
+  "goal": "碰上节日，那不勒斯很多店的营业时间都变了。在一家披萨店门口问今天开不开、几点关门，外带一个玛格丽特披萨，问清要等多久，最后互道 Buone feste。",
+  "speaker": "Pizzaiolo",
+  "voice": "m1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "aperto",
+      "npc": [
+        { "it": "Buonasera!", "zh": "晚上好！" },
+        { "it": "Buonasera, prego!", "zh": "晚上好，请进！" }
+      ],
+      "reply": {
+        "intent": "问今天开不开门",
+        "choices": [
+          { "it": "Buonasera. È aperto anche oggi?", "correct": true },
+          { "it": "Buonasera. È aperto anche domani?", "correct": false, "feedback": "domani 是明天。你要问的是今天：oggi。" },
+          { "it": "Buonasera. Sono aperto anche oggi?", "correct": false, "feedback": "sono 是“我是”，这句成了“我今天也开门吗”。问店家用 È aperto…?" }
+        ]
+      }
+    },
+    {
+      "id": "chiude",
+      "npc": [
+        { "it": "Sì, siamo aperti! Ma oggi è festa e chiudiamo prima.", "zh": "开着呢！不过今天过节，我们关得早。" },
+        { "it": "Certo, entri pure! Oggi però è festa: chiudiamo presto.", "zh": "当然，请进！不过今天过节，我们早关门。" }
+      ],
+      "reply": {
+        "intent": "问今天几点关门",
+        "frame": "ache",
+        "choices": [
+          { "it": "A che ora chiude oggi?", "correct": true },
+          { "it": "A che ora apre oggi?", "correct": false, "feedback": "apre 是开门。店已经开着，你要问几点关门：chiude。" },
+          { "it": "A che ora chiudo oggi?", "correct": false, "feedback": "chiudo 是“我关门”。问店家几点关门要说 chiude。" }
+        ]
+      }
+    },
+    {
+      "id": "orario",
+      "npc": [
+        { "it": "Oggi chiudiamo alle ventuno.", "zh": "今天我们 21 点关门。", "answer": "21:00", "distractors": ["20:00", "23:00"] },
+        { "it": "Oggi chiudiamo alle diciannove e trenta.", "zh": "今天我们 19 点半关门。", "answer": "19:30", "distractors": ["17:30", "09:30"] },
+        { "it": "Oggi chiudiamo alle diciotto.", "zh": "今天我们 18 点关门。", "answer": "18:00", "distractors": ["16:00", "08:00"] }
+      ],
+      "question": "今天几点关门？",
+      "reply": {
+        "intent": "外带一个玛格丽特披萨，再问要等多久",
+        "frame": "prendo",
+        "choices": [
+          { "it": "Allora, una margherita da portare via, per favore. Quanto devo aspettare?", "correct": true },
+          { "it": "Allora, una margherita da mangiare qui, per favore. Quanto devo aspettare?", "correct": false, "feedback": "da mangiare qui 是在店里吃。这次要外带：da portare via。" },
+          { "it": "Allora, una margherita da portare via, per favore. Quanto devo pagare?", "correct": false, "feedback": "pagare 是付钱。想问要等多久，要说 aspettare。" }
+        ]
+      }
+    },
+    {
+      "id": "attesa",
+      "npc": [
+        { "it": "Circa venti minuti: oggi c'è tanta gente!", "zh": "大概 20 分钟，今天人很多！", "answer": "20 分钟", "distractors": ["10 分钟", "12 分钟"] },
+        { "it": "Dieci minuti, più o meno.", "zh": "10 分钟左右。", "answer": "10 分钟", "distractors": ["2 分钟", "20 分钟"] },
+        { "it": "Un quarto d'ora, più o meno.", "zh": "一刻钟左右。", "answer": "15 分钟", "distractors": ["4 分钟", "30 分钟"] }
+      ],
+      "question": "要等多久？"
+    },
+    {
+      "id": "auguri",
+      "npc": [
+        { "it": "Ecco la sua margherita. Buone feste!", "zh": "这是您的玛格丽特。节日快乐！" },
+        { "it": "Ecco a lei, e buone feste!", "zh": "给您，节日快乐！" }
+      ],
+      "reply": {
+        "intent": "道谢，也祝对方节日快乐",
+        "choices": [
+          { "it": "Grazie, buone feste anche a lei!", "correct": true },
+          { "it": "Prego, buone feste!", "correct": false, "feedback": "prego 是“不客气”。对方把披萨递给你，你要说 Grazie。" },
+          { "it": "Grazie, buon appetito anche a lei!", "correct": false, "feedback": "buon appetito 是“请慢用”，吃饭时才说。回节日祝福要说 buone feste anche a lei。" }
+        ]
+      }
+    }
+  ],
+  "followUps": {
+    "after": "attesa",
+    "min": 1,
+    "max": 2,
+    "pool": [
+      {
+        "id": "bere",
+        "npc": [
+          { "it": "Vuole anche qualcosa da bere?", "zh": "还要点喝的吗？" }
+        ],
+        "reply": {
+          "intent": "说不用了，就这些",
+          "choices": [
+            { "it": "No, grazie. Basta così.", "correct": true },
+            { "it": "Sì, grazie. Basta così.", "correct": false, "feedback": "Sì 是“要”，和 Basta così（就这些）矛盾。" },
+            { "it": "No, prego.", "correct": false, "feedback": "prego 是“不客气”或“请”，拒绝时说 No, grazie。" }
+          ]
+        }
+      },
+      {
+        "id": "pagamento",
+        "npc": [
+          { "it": "Contanti o carta?", "zh": "现金还是刷卡？" },
+          { "it": "Paga in contanti o con la carta?", "zh": "您付现金还是刷卡？" }
+        ],
+        "reply": {
+          "intent": "说刷卡",
+          "choices": [
+            { "it": "Con la carta, grazie.", "correct": true },
+            { "it": "In contanti, grazie.", "correct": false, "feedback": "这是付现金。这次的任务是刷卡：Con la carta。" },
+            { "it": "Con la cassa, grazie.", "correct": false, "feedback": "cassa 是收银台。刷卡说 con la carta。" }
+          ]
+        }
+      }
+    ]
+  }
+}
