@@ -265,7 +265,8 @@ def main() -> int:
                 path.unlink()
 
     manifest = {"version": manifest["version"], "voices": list(profiles.values()), "entries": dict(sorted(entries.items()))}
-    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=AUDIO, suffix=".json", delete=False)
+    # newline="\n": keep LF on Windows too, like the rest of the repository.
+    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", newline="\n", dir=AUDIO, suffix=".json", delete=False)
     with tmp:
         json.dump(manifest, tmp, ensure_ascii=False, indent=2)
         tmp.write("\n")
