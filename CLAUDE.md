@@ -7,6 +7,7 @@
 
 - `project.yml`：XcodeGen 工程定义。只改它，不手改 `.xcodeproj`（已 gitignore，CI 每次重新生成）。
 - `App/`：SwiftUI 界面，Swift 5 语言模式。只放界面和 iOS 专属能力（录音、识别、通知）。
+- `App/Assets.xcassets/AppIcon.appiconset/`：app 图标，一张 1024×1024、不带透明通道的 PNG，圆角由 iOS 切。
 - `Packages/MammaCore/`：调度、判定、内容解析。只依赖 Foundation 和 swift-fsrs，不许 import UIKit / SwiftUI / SwiftData，保证 Linux 上能测。
 - `Content/`：课程数据（JSON），整个文件夹打包进 app；`schema/` 是 JSON Schema。
 - `Audio/`：生成的 .m4a 和 `manifest.json`。
