@@ -32,6 +32,12 @@
 - 人工听审前先跑 `python tools/audio_review.py`（默认第 1 周，`--week N` 换周，`--limit`/`--only` 限范围）：gemini-4-argon 用 HIGH 思考档逐段听，结果按文件名缓存在 `reviews/audio-screen-cache.json`，可疑片段写进 `reviews/audio-screen-week<N>.md`，同名 `.html` 可在浏览器里逐条点听。它不判断双辅音长短（实测会自信地判错），含双辅音的句子只备注“双辅音需人工听”；改了提示词就把脚本里的 `PROMPT_REV` 加一，旧结果会重筛。
 - app 里没有音频的句子会退回 iOS 自带的意大利语语音。挑战剧本可以用 `voice` 指定角色的声线。
 
+## 开口说（离线识别）
+
+- `App/Services/SpeechService.swift`：SpeechAnalyzer + SpeechTranscriber（it_IT），设备不支持就退到 DictationTranscriber，再不行只保留录音对比和自评。模型经 AssetInventory 下载，状态显示在「诊断、日志与备份」。
+- 判定在 MammaCore 的 `Speech/`：识别结果和目标句逐词对齐，忽略大小写、标点和重音，只判断“对方能不能听懂”，不打发音分。
+- 识别只是提示：复习照旧自评打分。挑战里说出的回复按选项的词匹配，对不上就点选；选项之间要差至少一个听得出的词，只差标点或重音的两个选项只能点选。
+
 ## 交叉校对
 
 - `python tools/cross_check.py --week 1`（或列单元 id：`L03 C01`；`--dry-run` 只打印请求）把单元分批发给 gemini-4-argon 审，报告写到 `reviews/cross-check-<单元>.md`。key 同上，云端环境由 network secret 注入 `x-goog-api-key`。

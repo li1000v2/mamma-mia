@@ -30,6 +30,7 @@ struct DiagnosticsView: View {
                         .font(.footnote)
                 }
             }
+            speechSection
             Section("版本") {
                 LabeledContent("版本", value: "\(BuildInfo.version) (\(BuildInfo.build))")
                 LabeledContent("提交", value: BuildInfo.commit)
@@ -73,6 +74,55 @@ struct DiagnosticsView: View {
         .onAppear {
             log = AppLog.shared.read()
             exportURL = try? model.exportFile()
+            model.speech.refreshPermission()
+        }
+    }
+
+    /// Offline recognition for 开口说: whether it works here, and the model download.
+    private var speechSection: some View {
+        let speech = model.speech
+        return Section {
+            LabeledContent("状态", value: speech.statusText)
+            if let engine = speech.engine {
+                LabeledContent("引擎", value: engine.rawValue)
+            }
+            if let locale = speech.locale {
+                LabeledContent("语言", value: locale.identifier(.bcp47))
+            }
+            LabeledContent("权限", value: speech.permissionText)
+            switch speech.status {
+            case .needsDownload, .failed:
+                Button {
+                    Task { await speech.downloadModel() }
+                } label: {
+                    Label("下载意大利语识别模型", systemImage: "arrow.down.circle")
+                }
+            case .downloading(_, let fraction):
+                ProgressView(value: fraction)
+            default:
+                EmptyView()
+            }
+            Button {
+                Task { await speech.refresh() }
+            } label: {
+                Label("重新检查", systemImage: "arrow.clockwise")
+            }
+            .disabled(speech.status == .checking)
+        } header: {
+            Text("语音识别")
+        } footer: {
+            Text(speechFooter)
+        }
+    }
+
+    private var speechFooter: String {
+        switch model.speech.status {
+        case .unsupported:
+            "这台手机不能离线识别意大利语。开口练习只保留录音对比和自评。"
+        case .needsDownload:
+            "模型由系统下载和管理，下载一次后离线可用，其他 app 也能共用。"
+        default:
+            "只用手机自带的离线识别，判断你说的意大利语对方能不能听懂，不打发音分。录音和识别结果都不离开这台手机。"
         }
     }
 

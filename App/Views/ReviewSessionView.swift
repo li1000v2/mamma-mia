@@ -17,6 +17,8 @@ struct ReviewSessionView: View {
                     reviewed += 1
                     advance(after: card)
                 }
+                // A fresh view per card, so a spoken try doesn't carry over to the next one.
+                .id(card.id)
             } else if started {
                 ContentUnavailableView(
                     "今天的复习完成了",
@@ -33,7 +35,10 @@ struct ReviewSessionView: View {
                 started = true
             }
         }
-        .onDisappear { model.audio.stop() }
+        .onDisappear {
+            model.audio.stop()
+            model.recorder.stop()
+        }
     }
 
     private var title: String {
@@ -52,21 +57,37 @@ private struct ReviewCardView: View {
     let phrase: Phrase
     @Binding var revealed: Bool
     let onGrade: (Grade) -> Void
+    /// A recall card can be said aloud before showing the answer. It's only a hint: the grade
+    /// is still the learner's own, and only that grade updates the card.
+    @State private var attempt: SpokenAttempt?
 
     var body: some View {
         VStack(spacing: 20) {
             Text(card.id.kind == .listen ? "听：这句是什么意思？" : "说：用意大利语怎么说？")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            Spacer()
-            prompt
-            if revealed {
-                answer
+            ScrollView {
+                VStack(spacing: 20) {
+                    prompt
+                    if revealed {
+                        answer
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 24)
             }
-            Spacer()
+            // Centered like before while it fits; scrolls when a spoken check makes it taller.
+            .defaultScrollAnchor(.center)
             if revealed {
                 gradeButtons
             } else {
+                if card.id.kind == .recall {
+                    SayItButton(recordingID: "say-\(phrase.id)", title: "先说一遍（可选）", prominent: false) { result in
+                        guard !revealed else { return }
+                        attempt = result
+                        reveal()
+                    }
+                }
                 Button {
                     reveal()
                 } label: {
@@ -102,9 +123,13 @@ private struct ReviewCardView: View {
 
     private var answer: some View {
         VStack(spacing: 8) {
-            Text(phrase.it)
-                .font(.title2.weight(.semibold))
-                .multilineTextAlignment(.center)
+            if let attempt {
+                SpokenAnswer(text: phrase.it, attempt: attempt)
+            } else {
+                Text(phrase.it)
+                    .font(.title2.weight(.semibold))
+                    .multilineTextAlignment(.center)
+            }
             Text(phrase.zh)
                 .foregroundStyle(.secondary)
             if let note = phrase.note {
@@ -113,7 +138,7 @@ private struct ReviewCardView: View {
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
-            if card.id.kind != .listen {
+            if card.id.kind != .listen, attempt == nil {
                 HStack(spacing: 28) {
                     SpeakButton(text: phrase.it)
                     SpeakButton(text: phrase.it, speed: .slow)
@@ -152,6 +177,7 @@ private struct ReviewCardView: View {
     }
 
     private func reveal() {
+        model.recorder.stop()
         revealed = true
         if card.id.kind != .listen {
             Task { await model.audio.say(phrase.it) }
