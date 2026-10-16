@@ -36,6 +36,9 @@ public struct StudyProgress: Codable, Equatable, Sendable {
     /// Personal: stays on the phone and in its backups. Absent from files written before the trip
     /// form existed.
     public var trip: Trip?
+    /// Notes and check-ins at the pilgrimage spots, by spot id. Personal like the trip. Absent from
+    /// files written before the pilgrimage layer, and from any without one.
+    public var spotLogs: [String: SpotLog] = [:]
     /// The file had a trip this build couldn't read, so it was left out. Not saved; it only lets
     /// the app note the loss in its log without writing anything about the trip itself.
     public private(set) var droppedUnreadableTrip = false
@@ -43,7 +46,7 @@ public struct StudyProgress: Codable, Equatable, Sendable {
     public init() {}
 
     private enum CodingKeys: String, CodingKey {
-        case version, cards, reviews, completedUnits, challengeRuns, trip
+        case version, cards, reviews, completedUnits, challengeRuns, trip, spotLogs
     }
 
     public init(from decoder: Decoder) throws {
@@ -60,6 +63,22 @@ public struct StudyProgress: Codable, Equatable, Sendable {
         } catch {
             trip = nil
             droppedUnreadableTrip = true
+        }
+        // Like the trip: notes and check-ins that can't be read don't cost the learning record.
+        spotLogs = (try? container.decodeIfPresent([String: SpotLog].self, forKey: .spotLogs)) ?? [:]
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(version, forKey: .version)
+        try container.encode(cards, forKey: .cards)
+        try container.encode(reviews, forKey: .reviews)
+        try container.encode(completedUnits, forKey: .completedUnits)
+        try container.encode(challengeRuns, forKey: .challengeRuns)
+        try container.encodeIfPresent(trip, forKey: .trip)
+        // Left out until there is one, so the file reads the same to builds from before the spots.
+        if !spotLogs.isEmpty {
+            try container.encode(spotLogs, forKey: .spotLogs)
         }
     }
 }
@@ -108,10 +127,14 @@ extension StudyProgress {
 
     /// What restoring `backup` over this progress leaves: the backup's learning records, and its
     /// trip if it has one. A backup without a trip (every backup made before the trip form, or one
-    /// whose trip couldn't be read) keeps the trip already here; `keptTrip` says so.
+    /// whose trip couldn't be read) keeps the trip already here; `keptTrip` says so. Spot notes and
+    /// check-ins work the same way, so a backup from before the pilgrimage layer doesn't wipe them.
     public func restoring(_ backup: StudyProgress) -> (progress: StudyProgress, keptTrip: Bool) {
-        guard backup.trip == nil, let trip else { return (backup, false) }
         var restored = backup
+        if backup.spotLogs.isEmpty {
+            restored.spotLogs = spotLogs
+        }
+        guard backup.trip == nil, let trip else { return (restored, false) }
         restored.trip = trip
         return (restored, true)
     }

@@ -17,23 +17,27 @@ public struct ContentBundle: Sendable {
     public let audio: AudioManifest?
     /// The show cards' own sentences (showcards.json); nil when the content has none.
     public let showCardContent: ShowCardContent?
+    /// The pilgrimage spots (spots.json); nil when the content has none.
+    public let spotContent: SpotContent?
 
     public init(
         course: Course,
         lessons: [LessonContent],
         dialogues: [DialogueScript] = [],
         audio: AudioManifest?,
-        showCardContent: ShowCardContent? = nil
+        showCardContent: ShowCardContent? = nil,
+        spotContent: SpotContent? = nil
     ) {
         self.course = course
         self.lessons = lessons.sorted { $0.unit < $1.unit }
         self.dialogues = dialogues.sorted { $0.unit < $1.unit }
         self.audio = audio
         self.showCardContent = showCardContent
+        self.spotContent = spotContent
     }
 
     /// Loads course.json, every lessons/*.json and dialogues/*.json and, when present,
-    /// showcards.json and the audio manifest.
+    /// showcards.json, spots.json and the audio manifest.
     public static func load(contentDirectory: URL, audioDirectory: URL? = nil) throws -> ContentBundle {
         let course: Course = try decode(contentDirectory.appendingPathComponent("course.json"))
         let lessons: [LessonContent] = try decodeAll(in: contentDirectory.appendingPathComponent("lessons", isDirectory: true))
@@ -45,6 +49,12 @@ public struct ContentBundle: Sendable {
             showCardContent = try decode(showCards)
         }
 
+        var spotContent: SpotContent?
+        let spots = contentDirectory.appendingPathComponent("spots.json")
+        if FileManager.default.fileExists(atPath: spots.path) {
+            spotContent = try decode(spots)
+        }
+
         var audio: AudioManifest?
         if let audioDirectory {
             let manifest = audioDirectory.appendingPathComponent("manifest.json")
@@ -52,7 +62,8 @@ public struct ContentBundle: Sendable {
                 audio = try decode(manifest)
             }
         }
-        return ContentBundle(course: course, lessons: lessons, dialogues: dialogues, audio: audio, showCardContent: showCardContent)
+        return ContentBundle(course: course, lessons: lessons, dialogues: dialogues, audio: audio,
+                             showCardContent: showCardContent, spotContent: spotContent)
     }
 
     public var phrases: [Phrase] { lessons.flatMap(\.phrases) }
