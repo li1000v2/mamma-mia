@@ -1,6 +1,6 @@
 {
   "unit": "L28",
-  "intro": "自我介绍就三件事：叫什么、从哪来、住在哪儿。\n\n叫什么：Mi chiamo…（我叫……），chiamo 的 ch 读硬音≈キ：mi chiamo≈ミ・キアーモ。初次见面先说 Piacere（幸会）。\n\n从哪来：对方问 Di dov'è?（您是哪里人？）时，用句框 Sono…（我是……）答国籍：Sono cinese（我是中国人）。cinese 男女同形；会变阴阳性的词，男生自述用阳性，比如 Sono stanco（我累了）。\n\n住在哪儿：Vivo a + 城市（我住在……）：Vivo a Pechino（北京）、Vivo a Shanghai（上海）、Vivo a Tokyo（东京）。城市前面用 a，不加冠词。\n\n再加一句 È la mia prima volta in Italia（这是我第一次来意大利），话题就打开了。对方夸你意大利语说得好，就回 Grazie! Parlo solo un po' d'italiano。",
+  "intro": "自我介绍就三件事：叫什么、从哪来、住在哪儿。\n\n叫什么：Mi chiamo…（我叫……）。初次见面先说 Piacere（幸会）。\n\n从哪来：对方问 Di dov'è?（您是哪里人？）时，用句框 Sono…（我是……）答国籍：Sono cinese（我是中国人）。cinese 男女同形；会变阴阳性的词，男生自述用阳性，比如 Sono stanco（我累了）。\n\n住在哪儿：Vivo a + 城市（我住在……）：Vivo a Pechino（北京）、Vivo a Shanghai（上海）、Vivo a Tokyo（东京）。城市前面用 a，不加冠词。\n\n再加一句 È la mia prima volta in Italia（这是我第一次来意大利），话题就打开了。对方夸你意大利语说得好，就回 Grazie! Parlo solo un po' d'italiano。\n\n发音：先听示范音频，再看下面的提示，标准是音频。\n· chiamo、Pechino 的 ch 读 k。cinese、Piacere 的 c 在 i、e 前像英语 cheese 的 ch；不像的是英语的 ch 常带一口气，意大利语不送气。也别按拼音读：拼音的 c、q 都是别的音。\n· 重音靠读得响、读得长，不靠音调高低：CHIA-mo、pia-CE-re、ci-NE-se、i-TA-lia。\n· prima 的 pr、Parlo 的 rl 中间不加元音；in Italia 的 n 直接连到 I，也不加元音。",
   "phrases": [
     {
       "id": "L28-01",
@@ -16,7 +16,7 @@
       "zh": "您是哪里人？",
       "scene": "smalltalk",
       "status": "draft",
-      "note": "闲聊时最常被问的一句，听懂就行。di 是“从”，dov'è = dove è。对朋友就说 Di dove sei?"
+      "note": "闲聊时最常被问的一句，听懂就行。di 是“从”，dov'è = dove è，重音在最后的 è 上。对朋友就说 Di dove sei?"
     },
     {
       "id": "L28-03",
@@ -25,7 +25,7 @@
       "frame": "sono",
       "scene": "smalltalk",
       "status": "draft",
-      "note": "用来回答 Di dov'è?（您是哪里人？）。cinese≈チネーゼ，男女同形。城市换成自己的：Vivo a Pechino（北京）、Vivo a Tokyo（东京）。"
+      "note": "用来回答 Di dov'è?（您是哪里人？）。cinese 男女同形。城市换成自己的：Vivo a Pechino（北京）、Vivo a Tokyo（东京）。"
     },
     {
       "id": "L28-04",
