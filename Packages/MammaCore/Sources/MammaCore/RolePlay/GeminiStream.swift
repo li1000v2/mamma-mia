@@ -47,7 +47,10 @@ public struct GeminiStreamParser: Sendable {
         defer { pending = "" }
         guard let data = pending.data(using: .utf8),
               let response = try? JSONDecoder().decode(GeminiResponse.self, from: data)
-        else { throw GeminiFailure.malformed("unreadable event: \(pending.prefix(120))") }
+        else {
+            // Only the size: the event is the conversation, which stays out of the log.
+            throw GeminiFailure.malformed("unreadable event of \(pending.count) characters")
+        }
         return try response.events()
     }
 }

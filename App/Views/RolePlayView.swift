@@ -87,6 +87,11 @@ struct RolePlayView: View {
             Text("在线加练：需要联网，不计入通关。今天还能说 \(session.remainingTurns) 个回合。")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+            if session.service.refusal == nil, session.service.speechRefusal != nil {
+                Text("语音合成被拒绝过，角色用手机自带的意大利语声音说话；改好设置、「测试连接」通过后恢复。")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

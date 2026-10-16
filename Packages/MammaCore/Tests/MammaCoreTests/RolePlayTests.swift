@@ -218,8 +218,10 @@ struct RolePlayTests {
         #expect(try parser.feed(line: #"data: [{"text": "Ciao"}]}}]}"#) == [.text("Ciao")])
 
         var broken = GeminiStreamParser()
-        _ = try broken.feed(line: "data: {\"candidates\": [")
-        #expect(throws: GeminiFailure.self) { try broken.finish() }
+        _ = try broken.feed(line: #"data: {"candidates": [{"content": {"parts": [{"text": "Mi chiamo"#)
+        let failure = #expect(throws: GeminiFailure.self) { try broken.finish() }
+        // What was said never ends up in the failure, which goes to the log.
+        #expect(failure?.detail.contains("Mi chiamo") == false)
     }
 
     @Test func anErrorInTheStreamIsThrown() {

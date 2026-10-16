@@ -25,24 +25,38 @@ final class StreamingSpeechPlayer {
     private var leftover: UInt8?
     private var waiters: [CheckedContinuation<Void, Never>] = []
     private var lastReply: [AVAudioPCMBuffer] = []
+    /// The engine wouldn't start for this reply: further audio is refused until the next one.
+    private var broken = false
+    nonisolated(unsafe) private var configurationObserver: NSObjectProtocol?
+
+    deinit {
+        if let configurationObserver {
+            NotificationCenter.default.removeObserver(configurationObserver)
+        }
+    }
 
     var hasReply: Bool { !lastReply.isEmpty }
 
     /// Starts a new reply; whatever was playing stops. `rate` 0.75 is the course's slow speed.
     func beginReply(rate: Float) {
         reset()
+        broken = false
         lastReply = []
         timePitch.rate = rate
     }
 
-    /// Adds PCM from the stream and plays it as soon as enough is buffered.
-    func append(_ data: Data) {
-        guard let buffer = makeBuffer(data) else { return }
+    /// Adds PCM from the stream and plays it as soon as enough is buffered. False when the audio
+    /// engine can't play: the caller says the sentence another way.
+    @discardableResult
+    func append(_ data: Data) -> Bool {
+        guard !broken else { return false }
+        guard let buffer = makeBuffer(data) else { return true }
         lastReply.append(buffer)
         schedule(buffer)
         if !started, Double(bufferedFrames) / Self.sampleRate >= 0.25 {
             play()
         }
+        return !broken
     }
 
     /// More audio for the same reply after `endReply` and a pause (a sentence said by the phone's voice).
@@ -82,6 +96,7 @@ final class StreamingSpeechPlayer {
         let buffers = lastReply
         guard !buffers.isEmpty else { return }
         reset()
+        broken = false
         timePitch.rate = rate
         for buffer in buffers {
             schedule(buffer)
@@ -121,6 +136,20 @@ final class StreamingSpeechPlayer {
         engine.connect(timePitch, to: engine.mainMixerNode, format: format)
         engine.prepare()
         isSetUp = true
+        configurationObserver = NotificationCenter.default.addObserver(
+            forName: .AVAudioEngineConfigurationChange, object: engine, queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in self?.engineStopped() }
+        }
+    }
+
+    /// A route change (headphones, a call) stopped the engine and dropped what was scheduled. End
+    /// this playback now rather than wait for the watchdog; 再听 plays the reply again, and the
+    /// next play restarts the engine.
+    private func engineStopped() {
+        guard pending > 0 || !waiters.isEmpty else { return }
+        AppLog.shared.write("RolePlay: the audio route changed during playback; stopped it")
+        stop()
     }
 
     private func schedule(_ buffer: AVAudioPCMBuffer) {
@@ -167,6 +196,7 @@ final class StreamingSpeechPlayer {
             started = true
         } catch {
             AppLog.shared.write("RolePlay: audio engine didn't start: \(error)")
+            broken = true
             stop()
         }
     }

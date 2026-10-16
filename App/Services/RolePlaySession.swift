@@ -55,8 +55,8 @@ final class RolePlaySession {
     @ObservationIgnored private var work: Task<Void, Never>?
     @ObservationIgnored private var speaker: ReplySpeaker?
     @ObservationIgnored private var fillerIndex = Int.random(in: 0..<12)
-    /// Gemini speech was refused once: the rest of the session uses the phone's voice.
-    @ObservationIgnored private var systemVoiceOnly = false
+    /// Recording the feedback's sentences in the role's voice, one request at a time.
+    @ObservationIgnored private var audioTask: Task<Void, Never>?
     /// Every lesson phrase by `PracticePhrase.key` → id: feedback sentences the course already teaches.
     @ObservationIgnored private let coursePhraseIDs: [String: String]
     /// What the lessons before this challenge taught, for the feedback request.
@@ -243,16 +243,18 @@ final class RolePlaySession {
 
     /// Streams the role's next line and speaks it sentence by sentence as it arrives.
     private func reply(filler: Task<Void, Never>?, since start: Date, learnerTurn: Bool) async {
-        guard let client = service.client() else {
+        // Checked again here: recording and recognition take seconds, and a refusal may have come
+        // in meanwhile (from the feedback of the session before, say).
+        guard canSend, let client = service.client() else {
             phase = .listening
             work = nil
-            notice = "先在「在线对话设置」里填好 key 和项目编号。"
+            notice = service.refusal == nil ? "先在「在线对话设置」里填好 key 和项目编号。" : nil
             return
         }
         phase = learnerTurn ? .waiting : .opening
         showLatestItalian = false
         canReplay = false
-        let voiceName = systemVoiceOnly ? nil : model.content?.audio?.voiceName(for: role.voice)
+        let voiceName = service.speechRefusal == nil ? model.content?.audio?.voiceName(for: role.voice) : nil
         let speaker = ReplySpeaker(client: client, voiceName: voiceName, player: player, audio: model.audio,
                                    rate: slow ? 0.75 : 1, after: filler)
         self.speaker = speaker
@@ -266,11 +268,14 @@ final class RolePlaySession {
                 if let fallback {
                     AppLog.shared.write("RolePlay \(role.unit): no text from Argon (\(fallback)); asking Flash")
                     answeredBy = .flash
+                    try Task.checkCancellation()
                     _ = try await stream(body, from: .flash, client: client, into: draft, speaker: speaker, cutoff: nil)
                 }
             } else {
                 _ = try await stream(body, from: answeredBy, client: client, into: draft, speaker: speaker, cutoff: nil)
             }
+            // A cancelled stream ends without throwing: don't hand a cancelled speaker more to say.
+            try Task.checkCancellation()
             for sentence in draft.chunker.finish() {
                 speaker.say(sentence)
             }
@@ -300,10 +305,11 @@ final class RolePlaySession {
         phase = .speaking
         await speaker.finish()
         guard !Task.isCancelled else { return }
-        canReplay = player.hasReply
-        if let refusal = speaker.refusal, !systemVoiceOnly {
-            systemVoiceOnly = true
-            notice = "语音合成被拒绝（\(refusal.status)），这次对话改用手机自带的意大利语声音。"
+        // Replayed from memory only when Gemini said all of it; otherwise the phone's voice says the line.
+        canReplay = player.hasReply && !speaker.usedPhoneVoice
+        if let refusal = speaker.refusal {
+            service.noteSpeechRefusal(refusal)
+            notice = "语音合成被拒绝（\(refusal.status)）：之后改用手机自带的意大利语声音。改好设置、「测试连接」通过后恢复。"
         }
         let turn = learnerTurn ? "turn \(conversation.learnerTurns)" : "opening"
         AppLog.shared.write("RolePlay \(role.unit) \(turn): first text \(Self.offset(draft.firstText, from: start)), first audio \(Self.offset(speaker.firstAudio, from: start)), \(answeredBy.rawValue)")
@@ -401,7 +407,7 @@ final class RolePlaySession {
                 feedback = .ready(card)
                 addToReviews(card)
                 AppLog.shared.write("RolePlay \(role.unit): feedback in \(RolePlayService.seconds(since: started)), \(card.corrections.count) corrections, \(inReviews.count) phrases in reviews")
-                await recordPracticeAudio(client: client)
+                recordPracticeAudio()
             } catch is CancellationError {
                 return
             } catch {
@@ -436,9 +442,7 @@ final class RolePlaySession {
             .first(where: { PracticePhrase.key($0.it) == key }) {
             model.addPracticePhrases([phrase])
             inReviews[key] = phrase.id
-            if let client = service.client(), canSend {
-                Task { await recordPracticeAudio(client: client) }
-            }
+            recordPracticeAudio()
         }
     }
 
@@ -450,29 +454,47 @@ final class RolePlaySession {
         }
     }
 
-    /// The new review sentences in the role's voice, so their cards don't fall back to the phone's.
-    private func recordPracticeAudio(client: GeminiClient) async {
-        guard !systemVoiceOnly, let voiceName = model.content?.audio?.voiceName(for: role.voice) else { return }
-        guard case .ready(let card) = feedback else { return }
-        let texts = card.corrections.map(\.better) + [card.expression?.it].compactMap { $0 }
-        for text in texts where isInReviews(text) && PracticeAudio.recording(for: text) == nil {
-            var pcm = Data()
-            do {
-                for try await event in client.stream(model: GeminiModels.speech, body: GeminiRequest.speech(text, voiceName: voiceName)) {
-                    if case .audio(let data, _) = event {
-                        pcm.append(data)
+    /// Records the review sentences in the role's voice, so their cards don't fall back to the
+    /// phone's. One task at a time; a sentence put back into reviews while it runs is picked up.
+    private func recordPracticeAudio() {
+        guard audioTask == nil, canSend, service.speechRefusal == nil, let client = service.client(),
+              let voiceName = model.content?.audio?.voiceName(for: role.voice)
+        else { return }
+        audioTask = Task {
+            var tried = Set<String>()
+            while let text = sentenceToRecord(skipping: tried) {
+                tried.insert(text)
+                var pcm = Data()
+                do {
+                    let body = GeminiRequest.speech(text, voiceName: voiceName)
+                    for try await event in client.stream(model: GeminiModels.speech, body: body) {
+                        if case .audio(let data, _) = event {
+                            pcm.append(data)
+                        }
                     }
+                    // Taken out of reviews meanwhile: don't leave a recording behind.
+                    if !pcm.isEmpty, isInReviews(text) {
+                        try PracticeAudio.save(pcm: pcm, for: text)
+                    }
+                } catch let failure as GeminiFailure where failure.stopsSession {
+                    service.noteSpeechRefusal(failure)
+                    break
+                } catch is CancellationError {
+                    break
+                } catch {
+                    AppLog.shared.write("RolePlay: couldn't record a review sentence: \(error)")
+                    break
                 }
-                if !pcm.isEmpty {
-                    try PracticeAudio.save(pcm: pcm, for: text)
-                }
-            } catch is CancellationError {
-                return
-            } catch {
-                AppLog.shared.write("RolePlay: couldn't record a review sentence: \(error)")
-                return
             }
+            audioTask = nil
         }
+    }
+
+    /// A feedback sentence in reviews that has no recording yet.
+    private func sentenceToRecord(skipping tried: Set<String>) -> String? {
+        guard case .ready(let card) = feedback else { return nil }
+        let texts = card.corrections.map(\.better) + [card.expression?.it].compactMap { $0 }
+        return texts.first { !tried.contains($0) && isInReviews($0) && PracticeAudio.recording(for: $0) == nil }
     }
 
     // MARK: Helpers

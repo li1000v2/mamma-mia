@@ -17,6 +17,16 @@ struct GeminiClient {
         return URLSession(configuration: configuration)
     }()
 
+    /// For whole answers, which send nothing until they're done: the feedback card thinks at MEDIUM
+    /// (6–7 s measured) on top of however long Argon takes to start.
+    private static let wholeAnswerSession: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 120
+        configuration.timeoutIntervalForResource = 180
+        configuration.urlCache = nil
+        return URLSession(configuration: configuration)
+    }()
+
     /// The events of one streamed call, as they arrive. Cancelling the consuming task cancels the request.
     func stream(model: String, body: JSONValue) -> AsyncThrowingStream<GeminiStreamEvent, Error> {
         AsyncThrowingStream { continuation in
@@ -54,7 +64,7 @@ struct GeminiClient {
     func generate(model: String, body: JSONValue) async throws -> GeminiResponse {
         do {
             let request = try makeRequest(url: endpoint.url(model: model), body: body)
-            let (data, response) = try await Self.session.data(for: request)
+            let (data, response) = try await Self.wholeAnswerSession.data(for: request)
             if let status = (response as? HTTPURLResponse)?.statusCode, status != 200 {
                 throw GeminiFailure(status: status, body: data, redacting: key)
             }

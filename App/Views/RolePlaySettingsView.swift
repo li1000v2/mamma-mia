@@ -112,6 +112,10 @@ struct RolePlaySettingsView: View {
                 Text("上次被拒绝：\(refusal) 改好设置后点「测试连接」，通过了才会再发请求。")
                     .font(.footnote)
                     .foregroundStyle(.red)
+            } else if let speech = service.speechRefusal, testResult == nil {
+                Text("语音合成上次被拒绝：\(speech) 对话照常，角色改用手机自带的声音；「测试连接」通过后恢复。")
+                    .font(.footnote)
+                    .foregroundStyle(.orange)
             }
         } header: {
             Text("Google Cloud")

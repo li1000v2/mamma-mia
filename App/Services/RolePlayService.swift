@@ -19,6 +19,9 @@ final class RolePlayService {
     /// settings change or a connection test passes: retrying a refused project is how the first
     /// one got suspended.
     private(set) var refusal: String?
+    /// Set when only the TTS model refused: conversations go on in the phone's voice, and no more
+    /// speech requests go out until the settings change or a connection test passes.
+    private(set) var speechRefusal: String?
 
     @ObservationIgnored private let defaults = UserDefaults.standard
 
@@ -27,6 +30,7 @@ final class RolePlayService {
         static let model = "rolePlay.replyModel"
         static let allowance = "rolePlay.allowance"
         static let refusal = "rolePlay.refusal"
+        static let speechRefusal = "rolePlay.speechRefusal"
     }
 
     init() {
@@ -39,6 +43,7 @@ final class RolePlayService {
         allowance = stored.data(forKey: Keys.allowance)
             .flatMap { try? JSONDecoder().decode(TurnAllowance.self, from: $0) } ?? TurnAllowance()
         refusal = stored.string(forKey: Keys.refusal)
+        speechRefusal = stored.string(forKey: Keys.speechRefusal)
     }
 
     var isConfigured: Bool {
@@ -122,12 +127,21 @@ final class RolePlayService {
         AppLog.shared.write("RolePlay: stopped, \(failure)")
     }
 
-    func clearRefusal() {
-        refusal = nil
-        defaults.removeObject(forKey: Keys.refusal)
+    func noteSpeechRefusal(_ failure: GeminiFailure) {
+        speechRefusal = failure.message
+        defaults.set(failure.message, forKey: Keys.speechRefusal)
+        AppLog.shared.write("RolePlay: speech stopped, \(failure)")
     }
 
-    /// One short Argon request to check the key and project; nil when it answered.
+    func clearRefusal() {
+        refusal = nil
+        speechRefusal = nil
+        defaults.removeObject(forKey: Keys.refusal)
+        defaults.removeObject(forKey: Keys.speechRefusal)
+    }
+
+    /// One short reply and one short piece of speech, to check the key, the project and both
+    /// models; nil when both answered.
     func testConnection() async -> String? {
         guard let client = client() else { return "先填 key 和项目编号。" }
         let body = GeminiRequest.reply(
@@ -137,9 +151,6 @@ final class RolePlayService {
         let started = Date.now
         do {
             _ = try await client.generate(model: replyModel.rawValue, body: body)
-            clearRefusal()
-            AppLog.shared.write("RolePlay: connection test passed in \(Self.seconds(since: started))")
-            return nil
         } catch let failure as GeminiFailure {
             if failure.stopsSession {
                 noteRefusal(failure)
@@ -149,6 +160,27 @@ final class RolePlayService {
         } catch {
             return "测试被取消了。"
         }
+        do {
+            // The first audio is enough; leaving the loop cancels the rest.
+            for try await event in client.stream(model: GeminiModels.speech,
+                                                 body: GeminiRequest.speech("Pronto.", voiceName: "Kore")) {
+                if case .audio = event { break }
+            }
+        } catch let failure as GeminiFailure {
+            AppLog.shared.write("RolePlay: connection test, speech failed: \(failure)")
+            if failure.stopsSession {
+                refusal = nil
+                defaults.removeObject(forKey: Keys.refusal)
+                noteSpeechRefusal(failure)
+                return "对话模型能用，但语音合成被拒绝：\(failure.message) 对话会改用手机自带的意大利语声音。"
+            }
+            return "对话模型能用，语音合成这次没成功：\(failure.message)"
+        } catch {
+            return "测试被取消了。"
+        }
+        clearRefusal()
+        AppLog.shared.write("RolePlay: connection test passed in \(Self.seconds(since: started))")
+        return nil
     }
 
     static func seconds(since start: Date) -> String {
