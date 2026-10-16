@@ -27,6 +27,7 @@ struct DiagnosticsView: View {
                 LabeledContent("复习记录", value: "\(model.progress.reviews.count)")
                 LabeledContent("行程", value: model.trip == nil ? "没有" : "已填写")
                 LabeledContent("巡礼点记录", value: model.progress.spotLogs.isEmpty ? "没有" : "\(model.progress.spotLogs.count) 处")
+                LabeledContent("巡礼点照片", value: model.spotPhotos.count == 0 ? "没有" : "\(model.spotPhotos.count) 张，不在备份里")
                 if let backupMessage {
                     Text(backupMessage)
                         .font(.footnote)

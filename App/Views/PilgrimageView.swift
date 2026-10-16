@@ -149,6 +149,7 @@ private struct SpotMap: View {
 struct SpotDetailView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openURL) private var openURL
+    @Environment(\.scenePhase) private var scenePhase
     let spot: Spot
     private let network = NetworkMonitor.shared
     @State private var note = ""
@@ -246,6 +247,12 @@ struct SpotDetailView: View {
         }
         .onChange(of: editingNote) { _, editing in
             if !editing {
+                model.setNote(note, for: spot)
+            }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            // A note being typed when the app goes to the background is kept even if iOS ends it there.
+            if phase != .active {
                 model.setNote(note, for: spot)
             }
         }
