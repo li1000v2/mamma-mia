@@ -6,6 +6,7 @@
     { "id": "f1", "rev": 1, "voiceName": "Kore" },
     { "id": "m1", "rev": 1, "voiceName": "Charon" }
   ],
+  "showCardVoices": ["f1"],
   "lineVoices": {
     "È una palla, non una pala.": ["f1"],
     "All'aeroporto di Fiumicino, per favore.": ["f1"],

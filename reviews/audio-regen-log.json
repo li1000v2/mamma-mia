@@ -293,6 +293,20 @@
       },
       "at": "2026-10-16T11:50:25Z"
     },
+    "f1@1|Chiami il 112, per favore!": {
+      "voice": "f1@1",
+      "text": "Chiami il 112, per favore!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（截断）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "9a0056a7cb6b5d2a.m4a",
+        "s": "01cf70d73764b3bd.m4a"
+      },
+      "at": "2026-10-16T18:57:46Z"
+    },
     "f1@1|Chiuso il lunedì.": {
       "voice": "f1@1",
       "text": "Chiuso il lunedì.",
@@ -643,6 +657,21 @@
         "s": "de461cb913c46abc.m4a"
       },
       "at": "2026-10-16T14:40:58Z"
+    },
+    "f1@1|Pesce e prodotti della pesca": {
+      "voice": "f1@1",
+      "text": "Pesce e prodotti della pesca",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速干净",
+        "新版本 1：原速被标出（读错），慢速被标出（读错）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "ea6fb72ccb7bbcd7.m4a",
+        "s": "6e250b4d8d655e29.m4a"
+      },
+      "at": "2026-10-16T18:57:54Z"
     },
     "f1@1|Quanto costa fino all'aeroporto?": {
       "voice": "f1@1",

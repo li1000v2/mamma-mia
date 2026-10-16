@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "id": "go-to-address",
+      "it": "Vorrei andare a questo indirizzo.",
+      "zh": "我想去这个地址。",
+      "status": "checked",
+      "checkedText": "Vorrei andare a questo indirizzo."
+    },
+    {
+      "id": "allergic-to",
+      "it": "Sono allergico a questi alimenti:",
+      "zh": "我对以下食物过敏：",
+      "status": "checked",
+      "checkedText": "Sono allergico a questi alimenti:"
+    },
+    {
+      "id": "not-even-a-little",
+      "it": "Non posso mangiarli, neanche in piccole quantità.",
+      "zh": "一点点也不能吃。",
+      "status": "checked",
+      "checkedText": "Non posso mangiarli, neanche in piccole quantità."
+    },
+    {
+      "id": "tell-the-cook",
+      "it": "Può avvisare il cuoco, per favore?",
+      "zh": "能请您告诉厨师吗？",
+      "status": "checked",
+      "checkedText": "Può avvisare il cuoco, per favore?"
+    },
+    {
+      "id": "speak-slowly",
+      "it": "Parlo poco italiano. Può parlare più piano?",
+      "zh": "我意大利语说得不好，您能说慢一点吗？",
+      "status": "checked",
+      "checkedText": "Parlo poco italiano. Può parlare più piano?"
+    },
+    {
+      "id": "call-112",
+      "it": "Chiami il 112, per favore!",
+      "zh": "请帮我打 112！",
+      "status": "checked",
+      "checkedText": "Chiami il 112, per favore!"
+    }
+  ],
+  "allergens": [
+    { "id": "gluten", "it": "Cereali contenenti glutine" },
+    { "id": "crustaceans", "it": "Crostacei e prodotti a base di crostacei" },
+    { "id": "eggs", "it": "Uova e prodotti a base di uova" },
+    { "id": "fish", "it": "Pesce e prodotti della pesca" },
+    { "id": "peanuts", "it": "Arachidi e prodotti a base di arachidi" },
+    { "id": "soybeans", "it": "Soia e prodotti a base di soia" },
+    { "id": "milk", "it": "Latte e prodotti a base di latte (incluso lattosio)" },
+    { "id": "nuts", "it": "Frutta a guscio" },
+    { "id": "celery", "it": "Sedano e prodotti a base di sedano" },
+    { "id": "mustard", "it": "Senape e prodotti a base di senape" },
+    { "id": "sesame", "it": "Semi di sesamo e prodotti a base di semi di sesamo" },
+    { "id": "sulphites", "it": "Anidride solforosa e solfiti" },
+    { "id": "lupin", "it": "Lupini e prodotti a base di lupini" },
+    { "id": "molluscs", "it": "Molluschi e prodotti a base di molluschi" }
+  ]
+}

@@ -31,17 +31,15 @@ public enum ContentValidator {
             report("course.json", "event \(event.id) has no valid date \(event.month)/\(event.day)")
         }
         for scene in course.scenes {
-            guard NeedByPlanner.isWellFormed(scene.neededAt) else {
+            switch scene.anchor {
+            case nil:
                 report("course.json", "scene \(scene.id) has malformed neededAt \"\(scene.neededAt)\"")
-                continue
-            }
-            let parts = scene.neededAt.split(separator: ":", maxSplits: 1).map(String.init)
-            guard parts.count == 2 else { continue }
-            if parts[0] == "city", course.city(parts[1]) == nil {
-                report("course.json", "scene \(scene.id) needs unknown city \(parts[1])")
-            }
-            if parts[0] == "event", course.event(parts[1]) == nil {
-                report("course.json", "scene \(scene.id) needs unknown event \(parts[1])")
+            case .city(let city)? where course.city(city) == nil:
+                report("course.json", "scene \(scene.id) needs unknown city \(city)")
+            case .event(let event)? where course.event(event) == nil:
+                report("course.json", "scene \(scene.id) needs unknown event \(event)")
+            default:
+                break
             }
         }
         for unit in course.units {
@@ -118,6 +116,28 @@ public enum ContentValidator {
                 if followUps.min < 0 || followUps.min > followUps.max || followUps.max > pool.count {
                     report(file, "followUps needs 0 ≤ min ≤ max ≤ pool size")
                 }
+            }
+        }
+
+        if let cards = bundle.showCardContent {
+            let file = "showcards.json"
+            for id in duplicates(cards.phrases.map(\.id)) { report(file, "duplicate phrase id \(id)") }
+            for phrase in cards.phrases where phraseIDs.contains(phrase.id) {
+                report(file, "phrase id \(phrase.id) is also a lesson phrase")
+            }
+            for phrase in cards.phrases where phrase.it.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                || phrase.zh.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                report(file, "phrase \(phrase.id) has empty text")
+            }
+            for id in ShowCard.Source.cardPhrases where cards.phrase(id) == nil {
+                report(file, "the show cards need a phrase \(id)")
+            }
+            for id in ShowCard.Source.coursePhrases where !phraseIDs.contains(id) {
+                report(file, "the show cards reuse lesson phrase \(id), which doesn't exist")
+            }
+            let names = Allergen.allCases.map { ShowCardContent.AllergenName(id: $0.rawValue, it: $0.italian) }
+            if cards.allergens != names {
+                report(file, "allergens must be the 14 of Allergen, in annex order, with the same Italian")
             }
         }
 

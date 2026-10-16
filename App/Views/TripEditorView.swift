@@ -131,7 +131,7 @@ struct TripEditorView: View {
         } header: {
             Text("忌口与过敏")
         } footer: {
-            Text("先存着，以后做成给店员看的出示卡。")
+            Text("会做成「随身 → 出示卡」里给店员看的忌口卡：过敏原用欧盟法规里的意大利文名称列出，备注照原样显示。")
         }
     }
 
