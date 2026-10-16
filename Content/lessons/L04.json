@@ -1,6 +1,6 @@
 {
   "unit": "L04",
-  "intro": "0–20：zero, uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci, undici, dodici, tredici, quattordici, quindici, sedici, diciassette, diciotto, diciannove, venti。\n\n11–16 以 -dici 结尾，重音都在倒数第三个音节（UN-di-ci、DO-di-ci）；17–19 以 dici- 开头。最容易听混的是 due（2）／dodici（12）、tre（3）／tredici（13）、sei（6）／sedici（16）：听到 -dici 就是十几。\n\n价格的说法是“欧元数 + e + 分数”：tre euro e cinquanta = 3.50 欧。口语里常省掉 euro，只说 tre e cinquanta。euro 读≈エウロ（e、u 分开读），不是ユーロ；复数不变：un euro、due euro。店员报总价常用 Sono…：Sono dodici euro，这里的 Sono 是“一共是”，不是“我是”。",
+  "intro": "0–20：zero, uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci, undici, dodici, tredici, quattordici, quindici, sedici, diciassette, diciotto, diciannove, venti。\n\n11–16 以 -dici 结尾，重音都在倒数第三个音节（UN-di-ci、DO-di-ci）；17–19 以 dici- 开头。最容易听混的是 due（2）／dodici（12）、tre（3）／tredici（13）、sei（6）／sedici（16）：听到 -dici 就是十几。\n\n价格的说法是“欧元数 + e + 分数”：tre euro e cinquanta = 3.50 欧。口语里常省掉 euro，只说 tre e cinquanta。euro 的 eu 是从 e 滑到 u，两个元音都要读出来，不是外来语ユーロ的 yu；复数不变：un euro、due euro。店员报总价常用 Sono…：Sono dodici euro，这里的 Sono 是“一共是”，不是“我是”。",
   "phrases": [
     {
       "id": "L04-01",
@@ -9,7 +9,7 @@
       "frame": "quanto",
       "scene": "general",
       "status": "draft",
-      "note": "问一样东西的价钱。指着东西问可以说 Quanto costa questo?（这个多少钱？），问好几样用 Quanto costano?（这些多少钱？）。qu 读 kw≈クァ：QUAN-to。"
+      "note": "问一样东西的价钱。指着东西问可以说 Quanto costa questo?（这个多少钱？），问好几样用 Quanto costano?（这些多少钱？）。qu 读 kw，接近英语 quick 的 qu：QUAN-to。"
     },
     {
       "id": "L04-02",
@@ -27,7 +27,7 @@
       "frame": "quanto",
       "scene": "general",
       "status": "draft",
-      "note": "结账时问总价最常用，是 Quanto è 的缩写；重音在最后的 è：≈クァンテ。"
+      "note": "结账时问总价最常用，是 Quanto è 的缩写；重音在最后的 è：quan-TÈ。"
     },
     {
       "id": "L04-04",
