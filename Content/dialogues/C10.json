@@ -1,0 +1,155 @@
+{
+  "unit": "C10",
+  "title": "罗马一日通关",
+  "goal": "在罗马玩一整天：早上在咖啡吧点一杯卡布奇诺和一个羊角面包；路人给你指地铁，记住要坐几站；在斗兽场听清入场时间，买一张全价票；午餐点一份 carbonara；在小店听清帽子的价格并买下；最后打车去菲乌米奇诺机场，听清路上要多久。",
+  "speaker": "Gente di Roma",
+  "voice": "m1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "colazione",
+      "npc": [
+        { "it": "Buongiorno! Cosa le preparo?", "zh": "早上好！给您做点什么？" },
+        { "it": "Buongiorno, prego!", "zh": "早上好，您请说！" }
+      ],
+      "reply": {
+        "intent": "点一杯卡布奇诺和一个羊角面包",
+        "frame": "prendo",
+        "choices": [
+          { "it": "Un cappuccino e un cornetto, per favore.", "correct": true },
+          { "it": "Ho un cappuccino e un cornetto.", "correct": false, "feedback": "Ho 是“我有”。点单直接说要的东西加 per favore，或者用 Prendo… / Vorrei…" },
+          { "it": "Posso un cappuccino e un cornetto?", "correct": false, "feedback": "Posso 后面要接动词原形，比如 Posso avere…?（可以给我……吗？）。点单直接说要的东西加 per favore 最简单。" }
+        ]
+      }
+    },
+    {
+      "id": "metro",
+      "npc": [
+        { "it": "Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono tre fermate.", "zh": "您找斗兽场？坐地铁 B 线，往 Laurentina 方向，坐三站。", "answer": "3 站", "distractors": ["13 站", "2 站"] },
+        { "it": "Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono due fermate.", "zh": "您找斗兽场？坐地铁 B 线，往 Laurentina 方向，坐两站。", "answer": "2 站", "distractors": ["12 站", "3 站"] },
+        { "it": "Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono quattro fermate.", "zh": "您找斗兽场？坐地铁 B 线，往 Laurentina 方向，坐四站。", "answer": "4 站", "distractors": ["14 站", "3 站"] }
+      ],
+      "question": "地铁要坐几站？",
+      "reply": {
+        "intent": "向指路的人道谢",
+        "choices": [
+          { "it": "Grazie mille, è molto gentile!", "correct": true },
+          { "it": "Prego, è molto gentile!", "correct": false, "feedback": "prego 是“不客气”，是别人向你道谢时说的。道谢说 Grazie。" },
+          { "it": "Grazie mille, sono molto gentile!", "correct": false, "feedback": "sono 是“我是”，这句成了夸自己客气。夸对方用 è（您是）：È molto gentile。" }
+        ]
+      }
+    },
+    {
+      "id": "colosseo",
+      "npc": [
+        { "it": "Buongiorno! Il primo orario disponibile è alle undici e trenta. Va bene?", "zh": "您好！最早能约到的入场时间是十一点半，可以吗？", "answer": "11:30", "distractors": ["12:30", "11:13"] },
+        { "it": "Buongiorno! Il primo orario disponibile è alle dieci e quindici. Va bene?", "zh": "您好！最早能约到的入场时间是十点十五分，可以吗？", "answer": "10:15", "distractors": ["12:15", "10:50"] },
+        { "it": "Buongiorno! Il primo orario disponibile è alle tredici e venti. Va bene?", "zh": "您好！最早能约到的入场时间是十三点二十分，可以吗？", "answer": "13:20", "distractors": ["3:20", "13:12"] }
+      ],
+      "question": "最早几点能入场？",
+      "reply": {
+        "intent": "说可以，买一张全价票",
+        "frame": "numero",
+        "choices": [
+          { "it": "Va bene. Un biglietto intero, per favore.", "correct": true },
+          { "it": "Va bene. Due biglietti interi, per favore.", "correct": false, "feedback": "这是两张。你一个人，只要一张：Un biglietto intero。" },
+          { "it": "Non va bene. Un biglietto intero, per favore.", "correct": false, "feedback": "Non va bene 是“不行”，后面又要买票，前后矛盾。时间可以就说 Va bene。" }
+        ]
+      }
+    },
+    {
+      "id": "pranzo",
+      "npc": [
+        { "it": "Buongiorno! Ha già scelto?", "zh": "您好！点好了吗？" },
+        { "it": "Allora, cosa le porto?", "zh": "那么，给您上点什么？" }
+      ],
+      "reply": {
+        "intent": "点一份培根蛋酱意面（carbonara）",
+        "frame": "prendo",
+        "choices": [
+          { "it": "Vorrei una carbonara, per favore.", "correct": true },
+          { "it": "Ho mangiato una carbonara.", "correct": false, "feedback": "Ho mangiato 是“我吃过了”，说的是已经发生的事。点菜用 Vorrei… 或 Prendo…" },
+          { "it": "Il conto, per favore.", "correct": false, "feedback": "这是要结账。你还没点菜呢。" }
+        ]
+      }
+    },
+    {
+      "id": "negozio",
+      "npc": [
+        { "it": "Le piace questo cappello? Costa quindici euro.", "zh": "您喜欢这顶帽子吗？十五欧。", "answer": "15 €", "distractors": ["5 €", "50 €"] },
+        { "it": "Le piace questo cappello? Costa dodici euro.", "zh": "您喜欢这顶帽子吗？十二欧。", "answer": "12 €", "distractors": ["2 €", "20 €"] },
+        { "it": "Le piace questo cappello? Costa diciotto euro.", "zh": "您喜欢这顶帽子吗？十八欧。", "answer": "18 €", "distractors": ["8 €", "80 €"] }
+      ],
+      "question": "这顶帽子多少钱？",
+      "reply": {
+        "intent": "说要买",
+        "frame": "prendo",
+        "choices": [
+          { "it": "Sì, lo prendo.", "correct": true },
+          { "it": "Sto solo guardando, grazie.", "correct": false, "feedback": "这是“我只是看看”。这次你想买：Lo prendo。" },
+          { "it": "Sì, lo prende.", "correct": false, "feedback": "prende 是“您买／他买”，变成让店员买了。自己买说 Lo prendo。" }
+        ]
+      }
+    },
+    {
+      "id": "taxi",
+      "npc": [
+        { "it": "Buonasera! Dove la porto?", "zh": "晚上好！送您去哪儿？" },
+        { "it": "Buonasera, dove andiamo?", "zh": "晚上好，去哪儿？" }
+      ],
+      "reply": {
+        "intent": "说去菲乌米奇诺机场",
+        "choices": [
+          { "it": "All'aeroporto di Fiumicino, per favore.", "correct": true },
+          { "it": "Dov'è l'aeroporto di Fiumicino?", "correct": false, "feedback": "这是问机场在哪儿。司机问你去哪儿，直接说目的地：All'aeroporto di Fiumicino, per favore。" },
+          { "it": "Alla stazione Termini, per favore.", "correct": false, "feedback": "这是去 Termini 火车站。这次要去机场。" }
+        ]
+      }
+    },
+    {
+      "id": "arrivo",
+      "npc": [
+        { "it": "Perfetto. Con questo traffico ci vogliono quaranta minuti.", "zh": "好的。这个路况要四十分钟。", "answer": "40 分钟", "distractors": ["14 分钟", "50 分钟"] },
+        { "it": "Va bene. Ci vogliono circa trenta minuti.", "zh": "好的。大概要三十分钟。", "answer": "30 分钟", "distractors": ["13 分钟", "40 分钟"] },
+        { "it": "D'accordo. Oggi c'è traffico: ci vogliono cinquanta minuti.", "zh": "好的。今天堵车，要五十分钟。", "answer": "50 分钟", "distractors": ["15 分钟", "60 分钟"] }
+      ],
+      "question": "到机场大概要多久？"
+    }
+  ],
+  "followUps": {
+    "after": "pranzo",
+    "min": 1,
+    "max": 1,
+    "pool": [
+      {
+        "id": "bere",
+        "npc": [
+          { "it": "E da bere?", "zh": "喝点什么？" },
+          { "it": "Qualcosa da bere?", "zh": "要喝点什么吗？" }
+        ],
+        "reply": {
+          "intent": "要一瓶不带气的水",
+          "choices": [
+            { "it": "Un'acqua naturale, per favore.", "correct": true },
+            { "it": "Un'acqua frizzante, per favore.", "correct": false, "feedback": "frizzante 是带气的。不带气的水是 acqua naturale。" },
+            { "it": "Ho sete, per favore.", "correct": false, "feedback": "Ho sete 是“我渴了”，服务员还是不知道你要喝什么。直接说要的东西：Un'acqua naturale, per favore。" }
+          ]
+        }
+      },
+      {
+        "id": "buono",
+        "npc": [
+          { "it": "Tutto bene? Le piace la carbonara?", "zh": "还满意吗？carbonara 合您口味吗？" }
+        ],
+        "reply": {
+          "intent": "夸菜很好吃",
+          "choices": [
+            { "it": "Sì, è buonissima, grazie!", "correct": true },
+            { "it": "Sì, sono buonissimo, grazie!", "correct": false, "feedback": "sono 是“我是”，这句成了“我非常好吃”。夸菜说 È buonissima（它非常好吃）。" },
+            { "it": "Sì, ho fame, grazie!", "correct": false, "feedback": "Ho fame 是“我饿了”。对方问的是菜好不好吃。" }
+          ]
+        }
+      }
+    ]
+  }
+}

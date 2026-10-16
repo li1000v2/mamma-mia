@@ -14,6 +14,8 @@ Usage (from the repo root):
 
 Needs GOOGLE_API_KEY and GOOGLE_CLOUD_PROJECT_NUMBER (environment or .env) and ffmpeg on PATH.
 Voices and models are set in tools/tts_voices.json; bump a voice's "rev" to regenerate it.
+"lineVoices" there limits a line to some voices, for when only one voice says it clearly
+(a minimal pair, say); the app then plays the voice that has the file.
 """
 from __future__ import annotations
 
@@ -93,6 +95,36 @@ def normalized(text: str) -> str:
     return " ".join(text.split())
 
 
+def post(key: str, project: str, model: str, body: dict, timeout: float = 120) -> dict:
+    """POST to a model's :generateContent, retrying rate limits, server errors and dropped connections.
+
+    Without a key the request goes out bare: Claude Code cloud environments add x-goog-api-key.
+    """
+    url = ENDPOINT.format(project=project, model=model)
+    headers = {"Content-Type": "application/json"}
+    if key:
+        headers["x-goog-api-key"] = key
+    request = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers)
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as error:
+            detail = error.read().decode("utf-8", "replace")
+            if key:
+                detail = detail.replace(key, "<key>")
+            if error.code in (429, 500, 502, 503, 504) and attempt < 4:
+                time.sleep(2 ** (attempt + 1))
+                continue
+            raise RuntimeError(f"{model} HTTP {error.code}: {detail[:300]}") from None
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            if attempt < 4:
+                time.sleep(2 ** (attempt + 1))
+                continue
+            raise RuntimeError(f"{model}: {getattr(error, 'reason', error)}") from None
+    raise RuntimeError(f"{model}: gave up after retries")
+
+
 @dataclass
 class Job:
     text: str
@@ -107,29 +139,7 @@ class Gemini:
         self.config = config
 
     def _post(self, model: str, body: dict) -> dict:
-        url = ENDPOINT.format(project=self.project, model=model)
-        headers = {"Content-Type": "application/json"}
-        if self.key:
-            headers["x-goog-api-key"] = self.key
-        request = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"), headers=headers)
-        for attempt in range(5):
-            try:
-                with urllib.request.urlopen(request, timeout=120) as response:
-                    return json.load(response)
-            except urllib.error.HTTPError as error:
-                detail = error.read().decode("utf-8", "replace")
-                if self.key:
-                    detail = detail.replace(self.key, "<key>")
-                if error.code in (429, 500, 502, 503, 504) and attempt < 4:
-                    time.sleep(2 ** (attempt + 1))
-                    continue
-                raise RuntimeError(f"{model} HTTP {error.code}: {detail[:300]}") from None
-            except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
-                if attempt < 4:
-                    time.sleep(2 ** (attempt + 1))
-                    continue
-                raise RuntimeError(f"{model}: {getattr(error, 'reason', error)}") from None
-        raise RuntimeError(f"{model}: gave up after retries")
+        return post(self.key, self.project, model, body)
 
     def speak(self, text: str, voice_name: str) -> bytes:
         body = {
@@ -205,12 +215,15 @@ def main() -> int:
     profiles = {voice["id"]: f"{voice['id']}@{voice['rev']}" for voice in config["voices"]}
     texts = spoken_texts()
 
+    line_voices: dict[str, list[str]] = config.get("lineVoices", {})
     entries: dict[str, str] = dict(manifest["entries"])
     wanted: set[str] = set()
     jobs: list[Job] = []
     for voice in config["voices"]:
         profile = profiles[voice["id"]]
         for text in texts:
+            if text in line_voices and voice["id"] not in line_voices[text]:
+                continue
             keys = [audio_key(text, profile, speed) for speed in ("n", "s")]
             wanted.update(keys)
             if not all(key in entries and (AUDIO / entries[key]).is_file() for key in keys):
@@ -260,7 +273,8 @@ def main() -> int:
                 path.unlink()
 
     manifest = {"version": manifest["version"], "voices": list(profiles.values()), "entries": dict(sorted(entries.items()))}
-    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=AUDIO, suffix=".json", delete=False)
+    # newline="\n": keep LF on Windows too, like the rest of the repository.
+    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", newline="\n", dir=AUDIO, suffix=".json", delete=False)
     with tmp:
         json.dump(manifest, tmp, ensure_ascii=False, indent=2)
         tmp.write("\n")

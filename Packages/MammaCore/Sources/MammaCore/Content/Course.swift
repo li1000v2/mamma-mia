@@ -65,6 +65,9 @@ public struct Phrase: Codable, Hashable, Sendable, Identifiable {
     public let scene: String
     public let status: ReviewStatus
     public let note: String?
+    /// The Italian text as it was when the phrase was marked checked or later. A review only holds
+    /// for that text: tools/validate_content.py rejects a non-draft phrase whose `it` has changed.
+    public var checkedText: String? = nil
 }
 
 /// Content/lessons/<unit>.json.

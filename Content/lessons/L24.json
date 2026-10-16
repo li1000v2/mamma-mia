@@ -1,0 +1,49 @@
+{
+  "unit": "L24",
+  "intro": "进店后店员常问 Posso aiutarla?（需要帮忙吗？）或 Cerca qualcosa?（您找什么？）。只想随便看看，就说 Sto solo guardando, grazie。\n\n试穿和买下都要用代词 lo（它）：\n- 接在动词原形后面，连成一个词：Posso provarlo?（我能试一下吗？）\n- 放在变位的动词前面：Lo prendo（我就要它了）。\nlo 指阳性的东西（il maglione 毛衣、il cappello 帽子），la 指阴性的（la giacca 外套、la borsa 包）。这一课的句子都用 lo，看中的是阴性的东西就换成 la：Posso provarla? / La prendo。\n\n问有没有别的尺码：Ce l'ha in un'altra taglia?（您这件有别的尺码吗？）ce l'ha 是“您有它吗”。taglia 是衣服尺码，鞋码叫 il numero。\n\n不想买就说 Ci penso, grazie（我再想想），客客气气地离开。\n\n发音：先听示范音频，以音频为准。Sto、prendo、provarlo、altra 里的 st、pr、tr 都连着读，中间不加元音；in、un 的 n 直接连下一个词，也不加元音。taglia 的 gli 见 L01。",
+  "phrases": [
+    {
+      "id": "L24-01",
+      "it": "Sto solo guardando, grazie.",
+      "zh": "我只是看看，谢谢。",
+      "scene": "shopping",
+      "status": "draft",
+      "note": "回答店员的 Posso aiutarla?（需要帮忙吗？）。Sto 只有一个音节。guardando 是“正在看”，重音 guar-DAN-do：gu 读 gw，像英语 Gwen 开头；不像的是 r 要舌尖弹一下，不能像英语那样卷舌或把 a 拖成别的音。"
+    },
+    {
+      "id": "L24-02",
+      "it": "Posso provarlo?",
+      "zh": "我能试一下吗？",
+      "frame": "posso",
+      "scene": "shopping",
+      "status": "draft",
+      "note": "provare 是“试”，lo 接在原形后面连写，重音在 VAR：pro-VAR-lo，r 弹一下就接 l。东西是阴性就说 Posso provarla?。试衣间叫 il camerino。"
+    },
+    {
+      "id": "L24-03",
+      "it": "Ce l'ha in un'altra taglia?",
+      "zh": "这件有别的尺码吗？",
+      "frame": "avete",
+      "scene": "shopping",
+      "status": "draft",
+      "note": "ce l'ha 是“您有它吗”：ce 的 c 读软音，像英语 ch；不像的是不送气，e 是纯元音。h 不发音，l'ha 就读 la。要大一号就问 Ce l'ha più grande?。"
+    },
+    {
+      "id": "L24-04",
+      "it": "Lo prendo.",
+      "zh": "我买了（就要这个）。",
+      "frame": "prendo",
+      "scene": "shopping",
+      "status": "draft",
+      "note": "和点单的 Prendo… 是同一个动词，lo 放在前面：lo PREN-do。看中的是阴性的东西就说 La prendo。"
+    },
+    {
+      "id": "L24-05",
+      "it": "Ci penso, grazie.",
+      "zh": "我再想想，谢谢。",
+      "scene": "shopping",
+      "status": "draft",
+      "note": "不想买时客气地离开。ci penso 直译“我想想这件事”。penso 的 p 不送气，接近拼音 b；但拼音的 b 是清音，意大利语自己的 b 要带声带振动，两者别混。"
+    }
+  ]
+}

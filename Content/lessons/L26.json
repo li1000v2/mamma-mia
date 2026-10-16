@@ -1,0 +1,50 @@
+{
+  "unit": "L26",
+  "intro": "遇到危险先喊 Aiuto!（救命！）。意大利和整个欧盟的紧急电话都是 112，免费拨打，接线员会帮你转给警察、急救或消防。\n\n说已经发生的事用 Ho + 过去分词，L09 学过 Ho prenotato（我预订了）。-are 结尾的动词把 -are 换成 -ato：dimenticare（忘记）→ Ho dimenticato la borsa in taxi（我把包忘在出租车上了）。常用的不规则过去分词要单独记：perdere（丢）→ Ho perso，prendere（拿）→ Ho preso。\n\n“被偷了”不用被动句，而是说 Mi hanno rubato…，字面是“（有人）偷了我的……”：hanno 是“他们”，指不知道是谁的人；mi 是“我”。整句当一块记，后面换东西就行：Mi hanno rubato il portafoglio / il telefono / la borsa。\n\n报案找警察（polizia）或宪兵（carabinieri），说 Vorrei fare una denuncia（我想报案）。报完案拿到的证明也叫 denuncia，补办证件、找保险都要用。护照丢了，报完案还要联系本国驻意大利的使领馆。请路人帮忙就说 Mi può aiutare?（您能帮帮我吗？）。\n\n发音：先听示范音频，再看下面的提示，标准是音频。\n· Aiuto 是三个音节 a-IU-to，重音在 IU。u 要把嘴唇圆起来往前撅，像中文“乌”；不像日语的う，う的嘴唇是扁的。\n· polizia 的 z 像拼音 z、日语ツ的辅音；不像的是后面不带う，直接接 i，而且夹在元音之间要稍微拉长。重音在 ZI：po-li-ZI-a，别读成英语 police。\n· perso 的 rs、portafoglio 的 rt 中间不加元音，r 用舌尖弹。passaporto 别照片假名パスポート读：ss 要多占一拍，por 的 r 要弹出来，结尾是 o。",
+  "phrases": [
+    {
+      "id": "L26-01",
+      "it": "Aiuto!",
+      "zh": "救命！",
+      "scene": "emergency",
+      "status": "draft",
+      "note": "只在真正紧急时喊。欧盟统一的紧急电话是 112，在意大利免费拨打。"
+    },
+    {
+      "id": "L26-02",
+      "it": "Ho perso il passaporto.",
+      "zh": "我把护照弄丢了。",
+      "frame": "passato",
+      "scene": "emergency",
+      "status": "draft",
+      "note": "perso 是 perdere（丢）的过去分词，不规则，要单独记。换词：Ho perso il telefono（手机）、Ho perso la borsa（包）。passaporto 重音在 POR：pas-sa-POR-to。"
+    },
+    {
+      "id": "L26-03",
+      "it": "Mi hanno rubato il portafoglio.",
+      "zh": "我的钱包被偷了。",
+      "frame": "passato",
+      "scene": "emergency",
+      "status": "draft",
+      "note": "字面是“（有人）偷了我的钱包”，hanno 指不知道是谁的“他们”，被偷都这么说。hanno 的 h 不发音，nn 要多占一拍。portafoglio 重音在 FO：por-ta-FO-glio。gli 像日语リャ行的辅音；不像的是舌尖不弹，而是舌面贴住上颚，让气从舌头两边出来，夹在元音之间还要多占一拍。"
+    },
+    {
+      "id": "L26-04",
+      "it": "Dov'è la polizia?",
+      "zh": "警察局在哪儿？",
+      "frame": "dove",
+      "scene": "emergency",
+      "status": "draft",
+      "note": "口语说 la polizia 就行，正式说法是 il commissariato 或 la questura。报案也可以找宪兵 carabinieri。Dov'è 的重音在最后的 è 上。"
+    },
+    {
+      "id": "L26-05",
+      "it": "Vorrei fare una denuncia.",
+      "zh": "我想报案。",
+      "frame": "prendo",
+      "scene": "emergency",
+      "status": "draft",
+      "note": "Vorrei 是“我想要”，客气的说法。东西被偷、证件丢了都要先报案，拿到报案证明（也叫 denuncia），补办证件、找保险都要用。denuncia 重音在 NUN：de-NUN-cia，cia 里的 i 不单独发音。"
+    }
+  ]
+}

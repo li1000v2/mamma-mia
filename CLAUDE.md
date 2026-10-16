@@ -11,6 +11,7 @@
 - `Content/`：课程数据（JSON），整个文件夹打包进 app；`schema/` 是 JSON Schema。
 - `Audio/`：生成的 .m4a 和 `manifest.json`。
 - `tools/`：Python 工具。
+- `reviews/`：交叉校对报告（`cross-check-<单元>.md`）。
 - `.github/workflows/`：CI。
 
 ## 编译与测试
@@ -28,6 +29,7 @@
 - 声线和模型在 `tools/tts_voices.json`；改了声线就把它的 `rev` 加一，对应音频会全部重生成。
 - 原速只把意大利语原文发给 TTS，不带风格指令：实测带指令时模型会把指令也念出来，systemInstruction 也不支持。慢速是原速录音用 ffmpeg `atempo` 放慢。
 - 每段新音频都用 `checkModel` 转写回来和原文比对，对不上会重试；还对不上就在输出里报 warning，需要人去听。
+- 人工听审前先跑 `python tools/audio_review.py`（默认第 1 周，`--week N` 换周，`--limit`/`--only` 限范围）：gemini-4-argon 用 HIGH 思考档逐段听，结果按文件名缓存在 `reviews/audio-screen-cache.json`，可疑片段写进 `reviews/audio-screen-week<N>.md`，同名 `.html` 可在浏览器里逐条点听。它不判断双辅音长短（实测会自信地判错），含双辅音的句子只备注“双辅音需人工听”；改了提示词就把脚本里的 `PROMPT_REV` 加一，旧结果会重筛。
 - app 里没有音频的句子会退回 iOS 自带的意大利语语音。挑战剧本可以用 `voice` 指定角色的声线。
 
 ## 开口说（离线识别）
@@ -35,6 +37,13 @@
 - `App/Services/SpeechService.swift`：SpeechAnalyzer + SpeechTranscriber（it_IT），设备不支持就退到 DictationTranscriber，再不行只保留录音对比和自评。模型经 AssetInventory 下载，状态显示在「诊断、日志与备份」。
 - 判定在 MammaCore 的 `Speech/`：识别结果和目标句逐词对齐，忽略大小写、标点和重音，只判断“对方能不能听懂”，不打发音分。
 - 识别只是提示：复习照旧自评打分。挑战里说出的回复按选项的词匹配，对不上就点选；选项之间要差至少一个听得出的词，只差标点或重音的两个选项只能点选。
+
+## 交叉校对
+
+- `python tools/cross_check.py --week 1`（或列单元 id：`L03 C01`；`--dry-run` 只打印请求）把单元分批发给 gemini-4-argon 审，报告写到 `reviews/cross-check-<单元>.md`。key 同上，云端环境由 network secret 注入 `x-goog-api-key`。
+- 审：语法、对陌生人用 Lei、地道程度和地区差异、中文翻译、note／intro 里的假名和拼音提示、剧本选项的对错和 feedback。Argon 思考级别只能 LOW／MEDIUM／HIGH，默认 HIGH。
+- 只审文字，不评判音频；Argon 判断双辅音长短不可靠。报告会给 pala／palla 这类最小对立词加备注：TTS 单独念词时双辅音可能不够长，音频要人工听。
+- 工具不改内容文件。按报告手动改完、确认没问题的句子才标 `checked`，同时把 `checkedText` 设成当时的 `it`。
 
 ## 免费 Apple ID 的限制
 
@@ -51,7 +60,14 @@
 ## 内容规则
 
 - 句子状态依次是 draft → checked（交叉校对）→ native（母语者抽检，可选）→ audio_ok（音频听审过）。没校对过的不许标 checked。
+- 状态不是 draft 的句子必须带 `checkedText`，且等于 `it`：审核结论只对审过的那段原文有效，改了原文就要重新校对或退回 draft（`validate_content.py` 会拦）。
 - 对陌生人一律用 Lei；自述句用阳性（Sono arrivato、Sono stanco）。
+- 发音讲解：
+  - 先听示范音频，再看近似写法；标准永远是音频，加上和自己录音的对比。
+  - 搭桥只讲“某个音像什么”，可以借日语假名、拼音或英语，但不给整个词的假名或拼音转写。只有在对比长短、重音时才用假名片段（如 パッラ／パーラ）。
+  - 每个搭桥后面跟一句“哪里不像”。
+  - 明确提醒母语干扰：辅音连缀（pr、gr、str、sc）和词尾辅音（per、con、non）中间、后面都不加元音；u 要圆唇，日语う是扁的；外来语片假名不可信（カプチーノ、ユーロ）；重音靠响和长，不靠高低；拼音只借“b、d、g 不送气”这一点，c、q、x、r 不按拼音读，拼音的 b、d、g 是清音。
+  - 英语只用在它更像的地方：辅音连缀、词尾辅音，以及 sh、ch、j（对应 sci、ci、gi）。英语的双元音、弱化元音和送气不要带进来。
 - 只教“怎么问”，不写死票价、营业时间这类会变的事实。
 - 句子里不写用到日：由场景的 `neededAt`（`first` / `last` / `city:<id>` / `event:<id>`）和导入的行程推算。
 - 音频文件名是哈希；manifest 的键是 `"<voice>|<speed>|<text>"`，必须和 `AudioManifest.key` 以及 `tools/` 里的实现保持一致。

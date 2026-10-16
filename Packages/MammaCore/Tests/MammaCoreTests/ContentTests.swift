@@ -55,6 +55,19 @@ struct ContentTests {
         #expect(messages.contains("phrase L01-01 uses unknown scene boat"))
     }
 
+    @Test func checkedTextIsOptional() throws {
+        let old = #"{"id": "L01-01", "it": "Ciao!", "zh": "你好！", "scene": "general", "status": "draft"}"#
+        #expect(try JSONDecoder().decode(Phrase.self, from: Data(old.utf8)).checkedText == nil)
+
+        let checked = #"{"id": "L01-01", "it": "Ciao!", "zh": "你好！", "scene": "general", "status": "checked", "checkedText": "Ciao!"}"#
+        let phrase = try JSONDecoder().decode(Phrase.self, from: Data(checked.utf8))
+        #expect(phrase.status == .checked)
+        #expect(phrase.checkedText == "Ciao!")
+
+        let encoded = try JSONDecoder().decode(Phrase.self, from: JSONEncoder().encode(phrase))
+        #expect(encoded == phrase)
+    }
+
     @Test func audioManifestKeyFormat() {
         #expect(AudioManifest.key(text: "Al banco.", voice: "f1@1", speed: .slow) == "f1@1|s|Al banco.")
         let manifest = AudioManifest(version: 1, voices: ["f1@1"], entries: ["f1@1|n|Ciao!": "0123456789abcdef.m4a"])

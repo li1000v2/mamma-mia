@@ -1,0 +1,135 @@
+{
+  "unit": "C07",
+  "title": "罗马问路",
+  "goal": "你在罗马街头，想去斗兽场。向路人打听：先问斗兽场在哪儿，再问附近有没有地铁站，听懂一串指路，最后问清在哪站下车、要坐几站。",
+  "speaker": "Passante",
+  "voice": "m1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "ask",
+      "npc": [
+        { "it": "Sì? Mi dica.", "zh": "嗯？您说。" },
+        { "it": "Prego, mi dica.", "zh": "您请说，什么事？" }
+      ],
+      "reply": {
+        "intent": "问斗兽场在哪儿",
+        "frame": "dove",
+        "choices": [
+          { "it": "Scusi, dov'è il Colosseo?", "correct": true },
+          { "it": "Scusi, dove sono il Colosseo?", "correct": false, "feedback": "Dove sono…? 用来问复数的东西，比如 i bagni。斗兽场只有一个，用 Dov'è…?" },
+          { "it": "Scusi, quanto costa il Colosseo?", "correct": false, "feedback": "这是问“斗兽场多少钱”。问在哪儿用 Dov'è…?" }
+        ]
+      }
+    },
+    {
+      "id": "far",
+      "npc": [
+        { "it": "Guardi, è un po' lontano da qui. Le conviene prendere la metro.", "zh": "您看，离这儿有点远。您最好坐地铁。" },
+        { "it": "Eh, a piedi è lontano. Meglio prendere la metro.", "zh": "嗯，走路去挺远的。最好坐地铁。" }
+      ],
+      "reply": {
+        "intent": "问这附近有没有地铁站",
+        "frame": "avete",
+        "choices": [
+          { "it": "C'è una fermata della metro qui vicino?", "correct": true },
+          { "it": "Quanto costa la metro?", "correct": false, "feedback": "这是问地铁多少钱。任务是问附近有没有地铁站：C'è … qui vicino?" },
+          { "it": "Dov'è la fermata del vaporetto?", "correct": false, "feedback": "vaporetto 是威尼斯的水上巴士（L08），罗马要坐的是 metro。" }
+        ]
+      }
+    },
+    {
+      "id": "way",
+      "npc": [
+        {
+          "it": "Sì: vada sempre dritto e prenda la seconda a sinistra. La metro è lì.",
+          "zh": "有：一直往前走，第二个路口左转。地铁站就在那儿。",
+          "answer": "直走，第二个路口左转",
+          "distractors": ["直走，第二个路口右转", "直走，第一个路口左转"]
+        },
+        {
+          "it": "Sì: vada dritto fino al semaforo, poi giri a destra. La metro è lì.",
+          "zh": "有：直走到红绿灯，然后右转。地铁站就在那儿。",
+          "answer": "走到红绿灯，右转",
+          "distractors": ["走到红绿灯，左转", "走到十字路口，右转"]
+        },
+        {
+          "it": "Sì: prenda la prima a destra, poi all'incrocio giri a sinistra. La metro è lì.",
+          "zh": "有：第一个路口右转，然后到十字路口左转。地铁站就在那儿。",
+          "answer": "第一个路口右转，到十字路口再左转",
+          "distractors": ["第一个路口左转，到十字路口再右转", "第三个路口右转，到十字路口再左转"]
+        }
+      ],
+      "question": "地铁站怎么走？",
+      "reply": {
+        "intent": "道谢，再问该在哪站下车",
+        "frame": "dove",
+        "choices": [
+          { "it": "Grazie! E dove devo scendere?", "correct": true },
+          { "it": "Grazie! E dove devo salire?", "correct": false, "feedback": "salire 是“上车”。问在哪站下车要用 scendere：Dove devo scendere?" },
+          { "it": "Grazie! E dove devo scrivere?", "correct": false, "feedback": "scrivere 是“写”（L03 的 Me lo può scrivere?）。下车是 scendere。" }
+        ]
+      }
+    },
+    {
+      "id": "stop",
+      "npc": [
+        { "it": "Alla fermata Colosseo. Da qui sono due fermate.", "zh": "在斗兽场站下。从这儿坐两站。", "answer": "2 站", "distractors": ["12 站", "3 站"] },
+        { "it": "Alla fermata Colosseo. Da qui sono tre fermate.", "zh": "在斗兽场站下。从这儿坐三站。", "answer": "3 站", "distractors": ["13 站", "2 站"] },
+        { "it": "Alla fermata Colosseo. Da qui sono sei fermate.", "zh": "在斗兽场站下。从这儿坐六站。", "answer": "6 站", "distractors": ["16 站", "7 站"] }
+      ],
+      "question": "要坐几站？",
+      "reply": {
+        "intent": "道谢",
+        "choices": [
+          { "it": "Grazie mille!", "correct": true },
+          { "it": "Prego!", "correct": false, "feedback": "prego 是别人道谢后你回的“不客气”。这里该你道谢：Grazie mille!" },
+          { "it": "Mamma mia!", "correct": false, "feedback": "Mamma mia 是“我的天哪”，用来感叹，不是道谢。" }
+        ]
+      }
+    },
+    {
+      "id": "bye",
+      "npc": [
+        { "it": "Prego! Buona giornata!", "zh": "不客气！祝您今天愉快！" },
+        { "it": "Di niente! Buona visita!", "zh": "没什么！祝您玩得开心！" }
+      ]
+    }
+  ],
+  "followUps": {
+    "after": "ask",
+    "min": 0,
+    "max": 1,
+    "pool": [
+      {
+        "id": "piedi",
+        "npc": [
+          { "it": "Il Colosseo? Ci va a piedi?", "zh": "斗兽场？您走着去吗？" }
+        ],
+        "reply": {
+          "intent": "反问一句：远吗？",
+          "choices": [
+            { "it": "È lontano?", "correct": true },
+            { "it": "Sono lontano?", "correct": false, "feedback": "Sono 是“我是”，这句成了“我很远吗？”。问那个地方远不远：È lontano?" },
+            { "it": "Quanto costa a piedi?", "correct": false, "feedback": "这是问“走路去要多少钱”。问远不远：È lontano?" }
+          ]
+        }
+      },
+      {
+        "id": "mappa",
+        "npc": [
+          { "it": "Il Colosseo? Ha una mappa sul telefono?", "zh": "斗兽场？您手机上有地图吗？" }
+        ],
+        "reply": {
+          "intent": "说有，请对方在地图上指给你看",
+          "frame": "mipuo",
+          "choices": [
+            { "it": "Sì. Me lo può indicare sulla mappa?", "correct": true },
+            { "it": "Sì. Posso indicare sulla mappa?", "correct": false, "feedback": "Posso…? 是“我能……吗”，成了你要自己指。请对方指给你看用 Me lo può…?" },
+            { "it": "Sì, ho perso la mappa.", "correct": false, "feedback": "这句是“对，我把地图弄丢了”，前后矛盾。请对方在地图上指：Me lo può indicare sulla mappa?" }
+          ]
+        }
+      }
+    ]
+  }
+}

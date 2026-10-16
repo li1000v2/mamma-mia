@@ -1,0 +1,48 @@
+{
+  "unit": "L12",
+  "intro": "句框 Sono…（我是……）也用来说自己的状态：Sono allergico a…（我对……过敏）。自述用阳性 allergico（al-LER-gi-co）。a 碰到冠词要连写：a + il = al，a + la = alla，a + i = ai，a + le = alle。常见的过敏原：ai crostacei（虾蟹类）、alla frutta a guscio（坚果）、alle arachidi（花生）、al latte（牛奶）、alle uova（鸡蛋）、al glutine（麸质）。服务员常问 Ha allergie o intolleranze?（您有过敏或不耐受吗？）。真有过敏的话，最好再给店员看一张写好的卡片。\n\n句框 Non…：动词前加 Non 就是否定：Non ho ordinato questo（我没点这个）。不想要某样东西就用 senza…（不要……、不加……）：Senza formaggio, per favore。\n\n结账：在意大利，服务员一般不会主动拿账单来，要自己说 Il conto, per favore。账单上常见 coperto（座位费，按人头收，含面包和餐具，菜单上会写金额），有的店还有 servizio（服务费）。coperto 是正常收费，不是乱收费；小费不是必须的。\n\n发音先听示范音频，标准是音频；note 里的近似说法只帮你找音，不是读法。per、con、non 这些以辅音结尾的词，后面都不加元音。",
+  "phrases": [
+    {
+      "id": "L12-01",
+      "it": "Sono allergico ai crostacei.",
+      "zh": "我对虾蟹类过敏。",
+      "frame": "sono",
+      "scene": "restaurant",
+      "status": "draft",
+      "note": "例句，按需要换词：alle arachidi（花生）、alla frutta a guscio（坚果）、al latte（牛奶）。crostacei 指虾、蟹、龙虾这一类，读 cro-STA-ce-i：cr、st 中间都不加元音；ce 的 c 像英语 ch，哪里不像：英语 ch 会带一点送气，这里不送气。allergico 读 al-LER-gi-co：ll 要把 l 持续发长一拍，不是停顿。"
+    },
+    {
+      "id": "L12-02",
+      "it": "Senza formaggio, per favore.",
+      "zh": "请不要放奶酪。",
+      "scene": "restaurant",
+      "status": "draft",
+      "note": "senza 是“不要、不加”，后面直接接名词。读 SEN-za，z 读 ts，像日语ツ开头的 ts；哪里不像：ツ 后面带着う，这里 ts 直接接 a。换词：senza cipolla（不要洋葱）、senza aglio（不要蒜）。"
+    },
+    {
+      "id": "L12-03",
+      "it": "Scusi, non ho ordinato questo.",
+      "zh": "不好意思，我没点这个。",
+      "frame": "non",
+      "scene": "restaurant",
+      "status": "draft",
+      "note": "ordinare（点菜）→ ordinato：or-di-NA-to，r 后面直接接 d，中间不加元音。前面加 Non 是“没……”；h 不发音，non 的 n 直接连到 ho 上。上错菜，或者账单上多了东西时用。"
+    },
+    {
+      "id": "L12-04",
+      "it": "Il conto, per favore.",
+      "zh": "请结账。",
+      "scene": "restaurant",
+      "status": "draft",
+      "note": "conto 是账单，读 CON-to，n 后面直接接 t，中间不加元音。服务员一般不会主动拿来，要自己叫。"
+    },
+    {
+      "id": "L12-05",
+      "it": "Che cos'è il coperto?",
+      "zh": "coperto（座位费）是什么？",
+      "scene": "restaurant",
+      "status": "draft",
+      "note": "coperto 是座位费，读 co-PER-to，r 弹一下直接接 t，不加元音。按人头收，含面包和餐具，菜单上会写金额，是正常收费。servizio 是服务费，有的店才收。"
+    }
+  ]
+}

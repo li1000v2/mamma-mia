@@ -1,0 +1,49 @@
+{
+  "unit": "L19",
+  "intro": "问地点的句框 Dov'è…?：dove（哪里）+ è（在）缩写成 dov'è，重音在最后的 è。开口先说 Scusi（L03），再接地点：Scusi, dov'è il Colosseo? 问的东西是复数，就换成 Dove sono…?：Dove sono i bagni?（洗手间在哪儿？）\n\n问附近有没有：C'è … qui vicino?（这附近有……吗？）\n\n知道在哪儿以后，再问远近：È lontano?（远吗？）Si può andare a piedi?（能走着去吗？）a piedi 是“步行”。常听到的回答：È qui vicino（就在附近）、È un po' lontano（有点远）、Sono dieci minuti a piedi（走路十分钟）。\n\n指路的话一长串，听不全也没关系：把手机地图递过去，请对方指给你看。\n\n发音：先听示范音频，再看下面的近似说明，以音频为准。c'è、vicino 的 c 读软音，像英语 ch；不像的是意大利语的 c 不送气，后面的 e、i 是纯元音，不能滑成英语的双元音。qui 的 qu 像英语 quick 的 kw，不按拼音 q 读；不像的是 k 不送气。重音靠读得响、拉长，不靠把音调抬高：lon-TA-no、vi-CI-no。",
+  "phrases": [
+    {
+      "id": "L19-01",
+      "it": "Scusi, dov'è il Colosseo?",
+      "zh": "打扰一下，斗兽场在哪儿？",
+      "frame": "dove",
+      "scene": "directions",
+      "status": "draft",
+      "note": "dov'è = dove + è。把 il Colosseo 换掉就能问任何地方：dov'è la stazione?（车站在哪儿？）Colosseo 读 co-los-SE-o，别照外来语的节奏读。ss 像促音っ多占一拍；不像的是っ是不出声的停顿，ss 是把 s 的嘶声拉长。"
+    },
+    {
+      "id": "L19-02",
+      "it": "È lontano?",
+      "zh": "远吗？",
+      "scene": "directions",
+      "status": "draft",
+      "note": "常听到的回答：È qui vicino（就在附近）、È un po' lontano（有点远）。lontano 重音在 TA：lon-TA-no。"
+    },
+    {
+      "id": "L19-03",
+      "it": "Si può andare a piedi?",
+      "zh": "能走着去吗？",
+      "scene": "directions",
+      "status": "draft",
+      "note": "si può 是“（一般人）可以……”，a piedi 是“步行”，piedi 是“脚”。può 只有一个音节，u 要圆唇撅起来，日语的う是扁的。piedi 的 ie 合成一拍：PIE-di。回答常带时间：Sì, sono dieci minuti a piedi（可以，走路十分钟）。也常听到 Ci si può andare a piedi?，意思一样。"
+    },
+    {
+      "id": "L19-04",
+      "it": "C'è una fermata della metro qui vicino?",
+      "zh": "这附近有地铁站吗？",
+      "frame": "avete",
+      "scene": "directions",
+      "status": "draft",
+      "note": "C'è…? 是“有……吗”，qui vicino 是“这附近”。la metro 是 metropolitana（地铁）的简称，站叫 la fermata。metro 只有两个音节：ME-tro，tr 中间不加元音，像英语 tree 的 tr；不像的是意大利语的 t 不送气，r 是舌尖弹一下，不卷舌。换成 un bagno、una farmacia 就能问洗手间、药店。"
+    },
+    {
+      "id": "L19-05",
+      "it": "Me lo può indicare sulla mappa?",
+      "zh": "您能在地图上指给我看吗？",
+      "frame": "mipuo",
+      "scene": "directions",
+      "status": "draft",
+      "note": "和 L03 的 Me lo può scrivere? 是同一个结构：me lo = 把它……给我，indicare 是“指出”：in-di-CA-re。mappa 是 MAP-pa，pp 像促音っ停一拍；不像的是 p 不送气，结尾的 a 也要读出来。英语来的外来语读法在这里不可信。"
+    }
+  ]
+}

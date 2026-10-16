@@ -1,0 +1,49 @@
+{
+  "unit": "L27",
+  "intro": "句框 Mi può + 动词原形?（您能帮我……吗？）：mi 是“给我、为我”，può 是“您能”。L03 学过 Può ripetere?（您能再说一遍吗？），前面加上 mi，就是请对方为你做事：Mi può chiamare un taxi?（您能帮我叫辆出租车吗？）、Mi può aiutare?（您能帮帮我吗？）。\n\n打车：在罗马一般去写着 TAXI 的候车点排队，或者请酒店前台、餐厅帮你叫。正规出租车是白色的，车顶有 TAXI 灯牌，车门上有编号；车站、机场里上前拉客的不要跟。上车先说目的地，再加 per favore。\n\n“去／到”某地用 a，a 碰上冠词要合在一起：a + il = al，a + la = alla，a + l' = all'。所以是 all'aeroporto（去机场）、alla stazione（去火车站）。罗马有两个机场：Fiumicino 和 Ciampino，一定要说清是哪个。\n\n问价：Quanto costa fino a…?（到……要多少钱？），fino a 是“一直到”。罗马市中心去机场常有固定价，上车前问清楚；报价没听清，就请司机写下来。\n\n发音：先听示范音频，再看下面的提示，标准是音频。\n· può 的 u 要圆唇往前撅；日语的う是扁的，照う读会走样。può 只有一个音节，重音在 ò。\n· taxi 重音在 TA：TA-xi，x 读 ks，不按拼音的 x 读，k 和 s 中间也不加元音。片假名タクシー不可信：k 后面多了个う，最后也不是长音シー。\n· chiamare 的 ch 读 k，不按英语或拼音读 ch。Ciampino 的 ci 像英语 cheese 的 ch；不像的是英语的 ch 常带一口气，意大利语不送气。cia 里的 i 不单独发音：ciam-PI-no。Fiumicino 重音在 CI：fiu-mi-CI-no。\n· aeroporto 是五个音节 a-e-ro-POR-to，a、e 分开读；别照片假名エアポート读。",
+  "phrases": [
+    {
+      "id": "L27-01",
+      "it": "Mi può chiamare un taxi?",
+      "zh": "您能帮我叫辆出租车吗？",
+      "frame": "mipuo",
+      "scene": "taxi",
+      "status": "draft",
+      "note": "在酒店前台、餐厅结账时说。chiamare 重音在 MA：chia-MA-re。"
+    },
+    {
+      "id": "L27-02",
+      "it": "All'aeroporto di Fiumicino, per favore.",
+      "zh": "请去菲乌米奇诺机场。",
+      "scene": "taxi",
+      "status": "draft",
+      "note": "上车说目的地加 per favore 就行。all' = a + l'。罗马另一个机场是 Ciampino，别说混。per 的 r 后面不加元音，直接接 favore。"
+    },
+    {
+      "id": "L27-03",
+      "it": "Quanto costa fino all'aeroporto?",
+      "zh": "到机场要多少钱？",
+      "frame": "quanto",
+      "scene": "taxi",
+      "status": "draft",
+      "note": "fino a 是“一直到”，fino a + l' = fino all'。上车前问。罗马市中心去机场常有固定价，可以再问一句 C'è una tariffa fissa?（有固定价吗？）。costa 的 st 中间不加元音。"
+    },
+    {
+      "id": "L27-04",
+      "it": "Quanto tempo ci vuole?",
+      "zh": "要多长时间？",
+      "scene": "taxi",
+      "status": "draft",
+      "note": "ci vuole 是“需要（多少时间）”。司机常答 Ci vogliono quaranta minuti（要四十分钟）、Circa mezz'ora（大约半小时）。赶飞机时一定要问。"
+    },
+    {
+      "id": "L27-05",
+      "it": "Mi può fare la ricevuta?",
+      "zh": "您能给我开张收据吗？",
+      "frame": "mipuo",
+      "scene": "taxi",
+      "status": "draft",
+      "note": "ricevuta 是收据，重音在 VU：ri-ce-VU-ta。想刷卡就先问一句：Posso pagare con la carta? con 的 n 后面不加元音。"
+    }
+  ]
+}

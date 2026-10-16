@@ -1,6 +1,6 @@
 {
   "unit": "L03",
-  "intro": "对陌生人一律用 Lei（您）。用 Lei 时，动词用和“他／她”一样的形式：Può…?（您能……吗？）、Parla…?（您说……吗？）。这样不用另记一套变位。\n\n否定只要在动词前加 Non：ho capito（我懂了）→ Non ho capito（我没懂）。\n\n听不懂时别慌，先说 Scusi，再接一句救场的话：请对方重复、说慢一点，或者写下来。价格、地址、站台这类数字，写下来最保险。",
+  "intro": "对陌生人一律用 Lei（您）。用 Lei 时，动词用和“他／她”一样的形式：Può…?（您能……吗？）、Parla…?（您说……吗？）。这样不用另记一套变位。\n\n否定只要在动词前加 Non：ho capito（我懂了）→ Non ho capito（我没懂）。\n\n听不懂时别慌，先说 Scusi，再接一句救场的话：请对方重复、说慢一点，或者写下来。价格、地址、站台这类关键信息，写下来最保险。",
   "phrases": [
     {
       "id": "L03-01",
@@ -8,7 +8,7 @@
       "zh": "不好意思／打扰一下。",
       "scene": "general",
       "status": "draft",
-      "note": "对陌生人说 Scusi（“您”的说法），对熟人才说 Scusa。叫住店员、问路、借过都能用。"
+      "note": "对陌生人说 Scusi（“您”的说法），对熟人才说 Scusa。叫住店员、问路、道歉都能用；没听清时用升调说 Scusi? 就是“您说什么？”。要从人群里挤过去时更常说 Permesso。"
     },
     {
       "id": "L03-02",
@@ -17,7 +17,7 @@
       "frame": "non",
       "scene": "general",
       "status": "draft",
-      "note": "ho capito 是“我懂了”，前面加 Non 就是否定。"
+      "note": "ho capito 是“我懂了”，前面加 Non 就是否定。h 不发音，ho 就读 o；non 的最后一个 n 后面不加元音。重音在 PI：ca-PI-to。"
     },
     {
       "id": "L03-03",
@@ -26,7 +26,7 @@
       "frame": "mipuo",
       "scene": "general",
       "status": "draft",
-      "note": "Può…? 是请“您”做某事；ripetere 是重复。"
+      "note": "Può…? 是请“您”做某事；ripetere 是重复，重音在倒数第三个音节：ri-PE-te-re。per favore 放在句尾就是“请”。"
     },
     {
       "id": "L03-04",
@@ -34,7 +34,7 @@
       "zh": "请说慢一点。",
       "scene": "general",
       "status": "draft",
-      "note": "piano 在这里是“慢”。也可以说 Più lentamente, per favore。"
+      "note": "piano 在这里是“慢”。也可以说 Più lentamente, per favore，或者说整句 Può parlare più piano?（您能说慢一点吗？）。più 只有一个音节，i 一带而过，接近英语 pew。"
     },
     {
       "id": "L03-05",
@@ -43,7 +43,7 @@
       "frame": "mipuo",
       "scene": "general",
       "status": "draft",
-      "note": "me lo 是“把它……给我”。听不清价格、地址、站台时最好用。"
+      "note": "me lo 是“把它……给我”。scrivere 重音在 SCRI：SCRI-ve-re。听不清价格、地址、站台时最好用。"
     }
   ]
 }
