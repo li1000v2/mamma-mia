@@ -4,7 +4,8 @@
 Every Italian line the app plays (lesson phrases, frame examples, what the other person says in
 challenges) gets one clip per voice at normal speed. The show cards' own lines (Content/showcards.json:
 its sentences and the allergen names) are played to other people rather than studied, so they get only
-the "showCardVoices". The slow clip is that same recording slowed
+the "showCardVoices"; the pilgrimage spots' own lines (Content/spots.json: their sentences and the
+place names) are said on the spot, so they get only the "spotVoices". The slow clip is that same recording slowed
 with ffmpeg: style instructions sent with the text are sometimes read aloud, so none are sent.
 Each new clip is transcribed back with Gemini and regenerated when it doesn't match the text.
 Files are named by a hash of "<voice>|<speed>|<text>", so only missing audio is generated.
@@ -103,9 +104,20 @@ def show_card_texts() -> list[str]:
     return list(dict.fromkeys([phrase["it"] for phrase in cards["phrases"]] + [item["it"] for item in cards["allergens"]]))
 
 
+def spot_texts() -> list[str]:
+    """The pilgrimage spots' own Italian: their sentences, then the place names. Course phrases used at
+    a spot are the course's lines already."""
+    path = CONTENT / "spots.json"
+    if not path.exists():
+        return []
+    spots = load_json(path)
+    return list(dict.fromkeys([phrase["it"] for phrase in spots["phrases"]] + [spot["it"] for spot in spots["spots"]]))
+
+
 def spoken_texts() -> list[str]:
-    """Every Italian line the app can play, in course order then the show cards, without duplicates."""
-    return list(dict.fromkeys(course_texts() + show_card_texts()))
+    """Every Italian line the app can play, in course order then the show cards and the spots, without
+    duplicates."""
+    return list(dict.fromkeys(course_texts() + show_card_texts() + spot_texts()))
 
 
 UNITS = ["zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove", "dieci", "undici",
@@ -270,6 +282,9 @@ def main() -> int:
     for text in show_card_texts():
         if text not in course:  # a course line keeps every voice
             line_voices.setdefault(text, config.get("showCardVoices", list(profiles)))
+    for text in spot_texts():
+        if text not in course:
+            line_voices.setdefault(text, config.get("spotVoices", list(profiles)))
     entries: dict[str, str] = dict(manifest["entries"])
     wanted: set[str] = set()
     jobs: list[Job] = []

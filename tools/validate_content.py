@@ -3,9 +3,9 @@
 
 Checks every JSON file against its schema in Content/schema, that a phrase past draft still has
 the text it was checked with (checkedText), that audio-reviewed phrases have audio for every voice
-and speed (a show-card line for one voice: it is played to people, not studied), that every manifest
-entry has its file, and that no real itinerary was committed. Cross-file id checks live in the
-MammaCore tests.
+and speed (a show-card or pilgrimage-spot line for one voice: those are said on the spot, not studied),
+that every manifest entry has its file, and that no real itinerary was committed. Cross-file id checks
+live in the MammaCore tests.
 
 Usage: python tools/validate_content.py
 """
@@ -59,6 +59,7 @@ def main() -> int:
     dialogue_files = sorted((CONTENT / "dialogues").glob("*.json"))
     manifest_path = AUDIO / "manifest.json"
     show_cards_path = CONTENT / "showcards.json"
+    spots_path = CONTENT / "spots.json"
     errors += schema_errors("course.schema.json", CONTENT / "course.json")
     errors += schema_errors("trip.schema.json", CONTENT / "trip.example.json")
     errors += schema_errors("audio-manifest.schema.json", manifest_path)
@@ -66,6 +67,8 @@ def main() -> int:
         errors += schema_errors("showcards.schema.json", show_cards_path)
     else:
         errors.append(f"{rel(show_cards_path)} is missing; the show cards need it")
+    if spots_path.exists():
+        errors += schema_errors("spots.schema.json", spots_path)
     for path in lesson_files:
         errors += schema_errors("lesson.schema.json", path)
     for path in dialogue_files:
@@ -86,14 +89,17 @@ def main() -> int:
     phrases = [phrase for path in lesson_files for phrase in load(path)["phrases"]]
     show_cards = load(show_cards_path)
     card_phrases = show_cards["phrases"]
+    spots = load(spots_path) if spots_path.exists() else {"phrases": [], "spots": []}
+    spot_phrases = spots["phrases"]
     first_with_text: dict[str, str] = {}
-    for phrase in phrases + card_phrases:
+    for phrase in phrases + card_phrases + spot_phrases:
         text = " ".join(phrase["it"].lower().split())
         if text in first_with_text:
             warnings.append(f"{phrase['id']}: same Italian as {first_with_text[text]}; reuse one phrase or note why both exist")
         else:
             first_with_text[text] = phrase["id"]
-    for phrase in phrases + card_phrases:
+    # A spot's Italian name is checked like a phrase.
+    for phrase in phrases + card_phrases + spot_phrases + spots["spots"]:
         if phrase["status"] == "draft":
             continue
         checked_text = phrase.get("checkedText")
@@ -125,6 +131,14 @@ def main() -> int:
         if all(options):
             message = f"showcards {line_id}: no voice has audio at both speeds"
             (errors if status == "audio_ok" else warnings).append(message)
+    # So is a spot's line, said at the place: its own sentences and the place names.
+    spot_lines = [(phrase["id"], phrase["it"], phrase["status"]) for phrase in spot_phrases]
+    spot_lines += [(f"name {spot['id']}", spot["it"], spot["status"]) for spot in spots["spots"]]
+    for line_id, text, status in spot_lines:
+        options = [missing_audio(text, [voice]) for voice in manifest["voices"]] or [missing_audio(text, [])]
+        if all(options):
+            message = f"spots {line_id}: no voice has audio at both speeds"
+            (errors if status == "audio_ok" else warnings).append(message)
 
     if errors:
         return report(errors, warnings)
@@ -132,9 +146,11 @@ def main() -> int:
         print(f"warning: {line}")
     drafts = sum(1 for phrase in phrases if phrase["status"] == "draft")
     card_drafts = sum(1 for phrase in card_phrases if phrase["status"] == "draft")
+    spot_drafts = sum(1 for item in spot_phrases + spots["spots"] if item["status"] == "draft")
     print(
         f"OK: {len(lesson_files)} lesson files, {len(phrases)} phrases ({drafts} draft), "
         f"{len(dialogue_files)} dialogues, {len(card_phrases)} show-card phrases ({card_drafts} draft), "
+        f"{len(spots['spots'])} spots and {len(spot_phrases)} spot phrases ({spot_drafts} draft), "
         f"{len(manifest['entries'])} audio files"
     )
     return 0

@@ -4,7 +4,8 @@
 Each unit is sent to the model in batches: for a lesson its intro and every phrase (Italian,
 Chinese, note), for a challenge every line the other person says and every reply choice with its
 feedback, for the show cards (unit "showcards", Content/showcards.json) their sentences and the
-allergen names. The model checks grammar, Lei towards strangers, naturalness and regional usage, the
+allergen names, for the pilgrimage spots (unit "spots", Content/spots.json) each place's name, address
+and sentences. The model checks grammar, Lei towards strangers, naturalness and regional usage, the
 Chinese translation, the kana / pinyin pronunciation hints, and whether each wrong choice is really
 wrong and each right one really right. Its structured answer becomes reviews/cross-check-<unit>.md.
 
@@ -15,6 +16,7 @@ Usage (from the repo root):
   python tools/cross_check.py --week 1          every unit of week 1
   python tools/cross_check.py L03 C01           just these units
   python tools/cross_check.py showcards         the show cards' own sentences
+  python tools/cross_check.py spots             the pilgrimage spots' names and sentences
   python tools/cross_check.py --dry-run L01     print the request instead of sending it
 
 Needs GOOGLE_CLOUD_PROJECT_NUMBER (environment or .env), and GOOGLE_API_KEY when the environment
@@ -39,7 +41,7 @@ REVIEWS = ROOT / "reviews"
 MODEL = "gemini-4-argon"
 
 INSTRUCTIONS = """\
-你是意大利语教学内容的审校。学习者是母语为中文、会日语假名的成年人，12 月去意大利旅行（威尼斯、佛罗伦萨、罗马等），
+你是意大利语教学内容的审校。学习者是母语为中文、会日语假名的成年人，12 月去意大利旅行（威尼斯、那不勒斯、罗马），
 用一个自学 app 学旅行意大利语。app 的讲解和翻译都是简体中文，发音提示用日语假名近似，有时用拼音。
 
 内容的固定约定（不符合就算问题）：
@@ -69,7 +71,8 @@ INSTRUCTIONS = """\
 comment 可以留空；有值得学习者知道、但不需要改内容的补充（比如地区差异、另一种说法）时写一两句中文。
 """
 
-FIELDS = ["it", "zh", "note", "intro", "npc", "answer", "distractors", "choice", "correct", "feedback", "intent", "question"]
+FIELDS = ["it", "zh", "note", "intro", "npc", "answer", "distractors", "choice", "correct", "feedback", "intent", "question",
+          "address", "pin", "phrases"]
 
 RESPONSE_SCHEMA = {
     "type": "object",
@@ -108,7 +111,7 @@ RESPONSE_SCHEMA = {
 class Item:
     """One thing to review, with what the model needs to see and what the report shows."""
     id: str
-    kind: str  # "intro", "phrase", "npc", "choice" or "allergen"
+    kind: str  # "intro", "phrase", "npc", "choice", "allergen" or "spot"
     data: dict
     shown: list[tuple[str, str]]  # (label, text) pairs quoted in the report
 
@@ -116,7 +119,7 @@ class Item:
 @dataclass
 class Unit:
     id: str
-    kind: str  # "lesson", "challenge" or "showcards"
+    kind: str  # "lesson", "challenge", "showcards" or "spots"
     title: str
     context: dict
     items: list[Item] = field(default_factory=list)
@@ -216,14 +219,51 @@ def show_card_unit(path: Path) -> Unit:
     return unit
 
 
+SPOTS = "spots"
+
+
+def spot_unit(path: Path) -> Unit:
+    content = load_json(path)
+    course_phrases = {phrase["id"]: phrase for lesson in sorted((CONTENT / "lessons").glob("*.json"))
+                      for phrase in load_json(lesson)["phrases"]}
+    own = {phrase["id"]: phrase for phrase in content["phrases"]}
+    cities = {city["id"]: city["zh"] for city in load_json(CONTENT / "course.json")["cities"]}
+
+    def line(phrase_id: str) -> dict:
+        phrase = course_phrases.get(phrase_id) or own[phrase_id]
+        return {"id": phrase_id, "it": phrase["it"], "zh": phrase["zh"], "fromCourse": phrase_id in course_phrases}
+
+    unit = Unit(SPOTS, "spots", "巡礼点", {
+        "unit": SPOTS, "title": "巡礼点", "commonPhrases": [line(phrase_id) for phrase_id in content["commonPhrases"]],
+    })
+    for spot in content["spots"]:
+        where = cities.get(spot["city"], spot["city"]) + ("出发的一日游" if spot.get("dayTrip") else "")
+        data = {"city": where, "it": spot["it"], "zh": spot["zh"], "address": spot["address"],
+                "phrases": [line(phrase_id) for phrase_id in spot["phrases"]]}
+        for key in ("note", "pin"):
+            if spot.get(key):
+                data[key] = spot[key]
+        shown = [("it", spot["it"]), ("zh", spot["zh"]), ("address", spot["address"])]
+        shown += [(key, spot[key]) for key in ("note", "pin") if spot.get(key)]
+        shown.append(("phrases", " · ".join(item["it"] for item in data["phrases"])))
+        unit.items.append(Item(f"spot/{spot['id']}", "spot", data, shown))
+    for phrase in content["phrases"]:
+        data = {key: phrase[key] for key in ("it", "zh", "note") if phrase.get(key)}
+        data["usedAt"] = [spot["it"] for spot in content["spots"] if phrase["id"] in spot["phrases"]]
+        shown = [("it", phrase["it"]), ("zh", phrase["zh"])] + ([("note", phrase["note"])] if phrase.get("note") else [])
+        unit.items.append(Item(phrase["id"], "phrase", data, shown))
+    return unit
+
+
 def load_units(wanted: list[str], week: int | None) -> list[Unit]:
     course = load_json(CONTENT / "course.json")
     titles = {unit["id"]: unit["title"] for unit in course["units"]}
     if week is not None:
         wanted = wanted + [unit["id"] for unit in course["units"] if unit["week"] == week]
     files = {path.stem: path for folder in ("lessons", "dialogues") for path in (CONTENT / folder).glob("*.json")}
-    if (CONTENT / f"{SHOW_CARDS}.json").exists():
-        files[SHOW_CARDS] = CONTENT / f"{SHOW_CARDS}.json"
+    for special in (SHOW_CARDS, SPOTS):
+        if (CONTENT / f"{special}.json").exists():
+            files[special] = CONTENT / f"{special}.json"
     order = [unit["id"] for unit in course["units"]]
     ids = sorted(set(wanted) or set(files), key=lambda unit: (order.index(unit) if unit in order else len(order), unit))
     units = []
@@ -233,6 +273,8 @@ def load_units(wanted: list[str], week: int | None) -> list[Unit]:
         path = files[unit_id]
         if unit_id == SHOW_CARDS:
             units.append(show_card_unit(path))
+        elif unit_id == SPOTS:
+            units.append(spot_unit(path))
         else:
             units.append(lesson_unit(path, titles) if path.parent.name == "lessons" else dialogue_unit(path))
     return units
@@ -278,6 +320,16 @@ def request_body(unit: Unit, items: list[Item], thinking: str) -> dict:
                          "kind 为 allergen 的是欧盟法规 (EU) No 1169/2011 附件二意大利文本里过敏原的名称原文（餐厅的过敏原表就用这些名称），"
                          "会一行一个列在 allergic-to 那句后面：不要建议改写措辞，只指出和法规原文不一致的拼写，"
                          "以及作为这样的列表项是否会让人看不懂。",
+            "spots": "这是巡礼点：学习者在旅途中去这些公共场所打卡、拍照，app 里列出每个地点和在那里用得上的句子。"
+                     "kind 为 spot 的是地点：it 是意大利语名称（app 里会显示，也会生成示范音频让学习者跟着说），"
+                     "zh 是中文名，note 是名字的读音提示，address 是地址，pin 说明地图上的图钉标在哪里，"
+                     "city 是所在城市（或从哪座城市出发的一日游），phrases 是在那里显示的句子，按顺序排列。"
+                     "phrases 里 fromCourse 为 true 的是课程句，已经在各自的课里审过，这里只看放在这个地点合不合适、"
+                     "顺序是否合理；不合适就在 phrases 字段提出。"
+                     "名称和地址是公开信息，已经对照维基百科和 OpenStreetMap 核实过：只指出拼写、重音符号和格式问题，"
+                     "不要猜测或改动邮编、门牌号这类事实。"
+                     "kind 为 phrase 的是只在巡礼点用的句子，usedAt 是用到它的地点。"
+                     "unit.commonPhrases 是在任何巡礼点都显示的课程句，只作背景。",
         }[unit.kind]
         + "\n\n" + json.dumps(payload, ensure_ascii=False, indent=2)
     )

@@ -172,6 +172,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "02260f96d1bd6fb8.m4a": {
+      "key": "f1@1|n|Isola di Capri",
+      "sha256": "0abc45b03184c56759ca3e9da911ddc6a289ab544c7949f7ad51b5cbaca26cbd",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:02:30Z",
+      "usage": {
+        "prompt": 612,
+        "output": 155,
+        "thoughts": 956
+      },
+      "ok": true,
+      "heard": "Isola di Capri",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "0232b09c79bca670.m4a": {
       "key": "m1@1|s|È la mia prima volta in Italia.",
       "sha256": "f0243db6c3dfca028dceb29fafec6236763e52ae21c01603878f0921a236c7aa",
@@ -1692,6 +1711,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "128be6a2e956df3a.m4a": {
+      "key": "f1@1|s|Questo treno ferma a Pompei Scavi?",
+      "sha256": "6455f36de217fb1bb7e561e489c38fef91ad1d0b6fc295793a7c7ebfbdbe6fc5",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:03:34Z",
+      "usage": {
+        "prompt": 712,
+        "output": 125,
+        "thoughts": 632
+      },
+      "ok": true,
+      "heard": "Questo treno ferma a Pompei Scavi?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "12eaff82bcc03174.m4a": {
       "key": "m1@1|s|Le consiglio il risotto al nero di seppia, è tipico di Venezia. Ha allergie o intolleranze?",
       "sha256": "51bdf893ca2a7265f65d81d21c29edbfe2103700d4e53d93df53ca0272315285",
@@ -3003,6 +3041,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "2385ef62a04c6e6d.m4a": {
+      "key": "f1@1|n|Chiesa di San Giorgio Maggiore",
+      "sha256": "a660fc89095baa4f540cb72f99b431bd3f596df3960d7a300fcc0471cff7a8a2",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:17:29Z",
+      "usage": {
+        "prompt": 637,
+        "output": 109,
+        "thoughts": 446
+      },
+      "ok": true,
+      "heard": "Chiesa di San Giorgio Maggiore",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "238e02f3d360fa67.m4a": {
       "key": "f1@1|s|Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono quattro fermate.",
       "sha256": "84e60e69b4c4a891d050545b86b293e92843aaf7b3980b6452fc918f5d0acb8c",
@@ -3573,6 +3630,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "28e89608700652b1.m4a": {
+      "key": "f1@1|n|Scavi di Pompei",
+      "sha256": "16989a9048c75a340dd47815edbe1ce122fd2b9bc7b4a057bc34c70e45f2e5f6",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:10:55Z",
+      "usage": {
+        "prompt": 619,
+        "output": 106,
+        "thoughts": 471
+      },
+      "ok": true,
+      "heard": "Scavi di Pompei",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "2939573aa1bd3a79.m4a": {
       "key": "f1@1|n|Al banco o al tavolo?",
       "sha256": "6cf2b037cb3388b8ea74ab1ca40a09a415568c418a0ef3ff93aa3856adbfd755",
@@ -4100,6 +4176,25 @@
       },
       "ok": true,
       "heard": "Napoli",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "2e65ed6377ad2036.m4a": {
+      "key": "f1@1|s|Dov'è la fermata dell'autobus per il centro?",
+      "sha256": "8bea17b384a1e1b54a5cdb4805a20916cb504e1e5f1c583062ba1240da9cc838",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:02:31Z",
+      "usage": {
+        "prompt": 727,
+        "output": 132,
+        "thoughts": 1066
+      },
+      "ok": true,
+      "heard": "Dov'è la fermata dell'autobus per il centro?",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -4712,6 +4807,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.7,
+      "modelOk": true
+    },
+    "34b1b235104b0f2a.m4a": {
+      "key": "f1@1|n|Colosseo",
+      "sha256": "586d24fc3ecad6a06eef98b54fda0289c7d3d07ce1ab2cfa53af38a844224148",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:12:56Z",
+      "usage": {
+        "prompt": 599,
+        "output": 51,
+        "thoughts": 101
+      },
+      "ok": true,
+      "heard": "Colosseo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 1.0,
       "modelOk": true
     },
     "34c5fe9209a06fe3.m4a": {
@@ -5398,6 +5512,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "3e7cbf0c2edd17e3.m4a": {
+      "key": "f1@1|n|Questo treno ferma a Pompei Scavi?",
+      "sha256": "0edfe15acbf7a7886905ab4c85e81b9e2fefbbd1514dc4fafa4a0c5eafaaf4bf",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:03:07Z",
+      "usage": {
+        "prompt": 637,
+        "output": 118,
+        "thoughts": 414
+      },
+      "ok": true,
+      "heard": "Questo treno ferma a Pompei Scavi?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "3eacd22e5ba40522.m4a": {
       "key": "f1@1|n|Ce l'ha in un'altra taglia?",
       "sha256": "03baf13590117edb00692ff64fff16dd34e1ec3bf684063289d5ba92da76fa2f",
@@ -5810,6 +5943,25 @@
       },
       "ok": true,
       "heard": "Perfetto, grazie. C'è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "43f49401cc6915b2.m4a": {
+      "key": "f1@1|s|Chiesa di San Giorgio Maggiore",
+      "sha256": "320cbd462f0a0cafff2759be5d958ad64e43f8eae57b779503511ff8087f99f5",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:17:30Z",
+      "usage": {
+        "prompt": 716,
+        "output": 116,
+        "thoughts": 563
+      },
+      "ok": true,
+      "heard": "Chiesa di San Giorgio Maggiore",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -6956,6 +7108,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "50679f288efe7016.m4a": {
+      "key": "f1@1|s|Colosseo",
+      "sha256": "966084de2e42421e9d7b8da9ad080e6816e6bc068e90493ff81d85992151beb2",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:13:05Z",
+      "usage": {
+        "prompt": 668,
+        "output": 105,
+        "thoughts": 567
+      },
+      "ok": true,
+      "heard": "Colosseo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "50a4653df2f94004.m4a": {
       "key": "f1@1|s|Come si scrive il cognome?",
       "sha256": "9bcb121aa9f6caae2521d85e71933720d2792c589831eafbddd58a1bf1489d50",
@@ -7032,6 +7203,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "5197656a471cf7db.m4a": {
+      "key": "f1@1|n|Aeroporto di Napoli-Capodichino",
+      "sha256": "7955496c248c8efc155ede25b378351b5ea1a0df326c9966be74e390d092b736",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:06:46Z",
+      "usage": {
+        "prompt": 637,
+        "output": 181,
+        "thoughts": 1024
+      },
+      "ok": true,
+      "heard": "Aeroporto di Napoli-Capodichino",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "51d7c43318a091df.m4a": {
       "key": "m1@1|s|Sì, certo. La polizia però è un po' lontana: in taxi sono quindici minuti.",
       "sha256": "96f92fa2fa154c683a9b9e4e18026c2719288c2c1bc54d6e812d1a9c11002eb4",
@@ -7087,6 +7277,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.75,
+      "modelOk": true
+    },
+    "526c39873ff4b2df.m4a": {
+      "key": "f1@1|s|Collina di Posillipo",
+      "sha256": "de39e6a34b27002cedc46744c63223401ef400de667e336f23a3c1d451a1c07a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:00:52Z",
+      "usage": {
+        "prompt": 691,
+        "output": 116,
+        "thoughts": 841
+      },
+      "ok": true,
+      "heard": "Collina di Posillipo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "52911a9ba0714aa9.m4a": {
@@ -7735,6 +7944,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "5a386859a3c0dde7.m4a": {
+      "key": "f1@1|s|A che ora parte l'ultimo aliscafo per Napoli?",
+      "sha256": "8bba3dd2424bd7b0598d8ba58861afc8825e63d7eab7b8537592001fb11d8535",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:06:36Z",
+      "usage": {
+        "prompt": 744,
+        "output": 141,
+        "thoughts": 714
+      },
+      "ok": true,
+      "heard": "A che ora parte l'ultimo aliscafo per Napoli?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "5ad1644132cf5388.m4a": {
       "key": "f1@1|s|È aperto anche oggi?",
       "sha256": "5e322661302b76da762ae7cb4983489352a1d170666192e4c4980acad560ca95",
@@ -8090,6 +8318,25 @@
       },
       "ok": true,
       "heard": "Posso provarlo?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "60d1acee81688558.m4a": {
+      "key": "f1@1|n|Quale linea va a San Giorgio?",
+      "sha256": "1d05d4da37533d6a90dca1b92cde577dc8bc510d5595c6f2e26d0d892dfbffdf",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:02:48Z",
+      "usage": {
+        "prompt": 628,
+        "output": 114,
+        "thoughts": 431
+      },
+      "ok": true,
+      "heard": "Quale linea va a San Giorgio?",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -8736,6 +8983,25 @@
       },
       "ok": true,
       "heard": "Si può andare a piedi?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "686be1d45abfa1fd.m4a": {
+      "key": "f1@1|s|Come si arriva al Parco Virgiliano?",
+      "sha256": "6104169e0ed54526991bde241d5362950a57644ad0bb097467ba22608adf4738",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:01:44Z",
+      "usage": {
+        "prompt": 713,
+        "output": 123,
+        "thoughts": 528
+      },
+      "ok": true,
+      "heard": "Come si arriva al Parco Virgiliano?",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -9977,6 +10243,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "7639e4f5f59b1602.m4a": {
+      "key": "f1@1|n|Come si arriva al Parco Virgiliano?",
+      "sha256": "d3411f80292be291eb72bce31326161dcfa753673fe1e371b9e344c0199e4ca0",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:02:01Z",
+      "usage": {
+        "prompt": 636,
+        "output": 113,
+        "thoughts": 605
+      },
+      "ok": true,
+      "heard": "Come si arriva al Parco Virgiliano?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "76d91a1a3c8ff857.m4a": {
       "key": "f1@1|n|Ho fame. C'è una pizzeria qui vicino?",
       "sha256": "1319b9fb36f7f6c717ad8254ebf1b55b1ac2cf5ec88fc3bfb9f7d8f816bf4b92",
@@ -10256,6 +10541,25 @@
       },
       "ok": true,
       "heard": "Devo validare il biglietto?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "7b43a6e40f05b35d.m4a": {
+      "key": "f1@1|s|Si può salire sul campanile?",
+      "sha256": "3590b3b5590892865b14c4178988f235f4c08919804680a7bad26860802ee0cc",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:04:11Z",
+      "usage": {
+        "prompt": 869,
+        "output": 55,
+        "thoughts": 291
+      },
+      "ok": true,
+      "heard": "Si può salire sul campanile?",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -12150,6 +12454,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "912988e07a941daa.m4a": {
+      "key": "f1@1|n|Dov'è la fermata dell'autobus per il centro?",
+      "sha256": "a15d3978631279e57eba89f9b1273d6f7f9cafa3e8848e0afd5c506911661910",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:02:02Z",
+      "usage": {
+        "prompt": 648,
+        "output": 131,
+        "thoughts": 600
+      },
+      "ok": true,
+      "heard": "Dov'è la fermata dell'autobus per il centro?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "919ed2f0cfa8dc9a.m4a": {
       "key": "m1@1|s|Buonasera, dove andiamo?",
       "sha256": "a527c6626e954c2a53b983432dcb27613a63950b18019d08cd9012f22a87f413",
@@ -12509,6 +12832,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.75,
+      "modelOk": true
+    },
+    "961331ca9330be4b.m4a": {
+      "key": "f1@1|s|Stazione di Venezia Santa Lucia",
+      "sha256": "9dd18b7f0de447e2c0138953110c93cee32a7b26731ee67e3e9626d49fe4b6ad",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:12:41Z",
+      "usage": {
+        "prompt": 725,
+        "output": 122,
+        "thoughts": 634
+      },
+      "ok": true,
+      "heard": "Stazione di Venezia Santa Lucia",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "962cd634754e2b00.m4a": {
@@ -15399,6 +15741,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "b04db28076f63455.m4a": {
+      "key": "f1@1|s|Scavi di Pompei",
+      "sha256": "4c8226fede7a544a688223f8714c944b46bd3729bc51537746b5c0d864d02b3e",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:11:10Z",
+      "usage": {
+        "prompt": 692,
+        "output": 112,
+        "thoughts": 505
+      },
+      "ok": true,
+      "heard": "Scavi di Pompei",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "b057c1e297e53cdf.m4a": {
       "key": "m1@1|n|chiesa",
       "sha256": "387cfd8b4e47a2861cecd2ab6546a65843cf776508f96771baf077f8e754bd8e",
@@ -16552,6 +16913,25 @@
       },
       "ok": true,
       "heard": "Questo vaporetto va a Rialto?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "be4041b24eae984e.m4a": {
+      "key": "f1@1|n|Collina di Posillipo",
+      "sha256": "72263da796d7916b9ddb9ef261d593fca111daad32110bf6f4cf0e3f5ecded05",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:00:40Z",
+      "usage": {
+        "prompt": 618,
+        "output": 107,
+        "thoughts": 882
+      },
+      "ok": true,
+      "heard": "Collina di Posillipo",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -18116,6 +18496,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "d13cd0cb844e1cc0.m4a": {
+      "key": "f1@1|n|A che ora parte l'ultimo aliscafo per Napoli?",
+      "sha256": "05739a5ffcd584c9a7f84aae10855603c26f51ef99b955d3783468b313c1e885",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:06:34Z",
+      "usage": {
+        "prompt": 659,
+        "output": 129,
+        "thoughts": 549
+      },
+      "ok": true,
+      "heard": "A che ora parte l'ultimo aliscafo per Napoli?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "d13db177d96876bb.m4a": {
       "key": "f1@1|s|Mi hanno rubato il portafoglio.",
       "sha256": "999c8eefebe1edc28a0a0a8593a1b5c433786e8cc3568dfe4f0df00ff13b5cb5",
@@ -18743,6 +19142,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "d9122ec4b2322afe.m4a": {
+      "key": "f1@1|n|Si può salire sul campanile?",
+      "sha256": "e2723b0856f456caf73bfdb1379afd5d9aed8e2284b74f3f76e12d3471d91147",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:04:02Z",
+      "usage": {
+        "prompt": 626,
+        "output": 108,
+        "thoughts": 489
+      },
+      "ok": true,
+      "heard": "Si può salire sul campanile?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "d92f7f83c5166e72.m4a": {
       "key": "m1@1|n|Certo, ecco. Grazie e buona giornata!",
       "sha256": "270c44a0178955b92a08ff8d646468d18acd830bf43d6d9f66d6c5cf32baaab4",
@@ -18889,6 +19307,25 @@
       },
       "ok": true,
       "heard": "Ecco, questo è per il mal di testa. Sono sette euro e quaranta.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "da6d87c6c42f8294.m4a": {
+      "key": "f1@1|s|Quale linea va a San Giorgio?",
+      "sha256": "cc4725f865825e81095f0a9128e363033ce46df6a94bca2becc50dd61659509a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:03:07Z",
+      "usage": {
+        "prompt": 703,
+        "output": 110,
+        "thoughts": 499
+      },
+      "ok": true,
+      "heard": "Quale linea va a San Giorgio?",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -20397,6 +20834,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "e9b552db38d04ec1.m4a": {
+      "key": "f1@1|s|Aeroporto di Napoli-Capodichino",
+      "sha256": "31770c710bc40427f6b6a1a0bf5d97d979ae74ab3e748b814cec73cbbd4ebdd1",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:06:45Z",
+      "usage": {
+        "prompt": 714,
+        "output": 119,
+        "thoughts": 997
+      },
+      "ok": true,
+      "heard": "Aeroporto di Napoli-Capodichino",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "e9b65fb81301f3e1.m4a": {
       "key": "f1@1|n|Buongiorno! Il primo orario disponibile è alle undici e trenta. Va bene?",
       "sha256": "c07a03a06d65466af0cb977a52a9deef4f6273a7367f7226000702094eb27cf5",
@@ -21117,6 +21573,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.75,
+      "modelOk": true
+    },
+    "f19e87b172536248.m4a": {
+      "key": "f1@1|n|Stazione di Venezia Santa Lucia",
+      "sha256": "77e794fd8fd8723449916d423203cffacccd4d8745865ac7c821278f507c5729",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:12:40Z",
+      "usage": {
+        "prompt": 644,
+        "output": 108,
+        "thoughts": 634
+      },
+      "ok": true,
+      "heard": "Stazione di Venezia Santa Lucia",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "f1a296e62f0bf44e.m4a": {
@@ -22010,6 +22485,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.8,
+      "modelOk": true
+    },
+    "fcf9224446b8e9ac.m4a": {
+      "key": "f1@1|s|Isola di Capri",
+      "sha256": "e4678897c4687690b6255906c522bf06e603f80c6c4b3d2d9f8b23bcc2ca94dd",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T20:02:52Z",
+      "usage": {
+        "prompt": 681,
+        "output": 116,
+        "thoughts": 880
+      },
+      "ok": true,
+      "heard": "Isola di Capri",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "fcffa4bbc8d539e9.m4a": {
