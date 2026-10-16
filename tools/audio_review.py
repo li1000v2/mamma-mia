@@ -46,7 +46,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from gen_audio import AUDIO, CONTENT, MANIFEST, MAX_PARALLEL, ROOT, Gemini, load_env, load_json, normalized
+from gen_audio import AUDIO, CONTENT, MANIFEST, MAX_PARALLEL, ROOT, Gemini, load_env, load_json, normalized, role_play_fillers
 
 REVIEWS = ROOT / "reviews"
 CACHE = REVIEWS / "audio-screen-cache.json"
@@ -122,10 +122,10 @@ class Clip:
 
 
 def week_texts(week: int) -> set[str]:
-    """The Italian lines the given week's units play. Frame examples count as week 1."""
+    """The Italian lines the given week's units play. Frame examples and the role-play fillers count as week 1."""
     course = load_json(CONTENT / "course.json")
     units = {unit["id"] for unit in course["units"] if unit["week"] == week}
-    texts = {frame["example"] for frame in course["frames"]} if week == 1 else set()
+    texts = {frame["example"] for frame in course["frames"]} | set(role_play_fillers()) if week == 1 else set()
     for path in sorted((CONTENT / "lessons").glob("*.json")):
         lesson = load_json(path)
         if lesson["unit"] in units:

@@ -3,7 +3,9 @@
 
 Checks every JSON file against its schema in Content/schema, that a phrase past draft still has
 the text it was checked with (checkedText), that audio-reviewed phrases have audio for every voice
-and speed, that every manifest entry has its file, and that no real itinerary was committed. Cross-file id checks live in the MammaCore tests.
+and speed, that the role-play fillers have audio in every voice and each role's voice has a Gemini
+voice name, that every manifest entry has its file, and that no real itinerary was committed.
+Cross-file id checks live in the MammaCore tests.
 
 Usage: python tools/validate_content.py
 """
@@ -56,9 +58,12 @@ def main() -> int:
     lesson_files = sorted((CONTENT / "lessons").glob("*.json"))
     dialogue_files = sorted((CONTENT / "dialogues").glob("*.json"))
     manifest_path = AUDIO / "manifest.json"
+    role_play_path = CONTENT / "roleplay.json"
     errors += schema_errors("course.schema.json", CONTENT / "course.json")
     errors += schema_errors("trip.schema.json", CONTENT / "trip.example.json")
     errors += schema_errors("audio-manifest.schema.json", manifest_path)
+    if role_play_path.exists():
+        errors += schema_errors("roleplay.schema.json", role_play_path)
     for path in lesson_files:
         errors += schema_errors("lesson.schema.json", path)
     for path in dialogue_files:
@@ -107,6 +112,18 @@ def main() -> int:
             # Audio comes after cross-checking, so only an audio-reviewed phrase must have it.
             message = f"{phrase['id']}: no audio for {', '.join(missing)}"
             (errors if phrase["status"] == "audio_ok" else warnings).append(message)
+
+    if role_play_path.exists():
+        # The fillers play the moment the learner stops speaking: without audio there's nothing to play.
+        role_play = load(role_play_path)
+        for filler in role_play["fillers"]:
+            missing = [voice for voice in manifest["voices"] if audio_key(filler, voice, "n") not in manifest["entries"]]
+            if missing:
+                errors.append(f"{rel(role_play_path)}: filler {filler!r} has no audio for {', '.join(missing)}")
+        names = manifest.get("voiceNames", {})
+        for role in role_play["roles"]:
+            if role["voice"] not in names:
+                errors.append(f"{rel(role_play_path)}: {role['unit']} speaks as {role['voice']}, which has no voiceNames entry in {rel(manifest_path)}")
 
     if errors:
         return report(errors, warnings)

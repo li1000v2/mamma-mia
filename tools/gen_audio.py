@@ -88,7 +88,14 @@ def spoken_texts() -> list[str]:
         script = load_json(path)
         nodes = script["nodes"] + (script.get("followUps") or {}).get("pool", [])
         texts += [line["it"] for node in nodes for line in node["npc"]]
+    texts += role_play_fillers()
     return list(dict.fromkeys(texts))
+
+
+def role_play_fillers() -> list[str]:
+    """The online role-play plays these ("Allora…") in the role's voice while the reply is on its way."""
+    path = CONTENT / "roleplay.json"
+    return list(load_json(path)["fillers"]) if path.exists() else []
 
 
 def normalized(text: str) -> str:
@@ -280,7 +287,13 @@ def main() -> int:
             if path.name not in used:
                 path.unlink()
 
-    manifest = {"version": manifest["version"], "voices": list(profiles.values()), "entries": dict(sorted(entries.items()))}
+    manifest = {
+        "version": manifest["version"],
+        "voices": list(profiles.values()),
+        # The app's online role-play speaks live in the same voices.
+        "voiceNames": {voice["id"]: voice["voiceName"] for voice in config["voices"]},
+        "entries": dict(sorted(entries.items())),
+    }
     # newline="\n": keep LF on Windows too, like the rest of the repository.
     tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", newline="\n", dir=AUDIO, suffix=".json", delete=False)
     with tmp:
