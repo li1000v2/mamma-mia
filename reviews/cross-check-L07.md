@@ -1,0 +1,57 @@
+# 交叉校对：L07 阴阳性与冠词
+
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
+- 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
+
+## 逐条结果
+
+### L07/intro — ✅ OK
+
+<details><summary>intro 原文</summary>
+
+> 意大利语的名词分阳性和阴性，前面的冠词跟着变。先看词尾：-o 结尾的多是阳性（biglietto、vaporetto），-a 结尾的多是阴性（fermata、camera）；-e 结尾的两种都有（il pesce 鱼是阳性，la chiave 钥匙是阴性），只能一个个记。
+>
+> “一个”（不定冠词，像中文的“一张、一个”）：阳性用 un（un biglietto），阴性用 una（una fermata）。阳性词以 s+辅音（sp、st、sc）或 z 开头时用 uno（uno spritz、uno zaino）；阴性词以元音开头时，una 缩成 un'（un'acqua）；阳性词元音开头照样用 un（un aeroporto）。
+>
+> “这个、那个”（定冠词，双方都知道说的是哪一个）：阳性用 il（il vaporetto），阴性用 la（la fermata）。s+辅音或 z 开头的阳性词用 lo（第 1 周学过的 lo scontrino）；元音开头的词不分阴阳，都用 l'（l'uscita、l'aeroporto）。
+>
+> 所以问附近有没有车站说 una fermata（随便哪一个），问车站在哪儿说 la fermata（就是要去的那个）。中文和日语都没有冠词，说错了对方照样听得懂，先把名词说对。
+>
+> 复数先认得就行：-o 变 -i，-a 变 -e，冠词 il 变 i、la 变 le：i biglietti、le fermate。lo 和 l' 的阳性复数是 gli：gli spaghetti。
+>
+> 发音先听示范音频，标准是音频；note 里的近似说法只帮你找音，不是读法。un、il、per、con 这类以辅音结尾的词，辅音收住就接下一个词，后面不加元音；日语习惯在辅音后带个う，这里不要。uno、una 的 u 要圆唇，日语的う是扁的。
+
+</details>
+
+### L07-01 — ✅ OK
+
+- **it**：Un biglietto, per favore.
+- **zh**：请给我一张票。
+- **note**：biglietto 以 -o 结尾，是阳性，所以用 un。说“那张票”是 il biglietto，两张票是 due biglietti。un 和 per 都以辅音结尾，读完直接接下一个词，后面不加元音。
+
+### L07-02 — ✅ OK
+
+- **it**：C'è una fermata qui vicino?
+- **zh**：这附近有车站吗？
+- **note**：fermata 以 -a 结尾，是阴性，用 una。C'è…? 是“有……吗”，qui vicino 是“这附近”。fermata 指公交、水上巴士的站；火车站是 la stazione。C'è 的 c 像英语 ch；哪里不像：英语 ch 会带一点送气，这里不送气。
+
+### L07-03 — ✅ OK
+
+- **it**：Quanto costa il vaporetto?
+- **zh**：坐水上巴士要多少钱？
+- **note**：vaporetto 是威尼斯的水上巴士，阳性，用 il。读 va-po-RET-to：tt 像日语促音っ，先停一拍再发 t；哪里不像：っ 不管重音，这里停顿前的 RET 是重音，要读得响。t 不送气，像拼音 d；哪里不像：舌尖贴在上门牙背后，比拼音 d 靠前。口语里说 il vaporetto 就是在问船票的价钱。
+
+### L07-04 — ✅ OK
+
+- **it**：Uno spritz, per favore.
+- **zh**：请给我一杯 spritz。
+- **note**：spritz 以 s+辅音开头，不用 un，用 uno。spr 三个辅音连着发，像英语 spring 的 spr；哪里不像：r 是舌尖弹一下，不是英语的卷舌 r。日语外来语スプリッツ在 s、p 后面都加了う，别照着读。spritz 是威尼斯一带常喝的橙色开胃酒，含酒精。同类的词：uno zaino（一个背包）、uno sconto（一个折扣）。succo（果汁）的 s 后面是元音，所以还是 un succo。
+
+补充：在威尼斯点 spritz 时，店员有时会追问要哪种苦味利口酒打底：最常见偏甜的是 Aperol（Uno spritz Aperol），偏苦的是 Campari，威尼斯本地特色则是 Select。
+
+### L07-05 — ✅ OK
+
+- **it**：Dov'è l'uscita?
+- **zh**：出口在哪里？
+- **note**：uscita 以元音开头，la 缩成 l'，和后面连成一个词读：l'u-SCI-ta。sci 像英语 sh；哪里不像：夹在两个元音之间的 sc 要拉长，英语的 sh 没这么长。u 要圆唇，日语的う是扁的。同样的还有 l'aeroporto（机场）、l'hotel：h 不发音，重音在最后 o-TEL，日语外来语ホテル的 h 和词尾的う都不要。

@@ -1,0 +1,57 @@
+# 交叉校对：L11 餐厅①：要位子和点菜
+
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
+- 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
+
+## 逐条结果
+
+### L11/intro — ✅ OK
+
+<details><summary>intro 原文</summary>
+
+> 句框 Avete…?（你们有……吗？）问店里有没有：Avete un tavolo per una persona?（有一个人的位子吗？）。问的是“店里”，所以用复数 avete（你们），对店员这样问很自然，不算失礼。也可以用 C'è…?（有……吗？）。
+>
+> 进门先打招呼 Buonasera，再说人数：per una persona（一位）、per due persone（两位）。订过位就说 Ho prenotato（L09）。tavolo（桌子）的重音在第一个音节：TA-vo-lo。意大利语的重音靠读得响、读得长，不靠把音调抬高。
+>
+> 意大利菜单的顺序：antipasto（前菜）→ primo（第一道：意面、烩饭、汤）→ secondo（第二道：肉或鱼）→ contorno（配菜）→ dolce（甜点）。不用每道都点，只点一道 primo 也可以。
+>
+> 看不懂菜单就问 Che cosa mi consiglia?（您推荐什么？），服务员会说 Le consiglio…（我推荐您……）；或者直接指着菜单说 Prendo questo（我要这个）。点水时常被问 Naturale o frizzante?（不带气的还是带气的？）。
+>
+> 发音先听示范音频，标准是音频；note 里的近似说法只帮你找音，不是读法。日语外来语的写法不可信，比如メニュー、カプチーノ，照着读会走样。
+
+</details>
+
+### L11-01 — ✅ OK
+
+- **it**：Avete un tavolo per una persona?
+- **zh**：有一个人的位子吗？
+- **note**：per una persona 是“一个人”，两个人说 per due persone。per 以 r 结尾，舌尖弹一下就接下一个词，后面不加元音；persona 读 per-SO-na。
+
+补充：口语里“一位、两位”也常直接用数字说成 per uno、per due（比如 Un tavolo per uno, per favore）。
+
+### L11-02 — ✅ OK
+
+- **it**：Il menù, per favore.
+- **zh**：请给我菜单。
+- **note**：menù 重音在最后：me-NÙ，ù 要圆唇。日语外来语メニュー多了一个 y 的音，别照着读：n 后面直接接 u。也有人把菜单叫 la carta，这时 carta 不是银行卡。
+
+### L11-03 — ✅ OK
+
+- **it**：Che cosa mi consiglia?
+- **zh**：您推荐什么？
+- **note**：mi 是“给我”，consiglia 是“您推荐”，读 con-SI-glia。glia 像日语リャ；哪里不像：リャ是舌尖轻弹，glia 是舌面整个贴住上颚，i 不单独发音。con 的 n 后面直接接 s，不加元音。口语也常说 Cosa mi consiglia?。服务员回答 Le consiglio…（我推荐您……）。
+
+### L11-04 — ✅ OK
+
+- **it**：Prendo questo.
+- **zh**：我要这个。
+- **note**：看不懂菜名时指着菜单说。要两样就说 Prendo questo e questo。Prendo 的 pr、questo 的 st 中间都不加元音；qu 像英语 quick 的 qu，哪里不像：英语的 k 送气，这里不送气。
+
+### L11-05 — ✅ OK
+
+- **it**：Un'acqua naturale, per favore.
+- **zh**：请来一瓶不带气的水。
+- **note**：acqua 是阴性、元音开头，una 缩成 un'（L07）。acqua 读 AC-qua：cq 是双辅音，像日语促音っ那样先停一拍再发 qua；哪里不像：停完接的是 kw，嘴唇要先圆起来，日语的う是扁的。naturale 是不带气的，frizzante 是带气的。餐厅里点的水一般是瓶装的，会算在账单上。
+
+补充：除了 naturale / frizzante，有些地区或服务员也会用 liscia（不带气）和 gassata（带气）来问。

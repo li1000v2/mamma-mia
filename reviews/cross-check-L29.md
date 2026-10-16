@@ -1,0 +1,59 @@
+# 交叉校对：L29 天气与感受
+
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
+- 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
+
+## 逐条结果
+
+### L29/intro — ✅ OK
+
+<details><summary>intro 原文</summary>
+
+> 天气用 Fa + 形容词。fa 本来是“做”，在这里不用翻译：Fa freddo（冷）、Fa caldo（热）、Fa fresco（凉快）。下雨是 Piove，下雪是 Nevica，都不需要主语：Oggi piove（今天下雨）、Piove?（在下雨吗？）。
+>
+> 自己的感觉多用 Ho（我有）：Ho freddo（我冷）、Ho caldo（我热）、Ho fame（我饿）、Ho sete（我渴）。别说 Sono freddo，那是说自己性格“冷冰冰”。累了才用 Sono：Sono stanco。
+>
+> 感叹用 Che + 形容词：Che bello!（真美！／太好了！）、Che freddo!（好冷！）、Che buono!（真好吃！）。
+>
+> 威尼斯秋冬有时会涨水，叫 acqua alta（字面是“高水”）：海水漫进城里，圣马可广场这类低处先被淹，城里会提前拉警报。出门前可以问酒店前台：C'è l'acqua alta oggi?（今天涨水吗？）。
+>
+> 发音：先听示范音频，再看下面的提示，标准是音频。
+> · freddo、fresco 的 fr 中间不加元音，连法像英语 free；不像的是 r 用舌尖弹，不卷舌。fresco 的 sc 在 o 前读 sk，s 和 k 中间也不加元音。
+> · Che 的 ch 读 k。Oggi 的 gg 在 i 前像英语 j；不像的是 gg 要多占一拍。
+> · acqua 的 cq 是一个拉长的 k，qu 读 kw，不按拼音的 q 读。
+> · freddo、bello 这类双辅音前的元音要短，双辅音本身多占一拍。
+
+</details>
+
+### L29-01 — ✅ OK
+
+- **it**：Oggi fa freddo.
+- **zh**：今天很冷。
+- **note**：Fa + 形容词说天气：fa caldo（热）、fa fresco（凉快）。特别冷就说 Fa molto freddo。重音：OG-gi、FRED-do。
+
+### L29-02 — ✅ OK
+
+- **it**：Piove?
+- **zh**：在下雨吗？
+- **note**：piove 是“下雨”，不用主语。两个音节 PIO-ve，io 连成一拍。问明天：Domani piove?（明天下雨吗？）。下雪是 nevica。
+
+补充：nevica 的重音在第一个音节（NE-vi-ca）。
+
+### L29-03 — ✅ OK
+
+- **it**：Che bello!
+- **zh**：真美！／太好了！
+- **note**：Che + 形容词表示感叹：Che freddo!（好冷！）、Che buono!（真好吃！）。看到风景、听到好消息都能说。bello 的 ll 要多占一拍。
+
+### L29-04 — ✅ OK
+
+- **it**：C'è l'acqua alta oggi?
+- **zh**：今天涨水吗？
+- **note**：C'è…? 是“有……吗”。acqua alta 是威尼斯秋冬的涨水，低处会被淹，出门前问酒店前台。
+
+### L29-05 — ✅ OK
+
+- **it**：Ho freddo.
+- **zh**：我觉得冷。
+- **note**：天气冷说 Fa freddo，自己觉得冷说 Ho freddo。别说 Sono freddo。同样用 Ho 的还有 Ho fame（饿）、Ho sete（渴）。

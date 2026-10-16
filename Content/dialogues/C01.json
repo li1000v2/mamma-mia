@@ -16,7 +16,7 @@
         "frame": "non",
         "choices": [
           { "it": "Scusi, non ho capito. Più piano, per favore.", "correct": true },
-          { "it": "Sì, grazie.", "correct": false, "feedback": "还没听懂就说“好的，谢谢”，对方会以为你已经选好了。先说没听懂。" },
+          { "it": "Sì, grazie.", "correct": false, "feedback": "还没听懂对方在问什么就说“好的，谢谢”，会答非所问。听不懂时先直说没听懂。" },
           { "it": "Non capito.", "correct": false, "feedback": "少了 ho：要说 Non ho capito。" }
         ]
       }

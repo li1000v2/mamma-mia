@@ -10,7 +10,7 @@
       "id": "aiuto",
       "npc": [
         { "it": "Buongiorno, mi dica.", "zh": "您好，您需要什么？" },
-        { "it": "Buonasera! Desidera?", "zh": "晚上好！您要点什么？" }
+        { "it": "Buonasera! Desidera?", "zh": "晚上好！您需要什么？" }
       ],
       "reply": {
         "intent": "求救，说钱包被偷了",

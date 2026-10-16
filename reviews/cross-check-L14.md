@@ -1,0 +1,59 @@
+# 交叉校对：L14 火车站①：买票
+
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
+- 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
+
+## 逐条结果
+
+### L14/intro — ✅ OK
+
+<details><summary>intro 原文</summary>
+
+> 句框 Un / Due… per…：数量 + 东西 + per + 目的地。per 在这里是“去往”：Un biglietto per Napoli（一张去那不勒斯的票）。两张以上名词要变复数，-o 变 -i：Due biglietti per Roma。城市名前不加冠词。
+>
+> 票分两种：solo andata（单程）和 andata e ritorno（往返）。andata 是“去”，ritorno 是“回”。售票员常问 Solo andata o andata e ritorno?
+>
+> 买完票问站台：Da quale binario parte?（从几号站台出发？）。quale 是“哪个”，binario 是站台，parte 是“（它）出发”。回答一般是 Dal binario tre（从 3 号站台）。
+>
+> 车次、票价、站台号每次都可能不一样，不用背，以车票、出发大屏（tabellone）和广播为准。
+>
+> 发音（先听示范音频，以音频为准，下面只是帮你找音）：
+> - r 是舌尖在上齿龈上弹一下，像日语ら行开头的那个辅音。哪里不像：日语ら行弹得轻，常常含糊得像 l，意大利语要弹得清清楚楚；也不能按拼音 r 读。ritorno、treno、Roma 都是这个音。
+> - treno、prossimo 的 tr、pr 中间不加元音，per 的 r 后面也不加元音（不是 pe-ru）。这种辅音连在一起、词尾收住辅音的读法，英语 train、per 可以拿来参考。哪里不像：英语的 r 是卷舌的、t 送气，意大利语的 r 要弹，t 不送气。
+> - parte、treno、per 的 p、t 不送气，像拼音 b、d 那样。哪里不像：拼音只能借“不送气”这一点；binario、andata 里真正的 b、d 声带要振动，拼音的 b、d 是清音，不能拿来读。
+> - 重音：bi-NA-rio、an-DA-ta、ri-TOR-no、PROS-si-mo。
+
+</details>
+
+### L14-01 — ✅ OK
+
+- **it**：Un biglietto per Napoli, per favore.
+- **zh**：一张去那不勒斯的票，谢谢。
+- **note**：第一个 per 是“去往”，per favore 是“请”。
+
+### L14-02 — ✅ OK
+
+- **it**：Solo andata o andata e ritorno?
+- **zh**：单程还是往返？
+- **note**：售票员常问的话，听懂就行。
+
+### L14-03 — ✅ OK
+
+- **it**：Solo andata, per favore.
+- **zh**：单程，谢谢。
+- **note**：要往返就说 Andata e ritorno, per favore。
+
+### L14-04 — ✅ OK
+
+- **it**：Da quale binario parte?
+- **zh**：从几号站台出发？
+- **note**：回答一般是 Dal binario tre（从 3 号站台）。站台号没听清就请对方写下来：Me lo può scrivere?
+
+补充：口语里也常说 Da che binario parte?，意思完全一样。
+
+### L14-05 — ✅ OK
+
+- **it**：A che ora parte il prossimo treno per Roma?
+- **zh**：下一班去罗马的火车几点开？
+- **note**：prossimo 是“下一个”。回答用 24 小时制，比如 Alle quattordici e dieci（14:10）。
