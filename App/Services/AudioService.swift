@@ -39,7 +39,7 @@ final class AudioService: NSObject {
             await play(url: url, rate: speed == .slow ? 0.75 : 1)
             return
         }
-        await sayWithSystemVoice(text, speed: speed)
+        await sayWithPhoneVoice(text, speed: speed)
     }
 
     /// The bundled recording of `text` in exactly this voice; false, with nothing played, when
@@ -53,7 +53,7 @@ final class AudioService: NSObject {
     }
 
     /// iOS's own Italian voice, for text no recording covers.
-    func sayWithSystemVoice(_ text: String, speed: Speed = .normal) async {
+    func sayWithPhoneVoice(_ text: String, speed: Speed = .normal) async {
         stop()
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "it-IT")

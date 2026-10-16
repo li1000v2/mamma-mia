@@ -120,7 +120,10 @@ final class RolePlaySession {
         Task {
             await model.speech.requestPermissionIfNeeded()
             let started = await model.recorder.start(Self.recordingID)
-            if !started, phase == .recording {
+            if phase != .recording {
+                // Ended or left while the microphone was starting.
+                model.recorder.stop()
+            } else if !started {
                 phase = .listening
                 notice = "没有麦克风权限：请到 设置 → Mamma mia! 里打开麦克风。"
             }
@@ -193,7 +196,7 @@ final class RolePlaySession {
             let rate: Float = slow ? 0.75 : 1
             Task { await player.replay(rate: rate) }
         } else if let line = conversation.lines.last(where: { $0.speaker == .role }) {
-            Task { await model.audio.sayWithSystemVoice(line.text, speed: slow ? .slow : .normal) }
+            Task { await model.audio.sayWithPhoneVoice(line.text, speed: slow ? .slow : .normal) }
         }
     }
 
@@ -268,7 +271,7 @@ final class RolePlaySession {
                         speaker.say(sentence)
                     }
                 case .blocked(let reason), .finished(let reason):
-                    stopReason = reason
+                    stopReason = reason == "STOP" ? nil : reason
                 case .audio, .usage:
                     break
                 }

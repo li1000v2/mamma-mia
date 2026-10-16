@@ -230,6 +230,17 @@ struct RolePlayTests {
         #expect(failure?.kind == .rateLimited)
     }
 
+    @Test func aWholeAnswerLeavesOutThoughts() throws {
+        let json = #"{"candidates": [{"content": {"parts": [{"text": "Thinking about it", "thought": true}, {"text": "{\"summary\": "}, {"text": "\"Bene\"}"}]}, "finishReason": "STOP"}]}"#
+        let response = try JSONDecoder().decode(GeminiResponse.self, from: Data(json.utf8))
+        #expect(response.text == #"{"summary": "Bene"}"#)
+
+        let refused = #"{"error": {"code": 403, "message": "Permission denied", "status": "PERMISSION_DENIED"}}"#
+        let withError = try JSONDecoder().decode(GeminiResponse.self, from: Data(refused.utf8))
+        let failure = #expect(throws: GeminiFailure.self) { try withError.events() }
+        #expect(failure?.stopsSession == true)
+    }
+
     @Test func aBlockedPromptSaysSo() throws {
         var parser = GeminiStreamParser()
         let events = try parser.feed(line: #"data: {"promptFeedback": {"blockReason": "SAFETY"}}"#)

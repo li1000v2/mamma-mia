@@ -114,7 +114,7 @@ final class ReplySpeaker {
                 player.endReply()
                 await player.waitUntilDone()
                 firstAudio = firstAudio ?? .now
-                await audio.sayWithSystemVoice(segment.text, speed: rate < 1 ? .slow : .normal)
+                await audio.sayWithPhoneVoice(segment.text, speed: rate < 1 ? .slow : .normal)
                 player.continueReply()
             }
         }
