@@ -21,6 +21,8 @@ final class AppModel {
     let recorder = Recorder()
     let speech = SpeechService()
     let notifier = CityPackNotifier()
+    let spotPhotos = SpotPhotoStore()
+    let checks = DepartureCheckStore()
     private let store: ProgressStore
 
     init() {
@@ -168,6 +170,13 @@ final class AppModel {
         AppLog.shared.write(trip == nil ? "Trip cleared" : "Trip saved")
     }
 
+    /// Changes the notes and check-ins at the pilgrimage spots and saves them. Personal like the
+    /// trip: kept with the progress and in its backups, never in the log.
+    func updateSpotLogs(_ change: (inout StudyProgress) -> Void) {
+        change(&progress)
+        save()
+    }
+
     // MARK: Backup
 
     /// Writes the progress to a temporary file named for today, for sharing or saving to Files.
@@ -211,7 +220,7 @@ final class AppModel {
             needByDays = [:]
             cityPacks = []
         }
-        rescheduleCityPackReminders()
+        rescheduleTripReminders()
     }
 
     private func loadProgress() {

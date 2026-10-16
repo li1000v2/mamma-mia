@@ -26,6 +26,7 @@ struct DiagnosticsView: View {
                 LabeledContent("卡片", value: "\(model.progress.cards.count)")
                 LabeledContent("复习记录", value: "\(model.progress.reviews.count)")
                 LabeledContent("行程", value: model.trip == nil ? "没有" : "已填写")
+                LabeledContent("巡礼点记录", value: model.progress.spotLogs.isEmpty ? "没有" : "\(model.progress.spotLogs.count) 处")
                 if let backupMessage {
                     Text(backupMessage)
                         .font(.footnote)
@@ -33,14 +34,13 @@ struct DiagnosticsView: View {
             } header: {
                 Text("学习进度备份")
             } footer: {
-                if model.trip != nil {
-                    Text("备份文件里也有行程，包括酒店地址和忌口，只存到自己的地方。")
-                }
+                Text(backupFooter)
             }
             speechSection
             Section("版本") {
                 LabeledContent("版本", value: "\(BuildInfo.version) (\(BuildInfo.build))")
                 LabeledContent("提交", value: BuildInfo.commit)
+                LabeledContent("签名到期", value: model.checks.profile.map { AppModel.expiryText($0.expires) } ?? "读不到")
                 LabeledContent("系统", value: ProcessInfo.processInfo.operatingSystemVersionString)
                 LabeledContent("时区", value: TimeZone.current.identifier)
             }
@@ -76,7 +76,7 @@ struct DiagnosticsView: View {
             Button("覆盖", role: .destructive) { restore() }
             Button("取消", role: .cancel) { pendingImport = nil }
         } message: {
-            Text("当前进度会先存成备份副本。备份里没有行程的话，保留手机上现在的行程。")
+            Text("当前进度会先存成备份副本。备份里没有行程、没有巡礼点记录的话，保留手机上现在的。巡礼点的照片不在备份里，不受影响。")
         }
         .onAppear {
             log = AppLog.shared.read()
@@ -120,6 +120,19 @@ struct DiagnosticsView: View {
         } footer: {
             Text(speechFooter)
         }
+    }
+
+    /// What the backup carries that is personal, and that the spot photos stay behind.
+    private var backupFooter: String {
+        var parts: [String] = []
+        if model.trip != nil {
+            parts.append("备份文件里也有行程，包括酒店地址和忌口，只存到自己的地方。")
+        }
+        if !model.progress.spotLogs.isEmpty {
+            parts.append("巡礼点的备注和打卡也在备份里。")
+        }
+        parts.append("巡礼点的照片只存在这台手机上，不进备份文件。")
+        return parts.joined()
     }
 
     private var speechFooter: String {
