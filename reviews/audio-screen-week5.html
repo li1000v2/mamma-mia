@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频粗筛 第 5 周</title>
+<style>
+:root { --bg: #fbfaf7; --fg: #1d1b18; --muted: #6b665e; --card: #fff; --line: #e4e0d8; --accent: #b4442b; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171614; --fg: #ece8e1; --muted: #a39d93; --card: #22201d; --line: #36332e; --accent: #e8836b; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, "PingFang SC", system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+.card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+.n { color: var(--accent); margin-right: 8px; }
+.meta { color: var(--muted); font-size: 0.875rem; margin: 4px 0; }
+audio { width: 100%; margin: 8px 0; }
+ul { padding-left: 20px; }
+.gem li { margin-bottom: 12px; }
+.gem label { display: block; font-size: 0.875rem; color: var(--muted); }
+code { font-size: 0.85em; }
+</style>
+</head>
+<body>
+<main>
+<h1>示范音频粗筛 · 第 5 周</h1>
+<p class="meta">已筛 264 / 264 段，可疑 31 段（原速 12，慢速 19）。
+模型 gemini-4-argon，花费估算 $1.06。按需要听的先后排列。</p>
+<section class="card">
+  <h2><span class="n">1</span>Buonasera, dove andiamo?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>1067636a9ae14764.m4a</code> ·
+    严重度 high · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/1067636a9ae14764.m4a"></audio>
+  <p>存在明显的发音错误，Buonasera 被读成了类似 uonasiera，dove 的词首元音也严重偏离标准发音。</p>
+  <ul><li><b>读错</b>「Buonasera」：发音明显错误，开头的辅音 b 缺失，且 sera 被错误地读成了 siera。</li><li><b>读错</b>「dove」：元音 o 发音不准，听起来像 duve。</li></ul>
+  <p class="meta">模型听到：Uonasiera, duve andiamo?</p>
+  <p class="meta">转写模型听到：Buonasera, dove andiamo?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">2</span>Quanto costa questo ombrello? Va bene, lo prendo.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>f43d7f2a3c4fd29d.m4a</code> ·
+    严重度 high · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/f43d7f2a3c4fd29d.m4a"></audio>
+  <p>句首核心疑问词“Quanto”发音不完整，听起来像“Qunto”，不适合初学者跟读学习。</p>
+  <ul><li><b>读错</b>「Quanto」：开头单词“Quanto”中的元音“a”被吞音或读错，听起来像“Qunto”。</li></ul>
+  <p class="meta">模型听到：Qunto costa questo ombrello? Va bene, lo prendo.</p>
+  <p class="meta">转写模型听到：Quanto costa questo ombrello? Va bene, lo prendo.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：ombrello</p>
+</section><section class="card">
+  <h2><span class="n">3</span>Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>7ca5e6d24e9563f2.m4a</code> ·
+    严重度 high · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/7ca5e6d24e9563f2.m4a"></audio>
+  <p>开头单词“Allora”的重音错误地落在了第一音节，听起来非常不自然，不适合作为初学者教材。</p>
+  <ul><li><b>重音</b>「Allora」：重音位置明显错误，读在了第一音节（AL-lo-ra），正确应落在第二音节（al-LO-ra）。</li></ul>
+  <p class="meta">模型听到：Allora, le do qualcosa per il mal di testa. Sono sei euro e trenta.</p>
+  <p class="meta">转写模型听到：Allora, le do qualcosa per il mal di testa. Sono sei euro e trenta.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Allora</p>
+</section><section class="card">
+  <h2><span class="n">4</span>Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono quattro fermate.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>3ae2bee28bf246ef.m4a</code> ·
+    严重度 medium · 置信度 0.90</p>
+  <audio controls preload="none" src="../Audio/3ae2bee28bf246ef.m4a"></audio>
+  <p>音频中“Cerca”和“direzione”的词尾音节出现明显的吞音或缺失，发音不够完整清晰，不适合初学者跟读学习。</p>
+  <ul><li><b>漏读</b>「Cerca il」：“Cerca”词尾的元音“a”被吞音，与“il”连读听起来像“Cerch&#x27;il”，对初学者不够清晰。</li><li><b>漏读</b>「direzione」：“direzione”词尾的“-ne”发音缺失或严重吞音，听起来像“direzion”。</li></ul>
+  <p class="meta">模型听到：Cerch&#x27;il Colosseo? Prenda la metro B, direzion Laurentina: sono quattro fermate.</p>
+  <p class="meta">转写模型听到：Cerca il Colosseo? Prenda la metro B, direzione Laurentina. Sono quattro fermate.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Colosseo, quattro</p>
+</section><section class="card">
+  <h2><span class="n">5</span>Buonasera! Dove la porto?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>5d853b2511678c2c.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/5d853b2511678c2c.m4a"></audio>
+  <p>末尾单词“porto”的最后一个元音丢失，影响初学者识别词形。</p>
+  <ul><li><b>漏读</b>「porto」：词尾元音“o”发音缺失，听起来像“port”。</li></ul>
+  <p class="meta">模型听到：Buonasera! Dove la port?</p>
+  <p class="meta">转写模型听到：Buonasera, dove la porto?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">6</span>E da bere?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>a444b4793a6de5b5.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/a444b4793a6de5b5.m4a"></audio>
+  <p>句末单词 bere 的尾音缺失，不适合初学者跟读。</p>
+  <ul><li><b>漏读</b>「bere」：单词 bere 词尾的元音 e 缺失，发音成了 ber。</li></ul>
+  <p class="meta">模型听到：E da ber?</p>
+  <p class="meta">转写模型听到：E da bere?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">7</span>Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>133736d9d3f0b7ff.m4a</code> ·
+    严重度 medium · 置信度 0.90</p>
+  <audio controls preload="none" src="../Audio/133736d9d3f0b7ff.m4a"></audio>
+  <p>前半句发音自然清晰，但第二句中的“euro e”被读成了“eure”，丢失了“euro”的词尾元音“o”，对初学者有误导。</p>
+  <ul><li><b>读错</b>「euro e」：“euro e”被连读/误读成了“eure”，完全听不出“euro”词尾的元音“o”。</li></ul>
+  <p class="meta">模型听到：Allora le do qualcosa per il mal di testa. Sono sei eure trenta.</p>
+  <p class="meta">转写模型听到：Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Allora</p>
+</section><section class="card">
+  <h2><span class="n">8</span>Quanto costa fino all&#x27;aeroporto?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>f94d51e6071a687f.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/f94d51e6071a687f.m4a"></audio>
+  <p>目标词“aeroporto”的元音和辅音顺序发生颠倒，被读成了“areoporto”。</p>
+  <ul><li><b>读错</b>「all&#x27;aeroporto」：将“aeroporto”误读为“areoporto”。</li></ul>
+  <p class="meta">模型听到：Quanto costa fino all&#x27;areoporto?</p>
+  <p class="meta">转写模型听到：Quanto costa fino all&#x27;aeroporto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：all</p>
+</section><section class="card">
+  <h2><span class="n">9</span>Quanto costa fino all&#x27;aeroporto?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>0c105d1a6a17930d.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/0c105d1a6a17930d.m4a"></audio>
+  <p>目标词“all&#x27;aeroporto”音节顺序读错，发音成了“all&#x27;areoporto”。</p>
+  <ul><li><b>读错</b>「all&#x27;aeroporto」：将“aeroporto”误读为“areoporto”。</li></ul>
+  <p class="meta">模型听到：Quanto costa fino all&#x27;areoporto?</p>
+  <p class="meta">转写模型听到：Quanto costa fino all&#x27;aeroporto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：all</p>
+</section><section class="card">
+  <h2><span class="n">10</span>All&#x27;aeroporto di Fiumicino, per favore.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>996ed8acc11c36f3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/996ed8acc11c36f3.m4a"></audio>
+  <p>“All&#x27;aeroporto”开头元音发音有误，其余部分正常。</p>
+  <ul><li><b>读错</b>「All&#x27;aeroporto」：将“All&#x27;aeroporto”误读作“All&#x27;ereoporto”。</li></ul>
+  <p class="meta">模型听到：All&#x27;ereoporto di Fiumicino, per favore.</p>
+  <p class="meta">转写模型听到：All&#x27;aeroporto di Fiumicino, per favore.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：All</p>
+</section><section class="card">
+  <h2><span class="n">11</span>All&#x27;aeroporto di Fiumicino, per favore.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>5ff2b0a6afe484eb.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/5ff2b0a6afe484eb.m4a"></audio>
+  <p>首词“All&#x27;aeroporto”被误读为“All&#x27;ereoporto”，其余部分发音正常。</p>
+  <ul><li><b>读错</b>「All&#x27;aeroporto」：元音发音有误，读成了“All&#x27;ereoporto”。</li></ul>
+  <p class="meta">模型听到：All&#x27;ereoporto di Fiumicino, per favore.</p>
+  <p class="meta">转写模型听到：All&#x27;aeroporto di Fiumicino, per favore.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：All</p>
+</section><section class="card">
+  <h2><span class="n">12</span>Buonasera! Desidera?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>5ed1e9580cd43eb8.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/5ed1e9580cd43eb8.m4a"></audio>
+  <p>首词发音有误，且第二个词的重音位置明显错误。</p>
+  <ul><li><b>读错</b>「Buonasera」：首词辅音发音不准，听起来像“Borasera”。</li><li><b>重音</b>「Desidera」：重音错误地落在词尾，应在第2音节（de-SI-de-ra）。</li></ul>
+  <p class="meta">模型听到：Borasera! Desiderà?</p>
+  <p class="meta">转写模型听到：Buonasera, desidera?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">13</span>Buonasera, dove andiamo?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>73d75e8b85d42dc8.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/73d75e8b85d42dc8.m4a"></audio>
+  <p>首词元音发音不准确。</p>
+  <ul><li><b>读错</b>「Buonasera」：“Buo”被误读为“Bue”。</li></ul>
+  <p class="meta">模型听到：Buenasera, dove andiamo?</p>
+  <p class="meta">转写模型听到：Buonasera, dove andiamo?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">14</span>Buonasera, dove andiamo?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>919ed2f0cfa8dc9a.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/919ed2f0cfa8dc9a.m4a"></audio>
+  <p>连读处发音有误，丢失了“andiamo”词首的元音“a”。</p>
+  <ul><li><b>读错</b>「dove andiamo」：将 dove andiamo 误读为 dovendiamo，吞掉了 andiamo 开头的元音 a。</li></ul>
+  <p class="meta">模型听到：Buonasera, dovendiamo?</p>
+  <p class="meta">转写模型听到：Buonasera, dove andiamo?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">15</span>Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono tre fermate.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>fa42d65f486e955b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/fa42d65f486e955b.m4a"></audio>
+  <p>开头的“Cerca”发音错误，被读成了另一个词“Circa”。</p>
+  <ul><li><b>读错</b>「Cerca」：首词“Cerca”被误读为“Circa”。</li></ul>
+  <p class="meta">模型听到：Circa il Colosseo? Prenda la metro B, direzione Laurentina: sono tre fermate.</p>
+  <p class="meta">转写模型听到：Cerca il Colosseo? Prenda la metro B, direzione Laurentina. Sono tre fermate.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Colosseo</p>
+</section><section class="card">
+  <h2><span class="n">16</span>Dov&#x27;è la polizia?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>f75d5fb54179e5b6.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/f75d5fb54179e5b6.m4a"></audio>
+  <p>单词polizia发音有误，z被错误读成c音。</p>
+  <ul><li><b>读错</b>「polizia」：辅音z发音错误，被读成了c的音。</li></ul>
+  <p class="meta">模型听到：Dov&#x27;è la policia?</p>
+  <p class="meta">转写模型听到：Dov&#x27;è la polizia?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">17</span>Ecco qua, per il mal di testa. Sono nove euro e sessanta.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>5c8dc59b3de8ad2b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/5c8dc59b3de8ad2b.m4a"></audio>
+  <p>“euro”元音发音有误，且句中存在不自然的拖音。</p>
+  <ul><li><b>读错</b>「euro」：“euro”被误读为“auro”。</li><li><b>语调节奏</b>「Sono」：词尾拖音且停顿不自然。</li></ul>
+  <p class="meta">模型听到：Ecco qua, per il mal di testa. Sono nove auro e sessanta.</p>
+  <p class="meta">转写模型听到：Ecco qua, per il mal di testa. Sono nove euro e sessanta.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco, sessanta</p>
+</section><section class="card">
+  <h2><span class="n">18</span>Mi può fare la ricevuta?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>66b7a837b3c72088.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/66b7a837b3c72088.m4a"></audio>
+  <p>“può”一词发音有误，听起来像“po”，其余词汇及语调正常。</p>
+  <ul><li><b>读错</b>「può」：“può”读成了“po”，漏掉了原有的/w/音。</li></ul>
+  <p class="meta">模型听到：Mi po fare la ricevuta?</p>
+  <p class="meta">转写模型听到：Mi può fare la ricevuta?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">19</span>Quanto costa fino all&#x27;aeroporto?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>b4d6227c3e7eccb2.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/b4d6227c3e7eccb2.m4a"></audio>
+  <p>末尾单词“aeroporto”音节错位，被读成了“areoporto”。</p>
+  <ul><li><b>读错</b>「all&#x27;aeroporto」：将“aeroporto”误读为“areoporto”。</li></ul>
+  <p class="meta">模型听到：Quanto costa fino all&#x27;areoporto?</p>
+  <p class="meta">转写模型听到：Quanto costa fino all&#x27;aeroporto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：all</p>
+</section><section class="card">
+  <h2><span class="n">20</span>Quanto costa fino all&#x27;aeroporto?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>fe156072f56ebf2e.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/fe156072f56ebf2e.m4a"></audio>
+  <p>“aeroporto”一词发音错误，读成了“areoporto”。</p>
+  <ul><li><b>读错</b>「all&#x27;aeroporto」：将“aeroporto”误读为“areoporto”。</li></ul>
+  <p class="meta">模型听到：Quanto costa fino all&#x27;areoporto?</p>
+  <p class="meta">转写模型听到：Quanto costa fino all&#x27;aeroporto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：all</p>
+</section><section class="card">
+  <h2><span class="n">21</span>Sì, certo. La polizia però è un po&#x27; lontana: in taxi sono venti minuti.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>1c7ed9a7b848fec3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/1c7ed9a7b848fec3.m4a"></audio>
+  <p>“polizia”发音有误，辅音读错。</p>
+  <ul><li><b>读错</b>「polizia」：“polizia”中的“z”被误读成了“c”（/tʃ/）的音。</li></ul>
+  <p class="meta">模型听到：Sì, certo. La policia però è un po&#x27; lontana: in taxi sono venti minuti.</p>
+  <p class="meta">转写模型听到：Sì, certo. La polizia però è un po&#x27; lontana. In taxi sono venti minuti.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">22</span>Sì, certo. La polizia però è un po&#x27; lontana: in taxi sono venti minuti.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>962d8ae34cebc270.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/962d8ae34cebc270.m4a"></audio>
+  <p>“polizia”一词发音明显错误，不适合初学者跟读。</p>
+  <ul><li><b>读错</b>「polizia」：将“polizia”中的“z”误读成了“c”（/tʃ/）的音。</li></ul>
+  <p class="meta">模型听到：Sì, certo. La policia però è un po&#x27; lontana: in taxi sono venti minuti.</p>
+  <p class="meta">转写模型听到：Sì, certo. La polizia però è un po&#x27; lontana. In taxi sono venti minuti.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">23</span>Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>23e970c1156fba7a.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/23e970c1156fba7a.m4a"></audio>
+  <p>数字“112”被误读为“centro dodici”，不适合初学者。</p>
+  <ul><li><b>读错</b>「112」：将“centododici”误读为“centro dodici”。</li></ul>
+  <p class="meta">模型听到：Va bene. Prima chiami il centro dodici, poi vada alla polizia. Ma lei sta bene?</p>
+  <p class="meta">转写模型听到：Va bene. Prima chiami il centododici, poi vada alla polizia. Ma lei sta bene?（和原文不同）</p>
+  <p class="meta">双辅音需人工听：alla</p>
+</section><section class="card">
+  <h2><span class="n">24</span>Di dov&#x27;è?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>8812235e67dd2fc3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/8812235e67dd2fc3.m4a"></audio>
+  <p>将dov&#x27;è误读为dove，词尾缺少重音。</p>
+  <ul><li><b>重音</b>「dov&#x27;è」：重音错误地落在do上，读成了dove而非dov&#x27;è。</li></ul>
+  <p class="meta">模型听到：Di dove</p>
+  <p class="meta">转写模型听到：Di dov&#x27;è?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">25</span>Mi può chiamare un taxi?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>e343ec031601fb4d.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/e343ec031601fb4d.m4a"></audio>
+  <p>末尾单词“taxi”重音位置不自然，不符合现代意大利语常见发音。</p>
+  <ul><li><b>重音</b>「taxi」：单词重音落在了最后一个音节上，听起来像“taxì”而非标准的“tàxi”。</li></ul>
+  <p class="meta">模型听到：Mi può chiamare un taxì?</p>
+  <p class="meta">转写模型听到：Mi può chiamare un taxi?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">26</span>Allora, cosa le porto?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>db5c342de7a11677.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/db5c342de7a11677.m4a"></audio>
+  <p>语音内容与重音正确，但词间停顿处有明显杂音。</p>
+  <ul><li><b>杂音</b>「Allora 和 cosa 之间」：停顿处有明显的爆破杂音或音频伪影。</li></ul>
+  <p class="meta">模型听到：Allora, cosa le porto?</p>
+  <p class="meta">转写模型听到：Allora, cosa le porto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Allora</p>
+</section><section class="card">
+  <h2><span class="n">27</span>Ho perso il treno. A che ora parte il prossimo per Roma?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>a14e96f7e3f3c4f4.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/a14e96f7e3f3c4f4.m4a"></audio>
+  <p>语音发音自然准确，但两句之间存在明显的咔哒杂音。</p>
+  <ul><li><b>杂音</b>「两句之间（约1.3秒处）」：在第二句开始前有明显的咔哒杂音。</li></ul>
+  <p class="meta">模型听到：Ho perso il treno. A che ora parte il prossimo per Roma?</p>
+  <p class="meta">转写模型听到：Ho perso il treno. A che ora parte il prossimo per Roma?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：prossimo</p>
+</section><section class="card">
+  <h2><span class="n">28</span>Sono da solo. Avete un tavolo libero?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>511b7ea560342d89.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/511b7ea560342d89.m4a"></audio>
+  <p>整体发音与语调准确自然，仅开头处存在轻微杂音。</p>
+  <ul><li><b>杂音</b>「Sono 之前」：音频最开头有一声轻微的多余发声或合成杂音。</li></ul>
+  <p class="meta">模型听到：Sono da solo. Avete un tavolo libero?</p>
+  <p class="meta">转写模型听到：Sono da solo, avete un tavolo libero?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">29</span>Aiuto!</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>e46c3e50a84267a9.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/e46c3e50a84267a9.m4a"></audio>
+  <p>发音正确，但词尾因减速处理产生了明显的不自然颤音失真。</p>
+  <ul><li><b>放慢失真</b>「Aiuto」：词尾元音因减速出现明显的颤抖和机械失真。</li></ul>
+  <p class="meta">模型听到：Aiuto!</p>
+  <p class="meta">转写模型听到：Aiuto!（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">30</span>Mi dispiace! Anche il passaporto?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>8092042031e2e8d7.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/8092042031e2e8d7.m4a"></audio>
+  <p>前半句语调怪异且放慢后出现明显失真，不适合初学者课程。</p>
+  <ul><li><b>放慢失真</b>「Mi dispiace」：放慢后气声失真明显，声音机械怪异。</li><li><b>语调节奏</b>「Mi dispiace」：语气过度低沉戏剧化，不自然。</li></ul>
+  <p class="meta">模型听到：Mi dispiace! Anche il passaporto?</p>
+  <p class="meta">转写模型听到：Mi dispiace, anche il passaporto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：passaporto</p>
+</section><section class="card">
+  <h2><span class="n">31</span>Allora, cosa le porto?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>363df4f631fb050d.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/363df4f631fb050d.m4a"></audio>
+  <p>音频前后音色不一致，由女声突变为男声。</p>
+  <ul><li><b>其他</b>「cosa le porto」：后半句声音突变为男声。</li></ul>
+  <p class="meta">模型听到：Allora, cosa le porto?</p>
+  <p class="meta">转写模型听到：Allora, cosa le porto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Allora</p>
+</section>
+<details class="gem">
+<summary>双辅音需人工听（36 句，原速）</summary>
+<ul><li><p>All&#x27;aeroporto di Fiumicino, per favore. <span class="meta">— All</span></p><label>f1@1<audio controls preload="none" src="../Audio/5572b62bb7fc02f9.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/996ed8acc11c36f3.m4a"></audio></label></li><li><p>Allora chiami subito il 112, è il numero per le emergenze. Ma lei come si sente? È un po&#x27; pallido. <span class="meta">— Allora, pallido</span></p><label>f1@1<audio controls preload="none" src="../Audio/4221591f2a66b1fb.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a7846aa9315fd793.m4a"></audio></label></li><li><p>Allora le do qualcosa per il mal di testa. Sono sei euro e trenta. <span class="meta">— Allora</span></p><label>f1@1<audio controls preload="none" src="../Audio/8977b69cef75f08d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7180a1e0c8237425.m4a"></audio></label></li><li><p>Allora, cosa le porto? <span class="meta">— Allora</span></p><label>f1@1<audio controls preload="none" src="../Audio/363df4f631fb050d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a628346a9befebb4.m4a"></audio></label></li><li><p>Buongiorno! Il primo orario disponibile è alle dieci e quindici. Va bene? <span class="meta">— alle</span></p><label>f1@1<audio controls preload="none" src="../Audio/d9353dca1db4aa50.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f0ae6c831dc1647f.m4a"></audio></label></li><li><p>Buongiorno! Il primo orario disponibile è alle tredici e venti. Va bene? <span class="meta">— alle</span></p><label>f1@1<audio controls preload="none" src="../Audio/dbe858d385c0bb47.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/b9fe1ccbf01d216e.m4a"></audio></label></li><li><p>Buongiorno! Il primo orario disponibile è alle undici e trenta. Va bene? <span class="meta">— alle</span></p><label>f1@1<audio controls preload="none" src="../Audio/e9b65fb81301f3e1.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ff3d56c1a937a9b5.m4a"></audio></label></li><li><p>C&#x27;è l&#x27;acqua alta oggi? <span class="meta">— acqua, oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/44fc920be88cca40.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3c4d4351aa4ac6e4.m4a"></audio></label></li><li><p>Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono due fermate. <span class="meta">— Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/6a154645c5e3b752.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/935fe97b818e73cf.m4a"></audio></label></li><li><p>Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono quattro fermate. <span class="meta">— Colosseo, quattro</span></p><label>f1@1<audio controls preload="none" src="../Audio/cd812d694b52f08d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/64c31abb9a4f2dc9.m4a"></audio></label></li><li><p>Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono tre fermate. <span class="meta">— Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/fa42d65f486e955b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a7904369466b614c.m4a"></audio></label></li><li><p>Certo, lo chiamo subito. Coraggio, e buona fortuna! <span class="meta">— Coraggio</span></p><label>f1@1<audio controls preload="none" src="../Audio/c088d6a63b2c84d2.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/6fa5e48eebe9069c.m4a"></audio></label></li><li><p>Che bello! <span class="meta">— bello</span></p><label>f1@1<audio controls preload="none" src="../Audio/b9384d404c77a12b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/4d882c61f6e0fbe7.m4a"></audio></label></li><li><p>D&#x27;accordo. Oggi c&#x27;è traffico: ci vogliono cinquanta minuti. <span class="meta">— accordo, Oggi, traffico</span></p><label>f1@1<audio controls preload="none" src="../Audio/9e3371ce06c06668.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/b2c31ede97335538.m4a"></audio></label></li><li><p>Ecco qua, per il mal di testa. Sono nove euro e sessanta. <span class="meta">— Ecco, sessanta</span></p><label>f1@1<audio controls preload="none" src="../Audio/5c8dc59b3de8ad2b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c1537927cc5aece9.m4a"></audio></label></li><li><p>Ecco, questo è per il mal di testa. Sono sette euro e quaranta. <span class="meta">— Ecco, sette</span></p><label>f1@1<audio controls preload="none" src="../Audio/24e16bec246ae941.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/da5c1dbafb8213a7.m4a"></audio></label></li><li><p>Fatto: il taxi arriva subito. Coraggio! <span class="meta">— Fatto, arriva, Coraggio</span></p><label>f1@1<audio controls preload="none" src="../Audio/c8ae3dec269e21e1.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ffd6db48f2bec5f5.m4a"></audio></label></li><li><p>Ha qualcosa per il raffreddore? <span class="meta">— raffreddore</span></p><label>f1@1<audio controls preload="none" src="../Audio/ece7e9ebbfce7ccf.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/b2f7e915da48bdc9.m4a"></audio></label></li><li><p>Ho freddo. <span class="meta">— freddo</span></p><label>f1@1<audio controls preload="none" src="../Audio/1ac29bc04c3096f0.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/fd02129e68949de3.m4a"></audio></label></li><li><p>Ho mal di gola e un po&#x27; di febbre. <span class="meta">— febbre</span></p><label>f1@1<audio controls preload="none" src="../Audio/313bb5346f194894.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/13cd3aa602117f1e.m4a"></audio></label></li><li><p>Ho perso il passaporto. <span class="meta">— passaporto</span></p><label>f1@1<audio controls preload="none" src="../Audio/ec13c3476740c51a.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/dc16dc03ba99658b.m4a"></audio></label></li><li><p>Ho perso il treno. A che ora parte il prossimo per Roma? <span class="meta">— prossimo</span></p><label>f1@1<audio controls preload="none" src="../Audio/a14e96f7e3f3c4f4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/6a60a361bcd040da.m4a"></audio></label></li><li><p>Le piace questo cappello? Costa diciotto euro. <span class="meta">— cappello, diciotto</span></p><label>f1@1<audio controls preload="none" src="../Audio/a234d1ecc6c947e5.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2461a4efba32685e.m4a"></audio></label></li><li><p>Le piace questo cappello? Costa dodici euro. <span class="meta">— cappello</span></p><label>f1@1<audio controls preload="none" src="../Audio/dce71a684f6f36d4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/9e289b62534d4967.m4a"></audio></label></li><li><p>Le piace questo cappello? Costa quindici euro. <span class="meta">— cappello</span></p><label>f1@1<audio controls preload="none" src="../Audio/6732bd29bc2da80d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c5329b670caf59e0.m4a"></audio></label></li><li><p>Mi dispiace! Anche il passaporto? <span class="meta">— passaporto</span></p><label>f1@1<audio controls preload="none" src="../Audio/a4223edf4f9c12f7.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c1520affddebfc53.m4a"></audio></label></li><li><p>Mi hanno rubato il portafoglio. <span class="meta">— hanno</span></p><label>f1@1<audio controls preload="none" src="../Audio/16d6e7491e920dc4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ae101b4c0815518b.m4a"></audio></label></li><li><p>Non ho contanti. Posso pagare con il telefono? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/8ec652e8806e741a.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/4d9008f60c3c6027.m4a"></audio></label></li><li><p>Oggi fa freddo. <span class="meta">— Oggi, freddo</span></p><label>f1@1<audio controls preload="none" src="../Audio/079b11cb3fa2b452.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/075caf46a6f89efb.m4a"></audio></label></li><li><p>Oh no! Le hanno rubato anche il passaporto? <span class="meta">— hanno, passaporto</span></p><label>f1@1<audio controls preload="none" src="../Audio/2da77913f66bc08e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d73948649a096d49.m4a"></audio></label></li><li><p>Perfetto. Con questo traffico ci vogliono quaranta minuti. <span class="meta">— Perfetto, traffico</span></p><label>f1@1<audio controls preload="none" src="../Audio/e9b3ea11faedab65.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/6b447dec59f0f03c.m4a"></audio></label></li><li><p>Quanto costa fino all&#x27;aeroporto? <span class="meta">— all</span></p><label>f1@1<audio controls preload="none" src="../Audio/f94d51e6071a687f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/fe156072f56ebf2e.m4a"></audio></label></li><li><p>Quanto costa questo ombrello? Va bene, lo prendo. <span class="meta">— ombrello</span></p><label>f1@1<audio controls preload="none" src="../Audio/f43d7f2a3c4fd29d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/e33200279c5417e7.m4a"></audio></label></li><li><p>Tutto bene? Le piace la carbonara? <span class="meta">— Tutto</span></p><label>f1@1<audio controls preload="none" src="../Audio/f9e8ea137d7a0d61.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/201ad780ecef5764.m4a"></audio></label></li><li><p>Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene? <span class="meta">— alla</span></p><label>f1@1<audio controls preload="none" src="../Audio/7b4ea2eb370a7d0e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ae07758cce271e1d.m4a"></audio></label></li><li><p>Vorrei fare una denuncia. <span class="meta">— Vorrei</span></p><label>f1@1<audio controls preload="none" src="../Audio/466050a8bfccc32a.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/1422607e6f3a24b2.m4a"></audio></label></li></ul>
+</details>
+</main>
+</body>
+</html>

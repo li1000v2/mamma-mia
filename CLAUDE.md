@@ -29,7 +29,7 @@
 - 声线和模型在 `tools/tts_voices.json`；改了声线就把它的 `rev` 加一，对应音频会全部重生成。
 - 原速只把意大利语原文发给 TTS，不带风格指令：实测带指令时模型会把指令也念出来，systemInstruction 也不支持。慢速是原速录音用 ffmpeg `atempo` 放慢。
 - 每段新音频都用 `checkModel` 转写回来和原文比对，对不上会重试；还对不上就在输出里报 warning，需要人去听。
-- 人工听审前先跑 `python tools/audio_review.py`（默认第 1 周，`--week N` 换周，`--limit`/`--only` 限范围）：gemini-4-argon 用 HIGH 思考档逐段听，结果按文件名缓存在 `reviews/audio-screen-cache.json`，可疑片段写进 `reviews/audio-screen-week<N>.md`，同名 `.html` 可在浏览器里逐条点听。它不判断双辅音长短（实测会自信地判错），含双辅音的句子只备注“双辅音需人工听”；改了提示词就把脚本里的 `PROMPT_REV` 加一，旧结果会重筛。
+- 人工听审前先跑 `python tools/audio_review.py`（默认第 1 周，`--week N` 换周，`--limit`/`--only` 限范围）：gemini-4-argon 用 HIGH 思考档逐段听，结果按文件名缓存在 `reviews/audio-screen-cache.json`，可疑片段写进 `reviews/audio-screen-week<N>.md`，同名 `.html` 可在浏览器里逐条点听。它不判断双辅音长短（实测会自信地判错），含双辅音的句子只备注“双辅音需人工听”；改了提示词就把脚本里的 `PROMPT_REV` 加一，旧结果会重筛。拥堵时模型偶尔不思考、或没听音频就作答（判没问题，转写却和原文毫不相干），这种答案会换成 WAV 再试一次，还不行就不进缓存，重跑会重筛。被标出的片段会再用 `checkModel` 转写一遍写进报告（只看词对不对，不管发音），因为 Argon 偶尔会编出不相干的整句。
 - app 里没有音频的句子会退回 iOS 自带的意大利语语音。挑战剧本可以用 `voice` 指定角色的声线。
 
 ## 开口说（离线识别）

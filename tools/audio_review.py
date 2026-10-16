@@ -8,6 +8,11 @@ ending, and for slow clips distortion from slowing them down. Consonant length (
 judged: the model gets it confidently wrong, so lines with double consonants are only marked for a
 human listen and never flagged because of it.
 
+The model is not always trustworthy. Answers given without thinking, or an "ok" whose transcript has
+nothing to do with the line, are retried once with the clip as WAV and otherwise not cached, so the
+next run tries again. Flagged clips are also transcribed by checkModel (words only, not pronunciation),
+because the model now and then makes a whole line up.
+
 Results are cached by file name in reviews/audio-screen-cache.json, so a rerun only screens new clips.
 Every run rewrites reviews/audio-screen-week<N>.md (suspicious clips and totals) and .html (the same
 clips with players; open it from reviews/ so ../Audio/ resolves).
@@ -18,17 +23,20 @@ Usage (from the repo root):
   python tools/audio_review.py --only palla    only clips whose file name or text matches
   python tools/audio_review.py --report-only   rewrite the report from the cache
 
-Needs GOOGLE_API_KEY and GOOGLE_CLOUD_PROJECT_NUMBER (environment or .env), like gen_audio.py.
+Needs GOOGLE_API_KEY and GOOGLE_CLOUD_PROJECT_NUMBER (environment or .env), like gen_audio.py,
+and ffmpeg on PATH for the WAV retry.
 """
 from __future__ import annotations
 
 import argparse
 import base64
 import concurrent.futures
+import difflib
 import html
 import json
 import os
 import re
+import subprocess
 import sys
 import tempfile
 import threading
@@ -36,7 +44,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from gen_audio import AUDIO, CONTENT, MANIFEST, ROOT, Gemini, load_env, load_json
+from gen_audio import AUDIO, CONTENT, MANIFEST, ROOT, Gemini, load_env, load_json, normalized
 
 REVIEWS = ROOT / "reviews"
 CACHE = REVIEWS / "audio-screen-cache.json"
@@ -180,7 +188,20 @@ def parse_verdict(raw: str) -> dict:
 
 class Reviewer(Gemini):
     def review(self, clip: Clip, model: str, tempo: float) -> dict:
-        audio = (AUDIO / clip.file).read_bytes()
+        entry = self._review(clip, model, tempo, as_wav=False)
+        problem = unusable(clip, entry)
+        if problem:
+            # Some .m4a clips get an unrelated answer every time, yet are heard fine as WAV.
+            entry = self._review(clip, model, tempo, as_wav=True)
+            problem = unusable(clip, entry)
+        if problem:
+            raise RuntimeError(f"unusable answer, not cached: {problem}")
+        return entry
+
+    def _review(self, clip: Clip, model: str, tempo: float, as_wav: bool) -> dict:
+        audio, mime_type = (AUDIO / clip.file).read_bytes(), "audio/mp4"
+        if as_wav:
+            audio, mime_type = to_wav(audio), "audio/wav"
         speed = "normal speed" if clip.speed == "n" else f"slow ({tempo}x)"
         prompt = PROMPT.format(
             text=clip.text,
@@ -191,7 +212,7 @@ class Reviewer(Gemini):
         )
         body = {
             "contents": [{"role": "user", "parts": [
-                {"inlineData": {"mimeType": "audio/mp4", "data": base64.b64encode(audio).decode("ascii")}},
+                {"inlineData": {"mimeType": mime_type, "data": base64.b64encode(audio).decode("ascii")}},
                 {"text": prompt},
             ]}],
             "generationConfig": {
@@ -204,7 +225,7 @@ class Reviewer(Gemini):
         raw = "".join(part.get("text", "") for part in parts if not part.get("thought"))
         verdict = parse_verdict(raw)
         usage = data.get("usageMetadata", {})
-        return {
+        entry = {
             "key": clip.key,
             "model": model,
             "promptRev": PROMPT_REV,
@@ -216,6 +237,33 @@ class Reviewer(Gemini):
             },
             **verdict,
         }
+        if as_wav:
+            entry["sentAs"] = "wav"
+        return entry
+
+    def second_opinion(self, clip: Clip) -> str:
+        """The clip transcribed by checkModel, the model gen_audio.py checks new clips with."""
+        return self.transcribe((AUDIO / clip.file).read_bytes(), "audio/mp4")
+
+
+def to_wav(m4a: bytes) -> bytes:
+    command = ["ffmpeg", "-v", "error", "-i", "pipe:0", "-f", "wav", "-acodec", "pcm_s16le", "pipe:1"]
+    return subprocess.run(command, input=m4a, capture_output=True, check=True).stdout
+
+
+def unusable(clip: Clip, entry: dict) -> str | None:
+    """Why an answer is not a verdict, or None.
+
+    Under load the model sometimes answers without thinking, or without listening: an "ok" whose
+    transcript has nothing to do with the line (seen: a Chinese sentence for "Quanto costa questo
+    ombrello?"). Flagged clips get a human listen anyway, so only an ok needs its transcript to match.
+    """
+    if not entry["usage"]["thoughts"]:
+        return f"answered without thinking (heard {entry['heard']!r})"
+    match = difflib.SequenceMatcher(None, normalized(clip.text), normalized(entry["heard"])).ratio()
+    if entry["ok"] and match < 0.5:
+        return f"ok, but heard {entry['heard']!r} (match {match:.2f})"
+    return None
 
 
 def load_cache() -> dict[str, dict]:
@@ -226,15 +274,25 @@ def load_cache() -> dict[str, dict]:
 
 def save_cache(entries: dict[str, dict]) -> None:
     REVIEWS.mkdir(exist_ok=True)
-    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=REVIEWS, suffix=".json", delete=False)
+    tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", newline="\n", dir=REVIEWS, suffix=".json", delete=False)
     with tmp:
         json.dump({"version": 1, "entries": dict(sorted(entries.items()))}, tmp, ensure_ascii=False, indent=2)
         tmp.write("\n")
-    os.replace(tmp.name, CACHE)
+    # On Windows a virus scanner or the indexer can hold the cache open for a moment; replacing it then fails.
+    for attempt in range(10):
+        try:
+            os.replace(tmp.name, CACHE)
+            return
+        except PermissionError:
+            if attempt == 9:
+                raise
+            time.sleep(0.2 * (attempt + 1))
 
 
 def is_fresh(clip: Clip, entry: dict | None, model: str) -> bool:
-    return bool(entry) and entry["key"] == clip.key and entry["model"] == model and entry["promptRev"] == PROMPT_REV
+    """Cached, for this clip, model and prompt, and a usable answer (older runs cached some that are not)."""
+    return (bool(entry) and entry["key"] == clip.key and entry["model"] == model
+            and entry["promptRev"] == PROMPT_REV and unusable(clip, entry) is None)
 
 
 def priority(entry: dict) -> tuple:
@@ -244,6 +302,11 @@ def priority(entry: dict) -> tuple:
         min((TYPE_RANK[kind] for kind in types), default=len(TYPE_RANK)),
         -entry["confidence"],
     )
+
+
+def check_note(clip: Clip, entry: dict) -> str:
+    same = normalized(entry["checkHeard"]) == normalized(clip.text)
+    return "（和原文一致）" if same else "（和原文不同）"
 
 
 def describe(clip: Clip, voice_names: dict[str, str]) -> str:
@@ -284,6 +347,8 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
             md.append(f"  - {ISSUE_TYPES[issue['type']]}{where}：{issue['detail']}")
         if entry["heard"]:
             md.append(f"- 模型听到：{entry['heard']}")
+        if entry.get("checkHeard"):
+            md.append(f"- 转写模型听到：{entry['checkHeard']}{check_note(clip, entry)}")
         words = double_consonant_words(clip.text)
         if words:
             md.append(f"- 双辅音需人工听：{', '.join(words)}")
@@ -327,6 +392,7 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
   <p>{esc(entry['reason'])}</p>
   <ul>{issues}</ul>
   {f'<p class="meta">模型听到：{esc(entry["heard"])}</p>' if entry['heard'] else ''}
+  {f'<p class="meta">转写模型听到：{esc(entry["checkHeard"])}{check_note(clip, entry)}</p>' if entry.get('checkHeard') else ''}
   {f'<p class="meta">双辅音需人工听：{esc(", ".join(words))}</p>' if words else ''}
 </section>""")
     by_text: dict[str, dict[tuple[str, str], str]] = {}
@@ -411,12 +477,19 @@ def main() -> int:
     todo = [clip for clip in todo if clip not in missing]
     if args.limit:
         todo = todo[: args.limit]
-    print(f"week {args.week}: {len(clips)} clips, {len(selected)} selected, {len(todo)} to screen")
+    # Flagged clips also get a transcript from checkModel (it judges words, not pronunciation):
+    # Argon now and then makes a whole line up. Older cached verdicts get theirs on the next run.
+    todo_files = {clip.file for clip in todo}
+    unchecked = [clip for clip in selected if clip.file not in todo_files and (AUDIO / clip.file).is_file()
+                 and is_fresh(clip, cache.get(clip.file), args.model)
+                 and not cache[clip.file]["ok"] and "checkHeard" not in cache[clip.file]]
+    print(f"week {args.week}: {len(clips)} clips, {len(selected)} selected, {len(todo)} to screen"
+          + (f", {len(unchecked)} flagged to transcribe" if unchecked else ""))
     for clip in missing:
         print(f"missing audio file: {clip.file} ({clip.voice} {clip.speed} {clip.text})")
 
     failures = []
-    if todo and not args.report_only:
+    if (todo or unchecked) and not args.report_only:
         env = load_env()
         if not env.get("GOOGLE_CLOUD_PROJECT_NUMBER"):
             print("GOOGLE_CLOUD_PROJECT_NUMBER must be set (environment or .env)", file=sys.stderr)
@@ -431,17 +504,26 @@ def main() -> int:
             if stop.is_set():
                 raise RuntimeError("skipped after an authentication error")
             try:
-                return reviewer.review(clip, args.model, config["slowTempo"])
+                if clip.file in todo_files:
+                    entry = reviewer.review(clip, args.model, config["slowTempo"])
+                else:
+                    entry = dict(cache[clip.file])
             except RuntimeError as error:
                 if re.search(r"HTTP (401|403|404)\b", str(error)):
                     stop.set()  # every other request would fail the same way
                 raise
+            if not entry["ok"]:
+                try:
+                    entry["checkHeard"] = reviewer.second_opinion(clip)
+                except RuntimeError as error:  # the verdict stands; the next run adds the transcript
+                    print(f"  no transcript for {clip.file}: {error}")
+            return entry
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-            futures = {pool.submit(run, clip): clip for clip in todo}
+            futures = {pool.submit(run, clip): clip for clip in todo + unchecked}
             for done, future in enumerate(concurrent.futures.as_completed(futures), 1):
                 clip = futures[future]
-                label = f"[{done}/{len(todo)}] {clip.voice} {clip.speed} {clip.text}"
+                label = f"[{done}/{len(futures)}] {clip.voice} {clip.speed} {clip.text}"
                 try:
                     entry = future.result()
                 except Exception as error:  # keep going; report at the end

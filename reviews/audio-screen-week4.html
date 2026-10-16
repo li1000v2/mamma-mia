@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频粗筛 第 4 周</title>
+<style>
+:root { --bg: #fbfaf7; --fg: #1d1b18; --muted: #6b665e; --card: #fff; --line: #e4e0d8; --accent: #b4442b; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171614; --fg: #ece8e1; --muted: #a39d93; --card: #22201d; --line: #36332e; --accent: #e8836b; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, "PingFang SC", system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+.card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+.n { color: var(--accent); margin-right: 8px; }
+.meta { color: var(--muted); font-size: 0.875rem; margin: 4px 0; }
+audio { width: 100%; margin: 8px 0; }
+ul { padding-left: 20px; }
+.gem li { margin-bottom: 12px; }
+.gem label { display: block; font-size: 0.875rem; color: var(--muted); }
+code { font-size: 0.85em; }
+</style>
+</head>
+<body>
+<main>
+<h1>示范音频粗筛 · 第 4 周</h1>
+<p class="meta">已筛 232 / 232 段，可疑 23 段（原速 14，慢速 9）。
+模型 gemini-4-argon，花费估算 $0.93。按需要听的先后排列。</p>
+<section class="card">
+  <h2><span class="n">1</span>Ah, JoJo! Allora benvenuto a Roma. Buona visita!</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>939e7b0689638d43.m4a</code> ·
+    严重度 high · 置信度 1.00</p>
+  <audio controls preload="none" src="../Audio/939e7b0689638d43.m4a"></audio>
+  <p>音频开头漏读了“Ah, JoJo!”，直接从“Allora”开始朗读。</p>
+  <ul><li><b>漏读</b>「Ah, JoJo!」：漏读了开头的“Ah, JoJo!”。</li></ul>
+  <p class="meta">模型听到：Allora benvenuto a Roma. Buona visita!</p>
+  <p class="meta">转写模型听到：Ah Giorgio! Allora, benvenuto a Roma! Buona visita!（和原文不同）</p>
+  <p class="meta">双辅音需人工听：Allora</p>
+</section><section class="card">
+  <h2><span class="n">2</span>Certo! Dove devo premere?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>72bf158dcb0f880d.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/72bf158dcb0f880d.m4a"></audio>
+  <p>两句之间多出了一个明显的犹豫语气词，与目标文本不完全相符。</p>
+  <ul><li><b>多出来的话</b>「Certo 之后」：包含了原文中没有的语气词“eh”。</li></ul>
+  <p class="meta">模型听到：Certo! Eh, dove devo premere?</p>
+  <p class="meta">转写模型听到：Certo, eh dove devo premere?（和原文不同）</p>
+  
+</section><section class="card">
+  <h2><span class="n">3</span>Certo! Dove devo premere?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>955b47306d61870e.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/955b47306d61870e.m4a"></audio>
+  <p>两句之间多出了目标文本中没有的语气词“eh”。</p>
+  <ul><li><b>多出来的话</b>「Certo! 之后」：多读了语气词“eh”。</li></ul>
+  <p class="meta">模型听到：Certo! Eh, dove devo premere?</p>
+  <p class="meta">转写模型听到：Certo, eh dove devo premere?（和原文不同）</p>
+  
+</section><section class="card">
+  <h2><span class="n">4</span>Lo prendo.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>b49e346a2f4b1c2a.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/b49e346a2f4b1c2a.m4a"></audio>
+  <p>开头包含目标文本之外的哼声，其余发音正常。</p>
+  <ul><li><b>多出来的话</b>「开头」：句首有多余的哼声。</li></ul>
+  <p class="meta">模型听到：Hm, lo prendo.</p>
+  <p class="meta">转写模型听到：Lo prendo.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">5</span>Va bene! Sorrida… ecco fatto. Perché proprio qui?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>1a04265532f09de7.m4a</code> ·
+    严重度 medium · 置信度 0.90</p>
+  <audio controls preload="none" src="../Audio/1a04265532f09de7.m4a"></audio>
+  <p>音频开头存在杂音伪影，且“proprio”一词漏读了第二个“r”音，不适合作为初学者教材。</p>
+  <ul><li><b>杂音</b>「Va bene」：开头“Va”之前有明显的杂音或多余的气声伪影。</li><li><b>读错</b>「proprio」：“proprio”中的第二个辅音“r”缺失，被读成了“propio”，且最后一句音量明显变小。</li></ul>
+  <p class="meta">模型听到：Va bene! Sorrida… ecco fatto. Perché propio qui?</p>
+  <p class="meta">转写模型听到：Va bene, sorrida. Ecco fatto. Perché proprio qui?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Sorrida, ecco, fatto</p>
+</section><section class="card">
+  <h2><span class="n">6</span>Buongiorno! Mi dica.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>3eed0553a758803b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/3eed0553a758803b.m4a"></audio>
+  <p>开头辅音发音失真，且整体音频有明显的慢速机械失真感。</p>
+  <ul><li><b>读错</b>「Buongiorno」：首字母B发音不清，听起来像M。</li><li><b>放慢失真</b>「整句」：慢速处理导致声音沙哑、颤抖且机械感明显。</li></ul>
+  <p class="meta">模型听到：Muongiorno! Mi dica.</p>
+  <p class="meta">转写模型听到：Buongiorno, mi dica.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">7</span>Sono sedici euro, grazie. Ecco il biglietto.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>bc7a1d9b105d31e1.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/bc7a1d9b105d31e1.m4a"></audio>
+  <p>单词“grazie”发音有误，缺失了辅音“r”。</p>
+  <ul><li><b>读错</b>「grazie」：“grazie”漏掉了“r”音，被读成了“gazie”。</li></ul>
+  <p class="meta">模型听到：Sono sedici euro, gazie. Ecco il biglietto.</p>
+  <p class="meta">转写模型听到：Sono 16 euro grazie ecco il biglietto（和原文不同）</p>
+  <p class="meta">双辅音需人工听：Ecco, biglietto</p>
+</section><section class="card">
+  <h2><span class="n">8</span>Sono un fan di JoJo.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>e64c7b25453116be.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/e64c7b25453116be.m4a"></audio>
+  <p>语音将目标词“JoJo”错读成了“Giorgio”。</p>
+  <ul><li><b>读错</b>「JoJo」：将“JoJo”误读为了“Giorgio”。</li></ul>
+  <p class="meta">模型听到：Sono un fan di Giorgio.</p>
+  <p class="meta">转写模型听到：Sono un fan di JoJo（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">9</span>Sono un fan di JoJo.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>2bd2b8f1028a4af2.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/2bd2b8f1028a4af2.m4a"></audio>
+  <p>末尾词汇被误读为另一个名字。</p>
+  <ul><li><b>读错</b>「JoJo」：将 JoJo 误读为 Giorgio。</li></ul>
+  <p class="meta">模型听到：Sono un fan di Giorgio.</p>
+  <p class="meta">转写模型听到：Sono un fan di Jojo.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">10</span>Sì: prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>5406079a3a8f90c3.m4a</code> ·
+    严重度 medium · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/5406079a3a8f90c3.m4a"></audio>
+  <p>整体发音和语调自然，但最后一个词“lì”在结尾处被明显截断，不够完整。</p>
+  <ul><li><b>截断</b>「lì」：音频结尾处的“lì”元音尚未发完就被突然截断。</li></ul>
+  <p class="meta">模型听到：Sì: prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì</p>
+  <p class="meta">转写模型听到：Sì, prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：all</p>
+</section><section class="card">
+  <h2><span class="n">11</span>L&#x27;ingresso? Giri a destra, è lì.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>ee151c4278d22b93.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/ee151c4278d22b93.m4a"></audio>
+  <p>音频末尾的“lì”被明显截断，发音不完整。</p>
+  <ul><li><b>截断</b>「lì」：句末单词发音未结束即被截断。</li></ul>
+  <p class="meta">模型听到：L&#x27;ingresso? Giri a destra, è lì-</p>
+  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a destra, è lì.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：ingresso</p>
+</section><section class="card">
+  <h2><span class="n">12</span>Dove devo scendere?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>cedabe2ff9eb8e58.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/cedabe2ff9eb8e58.m4a"></audio>
+  <p>句末单词“scendere”未完整发音，缺少最后的元音。</p>
+  <ul><li><b>截断</b>「scendere」：词尾元音“e”缺失或被截断。</li></ul>
+  <p class="meta">模型听到：Dove devo scender</p>
+  <p class="meta">转写模型听到：Dove devo scendere?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">13</span>Dove devo scendere?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>f3a90493dfcdd4c3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/f3a90493dfcdd4c3.m4a"></audio>
+  <p>句末单词“scendere”词尾被截断，发音不完整。</p>
+  <ul><li><b>截断</b>「scendere」：词尾元音“e”被截断。</li></ul>
+  <p class="meta">模型听到：Dove devo scender</p>
+  <p class="meta">转写模型听到：Dove devo scendere?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">14</span>L&#x27;ingresso? Giri a sinistra, è lì.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>17d7486efe7d9f7b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/17d7486efe7d9f7b.m4a"></audio>
+  <p>音频结尾处的“lì”发音被截断，听起来不完整。</p>
+  <ul><li><b>截断</b>「lì」：句末最后一个词的元音被突然截断。</li></ul>
+  <p class="meta">模型听到：L&#x27;ingresso? Giri a sinistra, è lì.</p>
+  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a sinistra, è lì.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：ingresso</p>
+</section><section class="card">
+  <h2><span class="n">15</span>Si può andare a piedi?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>e0b1a38451e59c1c.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/e0b1a38451e59c1c.m4a"></audio>
+  <p>音频末尾被截断，单词piedi发音不完整。</p>
+  <ul><li><b>截断</b>「piedi」：末尾单词piedi被截断，缺少最后一个音节。</li></ul>
+  <p class="meta">模型听到：Si può andare a pie</p>
+  <p class="meta">转写模型听到：Si può andare a piedi?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">16</span>Ah, JoJo! Qui ne vengono tanti. Buona visita!</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>611656146f43d74e.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/611656146f43d74e.m4a"></audio>
+  <p>动词“vengono”重音位置明显错误。</p>
+  <ul><li><b>重音</b>「vengono」：重音错放在第二音节，应在第一音节。</li></ul>
+  <p class="meta">模型听到：Ah, JoJo! Qui ne vengono tanti. Buona visita!</p>
+  <p class="meta">转写模型听到：Ah, Jojo, qui ne vengono tanti. Buona visita.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">17</span>Dove devo scendere?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>ef9110cc3f133c6c.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/ef9110cc3f133c6c.m4a"></audio>
+  <p>首词“Dove”重音位置错误。</p>
+  <ul><li><b>重音</b>「Dove」：重音错误地落在了第二个音节，听起来像“dov&#x27;è”。</li></ul>
+  <p class="meta">模型听到：Dov&#x27;è devo scendere?</p>
+  <p class="meta">转写模型听到：Dove devo scendere?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">18</span>L&#x27;ingresso? Giri a destra, è lì.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>2089989109dba405.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/2089989109dba405.m4a"></audio>
+  <p>末尾“è lì”的重音和连读处理不当，听起来不自然。</p>
+  <ul><li><b>重音</b>「è lì」：末尾的“è lì”重音错误，听起来像单个词“elli”，且尾音略微截断。</li></ul>
+  <p class="meta">模型听到：L&#x27;ingresso? Giri a destra, elli.</p>
+  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a destra, è lì.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：ingresso</p>
+</section><section class="card">
+  <h2><span class="n">19</span>L&#x27;ingresso? Giri a destra, è lì.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>7439883bcf02d7e4.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/7439883bcf02d7e4.m4a"></audio>
+  <p>末尾“è lì”的重音和语调不正确，听起来像名字“Ellie”。</p>
+  <ul><li><b>重音</b>「è lì」：重音错误地落在了“è”上，听起来像单个词“elli”。</li></ul>
+  <p class="meta">模型听到：L&#x27;ingresso? Giri a destra, elli.</p>
+  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a destra, è lì.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：ingresso</p>
+</section><section class="card">
+  <h2><span class="n">20</span>L&#x27;ingresso? Vada sempre dritto, è lì.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>18a560ea17edba35.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/18a560ea17edba35.m4a"></audio>
+  <p>“Vada”一词重音位置明显错误。</p>
+  <ul><li><b>重音</b>「Vada」：重音错误地落在了第二个音节上，读成了vadà。</li></ul>
+  <p class="meta">模型听到：L&#x27;ingresso? Vadà sempre dritto, è lì.</p>
+  <p class="meta">转写模型听到：L&#x27;ingresso? Vada sempre dritto, è lì.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：ingresso, dritto</p>
+</section><section class="card">
+  <h2><span class="n">21</span>Serve la prenotazione?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>08425edc6ba92927.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/08425edc6ba92927.m4a"></audio>
+  <p>首词重音位置错误，发音不自然。</p>
+  <ul><li><b>重音</b>「Serve」：重音错误地放在了第二个音节。</li></ul>
+  <p class="meta">模型听到：Serve la prenotazione?</p>
+  <p class="meta">转写模型听到：serve la prenotazione（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">22</span>Certo! Ecco fatto. Va bene così?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>20bd76ce5e71b3c5.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/20bd76ce5e71b3c5.m4a"></audio>
+  <p>整体发音与语调自然，但在“Ecco”前有一处明显的音频杂音。</p>
+  <ul><li><b>杂音</b>「Ecco」：“Ecco”一词前有明显的爆破杂音。</li></ul>
+  <p class="meta">模型听到：Certo! Ecco fatto. Va bene così?</p>
+  <p class="meta">转写模型听到：Certo. Ecco fatto. Va bene così?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco, fatto</p>
+</section><section class="card">
+  <h2><span class="n">23</span>Lo prendo.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>4e2ce327734aa8f3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/4e2ce327734aa8f3.m4a"></audio>
+  <p>音频开头存在多余的人声杂音，但目标短语发音清晰。</p>
+  <ul><li><b>杂音</b>「开头」：语音开始前有明显的哼声或轻笑杂音。</li></ul>
+  <p class="meta">模型听到：Lo prendo.</p>
+  <p class="meta">转写模型听到：Mh, lo prendo.（和原文不同）</p>
+  
+</section>
+<details class="gem">
+<summary>双辅音需人工听（30 句，原速）</summary>
+<ul><li><p>Ah, JoJo! Allora benvenuto a Roma. Buona visita! <span class="meta">— Allora</span></p><label>f1@1<audio controls preload="none" src="../Audio/939e7b0689638d43.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/e04ce54753126250.m4a"></audio></label></li><li><p>Alla fermata Colosseo. Da qui sono due fermate. <span class="meta">— Alla, Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/11ac1277765a5765.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/07e0ca842f75f25b.m4a"></audio></label></li><li><p>Alla fermata Colosseo. Da qui sono sei fermate. <span class="meta">— Alla, Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/85d7c7a5826ec4e4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/5bc288cc09ab67de.m4a"></audio></label></li><li><p>Alla fermata Colosseo. Da qui sono tre fermate. <span class="meta">— Alla, Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/db604dbabfbe0b71.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c0fec00c5750a5ec.m4a"></audio></label></li><li><p>C&#x27;è una fermata della metro qui vicino? <span class="meta">— della</span></p><label>f1@1<audio controls preload="none" src="../Audio/e13733a24c9b7379.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d190bbdb0b5b66ec.m4a"></audio></label></li><li><p>Certo! Ecco fatto. Va bene così? <span class="meta">— Ecco, fatto</span></p><label>f1@1<audio controls preload="none" src="../Audio/e38dded37c8d3973.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c813f8dc6457885c.m4a"></audio></label></li><li><p>Dov&#x27;è l&#x27;ingresso? <span class="meta">— ingresso</span></p><label>f1@1<audio controls preload="none" src="../Audio/e0c597e89b8e7d35.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7e4747521ebdc2fa.m4a"></audio></label></li><li><p>Il Colosseo? Ci va a piedi? <span class="meta">— Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/af110e717a6e188e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/02238f6584ca065b.m4a"></audio></label></li><li><p>Il Colosseo? Ha una mappa sul telefono? <span class="meta">— Colosseo, mappa</span></p><label>f1@1<audio controls preload="none" src="../Audio/bd750ee68b81ff3b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/bf40e074a22309c4.m4a"></audio></label></li><li><p>L&#x27;ingresso? Giri a destra, è lì. <span class="meta">— ingresso</span></p><label>f1@1<audio controls preload="none" src="../Audio/2089989109dba405.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ee151c4278d22b93.m4a"></audio></label></li><li><p>L&#x27;ingresso? Giri a sinistra, è lì. <span class="meta">— ingresso</span></p><label>f1@1<audio controls preload="none" src="../Audio/17d7486efe7d9f7b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c1c849110bc9c46e.m4a"></audio></label></li><li><p>L&#x27;ingresso? Vada sempre dritto, è lì. <span class="meta">— ingresso, dritto</span></p><label>f1@1<audio controls preload="none" src="../Audio/8085de4a79f6f2cd.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/18a560ea17edba35.m4a"></audio></label></li><li><p>Me lo può indicare sulla mappa? <span class="meta">— sulla, mappa</span></p><label>f1@1<audio controls preload="none" src="../Audio/8fd26da9513c5943.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/9e756c2680df9ffd.m4a"></audio></label></li><li><p>Permesso, scendo alla prossima. <span class="meta">— Permesso, alla, prossima</span></p><label>f1@1<audio controls preload="none" src="../Audio/fedefc4ec9ab77be.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/62a38970c4e6352d.m4a"></audio></label></li><li><p>Posso fare una foto qui? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/22979970d3b87e2d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/95970946bdbb6484.m4a"></audio></label></li><li><p>Posso provarlo? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/c7f1c92db5132f26.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/dd0f44bee75c5c65.m4a"></audio></label></li><li><p>Quale linea va al Colosseo? <span class="meta">— Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/fbf652341ca078e7.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/e3d90b2d7f831467.m4a"></audio></label></li><li><p>Quanto costa l&#x27;ingresso? <span class="meta">— ingresso</span></p><label>f1@1<audio controls preload="none" src="../Audio/f0de1c44cb8ce29f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/98690a20e862c85a.m4a"></audio></label></li><li><p>Scusi, dov&#x27;è il Colosseo? <span class="meta">— Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/830b8547bb01766e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/af32e3d205afbe86.m4a"></audio></label></li><li><p>Sono diciotto euro, grazie. Ecco il biglietto. <span class="meta">— diciotto, Ecco, biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/bec1111df238f999.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ee359e2e2a90744d.m4a"></audio></label></li><li><p>Sono sedici euro, grazie. Ecco il biglietto. <span class="meta">— Ecco, biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/bc7a1d9b105d31e1.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7e7b55cd03c709af.m4a"></audio></label></li><li><p>Sono ventiquattro euro, grazie. Ecco il biglietto. <span class="meta">— ventiquattro, Ecco, biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/b92b516182c8a0fc.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/6db76d0cb4a31de1.m4a"></audio></label></li><li><p>Sì: prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì. <span class="meta">— all</span></p><label>f1@1<audio controls preload="none" src="../Audio/8a9bb67f309397cd.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/64e27bfc74235fb2.m4a"></audio></label></li><li><p>Sì: vada dritto fino al semaforo, poi giri a destra. La metro è lì. <span class="meta">— dritto</span></p><label>f1@1<audio controls preload="none" src="../Audio/65c3d9fedba5daad.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ea5ccf54a339662e.m4a"></audio></label></li><li><p>Sì: vada sempre dritto e prenda la seconda a sinistra. La metro è lì. <span class="meta">— dritto</span></p><label>f1@1<audio controls preload="none" src="../Audio/4e6071307f1b5d59.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ce209f1e007f2f23.m4a"></audio></label></li><li><p>Un biglietto intero, per favore. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/74d1b17ac7c3ad5c.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2b29627253a0b0c8.m4a"></audio></label></li><li><p>Va bene! Sorrida… ecco fatto. Perché proprio qui? <span class="meta">— Sorrida, ecco, fatto</span></p><label>f1@1<audio controls preload="none" src="../Audio/67f01be44dec5b77.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ade0afef95cc89dd.m4a"></audio></label></li><li><p>Va bene! Uno, due, tre… ecco fatto. Come mai proprio qui? <span class="meta">— ecco, fatto</span></p><label>f1@1<audio controls preload="none" src="../Audio/eb7f5401a6031828.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/81e9efc7fe6ed4ab.m4a"></audio></label></li><li><p>Vada dritto fino all&#x27;incrocio, poi giri a destra. <span class="meta">— dritto, all</span></p><label>f1@1<audio controls preload="none" src="../Audio/d5e2090f4c8459ce.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/399a9e963aa8d8c2.m4a"></audio></label></li><li><p>Vada sempre dritto. <span class="meta">— dritto</span></p><label>f1@1<audio controls preload="none" src="../Audio/a94a488efa14e4ba.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/fb0314229ba15215.m4a"></audio></label></li></ul>
+</details>
+</main>
+</body>
+</html>

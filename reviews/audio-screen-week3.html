@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频粗筛 第 3 周</title>
+<style>
+:root { --bg: #fbfaf7; --fg: #1d1b18; --muted: #6b665e; --card: #fff; --line: #e4e0d8; --accent: #b4442b; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171614; --fg: #ece8e1; --muted: #a39d93; --card: #22201d; --line: #36332e; --accent: #e8836b; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, "PingFang SC", system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+.card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+.n { color: var(--accent); margin-right: 8px; }
+.meta { color: var(--muted); font-size: 0.875rem; margin: 4px 0; }
+audio { width: 100%; margin: 8px 0; }
+ul { padding-left: 20px; }
+.gem li { margin-bottom: 12px; }
+.gem label { display: block; font-size: 0.875rem; color: var(--muted); }
+code { font-size: 0.85em; }
+</style>
+</head>
+<body>
+<main>
+<h1>示范音频粗筛 · 第 3 周</h1>
+<p class="meta">已筛 236 / 236 段，可疑 35 段（原速 18，慢速 17）。
+模型 gemini-4-argon，花费估算 $0.94。按需要听的先后排列。</p>
+<section class="card">
+  <h2><span class="n">1</span>Dieci minuti, più o meno.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>a9cb30b26823f231.m4a</code> ·
+    严重度 high · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/a9cb30b26823f231.m4a"></audio>
+  <p>短语“più o meno”中的“o”被完全吞音漏读，不适合作为初学者教材。</p>
+  <ul><li><b>漏读</b>「più o meno」：漏读了中间的连词“o”，直接连读成了“più meno”。</li></ul>
+  <p class="meta">模型听到：Dieci minuti più meno.</p>
+  <p class="meta">转写模型听到：Dieci minuti più o meno（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">2</span>Ecco a lei, e buone feste!</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>c98a3e52f7460bc0.m4a</code> ·
+    严重度 high · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/c98a3e52f7460bc0.m4a"></audio>
+  <p>开头的“Ecco a”被读成了“equa”，且句末“feste”的词尾元音“e”缺失，发音明显不自然。</p>
+  <ul><li><b>读错</b>「Ecco a」：“Ecco a”发音变形严重，听起来像“equa”。</li><li><b>漏读</b>「feste」：词尾的元音“e”被吞掉，听起来像“fest”。</li></ul>
+  <p class="meta">模型听到：Equa lei, e buone fest</p>
+  <p class="meta">转写模型听到：Ecco a lei, e buone feste.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco</p>
+</section><section class="card">
+  <h2><span class="n">3</span>Una margherita, per favore.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>6b96ed202589dccd.m4a</code> ·
+    严重度 high · 置信度 1.00</p>
+  <audio controls preload="none" src="../Audio/6b96ed202589dccd.m4a"></audio>
+  <p>语音将句子读成了西班牙语（Una margarita, por favor），与意大利语目标文本（Una margherita, per favore）完全不符。</p>
+  <ul><li><b>读错</b>「margherita」：将意大利语的 margherita 误读成了西班牙语的 margarita。</li><li><b>读错</b>「per favore」：将意大利语的 per favore 误读成了西班牙语的 por favor。</li></ul>
+  <p class="meta">模型听到：Una margarita, por favor.</p>
+  <p class="meta">转写模型听到：Una margarita, por favor.（和原文不同）</p>
+  
+</section><section class="card">
+  <h2><span class="n">4</span>Buonasera!</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>94d5e58a807d7bcd.m4a</code> ·
+    严重度 high · 置信度 0.90</p>
+  <audio controls preload="none" src="../Audio/94d5e58a807d7bcd.m4a"></audio>
+  <p>“Buonasera”中的“na”音节被明显误读成了“ne”，核心元音发音错误，不适合作为初学者示范音频。</p>
+  <ul><li><b>读错</b>「Buonasera」：词中“buona”的元音“a”发成了“e”，听起来像“Buonesera”。</li></ul>
+  <p class="meta">模型听到：Buonesera</p>
+  <p class="meta">转写模型听到：Buonasera（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">5</span>A che ora chiude oggi?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>2b279185c4da2583.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/2b279185c4da2583.m4a"></audio>
+  <p>音频漏读了目标文本最后的单词“oggi”。</p>
+  <ul><li><b>漏读</b>「oggi」：漏读了句末的“oggi”。</li></ul>
+  <p class="meta">模型听到：A che ora chiude?</p>
+  <p class="meta">转写模型听到：A che ora chiude oggi?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：oggi</p>
+</section><section class="card">
+  <h2><span class="n">6</span>Buongiorno! Prego, dica.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>ac588818307b904b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/ac588818307b904b.m4a"></audio>
+  <p>音频缺失了目标文本中的最后一个词。</p>
+  <ul><li><b>漏读</b>「dica」：漏读了末尾的单词“dica”。</li></ul>
+  <p class="meta">模型听到：Buongiorno! Prego.</p>
+  <p class="meta">转写模型听到：Buongiorno. Prego, dica.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">7</span>Oggi chiudiamo alle diciannove e trenta.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>f5d778e5920a3718.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/f5d778e5920a3718.m4a"></audio>
+  <p>音频漏读了数字之间的连词“e”，且存在轻微停顿。</p>
+  <ul><li><b>漏读</b>「e」：漏读了连词“e”。</li></ul>
+  <p class="meta">模型听到：Oggi chiudiamo alle diciannove trenta.</p>
+  <p class="meta">转写模型听到：Oggi chiudiamo alle diciannove e trenta.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Oggi, alle, diciannove</p>
+</section><section class="card">
+  <h2><span class="n">8</span>È aperto anche oggi?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>eff9efe98e704ac9.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/eff9efe98e704ac9.m4a"></audio>
+  <p>aperto的词首元音被吞音，发音不完整。</p>
+  <ul><li><b>漏读</b>「aperto」：词首元音a发音缺失，听起来像perto。</li></ul>
+  <p class="meta">模型听到：È perto anche oggi?</p>
+  <p class="meta">转写模型听到：È aperto anche oggi?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：oggi</p>
+</section><section class="card">
+  <h2><span class="n">9</span>È aperto anche oggi?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>7d1a75271bab7eb3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/7d1a75271bab7eb3.m4a"></audio>
+  <p>È和aperto连读过重导致词首元音a几乎完全缺失。</p>
+  <ul><li><b>漏读</b>「È aperto」：aperto词首的元音a被吞音，听起来像perto。</li></ul>
+  <p class="meta">模型听到：È perto anche oggi?</p>
+  <p class="meta">转写模型听到：È aperto anche oggi?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：oggi</p>
+</section><section class="card">
+  <h2><span class="n">10</span>Ci sono ancora posti liberi?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>b5e4b72b89c24792.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/b5e4b72b89c24792.m4a"></audio>
+  <p>“sono”一词的元音发音不准确，偏离了标准意大利语发音。</p>
+  <ul><li><b>读错</b>「sono」：“sono”中的第一个元音“o”发成了“u”，听起来像“suno”。</li></ul>
+  <p class="meta">模型听到：Ci suno ancora posti liberi?</p>
+  <p class="meta">转写模型听到：Ci sono ancora posti liberi?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">11</span>Dieci minuti, più o meno.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>00010eab351fed62.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/00010eab351fed62.m4a"></audio>
+  <p>“più o”发音不够清晰，合并成了“pio”。</p>
+  <ul><li><b>读错</b>「più o」：“più o”听起来像“pio”，缺失了“u”的音。</li></ul>
+  <p class="meta">模型听到：Dieci minuti, pio meno.</p>
+  <p class="meta">转写模型听到：Dieci minuti più o meno（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">12</span>Attenzione! Il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>0f1ed593dabb0cc9.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/0f1ed593dabb0cc9.m4a"></audio>
+  <p>句中第一个“binario”的首字母发音错误，读成了v音。</p>
+  <ul><li><b>读错</b>「binario」：第一个“binario”被误读成了“vinario”。</li></ul>
+  <p class="meta">模型听到：Attenzione! Il treno per Napoli Centrale partirà dal vinario tredici anziché dal binario tre.</p>
+  <p class="meta">转写模型听到：Attenzione, il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Attenzione</p>
+</section><section class="card">
+  <h2><span class="n">13</span>Che giorno è oggi?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>d78580195319fe34.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/d78580195319fe34.m4a"></audio>
+  <p>首词“Che”发音有误，听起来像“Chi”。</p>
+  <ul><li><b>读错</b>「Che」：将“Che”误读为了“Chi”。</li></ul>
+  <p class="meta">模型听到：Chi giorno è oggi?</p>
+  <p class="meta">转写模型听到：Che giorno è oggi?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：oggi</p>
+</section><section class="card">
+  <h2><span class="n">14</span>Circa venti minuti: oggi c&#x27;è tanta gente!</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>8dbbcfb6ab7a1832.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/8dbbcfb6ab7a1832.m4a"></audio>
+  <p>首词元音发音有误，听起来像另一个常见词“cerca”。</p>
+  <ul><li><b>读错</b>「Circa」：发音听起来像“cerca”而非“circa”。</li></ul>
+  <p class="meta">模型听到：Cerca venti minuti: oggi c&#x27;è tanta gente!</p>
+  <p class="meta">转写模型听到：Circa venti minuti, oggi c&#x27;è tanta gente.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：oggi</p>
+</section><section class="card">
+  <h2><span class="n">15</span>Paga in contanti o con la carta?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>21ba8fe5bc11e23c.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/21ba8fe5bc11e23c.m4a"></audio>
+  <p>首词 Paga 的词尾元音在与 in 连读时变音明显，听感类似 Paghe，可能误导初学者。</p>
+  <ul><li><b>读错</b>「Paga」：词尾元音 a 发音更接近 e，听起来像 Paghe。</li></ul>
+  <p class="meta">模型听到：Paghe in contanti o con la carta?</p>
+  <p class="meta">转写模型听到：Paga in contanti o con la carta?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">16</span>Solo andata o andata e ritorno?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>3fa257d2d5b42527.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/3fa257d2d5b42527.m4a"></audio>
+  <p>第二个“andata”的词尾元音有误，听起来像“andate”。</p>
+  <ul><li><b>读错</b>「andata」：第二个“andata”词尾发音像“andate”。</li></ul>
+  <p class="meta">模型听到：Solo andata o andate e ritorno?</p>
+  <p class="meta">转写模型听到：Solo andata o andata e ritorno?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">17</span>Una margherita, per favore.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>f5389980e96ac37e.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/f5389980e96ac37e.m4a"></audio>
+  <p>音频使用了西班牙语发音，导致核心词汇读错。</p>
+  <ul><li><b>读错</b>「margherita, per favore」：按西班牙语读成了“margarita, por favor”。</li></ul>
+  <p class="meta">模型听到：Una margarita, por favor.</p>
+  <p class="meta">转写模型听到：Una margarita, por favor.（和原文不同）</p>
+  
+</section><section class="card">
+  <h2><span class="n">18</span>Ecco a lei, e buone feste!</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>2d3fc9aaa6b884e7.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/2d3fc9aaa6b884e7.m4a"></audio>
+  <p>音频结尾处被截断，导致最后一个词不完整。</p>
+  <ul><li><b>截断</b>「feste」：末尾单词被截断，仅发出一半音节。</li></ul>
+  <p class="meta">模型听到：Ecco a lei, e buone fe-</p>
+  <p class="meta">转写模型听到：Ecco a lei e buone feste.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco</p>
+</section><section class="card">
+  <h2><span class="n">19</span>Buone feste!</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>910a4e681f407f34.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/910a4e681f407f34.m4a"></audio>
+  <p>音频末尾被截断，缺失了最后一个元音。</p>
+  <ul><li><b>截断</b>「feste」：词尾元音e被截断。</li></ul>
+  <p class="meta">模型听到：Buone fest</p>
+  <p class="meta">转写模型听到：Buone feste（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">20</span>Buongiorno, biglietto, prego.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>2402c9ea3d43512c.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/2402c9ea3d43512c.m4a"></audio>
+  <p>音频末尾的单词未读完即被截断。</p>
+  <ul><li><b>截断</b>「prego」：末尾单词被截断。</li></ul>
+  <p class="meta">模型听到：Buongiorno, biglietto, pre-</p>
+  <p class="meta">转写模型听到：Buongiorno, biglietto prego.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：biglietto</p>
+</section><section class="card">
+  <h2><span class="n">21</span>Oggi chiudiamo alle diciotto.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>a513ddbdeeb3d750.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/a513ddbdeeb3d750.m4a"></audio>
+  <p>句尾单词diciotto发音未完成即被截断。</p>
+  <ul><li><b>截断</b>「diciotto」：末尾音节被截断。</li></ul>
+  <p class="meta">模型听到：Oggi chiudiamo alle diciot-</p>
+  <p class="meta">转写模型听到：Oggi chiudiamo alle diciotto.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Oggi, alle, diciotto</p>
+</section><section class="card">
+  <h2><span class="n">22</span>Oggi chiudiamo alle ventuno.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>b6617f6bdf03367c.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/b6617f6bdf03367c.m4a"></audio>
+  <p>音频末尾的“ventuno”被截断，缺少最后一个音节。</p>
+  <ul><li><b>截断</b>「ventuno」：句末单词未读完即被截断。</li></ul>
+  <p class="meta">模型听到：Oggi chiudiamo alle ventu</p>
+  <p class="meta">转写模型听到：Oggi chiudiamo alle ventuno.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Oggi, alle</p>
+</section><section class="card">
+  <h2><span class="n">23</span>Andata e ritorno o solo andata?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>6a6311cc7c7c7656.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/6a6311cc7c7c7656.m4a"></audio>
+  <p>句首单词“Andata”重音位置明显错误。</p>
+  <ul><li><b>重音</b>「Andata (第一个)」：重音错误地落在第一音节，读成了 Àn-da-ta 而非 an-dà-ta。</li></ul>
+  <p class="meta">模型听到：Àndata e ritorno o solo andata?</p>
+  <p class="meta">转写模型听到：Andata e ritorno o solo andata?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">24</span>Vuole anche qualcosa da bere?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>b58e64661a15a220.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/b58e64661a15a220.m4a"></audio>
+  <p>单词“anche”的重音位置明显错误，读成了“anché”。</p>
+  <ul><li><b>重音</b>「anche」：重音错误地落在了第二个音节上。</li></ul>
+  <p class="meta">模型听到：Vuole anché qualcosa da bere?</p>
+  <p class="meta">转写模型听到：Vuole anche qualcosa da bere?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">25</span>Andata e ritorno o solo andata?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>f5ed306bfe3d66c9.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/f5ed306bfe3d66c9.m4a"></audio>
+  <p>句首的“Andata”重音位置错误，不符合意大利语发音规则。</p>
+  <ul><li><b>重音</b>「Andata (第一个)」：首词重音错误地落在了第一音节（AN-da-ta）。</li></ul>
+  <p class="meta">模型听到：Andata e ritorno o solo andata?</p>
+  <p class="meta">转写模型听到：Andata e ritorno o solo andata?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">26</span>Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>4a90e1cf51acd42d.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/4a90e1cf51acd42d.m4a"></audio>
+  <p>“Napoli”一词重音位置明显错误。</p>
+  <ul><li><b>重音</b>「Napoli」：重音错误地落在了第二个音节（na-PO-li）。</li></ul>
+  <p class="meta">模型听到：Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.</p>
+  <p class="meta">转写模型听到：Attenzione, il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Attenzione</p>
+</section><section class="card">
+  <h2><span class="n">27</span>Chiuso il lunedì.</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>deca6797517ea273.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/deca6797517ea273.m4a"></audio>
+  <p>“lunedì”的重音位置错误，未读在尾音节上。</p>
+  <ul><li><b>重音</b>「lunedì」：重音错误地落在了第一音节而非最后一个带重音符号的音节。</li></ul>
+  <p class="meta">模型听到：Chiuso il lùnedi.</p>
+  <p class="meta">转写模型听到：chiuso il lunedì（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">28</span>Chiuso il lunedì.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>6d47455342f53f27.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/6d47455342f53f27.m4a"></audio>
+  <p>“lunedì”一词重音位置明显错误，未落在最后一个带重音符号的音节上。</p>
+  <ul><li><b>重音</b>「lunedì」：重音错误地落在了第一音节而非尾音节。</li></ul>
+  <p class="meta">模型听到：Chiuso il lunedì.</p>
+  <p class="meta">转写模型听到：Chiuso il lunedì.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">29</span>Il treno partirà dal binario cinque anziché dal binario tre.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>6e8f6bcf5619c547.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/6e8f6bcf5619c547.m4a"></audio>
+  <p>“anziché”一词的重音位置明显有误，未落在带重音符号的末音节上。</p>
+  <ul><li><b>重音</b>「anziché」：重音错误地落在了首音节而非末音节。</li></ul>
+  <p class="meta">模型听到：Il treno partirà dal binario cinque anziché dal binario tre.</p>
+  <p class="meta">转写模型听到：Il treno partirà dal binario cinque anziché dal binario tre（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">30</span>Oggi è lunedì.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>2ec0e8d3ba8620db.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/2ec0e8d3ba8620db.m4a"></audio>
+  <p>lunedì 的重音位置错误，听起来不自然。</p>
+  <ul><li><b>重音</b>「lunedì」：重音未落在词尾音节 -dì 上。</li></ul>
+  <p class="meta">模型听到：Oggi è lunedì.</p>
+  <p class="meta">转写模型听到：Oggi è lunedì（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Oggi</p>
+</section><section class="card">
+  <h2><span class="n">31</span>Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>4a1762582f4314bc.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/4a1762582f4314bc.m4a"></audio>
+  <p>“carrozza”前有明显唇齿杂音且发音气声过重，不够自然清晰。</p>
+  <ul><li><b>杂音</b>「carrozza」：词前有明显吸气啧声，且该词开头呈气声。</li></ul>
+  <p class="meta">模型听到：Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette.</p>
+  <p class="meta">转写模型听到：Dal binario tre. Ecco il biglietto. Carrozza dodici, posto sette.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco, biglietto, carrozza, sette</p>
+</section><section class="card">
+  <h2><span class="n">32</span>Sono un po&#x27; stanco.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>8f77ba72762929c7.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/8f77ba72762929c7.m4a"></audio>
+  <p>音频开头存在轻微杂音，其余发音正常。</p>
+  <ul><li><b>杂音</b>「Sono」：词首有明显的爆破杂音。</li></ul>
+  <p class="meta">模型听到：Psono un po&#x27; stanco.</p>
+  <p class="meta">转写模型听到：Sono un po&#x27; stanco.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">33</span>Ho fame. C&#x27;è una pizzeria qui vicino?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>a0bb47825566ed55.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/a0bb47825566ed55.m4a"></audio>
+  <p>首句中的“fame”语调过于拖沓，且慢放处理导致了明显的机械失真感。</p>
+  <ul><li><b>放慢失真</b>「fame」：“fame”被过度拉长，且伴有明显的慢放颤音失真。</li></ul>
+  <p class="meta">模型听到：Ho fame. C&#x27;è una pizzeria qui vicino?</p>
+  <p class="meta">转写模型听到：Ho fame. C&#x27;è una pizzeria qui vicino?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：pizzeria</p>
+</section><section class="card">
+  <h2><span class="n">34</span>Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>4cea08ea0ccdc6a0.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/4cea08ea0ccdc6a0.m4a"></audio>
+  <p>前半部分发音清晰正常，但最后半句音量骤降且节奏突变，需要人工复核。</p>
+  <ul><li><b>语调节奏</b>「anziché dal binario tre」：句末音量突然明显降低且语速变快，语调极不自然。</li></ul>
+  <p class="meta">模型听到：Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.</p>
+  <p class="meta">转写模型听到：Attenzione, il treno per Napoli Centrale partirà dal binario cinque, anziché dal binario tre.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Attenzione</p>
+</section><section class="card">
+  <h2><span class="n">35</span>Scusi, è libero questo posto?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>94757d474122d53b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/94757d474122d53b.m4a"></audio>
+  <p>“è”被过度拉长，导致整体语流不自然。</p>
+  <ul><li><b>语调节奏</b>「è」：“è”的发音被异常拉长，听起来像犹豫词。</li></ul>
+  <p class="meta">模型听到：Scusi, èèè libero questo posto?</p>
+  <p class="meta">转写模型听到：Scusi, è libero questo posto?（和原文一致）</p>
+  
+</section>
+<details class="gem">
+<summary>双辅音需人工听（31 句，原速）</summary>
+<ul><li><p>A che ora chiude oggi? <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/2b279185c4da2583.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c28d5b526f29aaf8.m4a"></audio></label></li><li><p>A che ora parte il prossimo treno per Roma? <span class="meta">— prossimo</span></p><label>f1@1<audio controls preload="none" src="../Audio/29c22fed042220a7.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/85467d65ee8a9549.m4a"></audio></label></li><li><p>Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre. <span class="meta">— Attenzione</span></p><label>f1@1<audio controls preload="none" src="../Audio/4a90e1cf51acd42d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/49175ec03fe26770.m4a"></audio></label></li><li><p>Attenzione! Il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre. <span class="meta">— Attenzione</span></p><label>f1@1<audio controls preload="none" src="../Audio/77fcdb7a086af11e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0f1ed593dabb0cc9.m4a"></audio></label></li><li><p>Attenzione! Il treno per Napoli Centrale, anziché dal binario tre, partirà dal binario sette. <span class="meta">— Attenzione, sette</span></p><label>f1@1<audio controls preload="none" src="../Audio/a5750cccee56169e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f688abaa93e2c1b5.m4a"></audio></label></li><li><p>Attenzione. Il treno per Napoli Centrale partirà con un ritardo di circa quaranta minuti. Ci scusiamo per il disagio. <span class="meta">— Attenzione</span></p><label>f1@1<audio controls preload="none" src="../Audio/387863873bc7c000.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ac4f28d091f88463.m4a"></audio></label></li><li><p>Attenzione. Il treno per Napoli Centrale è in ritardo di circa quindici minuti. Ci scusiamo per il disagio. <span class="meta">— Attenzione</span></p><label>f1@1<audio controls preload="none" src="../Audio/0bc94fd1e3bdc931.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/31374f18e3637961.m4a"></audio></label></li><li><p>Attenzione. Il treno per Napoli Centrale è in ritardo di circa venticinque minuti. Ci scusiamo per il disagio. <span class="meta">— Attenzione</span></p><label>f1@1<audio controls preload="none" src="../Audio/6aedd1f76728c57c.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c67acdeafa102c1a.m4a"></audio></label></li><li><p>Buongiorno, biglietto, prego. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/5d290c987bb7151f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2402c9ea3d43512c.m4a"></audio></label></li><li><p>Carrozza otto, posto ventidue. <span class="meta">— Carrozza, otto</span></p><label>f1@1<audio controls preload="none" src="../Audio/1df4f87b96f69993.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/52911a9ba0714aa9.m4a"></audio></label></li><li><p>Certo, entri pure! Oggi però è festa: chiudiamo presto. <span class="meta">— Oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/a3e174ef7b5d35d1.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/eacfe8ce148d9eb3.m4a"></audio></label></li><li><p>Che giorno è oggi? <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/9f3aa45a4d86e6f1.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/1d7cf22c396764d3.m4a"></audio></label></li><li><p>Circa venti minuti: oggi c&#x27;è tanta gente! <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/99fa058af2c2a79d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/8dbbcfb6ab7a1832.m4a"></audio></label></li><li><p>Dal binario tre. Ecco a lei: carrozza sei, posto quattordici. <span class="meta">— Ecco, carrozza, quattordici</span></p><label>f1@1<audio controls preload="none" src="../Audio/a1ee429f59f6e610.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3543c7eabea417b6.m4a"></audio></label></li><li><p>Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette. <span class="meta">— Ecco, biglietto, carrozza, sette</span></p><label>f1@1<audio controls preload="none" src="../Audio/a4e1edab992ab44a.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/9ae09dd08ccce383.m4a"></audio></label></li><li><p>Dal binario tre. Ecco il biglietto: carrozza otto, posto ventidue. <span class="meta">— Ecco, biglietto, carrozza, otto</span></p><label>f1@1<audio controls preload="none" src="../Audio/26d8637fe99841cf.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/602b5d5c60ace24a.m4a"></audio></label></li><li><p>Ecco a lei, e buone feste! <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/2d3fc9aaa6b884e7.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/37fb83635e62c5e4.m4a"></audio></label></li><li><p>Ecco la sua margherita. Buone feste! <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/d265850b6f9a81df.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/536a1e57b390b5b9.m4a"></audio></label></li><li><p>Ho fame. C&#x27;è una pizzeria qui vicino? <span class="meta">— pizzeria</span></p><label>f1@1<audio controls preload="none" src="../Audio/76d91a1a3c8ff857.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/361fde128f0c33c2.m4a"></audio></label></li><li><p>Il treno da Roma è in arrivo al binario due. <span class="meta">— arrivo</span></p><label>f1@1<audio controls preload="none" src="../Audio/d532ccfcfb9d582c.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/4e8a16c126609c81.m4a"></audio></label></li><li><p>Oggi chiudiamo alle diciannove e trenta. <span class="meta">— Oggi, alle, diciannove</span></p><label>f1@1<audio controls preload="none" src="../Audio/f5d778e5920a3718.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/27e04b90d8243ea4.m4a"></audio></label></li><li><p>Oggi chiudiamo alle diciotto. <span class="meta">— Oggi, alle, diciotto</span></p><label>f1@1<audio controls preload="none" src="../Audio/e9c23aafa5988493.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a513ddbdeeb3d750.m4a"></audio></label></li><li><p>Oggi chiudiamo alle venti. <span class="meta">— Oggi, alle</span></p><label>f1@1<audio controls preload="none" src="../Audio/00004edb4ac71875.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/aef29bcd23aa46b8.m4a"></audio></label></li><li><p>Oggi chiudiamo alle ventuno. <span class="meta">— Oggi, alle</span></p><label>f1@1<audio controls preload="none" src="../Audio/76186825d5658523.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/29b6c7d0ba220613.m4a"></audio></label></li><li><p>Oggi è festa? <span class="meta">— Oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/350f7b8f57c91660.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f1e9a0527214f558.m4a"></audio></label></li><li><p>Oggi è lunedì. <span class="meta">— Oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/7f449caab2c77204.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/89d82110f64a299b.m4a"></audio></label></li><li><p>Quanto devo aspettare? <span class="meta">— aspettare</span></p><label>f1@1<audio controls preload="none" src="../Audio/8749c9d7d36d7a5a.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0252aca9a35534a7.m4a"></audio></label></li><li><p>Sì, siamo aperti! Ma oggi è festa e chiudiamo prima. <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/8b6da923802dd924.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/9a073088c4d70079.m4a"></audio></label></li><li><p>Un biglietto per Napoli, per favore. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/7c069aaabfc31e00.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/d7a7f2a520e86a5e.m4a"></audio></label></li><li><p>Vorrei una pizza a portafoglio. <span class="meta">— Vorrei, pizza</span></p><label>f1@1<audio controls preload="none" src="../Audio/88ae64c290585f25.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/62455f2bf0a372aa.m4a"></audio></label></li><li><p>È aperto anche oggi? <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/26ab4dc839ae1fc2.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/eff9efe98e704ac9.m4a"></audio></label></li></ul>
+</details>
+</main>
+</body>
+</html>

@@ -155,10 +155,10 @@ class Gemini:
                 return base64.b64decode(part["inlineData"]["data"])
         raise RuntimeError("no audio in the TTS response")
 
-    def transcribe(self, wav: bytes) -> str:
+    def transcribe(self, audio: bytes, mime_type: str = "audio/wav") -> str:
         body = {
             "contents": [{"role": "user", "parts": [
-                {"inlineData": {"mimeType": "audio/wav", "data": base64.b64encode(wav).decode("ascii")}},
+                {"inlineData": {"mimeType": mime_type, "data": base64.b64encode(audio).decode("ascii")}},
                 {"text": "Transcribe exactly every word spoken in this audio, in whatever language it is. "
                          "Write numbers, prices and times as words, the way they are spoken (ventiquattro, not 24). "
                          "Output only the transcript."},

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频粗筛 第 2 周</title>
+<style>
+:root { --bg: #fbfaf7; --fg: #1d1b18; --muted: #6b665e; --card: #fff; --line: #e4e0d8; --accent: #b4442b; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171614; --fg: #ece8e1; --muted: #a39d93; --card: #22201d; --line: #36332e; --accent: #e8836b; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, "PingFang SC", system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+.card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+.n { color: var(--accent); margin-right: 8px; }
+.meta { color: var(--muted); font-size: 0.875rem; margin: 4px 0; }
+audio { width: 100%; margin: 8px 0; }
+ul { padding-left: 20px; }
+.gem li { margin-bottom: 12px; }
+.gem label { display: block; font-size: 0.875rem; color: var(--muted); }
+code { font-size: 0.85em; }
+</style>
+</head>
+<body>
+<main>
+<h1>示范音频粗筛 · 第 2 周</h1>
+<p class="meta">已筛 235 / 236 段，可疑 15 段（原速 9，慢速 6）。
+模型 gemini-4-argon，花费估算 $0.94。按需要听的先后排列。</p>
+<section class="card">
+  <h2><span class="n">1</span>Un&#x27;acqua naturale, per favore.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>b2028a01dcb7ee60.m4a</code> ·
+    严重度 high · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/b2028a01dcb7ee60.m4a"></audio>
+  <p>“Un&#x27;acqua”受撇号影响被TTS错误切分，导致重音位置和连读发音明显错误。</p>
+  <ul><li><b>读错</b>「Un&#x27;acqua」：将本应连读的“Un&#x27;acqua”错误拆读成了“Una”和“qua”两个部分，且重音错误地落在了首音节上。</li></ul>
+  <p class="meta">模型听到：Una qua naturale, per favore.</p>
+  <p class="meta">转写模型听到：Un&#x27;acqua naturale, per favore.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：acqua</p>
+</section><section class="card">
+  <h2><span class="n">2</span>Va bene, allora niente crostacei. Da bere, un bicchiere di vino?</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>339848ccc215b50f.m4a</code> ·
+    严重度 medium · 置信度 0.90</p>
+  <audio controls preload="none" src="../Audio/339848ccc215b50f.m4a"></audio>
+  <p>“Da bere”中的“b”发音不准确，听起来像“v”（Da vere），可能会误导初学者。</p>
+  <ul><li><b>读错</b>「Da bere」：“bere”中的辅音 b 发音近似于 v，听起来像“Da vere”。</li></ul>
+  <p class="meta">模型听到：Va bene, allora niente crostacei. Da vere, un bicchiere di vino?</p>
+  <p class="meta">转写模型听到：Va bene. Allora niente crostacei. Da bere? Un bicchiere di vino?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：allora, bicchiere</p>
+</section><section class="card">
+  <h2><span class="n">3</span>Va bene, allora niente crostacei. Da bere, un bicchiere di vino?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>d4f1946086786710.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/d4f1946086786710.m4a"></audio>
+  <p>单词“bicchiere”中的元音发音错误，被读成了“bicchiare”。</p>
+  <ul><li><b>读错</b>「bicchiere」：将“bicchiere”误读为“bicchiare”。</li></ul>
+  <p class="meta">模型听到：Va bene, allora niente crostacei. Da bere, un bicchiare di vino?</p>
+  <p class="meta">转写模型听到：Va bene, allora niente crostacei. Da bere, un bicchiere di vino?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：allora, bicchiere</p>
+</section><section class="card">
+  <h2><span class="n">4</span>A che ora apre?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>5643d585a70f8417.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/5643d585a70f8417.m4a"></audio>
+  <p>“che ora”发音不清晰且重音异常，不适合初学者。</p>
+  <ul><li><b>读错</b>「che ora」：“che ora”元音发音含糊且重音错置，听起来像“chiura”。</li></ul>
+  <p class="meta">模型听到：A chiora apre?</p>
+  <p class="meta">转写模型听到：A che ora apre?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">5</span>Buonasera e benvenuto! Ha una prenotazione?</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>27788d85e541647b.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/27788d85e541647b.m4a"></audio>
+  <p>连词“e”发音不准确，读成了“ei”，其余部分发音自然。</p>
+  <ul><li><b>读错</b>「e」：连词“e”被误读为双元音“ei”。</li></ul>
+  <p class="meta">模型听到：Buonasera ei benvenuto! Ha una prenotazione?</p>
+  <p class="meta">转写模型听到：Buonasera e benvenuto. Ha una prenotazione?（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">6</span>Buonasera, benvenuto!</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>12fa12e69ac78399.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/12fa12e69ac78399.m4a"></audio>
+  <p>首词元音发音错误，且音频结尾有轻微截断。</p>
+  <ul><li><b>读错</b>「Buonasera」：元音发音有误，听起来像Buonasiera。</li><li><b>截断</b>「benvenuto」：词尾的o有轻微截断。</li></ul>
+  <p class="meta">模型听到：Buonasiera, benvenuto</p>
+  <p class="meta">转写模型听到：Buonasera, benvenuto.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">7</span>Devo validare il biglietto?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>baa34889be56ccca.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/baa34889be56ccca.m4a"></audio>
+  <p>“biglietto”中的辅音组合“gli”发音不准确，读成了“li”。</p>
+  <ul><li><b>读错</b>「biglietto」：将“gli”错误发音为普通的“li”音。</li></ul>
+  <p class="meta">模型听到：Devo validare il bilietto?</p>
+  <p class="meta">转写模型听到：Devo validare il biglietto?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：biglietto</p>
+</section><section class="card">
+  <h2><span class="n">8</span>Ho prenotato una camera a nome di…</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>a0987113b2cf0708.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/a0987113b2cf0708.m4a"></audio>
+  <p>单词“nome”的元音发音有误，听起来像“nume”。</p>
+  <ul><li><b>读错</b>「nome」：“nome”被误读为“nume”。</li></ul>
+  <p class="meta">模型听到：Ho prenotato una camera a nume di</p>
+  <p class="meta">转写模型听到：Ho prenotato una camera a nome di（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">9</span>Buongiorno! Posso aiutarla?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>2bb5a90f1d676636.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/2bb5a90f1d676636.m4a"></audio>
+  <p>首词开头被截断，缺少B音。</p>
+  <ul><li><b>截断</b>「Buongiorno」：词首辅音B缺失，听起来像Uongiorno。</li></ul>
+  <p class="meta">模型听到：Uongiorno! Posso aiutarla?</p>
+  <p class="meta">转写模型听到：Buongiorno, posso aiutarla?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Posso</p>
+</section><section class="card">
+  <h2><span class="n">10</span>Tutto bene? Desidera un dolce o un caffè?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>02e37bc2dc9dabd3.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/02e37bc2dc9dabd3.m4a"></audio>
+  <p>整体发音清晰，但音频末尾“caffè”的元音收尾过于突兀，存在轻微截断。</p>
+  <ul><li><b>截断</b>「caffè」：句末单词“caffè”的尾音被轻微截断。</li></ul>
+  <p class="meta">模型听到：Tutto bene? Desidera un dolce o un caffè</p>
+  <p class="meta">转写模型听到：Tutto bene? Desidera un dolce o un caffè?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Tutto, caffè</p>
+</section><section class="card">
+  <h2><span class="n">11</span>Il menù, per favore.</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>3e575fe9269f7225.m4a</code> ·
+    严重度 medium · 置信度 0.95</p>
+  <audio controls preload="none" src="../Audio/3e575fe9269f7225.m4a"></audio>
+  <p>单词 menù 的重音位置错误，重读了第一个音节而非带重音符号的最后一个音节。</p>
+  <ul><li><b>重音</b>「menù」：单词 menù 带有重音符号，重音应落在最后一个音节（me-NÙ），但音频中重读了第一个音节（ME-nu）。</li></ul>
+  <p class="meta">模型听到：Il menu, per favore.</p>
+  <p class="meta">转写模型听到：Il menu, per favore.（和原文一致）</p>
+  
+</section><section class="card">
+  <h2><span class="n">12</span>Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?</h2>
+  <p class="meta">f1@1（Kore） · 慢速 · <code>018e9c26dbb0e9e2.m4a</code> ·
+    严重度 medium · 置信度 0.85</p>
+  <audio controls preload="none" src="../Audio/018e9c26dbb0e9e2.m4a"></audio>
+  <p>整体文本完整清晰，但常用词“allora”出现了明显的重音错位，可能会误导初学者。</p>
+  <ul><li><b>重音</b>「allora」：“allora”的重音错误地落在了第一个音节上，听起来像“àllora”，正确重音应在第二个音节“allóra”。</li></ul>
+  <p class="meta">模型听到：Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?</p>
+  <p class="meta">转写模型听到：Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：allora, Acqua, frizzante</p>
+</section><section class="card">
+  <h2><span class="n">13</span>Sì, prego, da questa parte. Ecco il menù.</h2>
+  <p class="meta">m1@1（Charon） · 慢速 · <code>e1ec1ebe16f64c84.m4a</code> ·
+    严重度 medium · 置信度 0.75</p>
+  <audio controls preload="none" src="../Audio/e1ec1ebe16f64c84.m4a"></audio>
+  <p>末尾单词“menù”重音位置有误，其余发音清晰。</p>
+  <ul><li><b>重音</b>「menù」：重音错误地放在了第一音节而非末音节。</li></ul>
+  <p class="meta">模型听到：Sì, prego, da questa parte. Ecco il menu.</p>
+  <p class="meta">转写模型听到：Sì, prego, da questa parte. Ecco il menu.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco</p>
+</section><section class="card">
+  <h2><span class="n">14</span>Stasera le sarde in saor sono buonissime. Ha qualche allergia?</h2>
+  <p class="meta">f1@1（Kore） · 原速 · <code>3bdb07d6ce69a7ac.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/3bdb07d6ce69a7ac.m4a"></audio>
+  <p>“saor”的重音位置有误，其余部分发音自然流畅。</p>
+  <ul><li><b>重音</b>「saor」：重音错误地落在了第一个音节（sà-or），正确发音重音应在尾音节（sa-ór）。</li></ul>
+  <p class="meta">模型听到：Stasera le sarde in saor sono buonissime. Ha qualche allergia?</p>
+  <p class="meta">转写模型听到：Stasera le sarde in saor sono buonissime. Ha qualche allergia?（和原文一致）</p>
+  <p class="meta">双辅音需人工听：buonissime, allergia</p>
+</section><section class="card">
+  <h2><span class="n">15</span>Sì, prego, da questa parte. Ecco il menù.</h2>
+  <p class="meta">m1@1（Charon） · 原速 · <code>c037de3950ead8f0.m4a</code> ·
+    严重度 medium · 置信度 0.70</p>
+  <audio controls preload="none" src="../Audio/c037de3950ead8f0.m4a"></audio>
+  <p>“menù”一词重音位置错误，不符合带重音符号的标准意大利语发音。</p>
+  <ul><li><b>重音</b>「menù」：重音错误地落在了第一音节（读成了 ME-nu），而不是带重音符号的尾音节（me-NÙ）。</li></ul>
+  <p class="meta">模型听到：Sì, prego da questa parte. Ecco il menu.</p>
+  <p class="meta">转写模型听到：Sì, prego, da questa parte. Ecco il menu.（和原文一致）</p>
+  <p class="meta">双辅音需人工听：Ecco</p>
+</section>
+<details class="gem">
+<summary>双辅音需人工听（32 句，原速）</summary>
+<ul><li><p>Alle quindici e trenta. <span class="meta">— Alle</span></p><label>f1@1<audio controls preload="none" src="../Audio/539c5d20c0f0d21d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/fb48907f22651477.m4a"></audio></label></li><li><p>Allora, tutto bene? Un dolce, un caffè? <span class="meta">— Allora, tutto, caffè</span></p><label>f1@1<audio controls preload="none" src="../Audio/1303f91d9a6bca03.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2d8d7b9589c7d957.m4a"></audio></label></li><li><p>Buongiorno! Posso aiutarla? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/2bb5a90f1d676636.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/e7529859e6274176.m4a"></audio></label></li><li><p>Certo, si accomodi. Ecco il menù. <span class="meta">— accomodi, Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/026a05d3dd480a83.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/611530b6edcb0e45.m4a"></audio></label></li><li><p>Devo validare il biglietto? <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/baa34889be56ccca.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7abb6a9058c10774.m4a"></audio></label></li><li><p>Dov&#x27;è la fermata del vaporetto? <span class="meta">— vaporetto</span></p><label>f1@1<audio controls preload="none" src="../Audio/f43e2cec0bde894f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/5997a31c70197b7b.m4a"></audio></label></li><li><p>Dove posso comprare il biglietto? <span class="meta">— posso, biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/b46a9b651686c455.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f5e3c92b9355227e.m4a"></audio></label></li><li><p>Ecco a lei: trentasei euro, con il coperto. <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/46aeb643b62586bf.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/81e45fdcf0e8f307.m4a"></audio></label></li><li><p>Ecco il conto: sono ventotto euro, coperto compreso. <span class="meta">— Ecco, ventotto</span></p><label>f1@1<audio controls preload="none" src="../Audio/d3620f293f68d62d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7d0be35c6ef56b8d.m4a"></audio></label></li><li><p>Il passaporto, per favore. <span class="meta">— passaporto</span></p><label>f1@1<audio controls preload="none" src="../Audio/a1212b2f4b7fab7b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/debafefbbf971de4.m4a"></audio></label></li><li><p>Le consiglio gli spaghetti alle vongole. Ha allergie? <span class="meta">— spaghetti, alle, allergie</span></p><label>f1@1<audio controls preload="none" src="../Audio/fcbce16ab878ef45.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/cfc8f45a20f8a880.m4a"></audio></label></li><li><p>Le consiglio il risotto al nero di seppia, è tipico di Venezia. Ha allergie o intolleranze? <span class="meta">— risotto, seppia, allergie, intolleranze</span></p><label>f1@1<audio controls preload="none" src="../Audio/f1be63b48b17fdb4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/cd6a10f4e366c133.m4a"></audio></label></li><li><p>No, oggi è chiuso. <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/809aa45059b6aac7.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/6104381f432d7dcc.m4a"></audio></label></li><li><p>Per Rialto, la linea uno. E sì, il biglietto si valida prima di salire. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/502a3a4db9fc52a0.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7147aa36d2c5a1aa.m4a"></audio></label></li><li><p>Perfetto, grazie. C&#x27;è anche la tassa di soggiorno: sono dodici euro in tutto. Contanti o carta? <span class="meta">— Perfetto, tassa, soggiorno, tutto</span></p><label>f1@1<audio controls preload="none" src="../Audio/2bbf4ea4edb7a903.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0c7c96b928bb5f7c.m4a"></audio></label></li><li><p>Perfetto, grazie. C&#x27;è anche la tassa di soggiorno: sono quindici euro in tutto. Contanti o carta? <span class="meta">— Perfetto, tassa, soggiorno, tutto</span></p><label>f1@1<audio controls preload="none" src="../Audio/6825927206359580.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/0b903f79d327751c.m4a"></audio></label></li><li><p>Perfetto, grazie. C&#x27;è anche la tassa di soggiorno: sono sedici euro in tutto. Contanti o carta? <span class="meta">— Perfetto, tassa, soggiorno, tutto</span></p><label>f1@1<audio controls preload="none" src="../Audio/7d0e5b621f4db9b0.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/4ee58e31dfb8b684.m4a"></audio></label></li><li><p>Posso lasciare i bagagli? <span class="meta">— Posso</span></p><label>f1@1<audio controls preload="none" src="../Audio/ee39833ad0f40d41.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/7d73ded5d49a0426.m4a"></audio></label></li><li><p>Prenda la linea due. E il biglietto lo deve validare prima di salire. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/11c513c946e29f7b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/461d21170d99258a.m4a"></audio></label></li><li><p>Quant&#x27;è la tassa di soggiorno? <span class="meta">— tassa, soggiorno</span></p><label>f1@1<audio controls preload="none" src="../Audio/2e76904fd3de7d5f.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c46074595a700658.m4a"></audio></label></li><li><p>Quanto costa il vaporetto? <span class="meta">— vaporetto</span></p><label>f1@1<audio controls preload="none" src="../Audio/70468db2fca5a0a4.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c630fd8c9ae050ea.m4a"></audio></label></li><li><p>Questo vaporetto va a Rialto? <span class="meta">— vaporetto</span></p><label>f1@1<audio controls preload="none" src="../Audio/32f3033316601dbd.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/bdfe71d151f4e46d.m4a"></audio></label></li><li><p>Senza formaggio, per favore. <span class="meta">— formaggio</span></p><label>f1@1<audio controls preload="none" src="../Audio/a6aa500cfa41271b.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/a5c00f25f062b6c1.m4a"></audio></label></li><li><p>Sono allergico ai crostacei. <span class="meta">— allergico</span></p><label>f1@1<audio controls preload="none" src="../Audio/7a6c1f10d1ae9609.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/1bce3a0b4e4f47eb.m4a"></audio></label></li><li><p>Stasera le sarde in saor sono buonissime. Ha qualche allergia? <span class="meta">— buonissime, allergia</span></p><label>f1@1<audio controls preload="none" src="../Audio/3bdb07d6ce69a7ac.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/f2d8308c3a2e9282.m4a"></audio></label></li><li><p>Sì, prego, da questa parte. Ecco il menù. <span class="meta">— Ecco</span></p><label>f1@1<audio controls preload="none" src="../Audio/0e13b2d07f2d5fea.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c037de3950ead8f0.m4a"></audio></label></li><li><p>Tutto bene? Desidera un dolce o un caffè? <span class="meta">— Tutto, caffè</span></p><label>f1@1<audio controls preload="none" src="../Audio/991f59d55538ef4d.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/2fc39a87af3bc9a4.m4a"></audio></label></li><li><p>Un biglietto, per favore. <span class="meta">— biglietto</span></p><label>f1@1<audio controls preload="none" src="../Audio/02fffc80f9120916.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3465f5137cc37c73.m4a"></audio></label></li><li><p>Un&#x27;acqua naturale, per favore. <span class="meta">— acqua</span></p><label>f1@1<audio controls preload="none" src="../Audio/9d6c5408d89ba68e.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/b2028a01dcb7ee60.m4a"></audio></label></li><li><p>Va bene, allora niente crostacei. Da bere, un bicchiere di vino? <span class="meta">— allora, bicchiere</span></p><label>f1@1<audio controls preload="none" src="../Audio/d4f1946086786710.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/c9a2cb0ae6bb1282.m4a"></audio></label></li><li><p>Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante? <span class="meta">— allora, Acqua, frizzante</span></p><label>f1@1<audio controls preload="none" src="../Audio/97640039565c110a.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/3f5238d8e392cea0.m4a"></audio></label></li><li><p>È aperto oggi? <span class="meta">— oggi</span></p><label>f1@1<audio controls preload="none" src="../Audio/9cfbd82fbea08166.m4a"></audio></label><label>m1@1<audio controls preload="none" src="../Audio/ac05cefa6a4002a2.m4a"></audio></label></li></ul>
+</details>
+</main>
+</body>
+</html>
