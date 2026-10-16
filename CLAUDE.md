@@ -44,7 +44,7 @@
 ## 在线 AI 角色扮演
 
 - 每个挑战一个角色，在 `Content/roleplay.json`：`setting` 是给模型的英文设定，`task` 是给学习者的中文任务，`voice` 是 manifest 的声线 id，`scene` 决定反馈句子归哪个场景，`opens` 表示角色先开口。`fillers` 是学习者说完时马上用角色声线播的语气词（Allora… 等），由 `gen_audio.py` 生成、`validate_content.py` 检查每个声线都有。
-- 一回合：录音 → 离线识别（同时播语气词）→ Argon（`thinkingLevel` LOW，流式；设置里可换 Gemini 3.8 Flash）→ 回复按句切开（`SentenceChunker`，只念第一行的意大利语，第二行是中文翻译）→ 每句送 gemini-3.8-flash-tts 流式合成、边收边播（`StreamingSpeechPlayer`，24 kHz 16 位 PCM，实为小端）。合成失败的句子用 iOS 自带语音念。live 声线名从 manifest 的 `voiceNames` 读，和示范音频同一个声音。
+- 一回合：录音 → 离线识别（同时播语气词）→ Argon（`thinkingLevel` LOW，流式；6 秒没出字或出字前 429/5xx 就改问 Gemini 3.8 Flash，设置里也能直接选 Flash）→ 回复按句切开（`SentenceChunker`，只念第一行的意大利语，第二行是中文翻译）→ 每句送 gemini-3.8-flash-tts 流式合成、边收边播（`StreamingSpeechPlayer`，24 kHz 16 位 PCM，实为小端）。合成失败的句子用 iOS 自带语音念。live 声线名从 manifest 的 `voiceNames` 读，和示范音频同一个声音。
 - 提示词、请求体、SSE 解析、错误分类、反馈解析、每日上限都在 MammaCore 的 `RolePlay/`，有测试。Argon 只收 LOW／MEDIUM／HIGH，传 `thinking_budget` 会 400。
 - key 由用户在「对话 → 在线对话设置」粘贴，存 iOS 钥匙串（只限本机），不进仓库、安装包和备份。401／403／404 或 key 无效：整个功能停发请求，直到改设置或「测试连接」通过；不自动重试被拒的项目。
 - 每天回合上限默认 40（两场 × 每场 20 回合），可调；开场白和反馈卡不算。只作加练：不写挑战成绩。

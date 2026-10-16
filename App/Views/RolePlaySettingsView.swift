@@ -25,7 +25,7 @@ struct RolePlaySettingsView: View {
             } header: {
                 Text("回复")
             } footer: {
-                Text("Argon 说得更自然，开口前通常要等 2–4 秒，偶尔更久；Flash 快一些（约 1 秒）。等的时候先播一个语气词垫着。反馈卡总是用 Argon。")
+                Text("Argon 开口前通常要等 2–4 秒，偶尔要等很久：6 秒还没开口就自动改问 Flash。Flash 约 1 秒。等的时候先播一个语气词垫着。反馈卡总是用 Argon。")
             }
             Section {
                 Stepper(value: Binding(get: { service.allowance.dailyLimit }, set: { service.setDailyLimit($0) }),
