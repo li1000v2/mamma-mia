@@ -5,5 +5,8 @@
   "voices": [
     { "id": "f1", "rev": 1, "voiceName": "Kore" },
     { "id": "m1", "rev": 1, "voiceName": "Charon" }
-  ]
+  ],
+  "lineVoices": {
+    "È una palla, non una pala.": ["f1"]
+  }
 }

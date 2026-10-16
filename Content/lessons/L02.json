@@ -36,11 +36,11 @@
     },
     {
       "id": "L02-06",
-      "it": "pala / palla",
-      "zh": "铲子 / 球",
+      "it": "È una palla, non una pala.",
+      "zh": "是球，不是铲子。",
       "scene": "general",
       "status": "draft",
-      "note": "只差一个 l：pala≈パーラ，a 拖长、l 一带而过；palla≈パッラ，a 短、l 含住一拍。听的时候注意 a 是长是短。"
+      "note": "palla（球）和 pala（铲子）只差一个 l：palla≈パッラ，a 短、l 含住一拍；pala≈パーラ，a 拖长、l 一带而过。放在对比句里差别最清楚，听的时候注意 a 是长是短。È una… 是“这是一个……”，non una… 是“不是一个……”。"
     }
   ]
 }

@@ -52,8 +52,8 @@
     "f1@1|n|caffè": "d9890204c1d54ddf.m4a",
     "f1@1|n|chiesa": "6b038483f4e0aba0.m4a",
     "f1@1|n|gnocchi": "762ac0724d1a54a4.m4a",
-    "f1@1|n|pala / palla": "8461e02638007e37.m4a",
     "f1@1|n|uscita": "262267f686613e95.m4a",
+    "f1@1|n|È una palla, non una pala.": "d8b1d2a8ab37891b.m4a",
     "f1@1|s|A che ora chiude il museo?": "2d33feb46d176731.m4a",
     "f1@1|s|Al banco o al tavolo?": "1024ecd1c66d2e79.m4a",
     "f1@1|s|Al banco.": "ac2e53efe16139a7.m4a",
@@ -101,8 +101,8 @@
     "f1@1|s|caffè": "b6f9a4f718d95cdc.m4a",
     "f1@1|s|chiesa": "638004a50e0ffa35.m4a",
     "f1@1|s|gnocchi": "be9628825711abda.m4a",
-    "f1@1|s|pala / palla": "8bcacbbf4dae02b1.m4a",
     "f1@1|s|uscita": "a0e179f9176ca5cf.m4a",
+    "f1@1|s|È una palla, non una pala.": "91eb396f80e7dbe7.m4a",
     "m1@1|n|A che ora chiude il museo?": "f4db942d727c0d9f.m4a",
     "m1@1|n|Al banco o al tavolo?": "962cd634754e2b00.m4a",
     "m1@1|n|Al banco.": "0d2fb3060160fdf8.m4a",
@@ -150,7 +150,6 @@
     "m1@1|n|caffè": "c51c0dbf7d04ade4.m4a",
     "m1@1|n|chiesa": "b057c1e297e53cdf.m4a",
     "m1@1|n|gnocchi": "35942f448aa2a960.m4a",
-    "m1@1|n|pala / palla": "aa8f8dee99d66a87.m4a",
     "m1@1|n|uscita": "da005c8d36b7b68f.m4a",
     "m1@1|s|A che ora chiude il museo?": "77729a1881823c9e.m4a",
     "m1@1|s|Al banco o al tavolo?": "a45f7afabcb629ac.m4a",
@@ -199,7 +198,6 @@
     "m1@1|s|caffè": "87599519e1091485.m4a",
     "m1@1|s|chiesa": "f171b921b1730fc2.m4a",
     "m1@1|s|gnocchi": "710bf7ed1cfa3dc5.m4a",
-    "m1@1|s|pala / palla": "e2c5f9f7db42c2d2.m4a",
     "m1@1|s|uscita": "cbd4e09755a76dc3.m4a"
   }
 }

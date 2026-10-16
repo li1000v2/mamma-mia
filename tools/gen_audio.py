@@ -14,6 +14,8 @@ Usage (from the repo root):
 
 Needs GOOGLE_API_KEY and GOOGLE_CLOUD_PROJECT_NUMBER (environment or .env) and ffmpeg on PATH.
 Voices and models are set in tools/tts_voices.json; bump a voice's "rev" to regenerate it.
+"lineVoices" there limits a line to some voices, for when only one voice says it clearly
+(a minimal pair, say); the app then plays the voice that has the file.
 """
 from __future__ import annotations
 
@@ -205,12 +207,15 @@ def main() -> int:
     profiles = {voice["id"]: f"{voice['id']}@{voice['rev']}" for voice in config["voices"]}
     texts = spoken_texts()
 
+    line_voices: dict[str, list[str]] = config.get("lineVoices", {})
     entries: dict[str, str] = dict(manifest["entries"])
     wanted: set[str] = set()
     jobs: list[Job] = []
     for voice in config["voices"]:
         profile = profiles[voice["id"]]
         for text in texts:
+            if text in line_voices and voice["id"] not in line_voices[text]:
+                continue
             keys = [audio_key(text, profile, speed) for speed in ("n", "s")]
             wanted.update(keys)
             if not all(key in entries and (AUDIO / entries[key]).is_file() for key in keys):
