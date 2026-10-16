@@ -296,7 +296,7 @@ final class SpeechService {
         guard let output = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(frames) + 4096) else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        let supplied = ConverterInput()
+        let supplied = ConverterInput(input)
         var conversionError: NSError?
         let status = converter.convert(to: output, error: &conversionError) { _, inputStatus in
             if supplied.done {
@@ -305,7 +305,7 @@ final class SpeechService {
             }
             supplied.done = true
             inputStatus.pointee = .haveData
-            return input
+            return supplied.buffer
         }
         if status == .error {
             throw conversionError ?? CocoaError(.fileReadCorruptFile)
@@ -369,7 +369,14 @@ final class SpeechService {
     }
 }
 
-/// Whether an AVAudioConverter has had its one input buffer yet.
-private final class ConverterInput {
+/// The one input buffer of a conversion and whether the converter has had it yet. The converter
+/// calls its input block synchronously inside convert(to:error:withInputFrom:), so the block's
+/// @Sendable requirement doesn't mean the buffer is shared across threads.
+private final class ConverterInput: @unchecked Sendable {
+    let buffer: AVAudioPCMBuffer
     var done = false
+
+    init(_ buffer: AVAudioPCMBuffer) {
+        self.buffer = buffer
+    }
 }
