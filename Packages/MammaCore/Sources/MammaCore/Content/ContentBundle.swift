@@ -15,24 +15,39 @@ public struct ContentBundle: Sendable {
     /// Challenge scripts sorted by unit id (C01…C10).
     public let dialogues: [DialogueScript]
     public let audio: AudioManifest?
+    /// The show cards' own sentences (showcards.json); nil when the content has none.
+    public let showCardContent: ShowCardContent?
     /// The online role-play's roles and fillers (roleplay.json), when the build has them.
     public let rolePlay: RolePlayContent?
 
-    public init(course: Course, lessons: [LessonContent], dialogues: [DialogueScript] = [], audio: AudioManifest?,
-                rolePlay: RolePlayContent? = nil) {
+    public init(
+        course: Course,
+        lessons: [LessonContent],
+        dialogues: [DialogueScript] = [],
+        audio: AudioManifest?,
+        showCardContent: ShowCardContent? = nil,
+        rolePlay: RolePlayContent? = nil
+    ) {
         self.course = course
         self.lessons = lessons.sorted { $0.unit < $1.unit }
         self.dialogues = dialogues.sorted { $0.unit < $1.unit }
         self.audio = audio
+        self.showCardContent = showCardContent
         self.rolePlay = rolePlay
     }
 
-    /// Loads course.json, every lessons/*.json and dialogues/*.json and, when present, roleplay.json
-    /// and the audio manifest.
+    /// Loads course.json, every lessons/*.json and dialogues/*.json and, when present,
+    /// showcards.json, roleplay.json and the audio manifest.
     public static func load(contentDirectory: URL, audioDirectory: URL? = nil) throws -> ContentBundle {
         let course: Course = try decode(contentDirectory.appendingPathComponent("course.json"))
         let lessons: [LessonContent] = try decodeAll(in: contentDirectory.appendingPathComponent("lessons", isDirectory: true))
         let dialogues: [DialogueScript] = try decodeAll(in: contentDirectory.appendingPathComponent("dialogues", isDirectory: true))
+
+        var showCardContent: ShowCardContent?
+        let showCards = contentDirectory.appendingPathComponent("showcards.json")
+        if FileManager.default.fileExists(atPath: showCards.path) {
+            showCardContent = try decode(showCards)
+        }
 
         var rolePlay: RolePlayContent?
         let rolePlayFile = contentDirectory.appendingPathComponent("roleplay.json")
@@ -47,7 +62,8 @@ public struct ContentBundle: Sendable {
                 audio = try decode(manifest)
             }
         }
-        return ContentBundle(course: course, lessons: lessons, dialogues: dialogues, audio: audio, rolePlay: rolePlay)
+        return ContentBundle(course: course, lessons: lessons, dialogues: dialogues, audio: audio,
+                             showCardContent: showCardContent, rolePlay: rolePlay)
     }
 
     public var phrases: [Phrase] { lessons.flatMap(\.phrases) }

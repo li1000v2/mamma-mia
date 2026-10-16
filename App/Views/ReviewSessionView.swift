@@ -67,9 +67,9 @@ private struct ReviewCardView: View {
                 Text(card.id.kind == .listen ? "听：这句是什么意思？" : "说：用意大利语怎么说？")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                // Not due yet, but needed on the trip soon; graded like any other review.
-                if let day = model.boostDay(for: card) {
-                    Label("行程加练 · \(day.zhShort)要用", systemImage: "airplane")
+                // In a city pack, or not due yet but needed on the trip soon; graded like any other review.
+                if let tag = model.travelTag(for: card) {
+                    Label(tag, systemImage: "airplane")
                         .font(.caption)
                         .foregroundStyle(.orange)
                 }

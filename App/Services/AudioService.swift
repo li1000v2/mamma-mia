@@ -52,7 +52,9 @@ final class AudioService: NSObject {
         return true
     }
 
-    /// iOS's own Italian voice, for text no recording covers.
+    /// Always iOS's own Italian voice: for text no recording covers, and for the learner's own
+    /// words (a hotel's name or address, a diet note), which are never looked up in the bundled
+    /// audio and never leave the phone.
     func sayWithPhoneVoice(_ text: String, speed: Speed = .normal) async {
         stop()
         let utterance = AVSpeechUtterance(string: text)
@@ -62,6 +64,22 @@ final class AudioService: NSObject {
             self.continuation = continuation
             playbackID = ObjectIdentifier(utterance)
             synthesizer.speak(utterance)
+        }
+    }
+
+    /// A show card's lines in order: fixed text from the model audio in the show cards' voice, the
+    /// learner's own words in the phone's voice. Cancelling the calling task stops it between lines.
+    func say(_ card: ShowCard, speed: Speed = .normal) async {
+        for line in card.lines {
+            if Task.isCancelled { return }
+            switch line.speech {
+            case .model(let text)?:
+                await say(text, speed: speed, voice: ShowCard.voice)
+            case .phoneVoice(let text)?:
+                await sayWithPhoneVoice(text, speed: speed)
+            case nil:
+                continue
+            }
         }
     }
 

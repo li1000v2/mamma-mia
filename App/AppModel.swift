@@ -13,11 +13,14 @@ final class AppModel {
     private(set) var phrasesByID: [String: Phrase] = [:]
     /// The trip day each phrase is first needed on, by phrase id; empty without a trip.
     private(set) var needByDays: [String: LocalDate] = [:]
+    /// One per stop: the arrival's cards join the reviews the evening before. Empty without a trip.
+    private(set) var cityPacks: [CityPack] = []
 
     let scheduler = ReviewScheduler()
     let audio = AudioService()
     let recorder = Recorder()
     let speech = SpeechService()
+    let notifier = CityPackNotifier()
     let rolePlay = RolePlayService()
     private let store: ProgressStore
 
@@ -82,7 +85,7 @@ final class AppModel {
 
     var todayPlan: DailyPlan {
         scheduler.plan(cards: activeCards, newIntroducedToday: newCardsStartedToday, now: .now, clock: clock,
-                       needBy: needBy)
+                       needBy: needBy, packs: cityPacks)
     }
 
     var reviewsToday: Int {
@@ -92,7 +95,7 @@ final class AppModel {
     func nextReviewCard(after previous: ReviewCard? = nil) -> ReviewCard? {
         let budget = max(0, scheduler.config.newCardsPerDay - newCardsStartedToday)
         return scheduler.nextCard(from: activeCards, newBudget: budget, now: .now, clock: clock,
-                                  needBy: needBy, avoidingPhrase: previous?.id.phraseID)
+                                  needBy: needBy, packs: cityPacks, avoidingPhrase: previous?.id.phraseID)
     }
 
     /// The trip day a card is first needed on, for the review queue.
@@ -223,9 +226,12 @@ final class AppModel {
     private func refreshNeedBy() {
         if let content, let trip {
             needByDays = content.needByDays(on: trip)
+            cityPacks = content.cityPacks(on: trip)
         } else {
             needByDays = [:]
+            cityPacks = []
         }
+        rescheduleCityPackReminders()
     }
 
     private func loadProgress() {

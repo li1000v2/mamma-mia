@@ -134,6 +134,25 @@
       "confidence": 0.98,
       "modelOk": true
     },
+    "01cf70d73764b3bd.m4a": {
+      "key": "f1@1|s|Chiami il 112, per favore!",
+      "sha256": "7240bf2c02c38060ba9fb6e09bb1ee2bf051bfea43a29349dd8d2030c213faca",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:57:34Z",
+      "usage": {
+        "prompt": 702,
+        "output": 80,
+        "thoughts": 442
+      },
+      "ok": true,
+      "heard": "Chiami il centododici, per favore!",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.95,
+      "modelOk": true
+    },
     "02238f6584ca065b.m4a": {
       "key": "m1@1|n|Il Colosseo? Ci va a piedi?",
       "sha256": "e1a398b3ba6493a7773027982f4bfa08eb12994f025dbb5e07a16004dc13d643",
@@ -2604,6 +2623,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "1ea1219d21f26c45.m4a": {
+      "key": "f1@1|s|Non posso mangiarli, neanche in piccole quantità.",
+      "sha256": "557f25dff33d1640208eb543f8d5e52cc13579845da095363570228b43bb9909",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:52:13Z",
+      "usage": {
+        "prompt": 736,
+        "output": 130,
+        "thoughts": 624
+      },
+      "ok": true,
+      "heard": "Non posso mangiarli, neanche in piccole quantità.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "1ed2597a4bd26273.m4a": {
       "key": "f1@1|n|Mi può fare la ricevuta?",
       "sha256": "403124b36c48e2178e8f8c26c130334ec83ac1bf3e152d820e16611c09f3c0b2",
@@ -2737,6 +2775,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "20b9eb64e33c7e1c.m4a": {
+      "key": "f1@1|s|Parlo poco italiano. Può parlare più piano?",
+      "sha256": "7d437db160b5827b61b04c976a5c6b4d881efd68c276e371ecca403bdb13308a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:52:42Z",
+      "usage": {
+        "prompt": 775,
+        "output": 126,
+        "thoughts": 801
+      },
+      "ok": true,
+      "heard": "Parlo poco italiano. Può parlare più piano?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "20bd76ce5e71b3c5.m4a": {
       "key": "f1@1|s|Certo! Ecco fatto. Va bene così?",
       "sha256": "0d062aeaa0557b520651e0194e7d6c5b17dc94995ed44d121b3326cb675d9036",
@@ -2792,6 +2849,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.7,
+      "modelOk": true
+    },
+    "21b34333c6034a3c.m4a": {
+      "key": "f1@1|s|Anidride solforosa e solfiti",
+      "sha256": "a9a3540542a574f0a1884828f6577a069aa6778addcbebbaaffea8e00687ff9c",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:50:51Z",
+      "usage": {
+        "prompt": 717,
+        "output": 122,
+        "thoughts": 892
+      },
+      "ok": true,
+      "heard": "Anidride solforosa e solfiti",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
       "modelOk": true
     },
     "21ba8fe5bc11e23c.m4a": {
@@ -3092,6 +3168,25 @@
       },
       "ok": true,
       "heard": "Da quale binario parte?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "2440a0c92de6999c.m4a": {
+      "key": "f1@1|s|Vorrei andare a questo indirizzo.",
+      "sha256": "aa336defc9f14251c8fb4dfedf89898a37a747e0f905d9fc3b60fec0fe60b83f",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:54:26Z",
+      "usage": {
+        "prompt": 878,
+        "output": 49,
+        "thoughts": 298
+      },
+      "ok": true,
+      "heard": "Vorrei andare a questo indirizzo.",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -3453,6 +3548,25 @@
       },
       "ok": true,
       "heard": "Oggi chiudiamo alle diciannove e trenta.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "2804fb85f10115b9.m4a": {
+      "key": "f1@1|n|Vorrei andare a questo indirizzo.",
+      "sha256": "81faa0165a02ddaf94f5fcbe8c306e222bd6b534908e714a81b99efbe0cb4eee",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:54:32Z",
+      "usage": {
+        "prompt": 633,
+        "output": 104,
+        "thoughts": 379
+      },
+      "ok": true,
+      "heard": "Vorrei andare a questo indirizzo.",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -4258,6 +4372,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "311bf0d3d8c04161.m4a": {
+      "key": "f1@1|s|Semi di sesamo e prodotti a base di semi di sesamo",
+      "sha256": "3f8d2ea68b4e43185cf7de5f8d29e082a6a027381b87d334dde4a98c3e52572b",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:13Z",
+      "usage": {
+        "prompt": 758,
+        "output": 69,
+        "thoughts": 315
+      },
+      "ok": true,
+      "heard": "Semi di sesamo e prodotti a base di semi di sesamo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
+      "modelOk": true
+    },
     "3128c7fc39dfe7d2.m4a": {
       "key": "f1@1|n|Buongiorno! Ha già scelto?",
       "sha256": "d2003ac0796f8d9b9ded7c4a7f6bfe9c833181b7612388b58b034dcb4c819498",
@@ -4632,6 +4765,25 @@
       },
       "ok": true,
       "heard": "Non mi sento bene.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "34c5fe9209a06fe3.m4a": {
+      "key": "f1@1|n|Lupini e prodotti a base di lupini",
+      "sha256": "7344eb6cce3b937d2f5352a9b45250eae46b44d912729fbe7eb35e468b5767cc",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:49Z",
+      "usage": {
+        "prompt": 653,
+        "output": 116,
+        "thoughts": 502
+      },
+      "ok": true,
+      "heard": "Lupini e prodotti a base di lupini",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -5417,6 +5569,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "3f864f22b00955d7.m4a": {
+      "key": "f1@1|n|Crostacei e prodotti a base di crostacei",
+      "sha256": "2131467fb87ada320ae4562f3efb06c24f358358f050febd1b792742f5e2fe88",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:22Z",
+      "usage": {
+        "prompt": 665,
+        "output": 124,
+        "thoughts": 543
+      },
+      "ok": true,
+      "heard": "Crostacei e prodotti a base di crostacei",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "3fa257d2d5b42527.m4a": {
       "key": "m1@1|s|Solo andata o andata e ritorno?",
       "sha256": "f2fbf0b05efc98c1547cb5060975f55362ab0a61c1975648b10b87b7df77ebae",
@@ -5721,6 +5892,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "442efd80692be0ba.m4a": {
+      "key": "f1@1|n|Anidride solforosa e solfiti",
+      "sha256": "f1500efd1fb12821b25849e21ed1ffee5c1d9518ee0faa48032aa2d4888b0bd2",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:50:44Z",
+      "usage": {
+        "prompt": 640,
+        "output": 124,
+        "thoughts": 505
+      },
+      "ok": true,
+      "heard": "Anidride solforosa e solfiti",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "4432dc6b0ee3e37b.m4a": {
       "key": "m1@1|s|Sono due euro e ottanta.",
       "sha256": "9f8f77771309cc75746c0e9f6fe42ec5d2629b482b648e64409c5df7c6f749e8",
@@ -5930,6 +6120,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "465cc8640510e2d4.m4a": {
+      "key": "f1@1|n|Sedano e prodotti a base di sedano",
+      "sha256": "a3c32c870499aba163bcf8c6fde08faac7e91ef80dec5a28d71d3b5fc917a13d",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:03Z",
+      "usage": {
+        "prompt": 647,
+        "output": 63,
+        "thoughts": 288
+      },
+      "ok": true,
+      "heard": "Sedano e prodotti a base di sedano",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 1.0,
+      "modelOk": true
+    },
     "466050a8bfccc32a.m4a": {
       "key": "f1@1|n|Vorrei fare una denuncia.",
       "sha256": "87d203d63b0a6f5f1e8bb53144a75070a57b99fbeabadc5d16ae817676e39301",
@@ -5949,6 +6158,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "46ac51a05d2fa17a.m4a": {
+      "key": "f1@1|n|Cereali contenenti glutine",
+      "sha256": "e78ded8e7fdf87073c41893dedd80ff75fb2c0b493e5b35cdbaa7cfe1e58c4b4",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:00Z",
+      "usage": {
+        "prompt": 630,
+        "output": 110,
+        "thoughts": 427
+      },
+      "ok": true,
+      "heard": "Cereali contenenti glutine",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "46aeb643b62586bf.m4a": {
       "key": "f1@1|n|Ecco a lei: trentasei euro, con il coperto.",
       "sha256": "196551a2946464e06f60cf57acf0faadc0bc56fcd6a14a39bc7863fd5b279abd",
@@ -5962,6 +6190,25 @@
       },
       "ok": true,
       "heard": "Ecco a lei: trentasei euro, con il coperto.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "474e51cf73d9126f.m4a": {
+      "key": "f1@1|n|Non posso mangiarli, neanche in piccole quantità.",
+      "sha256": "b5de67bbd626d6dec85d19dbc491a1b854297aea612bc97cf5460321215477f1",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:52:23Z",
+      "usage": {
+        "prompt": 653,
+        "output": 121,
+        "thoughts": 637
+      },
+      "ok": true,
+      "heard": "Non posso mangiarli, neanche in piccole quantità.",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -7108,6 +7355,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "548bf55573226a29.m4a": {
+      "key": "f1@1|s|Arachidi e prodotti a base di arachidi",
+      "sha256": "2b18db9feb78f593984a4d7273fa11e52c468c8c0df4d03643524c4423b6ae00",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:07Z",
+      "usage": {
+        "prompt": 738,
+        "output": 124,
+        "thoughts": 915
+      },
+      "ok": true,
+      "heard": "Arachidi e prodotti a base di arachidi",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "54dc2dcabded5328.m4a": {
       "key": "m1@1|s|Non ho capito.",
       "sha256": "ad2d6500e599d56faa436b6bfba64456a32b9059e592654583f6238314aa3973",
@@ -7121,6 +7387,25 @@
       },
       "ok": true,
       "heard": "Non ho capito.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 1.0,
+      "modelOk": true
+    },
+    "552697531573717e.m4a": {
+      "key": "f1@1|n|Soia e prodotti a base di soia",
+      "sha256": "14ca4db073584b07d9bcc0ae18cb8e0a1d89ae079014635fb178da2d0202a6ea",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:40Z",
+      "usage": {
+        "prompt": 649,
+        "output": 64,
+        "thoughts": 193
+      },
+      "ok": true,
+      "heard": "Soia e prodotti a base di soia",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -8153,6 +8438,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "63bd567085dc711f.m4a": {
+      "key": "f1@1|s|Sedano e prodotti a base di sedano",
+      "sha256": "e1ec7dfcce70f46152fa9048fe1713ab70a3fb426a9503130c30dc4c833b6a8b",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:55:33Z",
+      "usage": {
+        "prompt": 728,
+        "output": 126,
+        "thoughts": 703
+      },
+      "ok": true,
+      "heard": "Sedano e prodotti a base di sedano",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "63c7d6c32081d2dc.m4a": {
       "key": "f1@1|n|Posso avere lo scontrino?",
       "sha256": "b64857123b953e76535db156a48286e51c612552364e06c9d4834a307f7bd312",
@@ -8170,6 +8474,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 1.0,
+      "modelOk": true
+    },
+    "63d2ceb12bf3da64.m4a": {
+      "key": "f1@1|n|Frutta a guscio",
+      "sha256": "333d8e6ae8a444b09cfb36668b81686aabab1a88cbf540c5140096cf03ac134e",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:43Z",
+      "usage": {
+        "prompt": 613,
+        "output": 106,
+        "thoughts": 670
+      },
+      "ok": true,
+      "heard": "Frutta a guscio",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "63dbf591922a35fd.m4a": {
@@ -8628,6 +8951,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "6a1f45015d2f4cb4.m4a": {
+      "key": "f1@1|n|Senape e prodotti a base di senape",
+      "sha256": "7ef0d8e3591ba7247a991be0df4c3f830005179bf416e459a42383e7fc43c567",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:34Z",
+      "usage": {
+        "prompt": 645,
+        "output": 122,
+        "thoughts": 582
+      },
+      "ok": true,
+      "heard": "Senape e prodotti a base di senape",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "6a60a361bcd040da.m4a": {
       "key": "m1@1|n|Ho perso il treno. A che ora parte il prossimo per Roma?",
       "sha256": "fc979258b86a52f04a4185fe33855095ce309444e7660e31385c175c91741d99",
@@ -9025,6 +9367,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.75,
+      "modelOk": true
+    },
+    "6e250b4d8d655e29.m4a": {
+      "key": "f1@1|s|Pesce e prodotti della pesca",
+      "sha256": "586d4af6a452c54faeeaa5739acef6baff0c466786a9c3f83d67c185685c7b35",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:57:39Z",
+      "usage": {
+        "prompt": 707,
+        "output": 62,
+        "thoughts": 249
+      },
+      "ok": true,
+      "heard": "Pesce e prodotti della pesca",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
       "modelOk": true
     },
     "6e34ab8b8ec8252f.m4a": {
@@ -9977,6 +10338,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "7a39c57fbdc08a4b.m4a": {
+      "key": "f1@1|s|Molluschi e prodotti a base di molluschi",
+      "sha256": "46cc0ca518e44a603b48ae538eb93fe113634d5161b8ed9f71c5053cef5d9ad7",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:53Z",
+      "usage": {
+        "prompt": 744,
+        "output": 66,
+        "thoughts": 297
+      },
+      "ok": true,
+      "heard": "Molluschi e prodotti a base di molluschi",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.95,
+      "modelOk": true
+    },
     "7a6c1f10d1ae9609.m4a": {
       "key": "f1@1|n|Sono allergico ai crostacei.",
       "sha256": "6b220a48a3aebc9aafc58f9f3aa1627b3374e34788eed6f81420fc2d4c89d6e2",
@@ -10028,6 +10408,25 @@
       },
       "ok": true,
       "heard": "Va bene. Prima chiami il centododici, poi vada alla polizia. Ma lei sta bene?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "7b6e4f102f94a74f.m4a": {
+      "key": "f1@1|s|Uova e prodotti a base di uova",
+      "sha256": "fe4e9716efdd724bbd03e11a43ef83e78ff62eb221293736571228240a29ea8a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:54:24Z",
+      "usage": {
+        "prompt": 725,
+        "output": 115,
+        "thoughts": 606
+      },
+      "ok": true,
+      "heard": "Uova e prodotti a base di uova",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -10237,6 +10636,25 @@
       },
       "ok": true,
       "heard": "Mamma mia!",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "7d7ad87540c1dfe8.m4a": {
+      "key": "f1@1|n|Semi di sesamo e prodotti a base di semi di sesamo",
+      "sha256": "2161328af209fab035493e77c1c54425e70236d42bdfb397f9e533618abdc924",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:24Z",
+      "usage": {
+        "prompt": 671,
+        "output": 126,
+        "thoughts": 663
+      },
+      "ok": true,
+      "heard": "Semi di sesamo e prodotti a base di semi di sesamo",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -11238,6 +11656,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "88e2ab1b9b09a863.m4a": {
+      "key": "f1@1|s|Latte e prodotti a base di latte (incluso lattosio)",
+      "sha256": "a71a9f99f4c0a760b01d19d31989f6abedb8c2a44fbe10a5ed7bf959c4ddd690",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:55Z",
+      "usage": {
+        "prompt": 790,
+        "output": 133,
+        "thoughts": 939
+      },
+      "ok": true,
+      "heard": "Latte e prodotti a base di latte incluso lattosio",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "8920aace6e122cd4.m4a": {
       "key": "f1@1|n|A che ora chiude?",
       "sha256": "2c16386b40cd5470ecf94024fe5551c61cbe59843627bbaf9e8e915aa6d3f4cb",
@@ -11559,6 +11996,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.7,
+      "modelOk": true
+    },
+    "8d65367212fb3e0f.m4a": {
+      "key": "f1@1|s|Lupini e prodotti a base di lupini",
+      "sha256": "b8f11e615995dd2a2a72a49e8cdd292c4790227bade1059245c715186b8b6bca",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:46Z",
+      "usage": {
+        "prompt": 736,
+        "output": 65,
+        "thoughts": 280
+      },
+      "ok": true,
+      "heard": "Lupini e prodotti a base di lupini",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
       "modelOk": true
     },
     "8d85ffc594058351.m4a": {
@@ -12492,6 +12948,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "9a0056a7cb6b5d2a.m4a": {
+      "key": "f1@1|n|Chiami il 112, per favore!",
+      "sha256": "e1dd718eb0c0b0d7de98c6dd1ac68acf1cffe58ab80d61ce95ab06120b2b6d6e",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:57:46Z",
+      "usage": {
+        "prompt": 629,
+        "output": 123,
+        "thoughts": 689
+      },
+      "ok": true,
+      "heard": "Chiami il centododici, per favore!",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "9a073088c4d70079.m4a": {
       "key": "m1@1|n|Sì, siamo aperti! Ma oggi è festa e chiudiamo prima.",
       "sha256": "bf3c0ce29c9dd10827c4faece054c02f6d117470bee41c295d83a6187d8640f7",
@@ -12834,6 +13309,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "9d9a0872df7c4e45.m4a": {
+      "key": "f1@1|s|Sono allergico a questi alimenti:",
+      "sha256": "9e76621feb49eefd87ebea7a7b4801e4c5cb76311b36b68cedb197f1c2010978",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:54:02Z",
+      "usage": {
+        "prompt": 712,
+        "output": 120,
+        "thoughts": 359
+      },
+      "ok": true,
+      "heard": "Sono allergico a questi alimenti",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.95,
+      "modelOk": true
+    },
     "9dccced12945a503.m4a": {
       "key": "m1@1|s|Buongiorno, biglietto, prego.",
       "sha256": "8ca68913886b067cc02003d00b15d839039d0331c8fb878ae70b847fac8dfcf9",
@@ -12942,6 +13436,25 @@
       },
       "ok": true,
       "heard": "D'accordo. Oggi c'è traffico: ci vogliono cinquanta minuti.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "9e426c3c1681747c.m4a": {
+      "key": "f1@1|s|Senape e prodotti a base di senape",
+      "sha256": "3234b8d15d9be65625a07ca2ee3f2d6108f92cd7cc4c22bc07c0df0cbe2ebb10",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:37Z",
+      "usage": {
+        "prompt": 726,
+        "output": 128,
+        "thoughts": 560
+      },
+      "ok": true,
+      "heard": "Senape e prodotti a base di senape",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -13727,6 +14240,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "a524142d5166bd40.m4a": {
+      "key": "f1@1|s|Cereali contenenti glutine",
+      "sha256": "eb794ed2a177c726f7b0182ea5f2bd49670f2cec8744114cd9ccd418f612446a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:02Z",
+      "usage": {
+        "prompt": 705,
+        "output": 118,
+        "thoughts": 593
+      },
+      "ok": true,
+      "heard": "Cereali contenenti glutine",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "a53cfd927047f816.m4a": {
       "key": "m1@1|n|Scusi.",
       "sha256": "fa1e26f46c2d0cc451e59943704c161acf0e419d42f6ade4340f5a952847d908",
@@ -14162,6 +14694,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.75,
+      "modelOk": true
+    },
+    "a8cbdf6b775f6e01.m4a": {
+      "key": "f1@1|s|Soia e prodotti a base di soia",
+      "sha256": "1faa1939eaf3e2cc067b6a9ee3712ec943c20b576c65d4aba821362dd93e0642",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:45Z",
+      "usage": {
+        "prompt": 730,
+        "output": 65,
+        "thoughts": 328
+      },
+      "ok": true,
+      "heard": "Soia e prodotti a base di soia",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
       "modelOk": true
     },
     "a8e9dc83e34d77c4.m4a": {
@@ -15323,6 +15874,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "b396e555ea312bdd.m4a": {
+      "key": "f1@1|n|Arachidi e prodotti a base di arachidi",
+      "sha256": "009f203cc746dbeaea8ba8033bd638dbc284e141a5ae0fcf2e2cee67846f5a2a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:50:44Z",
+      "usage": {
+        "prompt": 653,
+        "output": 116,
+        "thoughts": 515
+      },
+      "ok": true,
+      "heard": "Arachidi e prodotti a base di arachidi",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "b42ff0cfcff8c1f9.m4a": {
       "key": "f1@1|s|Oggi chiudiamo alle venti.",
       "sha256": "553b3e0e9890a19946a547cb6c3a63e32cb6d3f0706ae3d7b29f58c9865d9df6",
@@ -15336,6 +15906,25 @@
       },
       "ok": true,
       "heard": "Oggi chiudiamo alle venti.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "b449031f54498d57.m4a": {
+      "key": "f1@1|n|Molluschi e prodotti a base di molluschi",
+      "sha256": "10920b733709578b3e7ee97324a0868c4d0f4c0eefdec0885d742c27e134a08a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:52:30Z",
+      "usage": {
+        "prompt": 659,
+        "output": 118,
+        "thoughts": 821
+      },
+      "ok": true,
+      "heard": "Molluschi e prodotti a base di molluschi",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -17356,6 +17945,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "cc6faeb4669cbae3.m4a": {
+      "key": "f1@1|n|Uova e prodotti a base di uova",
+      "sha256": "9086e92721b8e0c342ed96bba0bb2f055566371cede27e9f7ea5c0647084a673",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:54:16Z",
+      "usage": {
+        "prompt": 646,
+        "output": 108,
+        "thoughts": 548
+      },
+      "ok": true,
+      "heard": "Uova e prodotti a base di uova",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
+      "modelOk": true
+    },
     "cc9c9c6f2db4b6d6.m4a": {
       "key": "f1@1|s|Senza formaggio, per favore.",
       "sha256": "05a3dcb87ea14377db928feac3cbe926fea95791dd2c00dcf8109521ec5b7e99",
@@ -18173,6 +18781,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "d647ed9dd4f3dcce.m4a": {
+      "key": "f1@1|n|Latte e prodotti a base di latte (incluso lattosio)",
+      "sha256": "65d673cf17beeb4ad15eca35a10098a42dcca76e9e48d505876cb310aa35a54d",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:32Z",
+      "usage": {
+        "prompt": 690,
+        "output": 70,
+        "thoughts": 265
+      },
+      "ok": true,
+      "heard": "Latte e prodotti a base di latte (incluso lattosio)",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
+      "modelOk": true
+    },
     "d6b0fcb4b70f944a.m4a": {
       "key": "m1@1|n|Buongiorno, dica!",
       "sha256": "9d4adbcc3a05590711ba10957efdbd5b4b86ae2ef6a41fd46026aad517a2e38c",
@@ -18760,6 +19387,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.7,
+      "modelOk": true
+    },
+    "dc66016f8540df3a.m4a": {
+      "key": "f1@1|s|Crostacei e prodotti a base di crostacei",
+      "sha256": "607f7bd6b06664116ef39f6fecf2acf3f4aaf0a835fc4b59338cd46e50a80d08",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:23Z",
+      "usage": {
+        "prompt": 750,
+        "output": 69,
+        "thoughts": 335
+      },
+      "ok": true,
+      "heard": "Crostacei e prodotti a base di crostacei",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.98,
       "modelOk": true
     },
     "dcbbe6c5484031ea.m4a": {
@@ -20074,6 +20720,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "ea6fb72ccb7bbcd7.m4a": {
+      "key": "f1@1|n|Pesce e prodotti della pesca",
+      "sha256": "f30ed0a3929268136b762ce7d4e484669d01db8ad5eab548740e5a97e0f75c1b",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:57:54Z",
+      "usage": {
+        "prompt": 630,
+        "output": 106,
+        "thoughts": 586
+      },
+      "ok": true,
+      "heard": "Pesce e prodotti della pesca",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "ea9a66bbfa050f7d.m4a": {
       "key": "f1@1|s|Deve chiamare la polizia. Sa che numero chiamare?",
       "sha256": "6be49266873435616df3eac7d332b05479195798823d93fd4663a746034f314f",
@@ -20296,6 +20961,25 @@
       },
       "ok": true,
       "heard": "Sono dodici euro.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "ecb5a8024382fae1.m4a": {
+      "key": "f1@1|n|Sono allergico a questi alimenti:",
+      "sha256": "1bcc37f8c72305ab80b9fc5f29000522fa7ec5bffe4118b0c0ba688bb42f7a32",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:58Z",
+      "usage": {
+        "prompt": 635,
+        "output": 111,
+        "thoughts": 458
+      },
+      "ok": true,
+      "heard": "Sono allergico a questi alimenti",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -20663,6 +21347,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "f1875d0e5d2943f1.m4a": {
+      "key": "f1@1|n|Parlo poco italiano. Può parlare più piano?",
+      "sha256": "3f00565d5ab64d4696f9a943087cc43222142c0d242a8b52aa039e69395e0631",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:54:18Z",
+      "usage": {
+        "prompt": 677,
+        "output": 124,
+        "thoughts": 671
+      },
+      "ok": true,
+      "heard": "Parlo poco italiano. Può parlare più piano?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
+      "modelOk": true
+    },
     "f1a296e62f0bf44e.m4a": {
       "key": "f1@1|s|Basta premere qui.",
       "sha256": "b21af595cf430bb16deba7b539193f948fcb8451d78d1c1b99c7330bee5428c6",
@@ -20733,6 +21436,25 @@
       },
       "ok": true,
       "heard": "Oggi è festa",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "f1f6bcef66e12b83.m4a": {
+      "key": "f1@1|s|Può avvisare il cuoco, per favore?",
+      "sha256": "b29f18d886c79691ed5f00838343999d2f489534b409e6fae15bd18f15fa44ab",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:06Z",
+      "usage": {
+        "prompt": 713,
+        "output": 131,
+        "thoughts": 683
+      },
+      "ok": true,
+      "heard": "Può avvisare il cuoco, per favore?",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -21689,6 +22411,25 @@
       "confidence": 0.95,
       "modelOk": true
     },
+    "fec77ab6b9d91683.m4a": {
+      "key": "f1@1|s|Frutta a guscio",
+      "sha256": "f4da2a286500b96c4ea0c885f645f3b7b255f77ce338687c090323920d1c4595",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:51:29Z",
+      "usage": {
+        "prompt": 682,
+        "output": 58,
+        "thoughts": 336
+      },
+      "ok": true,
+      "heard": "Frutta a guscio",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.95,
+      "modelOk": true
+    },
     "fedefc4ec9ab77be.m4a": {
       "key": "f1@1|n|Permesso, scendo alla prossima.",
       "sha256": "7954e53dab6df748133b2b886a471d5313f3288a6129b49c6df5729e0002cc42",
@@ -21759,6 +22500,25 @@
       },
       "ok": true,
       "heard": "Fatto: il taxi arriva subito. Coraggio!",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "ffeaa4ea708319e3.m4a": {
+      "key": "f1@1|n|Può avvisare il cuoco, per favore?",
+      "sha256": "b81448faeb46cceded5070200b6df1050869db6fa7e4ebed760efc44a8000ade",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:53:00Z",
+      "usage": {
+        "prompt": 636,
+        "output": 123,
+        "thoughts": 516
+      },
+      "ok": true,
+      "heard": "Può avvisare il cuoco, per favore?",
       "issues": [],
       "severity": "none",
       "reason": "",

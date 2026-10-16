@@ -2,7 +2,9 @@
 """Generate the model audio in Audio/ with Gemini TTS on Agent Platform.
 
 Every Italian line the app plays (lesson phrases, frame examples, what the other person says in
-challenges) gets one clip per voice at normal speed. The slow clip is that same recording slowed
+challenges) gets one clip per voice at normal speed. The show cards' own lines (Content/showcards.json:
+its sentences and the allergen names) are played to other people rather than studied, so they get only
+the "showCardVoices". The slow clip is that same recording slowed
 with ffmpeg: style instructions sent with the text are sometimes read aloud, so none are sent.
 Each new clip is transcribed back with Gemini and regenerated when it doesn't match the text.
 Files are named by a hash of "<voice>|<speed>|<text>", so only missing audio is generated.
@@ -77,8 +79,8 @@ def load_env() -> dict[str, str]:
     return values
 
 
-def spoken_texts() -> list[str]:
-    """Every Italian line the app can play, in course order, without duplicates."""
+def course_texts() -> list[str]:
+    """The course's Italian lines: frame examples, lesson phrases, challenge lines; course order."""
     texts: list[str] = []
     course = load_json(CONTENT / "course.json")
     texts += [frame["example"] for frame in course["frames"]]
@@ -88,7 +90,6 @@ def spoken_texts() -> list[str]:
         script = load_json(path)
         nodes = script["nodes"] + (script.get("followUps") or {}).get("pool", [])
         texts += [line["it"] for node in nodes for line in node["npc"]]
-    texts += role_play_fillers()
     return list(dict.fromkeys(texts))
 
 
@@ -98,8 +99,49 @@ def role_play_fillers() -> list[str]:
     return list(load_json(path)["fillers"]) if path.exists() else []
 
 
+def show_card_texts() -> list[str]:
+    """The show cards' own Italian: their sentences, then the allergen names the diet card lists.
+    Course phrases on the cards are the course's lines already."""
+    path = CONTENT / "showcards.json"
+    if not path.exists():
+        return []
+    cards = load_json(path)
+    return list(dict.fromkeys([phrase["it"] for phrase in cards["phrases"]] + [item["it"] for item in cards["allergens"]]))
+
+
+def spoken_texts() -> list[str]:
+    """Every Italian line the app can play: the course in order, the role-play fillers, then the show
+    cards, without duplicates."""
+    return list(dict.fromkeys(course_texts() + role_play_fillers() + show_card_texts()))
+
+
+UNITS = ["zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove", "dieci", "undici",
+         "dodici", "tredici", "quattordici", "quindici", "sedici", "diciassette", "diciotto", "diciannove"]
+TENS = ["", "", "venti", "trenta", "quaranta", "cinquanta", "sessanta", "settanta", "ottanta", "novanta"]
+
+
+def italian_number(n: int) -> str:
+    """0–999999 in words (112 → centododici): transcripts spell numbers out, a line may use digits."""
+    if n < 20:
+        return UNITS[n]
+    if n < 100:
+        tens, unit = divmod(n, 10)
+        word = TENS[tens][:-1] if unit in (1, 8) else TENS[tens]  # ventuno, ventotto
+        return word + (UNITS[unit] if unit else "")
+    if n < 1000:
+        hundreds, rest = divmod(n, 100)
+        return ("" if hundreds == 1 else UNITS[hundreds]) + "cento" + (italian_number(rest) if rest else "")
+    thousands, rest = divmod(n, 1000)
+    return ("mille" if thousands == 1 else italian_number(thousands) + "mila") + (italian_number(rest) if rest else "")
+
+
+def spelled_numbers(text: str) -> str:
+    return re.sub(r"\d+", lambda match: f" {italian_number(int(match.group()))} " if len(match.group()) <= 6 else match.group(), text)
+
+
 def normalized(text: str) -> str:
-    text = unicodedata.normalize("NFKD", text.lower())
+    """For comparing a line with a transcript: numbers spelled out, no case, accents or punctuation."""
+    text = unicodedata.normalize("NFKD", spelled_numbers(text).lower())
     text = "".join(ch for ch in text if not unicodedata.combining(ch))
     text = re.sub(r"[^\w\s]", " ", text)
     return " ".join(text.split())
@@ -230,7 +272,11 @@ def main() -> int:
     profiles = {voice["id"]: f"{voice['id']}@{voice['rev']}" for voice in config["voices"]}
     texts = spoken_texts()
 
-    line_voices: dict[str, list[str]] = config.get("lineVoices", {})
+    line_voices: dict[str, list[str]] = dict(config.get("lineVoices", {}))
+    course = set(course_texts() + role_play_fillers())
+    for text in show_card_texts():
+        if text not in course:  # a course line (or a filler, said by every role) keeps every voice
+            line_voices.setdefault(text, config.get("showCardVoices", list(profiles)))
     entries: dict[str, str] = dict(manifest["entries"])
     wanted: set[str] = set()
     jobs: list[Job] = []

@@ -1,8 +1,9 @@
 import SwiftUI
 import MammaCore
 
-/// 随身. For now it holds the trip: entered here, kept on this phone. Show cards, emergency phrases
-/// and the pilgrimage spots come in a later version and will build on it.
+/// 随身, by date. Before the trip: the countdown, the city packs ahead and the trip form. During it:
+/// today's city and the sentences the day first needs. After it: a short recap. Show cards and the
+/// emergency phrases are one tap away throughout.
 struct TravelView: View {
     @Environment(AppModel.self) private var model
     @State private var editing = false
@@ -12,25 +13,13 @@ struct TravelView: View {
         NavigationStack {
             List {
                 if let trip = model.trip {
-                    TripSummary(trip: trip)
-                    Section {
-                        Button {
-                            editing = true
-                        } label: {
-                            Label("编辑行程", systemImage: "square.and.pencil")
-                        }
-                        Button(role: .destructive) {
-                            confirmingClear = true
-                        } label: {
-                            Label("清除行程", systemImage: "trash")
-                        }
-                    }
+                    TripTodaySections(trip: trip, today: model.calendarToday, editing: $editing)
                 } else {
                     Section {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("还没有行程")
                                 .font(.headline)
-                            Text("填好每座城市的到达和离开日期，复习会赶在用到之前，把要用的句子提前过一遍。")
+                            Text("填好每座城市的到达和离开日期，复习会赶在用到之前，把要用的句子提前过一遍；酒店地址和忌口会做成出示卡。")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
@@ -42,8 +31,48 @@ struct TravelView: View {
                         }
                     }
                 }
+                Section("随时用") {
+                    NavigationLink {
+                        ShowCardsView()
+                    } label: {
+                        TravelEntry(title: "出示卡", detail: showCardsDetail, systemImage: "person.text.rectangle")
+                    }
+                    NavigationLink {
+                        EmergencyPhrasesView()
+                    } label: {
+                        TravelEntry(title: "应急句", detail: "求助、药店，紧急电话 112", systemImage: "cross.case")
+                    }
+                }
+                // The pilgrimage spots and the check before leaving are later work; they go here.
                 Section {
-                    Text("行程只存在这台手机上，并随学习进度写进「今日 → 诊断、日志与备份」导出的备份文件。酒店和忌口先存着；出示卡、应急句和巡礼点会在后面的版本加进来。")
+                    Label("巡礼点", systemImage: "mappin.and.ellipse")
+                    Label("出发前自检", systemImage: "checklist")
+                } header: {
+                    Text("以后加入")
+                } footer: {
+                    Text("巡礼点和出发前自检会在之后的版本里加进来。")
+                }
+                .foregroundStyle(.secondary)
+                if let trip = model.trip {
+                    TripSummary(trip: trip)
+                    Section {
+                        // Before the trip the form opens from the countdown at the top.
+                        if !isBeforeTrip(trip) {
+                            Button {
+                                editing = true
+                            } label: {
+                                Label("编辑行程", systemImage: "square.and.pencil")
+                            }
+                        }
+                        Button(role: .destructive) {
+                            confirmingClear = true
+                        } label: {
+                            Label("清除行程", systemImage: "trash")
+                        }
+                    }
+                }
+                Section {
+                    Text("行程只存在这台手机上，并随学习进度写进「今日 → 诊断、日志与备份」导出的备份文件。酒店名、地址和忌口备注不做成示范音频，播放时用手机自带的意大利语语音朗读。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -61,6 +90,230 @@ struct TravelView: View {
                 Text("酒店和忌口也会一起删掉，学习记录不受影响。")
             }
         }
+    }
+
+    private func isBeforeTrip(_ trip: Trip) -> Bool {
+        if case .before? = trip.phase(on: model.calendarToday) { return true }
+        return false
+    }
+
+    private var showCardsDetail: String {
+        var parts: [String] = []
+        if let trip = model.trip, let content = model.content {
+            if !content.hotelCards(for: trip).isEmpty { parts.append("酒店地址") }
+            if content.dietCard(for: trip) != nil { parts.append("忌口") }
+        }
+        parts += ["请写下来", "说慢一点", "112"]
+        return parts.joined(separator: "、")
+    }
+}
+
+/// A row in 随身 that opens one of its tools.
+private struct TravelEntry: View {
+    let title: String
+    let detail: String
+    let systemImage: String
+
+    var body: some View {
+        Label {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.headline)
+                Text(detail)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        } icon: {
+            Image(systemName: systemImage)
+        }
+    }
+}
+
+/// The top of 随身 for the trip's phase on `today`.
+private struct TripTodaySections: View {
+    @Environment(AppModel.self) private var model
+    let trip: Trip
+    let today: LocalDate
+    @Binding var editing: Bool
+
+    var body: some View {
+        switch trip.phase(on: today) {
+        case .before:
+            Section("出发前") {
+                TripStatus(trip: trip)
+                Button {
+                    editing = true
+                } label: {
+                    Label("编辑行程", systemImage: "square.and.pencil")
+                }
+                CityPackSchedule()
+            }
+        case .during:
+            Section("今天") {
+                TripStatus(trip: trip)
+                if model.cityPacks.contains(where: { $0.arrival > today }) {
+                    CityPackReminderRow()
+                }
+            }
+            if let content = model.content {
+                TripDayScenes(content: content, trip: trip, today: today)
+            }
+        case .after:
+            Section("行程结束") {
+                TripStatus(trip: trip)
+                if let recap = model.progress.recap(of: trip, clock: model.clock) {
+                    Text(recapText(recap))
+                        .font(.subheadline)
+                }
+            }
+        case nil:
+            Section {
+                TripStatus(trip: trip)
+            }
+        }
+    }
+
+    private func recapText(_ recap: TripRecap) -> String {
+        let route = recap.cities.map { model.cityName($0) }.joined(separator: " → ")
+        let reviews = recap.reviews > 0 ? "路上复习了 \(recap.reviews) 次，用到 \(recap.phrases) 个句子。" : "路上没有做复习。"
+        return "\(recap.days) 天，\(route)。\(reviews)"
+    }
+}
+
+/// When each city's pack opens, and whether its reminder can go off.
+private struct CityPackSchedule: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        ForEach(model.cityPacks, id: \.city) { pack in
+            LabeledContent("\(pack.eve.zhShort)晚上 \(CityPack.eveningHour):00", value: "\(model.cityName(pack.city))城市包")
+        }
+        if !model.cityPacks.isEmpty {
+            CityPackReminderRow()
+        }
+    }
+}
+
+/// Turns the city-pack reminders on, or says why they won't come.
+private struct CityPackReminderRow: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        Group {
+            switch model.notifier.permission {
+            case .notAsked:
+                Button {
+                    Task { await model.enableCityPackReminders() }
+                } label: {
+                    Label("开启城市包提醒", systemImage: "bell")
+                }
+            case .allowed:
+                Label("到每座城市的前一晚提醒你过一遍城市包", systemImage: "bell")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            case .denied:
+                Label("通知已关闭，收不到城市包提醒：可以到 设置 → Mamma mia! → 通知 里打开。城市包照样会放进复习。", systemImage: "bell.slash")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            case .unknown:
+                EmptyView()
+            }
+        }
+        .task {
+            await model.notifier.refreshPermission()
+        }
+    }
+}
+
+/// During the trip: the scenes today first needs, then the ones of the city you're in.
+private struct TripDayScenes: View {
+    @Environment(AppModel.self) private var model
+    let content: ContentBundle
+    let trip: Trip
+    let today: LocalDate
+
+    var body: some View {
+        let needed = content.scenes(firstNeededOn: today, trip: trip)
+        // Today's own scenes are spelled out; on the first day the many general ones are links.
+        let specific = needed.filter { $0.anchor != NeedAnchor.first }
+        let general = needed.filter { $0.anchor == NeedAnchor.first }
+        let city = content.cityScenes(on: today, trip: trip)
+        ForEach(specific) { scene in
+            Section {
+                ForEach(content.phrases(inScene: scene.id)) { phrase in
+                    TravelPhraseRow(phrase: phrase)
+                }
+            } header: {
+                Text("今天要用 · \(scene.zh)")
+            }
+        }
+        if !general.isEmpty {
+            Section {
+                ForEach(general) { scene in
+                    SceneLink(content: content, scene: scene)
+                }
+            } header: {
+                Text("从今天起处处要用")
+            }
+        }
+        if let stop = trip.stop(on: today), !city.isEmpty {
+            Section("在\(model.cityName(stop.city))") {
+                ForEach(city) { scene in
+                    SceneLink(content: content, scene: scene)
+                }
+            }
+        }
+    }
+}
+
+private struct SceneLink: View {
+    let content: ContentBundle
+    let scene: SceneTag
+
+    var body: some View {
+        NavigationLink {
+            ScenePhrasesView(scene: scene)
+        } label: {
+            LabeledContent(scene.zh, value: "\(content.phrases(inScene: scene.id).count) 句")
+        }
+    }
+}
+
+/// One scene's sentences, each playable.
+struct ScenePhrasesView: View {
+    @Environment(AppModel.self) private var model
+    let scene: SceneTag
+
+    var body: some View {
+        List {
+            ForEach(model.content?.phrases(inScene: scene.id) ?? []) { phrase in
+                TravelPhraseRow(phrase: phrase)
+            }
+        }
+        .navigationTitle(scene.zh)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+/// A sentence to use on the spot: the Italian large, its meaning, normal and slow audio.
+struct TravelPhraseRow: View {
+    let phrase: Phrase
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(phrase.it)
+                    .font(.title3.weight(.semibold))
+                Text(phrase.zh)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 8)
+            VStack(spacing: 14) {
+                SpeakButton(text: phrase.it)
+                SpeakButton(text: phrase.it, speed: .slow)
+            }
+        }
+        .padding(.vertical, 4)
     }
 }
 
@@ -162,6 +415,11 @@ struct TripStatus: View {
             case nil:
                 Text("行程里还没有城市")
                     .foregroundStyle(.secondary)
+            }
+            if let pack = model.openCityPack {
+                Label("\(model.packTitle(pack))，要用的卡已经放进复习", systemImage: "shippingbox")
+                    .font(.subheadline)
+                    .foregroundStyle(.orange)
             }
         }
         .padding(.vertical, 2)
