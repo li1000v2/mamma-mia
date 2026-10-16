@@ -29,7 +29,12 @@
             "description": "draft → checked (cross-checked) → native (native speaker) → audio_ok (audio listened to)",
             "enum": ["draft", "checked", "native", "audio_ok"]
           },
-          "note": { "type": "string", "minLength": 1 }
+          "note": { "type": "string", "minLength": 1 },
+          "checkedText": {
+            "description": "The Italian text as it was when the phrase was marked checked or later. Must equal it unless status is draft, so an edited phrase cannot keep its old review.",
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }

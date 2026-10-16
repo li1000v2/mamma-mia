@@ -11,6 +11,7 @@
 - `Content/`：课程数据（JSON），整个文件夹打包进 app；`schema/` 是 JSON Schema。
 - `Audio/`：生成的 .m4a 和 `manifest.json`。
 - `tools/`：Python 工具。
+- `reviews/`：交叉校对报告（`cross-check-<单元>.md`）。
 - `.github/workflows/`：CI。
 
 ## 编译与测试
@@ -31,6 +32,13 @@
 - 人工听审前先跑 `python tools/audio_review.py`（默认第 1 周，`--week N` 换周，`--limit`/`--only` 限范围）：gemini-4-argon 用 HIGH 思考档逐段听，结果按文件名缓存在 `reviews/audio-screen-cache.json`，可疑片段写进 `reviews/audio-screen-week<N>.md`，同名 `.html` 可在浏览器里逐条点听。它不判断双辅音长短（实测会自信地判错），含双辅音的句子只备注“双辅音需人工听”；改了提示词就把脚本里的 `PROMPT_REV` 加一，旧结果会重筛。
 - app 里没有音频的句子会退回 iOS 自带的意大利语语音。挑战剧本可以用 `voice` 指定角色的声线。
 
+## 交叉校对
+
+- `python tools/cross_check.py --week 1`（或列单元 id：`L03 C01`；`--dry-run` 只打印请求）把单元分批发给 gemini-4-argon 审，报告写到 `reviews/cross-check-<单元>.md`。key 同上，云端环境由 network secret 注入 `x-goog-api-key`。
+- 审：语法、对陌生人用 Lei、地道程度和地区差异、中文翻译、note／intro 里的假名和拼音提示、剧本选项的对错和 feedback。Argon 思考级别只能 LOW／MEDIUM／HIGH，默认 HIGH。
+- 只审文字，不评判音频；Argon 判断双辅音长短不可靠。报告会给 pala／palla 这类最小对立词加备注：TTS 单独念词时双辅音可能不够长，音频要人工听。
+- 工具不改内容文件。按报告手动改完、确认没问题的句子才标 `checked`，同时把 `checkedText` 设成当时的 `it`。
+
 ## 免费 Apple ID 的限制
 
 - 只有一个 app target，不加任何扩展（小组件等）：扩展也占 3 个侧载名额。
@@ -46,6 +54,7 @@
 ## 内容规则
 
 - 句子状态依次是 draft → checked（交叉校对）→ native（母语者抽检，可选）→ audio_ok（音频听审过）。没校对过的不许标 checked。
+- 状态不是 draft 的句子必须带 `checkedText`，且等于 `it`：审核结论只对审过的那段原文有效，改了原文就要重新校对或退回 draft（`validate_content.py` 会拦）。
 - 对陌生人一律用 Lei；自述句用阳性（Sono arrivato、Sono stanco）。
 - 发音讲解：
   - 先听示范音频，再看近似写法；标准永远是音频，加上和自己录音的对比。

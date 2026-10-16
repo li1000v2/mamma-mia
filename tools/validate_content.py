@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Validate Content/ and Audio/ before they ship in the app.
 
-Checks every JSON file against its schema in Content/schema, that audio-reviewed phrases have
-audio for every voice and speed, that every manifest entry has its file, and that no real
-itinerary was committed. Cross-file id checks live in the MammaCore tests.
+Checks every JSON file against its schema in Content/schema, that a phrase past draft still has
+the text it was checked with (checkedText), that audio-reviewed phrases have audio for every voice
+and speed, that every manifest entry has its file, and that no real itinerary was committed. Cross-file id checks live in the MammaCore tests.
 
 Usage: python tools/validate_content.py
 """
@@ -87,6 +87,14 @@ def main() -> int:
     for phrase in phrases:
         if phrase["status"] == "draft":
             continue
+        checked_text = phrase.get("checkedText")
+        if checked_text != phrase["it"]:
+            # A review holds only for the text that was reviewed.
+            found = "has no checkedText" if checked_text is None else f"was checked as {checked_text!r}"
+            errors.append(
+                f"{phrase['id']}: status {phrase['status']} but {found}, not {phrase['it']!r}; "
+                "cross-check it again, or set status back to draft"
+            )
         missing = [
             f"{voice}/{speed}"
             for voice in manifest["voices"]
