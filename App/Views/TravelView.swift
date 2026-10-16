@@ -1,9 +1,10 @@
 import SwiftUI
 import MammaCore
 
-/// 随身, by date. Before the trip: the countdown, the city packs ahead and the trip form. During it:
-/// today's city and the sentences the day first needs. After it: a short recap. Show cards and the
-/// emergency phrases are one tap away throughout.
+/// 随身, by date. Before the trip: the countdown, the check before leaving, the city packs ahead and
+/// the trip form. During it: today's city, the sentences the day first needs, and a nudge when the
+/// signature needs refreshing. After it: a short recap. Show cards, the emergency phrases and the
+/// pilgrimage spots are one tap away throughout.
 struct TravelView: View {
     @Environment(AppModel.self) private var model
     @State private var editing = false
