@@ -27,210 +27,20 @@ code { font-size: 0.85em; }
 <body>
 <main>
 <h1>示范音频粗筛 · 第 4 周</h1>
-<p class="meta">已筛 232 / 232 段，可疑 23 段（原速 14，慢速 9）。
+<p class="meta">已筛 232 / 232 段，可疑 2 段（原速 1，慢速 1）。
 模型 gemini-4-argon，花费估算 $0.93。按需要听的先后排列。</p>
 <section class="card">
-  <h2><span class="n">1</span>Ah, JoJo! Allora benvenuto a Roma. Buona visita!</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>939e7b0689638d43.m4a</code> ·
-    严重度 high · 置信度 1.00</p>
-  <audio controls preload="none" src="../Audio/939e7b0689638d43.m4a"></audio>
-  <p>音频开头漏读了“Ah, JoJo!”，直接从“Allora”开始朗读。</p>
-  <ul><li><b>漏读</b>「Ah, JoJo!」：漏读了开头的“Ah, JoJo!”。</li></ul>
-  <p class="meta">模型听到：Allora benvenuto a Roma. Buona visita!</p>
-  <p class="meta">转写模型听到：Ah Giorgio! Allora, benvenuto a Roma! Buona visita!（和原文不同）</p>
-  <p class="meta">双辅音需人工听：Allora</p>
-</section><section class="card">
-  <h2><span class="n">2</span>Certo! Dove devo premere?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>72bf158dcb0f880d.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/72bf158dcb0f880d.m4a"></audio>
-  <p>两句之间多出了一个明显的犹豫语气词，与目标文本不完全相符。</p>
-  <ul><li><b>多出来的话</b>「Certo 之后」：包含了原文中没有的语气词“eh”。</li></ul>
-  <p class="meta">模型听到：Certo! Eh, dove devo premere?</p>
-  <p class="meta">转写模型听到：Certo, eh dove devo premere?（和原文不同）</p>
-  
-</section><section class="card">
-  <h2><span class="n">3</span>Certo! Dove devo premere?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>955b47306d61870e.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/955b47306d61870e.m4a"></audio>
-  <p>两句之间多出了目标文本中没有的语气词“eh”。</p>
-  <ul><li><b>多出来的话</b>「Certo! 之后」：多读了语气词“eh”。</li></ul>
-  <p class="meta">模型听到：Certo! Eh, dove devo premere?</p>
-  <p class="meta">转写模型听到：Certo, eh dove devo premere?（和原文不同）</p>
-  
-</section><section class="card">
-  <h2><span class="n">4</span>Lo prendo.</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>b49e346a2f4b1c2a.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/b49e346a2f4b1c2a.m4a"></audio>
-  <p>开头包含目标文本之外的哼声，其余发音正常。</p>
-  <ul><li><b>多出来的话</b>「开头」：句首有多余的哼声。</li></ul>
-  <p class="meta">模型听到：Hm, lo prendo.</p>
-  <p class="meta">转写模型听到：Lo prendo.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">5</span>Va bene! Sorrida… ecco fatto. Perché proprio qui?</h2>
+  <h2><span class="n">1</span>Va bene! Sorrida… ecco fatto. Perché proprio qui?</h2>
   <p class="meta">m1@1（Charon） · 慢速 · <code>1a04265532f09de7.m4a</code> ·
-    严重度 medium · 置信度 0.90</p>
+    严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/1a04265532f09de7.m4a"></audio>
-  <p>音频开头存在杂音伪影，且“proprio”一词漏读了第二个“r”音，不适合作为初学者教材。</p>
-  <ul><li><b>杂音</b>「Va bene」：开头“Va”之前有明显的杂音或多余的气声伪影。</li><li><b>读错</b>「proprio」：“proprio”中的第二个辅音“r”缺失，被读成了“propio”，且最后一句音量明显变小。</li></ul>
-  <p class="meta">模型听到：Va bene! Sorrida… ecco fatto. Perché propio qui?</p>
-  <p class="meta">转写模型听到：Va bene, sorrida. Ecco fatto. Perché proprio qui?（和原文一致）</p>
+  <p>“proprio”发音漏音，且音频结尾处有重复的“qui”字残音。</p>
+  <ul><li><b>漏读</b>「proprio」：漏掉了第二个辅音r，发音成了“propio”。</li><li><b>多出来的话</b>「末尾的qui」：句末多余重复了一次轻声的“qui”并被截断。</li></ul>
+  <p class="meta">模型听到：Va bene! Sorrida… ecco fatto. Perché propio qui? qui</p>
+  
   <p class="meta">双辅音需人工听：Sorrida, ecco, fatto</p>
 </section><section class="card">
-  <h2><span class="n">6</span>Buongiorno! Mi dica.</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>3eed0553a758803b.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/3eed0553a758803b.m4a"></audio>
-  <p>开头辅音发音失真，且整体音频有明显的慢速机械失真感。</p>
-  <ul><li><b>读错</b>「Buongiorno」：首字母B发音不清，听起来像M。</li><li><b>放慢失真</b>「整句」：慢速处理导致声音沙哑、颤抖且机械感明显。</li></ul>
-  <p class="meta">模型听到：Muongiorno! Mi dica.</p>
-  <p class="meta">转写模型听到：Buongiorno, mi dica.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">7</span>Sono sedici euro, grazie. Ecco il biglietto.</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>bc7a1d9b105d31e1.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/bc7a1d9b105d31e1.m4a"></audio>
-  <p>单词“grazie”发音有误，缺失了辅音“r”。</p>
-  <ul><li><b>读错</b>「grazie」：“grazie”漏掉了“r”音，被读成了“gazie”。</li></ul>
-  <p class="meta">模型听到：Sono sedici euro, gazie. Ecco il biglietto.</p>
-  <p class="meta">转写模型听到：Sono 16 euro grazie ecco il biglietto（和原文不同）</p>
-  <p class="meta">双辅音需人工听：Ecco, biglietto</p>
-</section><section class="card">
-  <h2><span class="n">8</span>Sono un fan di JoJo.</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>e64c7b25453116be.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/e64c7b25453116be.m4a"></audio>
-  <p>语音将目标词“JoJo”错读成了“Giorgio”。</p>
-  <ul><li><b>读错</b>「JoJo」：将“JoJo”误读为了“Giorgio”。</li></ul>
-  <p class="meta">模型听到：Sono un fan di Giorgio.</p>
-  <p class="meta">转写模型听到：Sono un fan di JoJo（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">9</span>Sono un fan di JoJo.</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>2bd2b8f1028a4af2.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/2bd2b8f1028a4af2.m4a"></audio>
-  <p>末尾词汇被误读为另一个名字。</p>
-  <ul><li><b>读错</b>「JoJo」：将 JoJo 误读为 Giorgio。</li></ul>
-  <p class="meta">模型听到：Sono un fan di Giorgio.</p>
-  <p class="meta">转写模型听到：Sono un fan di Jojo.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">10</span>Sì: prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì.</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>5406079a3a8f90c3.m4a</code> ·
-    严重度 medium · 置信度 0.95</p>
-  <audio controls preload="none" src="../Audio/5406079a3a8f90c3.m4a"></audio>
-  <p>整体发音和语调自然，但最后一个词“lì”在结尾处被明显截断，不够完整。</p>
-  <ul><li><b>截断</b>「lì」：音频结尾处的“lì”元音尚未发完就被突然截断。</li></ul>
-  <p class="meta">模型听到：Sì: prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì</p>
-  <p class="meta">转写模型听到：Sì, prenda la prima a destra, poi all&#x27;incrocio giri a sinistra. La metro è lì.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：all</p>
-</section><section class="card">
-  <h2><span class="n">11</span>L&#x27;ingresso? Giri a destra, è lì.</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>ee151c4278d22b93.m4a</code> ·
-    严重度 medium · 置信度 0.75</p>
-  <audio controls preload="none" src="../Audio/ee151c4278d22b93.m4a"></audio>
-  <p>音频末尾的“lì”被明显截断，发音不完整。</p>
-  <ul><li><b>截断</b>「lì」：句末单词发音未结束即被截断。</li></ul>
-  <p class="meta">模型听到：L&#x27;ingresso? Giri a destra, è lì-</p>
-  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a destra, è lì.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：ingresso</p>
-</section><section class="card">
-  <h2><span class="n">12</span>Dove devo scendere?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>cedabe2ff9eb8e58.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/cedabe2ff9eb8e58.m4a"></audio>
-  <p>句末单词“scendere”未完整发音，缺少最后的元音。</p>
-  <ul><li><b>截断</b>「scendere」：词尾元音“e”缺失或被截断。</li></ul>
-  <p class="meta">模型听到：Dove devo scender</p>
-  <p class="meta">转写模型听到：Dove devo scendere?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">13</span>Dove devo scendere?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>f3a90493dfcdd4c3.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/f3a90493dfcdd4c3.m4a"></audio>
-  <p>句末单词“scendere”词尾被截断，发音不完整。</p>
-  <ul><li><b>截断</b>「scendere」：词尾元音“e”被截断。</li></ul>
-  <p class="meta">模型听到：Dove devo scender</p>
-  <p class="meta">转写模型听到：Dove devo scendere?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">14</span>L&#x27;ingresso? Giri a sinistra, è lì.</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>17d7486efe7d9f7b.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/17d7486efe7d9f7b.m4a"></audio>
-  <p>音频结尾处的“lì”发音被截断，听起来不完整。</p>
-  <ul><li><b>截断</b>「lì」：句末最后一个词的元音被突然截断。</li></ul>
-  <p class="meta">模型听到：L&#x27;ingresso? Giri a sinistra, è lì.</p>
-  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a sinistra, è lì.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：ingresso</p>
-</section><section class="card">
-  <h2><span class="n">15</span>Si può andare a piedi?</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>e0b1a38451e59c1c.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/e0b1a38451e59c1c.m4a"></audio>
-  <p>音频末尾被截断，单词piedi发音不完整。</p>
-  <ul><li><b>截断</b>「piedi」：末尾单词piedi被截断，缺少最后一个音节。</li></ul>
-  <p class="meta">模型听到：Si può andare a pie</p>
-  <p class="meta">转写模型听到：Si può andare a piedi?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">16</span>Ah, JoJo! Qui ne vengono tanti. Buona visita!</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>611656146f43d74e.m4a</code> ·
-    严重度 medium · 置信度 0.75</p>
-  <audio controls preload="none" src="../Audio/611656146f43d74e.m4a"></audio>
-  <p>动词“vengono”重音位置明显错误。</p>
-  <ul><li><b>重音</b>「vengono」：重音错放在第二音节，应在第一音节。</li></ul>
-  <p class="meta">模型听到：Ah, JoJo! Qui ne vengono tanti. Buona visita!</p>
-  <p class="meta">转写模型听到：Ah, Jojo, qui ne vengono tanti. Buona visita.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">17</span>Dove devo scendere?</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>ef9110cc3f133c6c.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/ef9110cc3f133c6c.m4a"></audio>
-  <p>首词“Dove”重音位置错误。</p>
-  <ul><li><b>重音</b>「Dove」：重音错误地落在了第二个音节，听起来像“dov&#x27;è”。</li></ul>
-  <p class="meta">模型听到：Dov&#x27;è devo scendere?</p>
-  <p class="meta">转写模型听到：Dove devo scendere?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">18</span>L&#x27;ingresso? Giri a destra, è lì.</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>2089989109dba405.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/2089989109dba405.m4a"></audio>
-  <p>末尾“è lì”的重音和连读处理不当，听起来不自然。</p>
-  <ul><li><b>重音</b>「è lì」：末尾的“è lì”重音错误，听起来像单个词“elli”，且尾音略微截断。</li></ul>
-  <p class="meta">模型听到：L&#x27;ingresso? Giri a destra, elli.</p>
-  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a destra, è lì.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：ingresso</p>
-</section><section class="card">
-  <h2><span class="n">19</span>L&#x27;ingresso? Giri a destra, è lì.</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>7439883bcf02d7e4.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/7439883bcf02d7e4.m4a"></audio>
-  <p>末尾“è lì”的重音和语调不正确，听起来像名字“Ellie”。</p>
-  <ul><li><b>重音</b>「è lì」：重音错误地落在了“è”上，听起来像单个词“elli”。</li></ul>
-  <p class="meta">模型听到：L&#x27;ingresso? Giri a destra, elli.</p>
-  <p class="meta">转写模型听到：L&#x27;ingresso? Giri a destra, è lì.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：ingresso</p>
-</section><section class="card">
-  <h2><span class="n">20</span>L&#x27;ingresso? Vada sempre dritto, è lì.</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>18a560ea17edba35.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/18a560ea17edba35.m4a"></audio>
-  <p>“Vada”一词重音位置明显错误。</p>
-  <ul><li><b>重音</b>「Vada」：重音错误地落在了第二个音节上，读成了vadà。</li></ul>
-  <p class="meta">模型听到：L&#x27;ingresso? Vadà sempre dritto, è lì.</p>
-  <p class="meta">转写模型听到：L&#x27;ingresso? Vada sempre dritto, è lì.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：ingresso, dritto</p>
-</section><section class="card">
-  <h2><span class="n">21</span>Serve la prenotazione?</h2>
+  <h2><span class="n">2</span>Serve la prenotazione?</h2>
   <p class="meta">m1@1（Charon） · 原速 · <code>08425edc6ba92927.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/08425edc6ba92927.m4a"></audio>
@@ -238,26 +48,6 @@ code { font-size: 0.85em; }
   <ul><li><b>重音</b>「Serve」：重音错误地放在了第二个音节。</li></ul>
   <p class="meta">模型听到：Serve la prenotazione?</p>
   <p class="meta">转写模型听到：serve la prenotazione（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">22</span>Certo! Ecco fatto. Va bene così?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>20bd76ce5e71b3c5.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/20bd76ce5e71b3c5.m4a"></audio>
-  <p>整体发音与语调自然，但在“Ecco”前有一处明显的音频杂音。</p>
-  <ul><li><b>杂音</b>「Ecco」：“Ecco”一词前有明显的爆破杂音。</li></ul>
-  <p class="meta">模型听到：Certo! Ecco fatto. Va bene così?</p>
-  <p class="meta">转写模型听到：Certo. Ecco fatto. Va bene così?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：Ecco, fatto</p>
-</section><section class="card">
-  <h2><span class="n">23</span>Lo prendo.</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>4e2ce327734aa8f3.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/4e2ce327734aa8f3.m4a"></audio>
-  <p>音频开头存在多余的人声杂音，但目标短语发音清晰。</p>
-  <ul><li><b>杂音</b>「开头」：语音开始前有明显的哼声或轻笑杂音。</li></ul>
-  <p class="meta">模型听到：Lo prendo.</p>
-  <p class="meta">转写模型听到：Mh, lo prendo.（和原文不同）</p>
   
 </section>
 <details class="gem">

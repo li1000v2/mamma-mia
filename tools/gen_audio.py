@@ -138,8 +138,10 @@ class Gemini:
         self.project = project
         self.config = config
 
+    timeout = 120.0  # seconds per request; regen_audio.py waits longer when the service is slow
+
     def _post(self, model: str, body: dict) -> dict:
-        return post(self.key, self.project, model, body)
+        return post(self.key, self.project, model, body, timeout=self.timeout)
 
     def speak(self, text: str, voice_name: str) -> bytes:
         body = {

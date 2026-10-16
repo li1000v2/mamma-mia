@@ -27,7 +27,7 @@ code { font-size: 0.85em; }
 <body>
 <main>
 <h1>示范音频粗筛 · 第 2 周</h1>
-<p class="meta">已筛 235 / 236 段，可疑 15 段（原速 9，慢速 6）。
+<p class="meta">已筛 235 / 236 段，可疑 4 段（原速 2，慢速 2）。
 模型 gemini-4-argon，花费估算 $0.94。按需要听的先后排列。</p>
 <section class="card">
   <h2><span class="n">1</span>Un&#x27;acqua naturale, per favore.</h2>
@@ -50,107 +50,7 @@ code { font-size: 0.85em; }
   <p class="meta">转写模型听到：Va bene. Allora niente crostacei. Da bere? Un bicchiere di vino?（和原文一致）</p>
   <p class="meta">双辅音需人工听：allora, bicchiere</p>
 </section><section class="card">
-  <h2><span class="n">3</span>Va bene, allora niente crostacei. Da bere, un bicchiere di vino?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>d4f1946086786710.m4a</code> ·
-    严重度 medium · 置信度 0.75</p>
-  <audio controls preload="none" src="../Audio/d4f1946086786710.m4a"></audio>
-  <p>单词“bicchiere”中的元音发音错误，被读成了“bicchiare”。</p>
-  <ul><li><b>读错</b>「bicchiere」：将“bicchiere”误读为“bicchiare”。</li></ul>
-  <p class="meta">模型听到：Va bene, allora niente crostacei. Da bere, un bicchiare di vino?</p>
-  <p class="meta">转写模型听到：Va bene, allora niente crostacei. Da bere, un bicchiere di vino?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：allora, bicchiere</p>
-</section><section class="card">
-  <h2><span class="n">4</span>A che ora apre?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>5643d585a70f8417.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/5643d585a70f8417.m4a"></audio>
-  <p>“che ora”发音不清晰且重音异常，不适合初学者。</p>
-  <ul><li><b>读错</b>「che ora」：“che ora”元音发音含糊且重音错置，听起来像“chiura”。</li></ul>
-  <p class="meta">模型听到：A chiora apre?</p>
-  <p class="meta">转写模型听到：A che ora apre?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">5</span>Buonasera e benvenuto! Ha una prenotazione?</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>27788d85e541647b.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/27788d85e541647b.m4a"></audio>
-  <p>连词“e”发音不准确，读成了“ei”，其余部分发音自然。</p>
-  <ul><li><b>读错</b>「e」：连词“e”被误读为双元音“ei”。</li></ul>
-  <p class="meta">模型听到：Buonasera ei benvenuto! Ha una prenotazione?</p>
-  <p class="meta">转写模型听到：Buonasera e benvenuto. Ha una prenotazione?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">6</span>Buonasera, benvenuto!</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>12fa12e69ac78399.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/12fa12e69ac78399.m4a"></audio>
-  <p>首词元音发音错误，且音频结尾有轻微截断。</p>
-  <ul><li><b>读错</b>「Buonasera」：元音发音有误，听起来像Buonasiera。</li><li><b>截断</b>「benvenuto」：词尾的o有轻微截断。</li></ul>
-  <p class="meta">模型听到：Buonasiera, benvenuto</p>
-  <p class="meta">转写模型听到：Buonasera, benvenuto.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">7</span>Devo validare il biglietto?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>baa34889be56ccca.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/baa34889be56ccca.m4a"></audio>
-  <p>“biglietto”中的辅音组合“gli”发音不准确，读成了“li”。</p>
-  <ul><li><b>读错</b>「biglietto」：将“gli”错误发音为普通的“li”音。</li></ul>
-  <p class="meta">模型听到：Devo validare il bilietto?</p>
-  <p class="meta">转写模型听到：Devo validare il biglietto?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：biglietto</p>
-</section><section class="card">
-  <h2><span class="n">8</span>Ho prenotato una camera a nome di…</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>a0987113b2cf0708.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/a0987113b2cf0708.m4a"></audio>
-  <p>单词“nome”的元音发音有误，听起来像“nume”。</p>
-  <ul><li><b>读错</b>「nome」：“nome”被误读为“nume”。</li></ul>
-  <p class="meta">模型听到：Ho prenotato una camera a nume di</p>
-  <p class="meta">转写模型听到：Ho prenotato una camera a nome di（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">9</span>Buongiorno! Posso aiutarla?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>2bb5a90f1d676636.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/2bb5a90f1d676636.m4a"></audio>
-  <p>首词开头被截断，缺少B音。</p>
-  <ul><li><b>截断</b>「Buongiorno」：词首辅音B缺失，听起来像Uongiorno。</li></ul>
-  <p class="meta">模型听到：Uongiorno! Posso aiutarla?</p>
-  <p class="meta">转写模型听到：Buongiorno, posso aiutarla?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：Posso</p>
-</section><section class="card">
-  <h2><span class="n">10</span>Tutto bene? Desidera un dolce o un caffè?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>02e37bc2dc9dabd3.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/02e37bc2dc9dabd3.m4a"></audio>
-  <p>整体发音清晰，但音频末尾“caffè”的元音收尾过于突兀，存在轻微截断。</p>
-  <ul><li><b>截断</b>「caffè」：句末单词“caffè”的尾音被轻微截断。</li></ul>
-  <p class="meta">模型听到：Tutto bene? Desidera un dolce o un caffè</p>
-  <p class="meta">转写模型听到：Tutto bene? Desidera un dolce o un caffè?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：Tutto, caffè</p>
-</section><section class="card">
-  <h2><span class="n">11</span>Il menù, per favore.</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>3e575fe9269f7225.m4a</code> ·
-    严重度 medium · 置信度 0.95</p>
-  <audio controls preload="none" src="../Audio/3e575fe9269f7225.m4a"></audio>
-  <p>单词 menù 的重音位置错误，重读了第一个音节而非带重音符号的最后一个音节。</p>
-  <ul><li><b>重音</b>「menù」：单词 menù 带有重音符号，重音应落在最后一个音节（me-NÙ），但音频中重读了第一个音节（ME-nu）。</li></ul>
-  <p class="meta">模型听到：Il menu, per favore.</p>
-  <p class="meta">转写模型听到：Il menu, per favore.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">12</span>Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>018e9c26dbb0e9e2.m4a</code> ·
-    严重度 medium · 置信度 0.85</p>
-  <audio controls preload="none" src="../Audio/018e9c26dbb0e9e2.m4a"></audio>
-  <p>整体文本完整清晰，但常用词“allora”出现了明显的重音错位，可能会误导初学者。</p>
-  <ul><li><b>重音</b>「allora」：“allora”的重音错误地落在了第一个音节上，听起来像“àllora”，正确重音应在第二个音节“allóra”。</li></ul>
-  <p class="meta">模型听到：Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?</p>
-  <p class="meta">转写模型听到：Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：allora, Acqua, frizzante</p>
-</section><section class="card">
-  <h2><span class="n">13</span>Sì, prego, da questa parte. Ecco il menù.</h2>
+  <h2><span class="n">3</span>Sì, prego, da questa parte. Ecco il menù.</h2>
   <p class="meta">m1@1（Charon） · 慢速 · <code>e1ec1ebe16f64c84.m4a</code> ·
     严重度 medium · 置信度 0.75</p>
   <audio controls preload="none" src="../Audio/e1ec1ebe16f64c84.m4a"></audio>
@@ -160,17 +60,7 @@ code { font-size: 0.85em; }
   <p class="meta">转写模型听到：Sì, prego, da questa parte. Ecco il menu.（和原文一致）</p>
   <p class="meta">双辅音需人工听：Ecco</p>
 </section><section class="card">
-  <h2><span class="n">14</span>Stasera le sarde in saor sono buonissime. Ha qualche allergia?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>3bdb07d6ce69a7ac.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/3bdb07d6ce69a7ac.m4a"></audio>
-  <p>“saor”的重音位置有误，其余部分发音自然流畅。</p>
-  <ul><li><b>重音</b>「saor」：重音错误地落在了第一个音节（sà-or），正确发音重音应在尾音节（sa-ór）。</li></ul>
-  <p class="meta">模型听到：Stasera le sarde in saor sono buonissime. Ha qualche allergia?</p>
-  <p class="meta">转写模型听到：Stasera le sarde in saor sono buonissime. Ha qualche allergia?（和原文一致）</p>
-  <p class="meta">双辅音需人工听：buonissime, allergia</p>
-</section><section class="card">
-  <h2><span class="n">15</span>Sì, prego, da questa parte. Ecco il menù.</h2>
+  <h2><span class="n">4</span>Sì, prego, da questa parte. Ecco il menù.</h2>
   <p class="meta">m1@1（Charon） · 原速 · <code>c037de3950ead8f0.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/c037de3950ead8f0.m4a"></audio>

@@ -27,7 +27,7 @@ code { font-size: 0.85em; }
 <body>
 <main>
 <h1>示范音频粗筛 · 第 1 周</h1>
-<p class="meta">已筛 194 / 194 段，可疑 26 段（原速 14，慢速 12）。
+<p class="meta">已筛 194 / 194 段，可疑 9 段（原速 6，慢速 3）。
 模型 gemini-4-argon，花费估算 $0.78。按需要听的先后排列。</p>
 <section class="card">
   <h2><span class="n">1</span>Napoli</h2>
@@ -44,10 +44,10 @@ code { font-size: 0.85em; }
   <p class="meta">f1@1（Kore） · 原速 · <code>d9890204c1d54ddf.m4a</code> ·
     严重度 high · 置信度 1.00</p>
   <audio controls preload="none" src="../Audio/d9890204c1d54ddf.m4a"></audio>
-  <p>该音频直接按英语发音朗读了单词，不适合作为意大利语教学素材。</p>
-  <ul><li><b>读错</b>「caffè」：完全使用了美式英语“café”（/kæˈfeɪ/）的发音，元音错误，不符合意大利语发音规则。</li></ul>
-  <p class="meta">模型听到：café</p>
-  <p class="meta">转写模型听到：caffè（和原文一致）</p>
+  <p>该音频直接使用了美式英语的“cafe”发音，而非意大利语的“caffè”。</p>
+  <ul><li><b>读错</b>「caffè」：使用了英语发音（/kæˈfeɪ/），元音与意大利语完全不符。</li></ul>
+  <p class="meta">模型听到：cafe</p>
+  <p class="meta">转写模型听到：Caffè（和原文一致）</p>
   <p class="meta">双辅音需人工听：caffè</p>
 </section><section class="card">
   <h2><span class="n">3</span>biglietto</h2>
@@ -70,17 +70,7 @@ code { font-size: 0.85em; }
   <p class="meta">转写模型听到：chiesa（和原文一致）</p>
   
 </section><section class="card">
-  <h2><span class="n">5</span>Me lo può scrivere?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>217be0b9eb085f58.m4a</code> ·
-    严重度 high · 置信度 0.90</p>
-  <audio controls preload="none" src="../Audio/217be0b9eb085f58.m4a"></audio>
-  <p>“lo”发音带有浓重的英语双元音口音，“scrivere”重音和语调不自然，且伴有放慢导致的失真，不适合初学者模仿。</p>
-  <ul><li><b>读错</b>「lo」：“lo”的元音发成了类似英语“low”的双元音[oʊ]，带有明显的外语口音。</li><li><b>重音</b>「scrivere」：“scrivere”的重音本应在第一音节（SCRI-ve-re），但音频听起来重音后移且语调怪异。</li><li><b>放慢失真</b>「lo può」：放慢后在“lo può”处有明显的机械颤音失真。</li></ul>
-  <p class="meta">模型听到：Me lo può scrivere?</p>
-  <p class="meta">转写模型听到：Me lo può scrivere?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">6</span>Posso pagare con la carta?</h2>
+  <h2><span class="n">5</span>Posso pagare con la carta?</h2>
   <p class="meta">m1@1（Charon） · 原速 · <code>3deae421f12d12c5.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/3deae421f12d12c5.m4a"></audio>
@@ -90,127 +80,7 @@ code { font-size: 0.85em; }
   <p class="meta">转写模型听到：Posso pagare con la carta?（和原文一致）</p>
   <p class="meta">双辅音需人工听：Posso</p>
 </section><section class="card">
-  <h2><span class="n">7</span>Ho perso il biglietto.</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>33e66e11b7ae3e01.m4a</code> ·
-    严重度 medium · 置信度 0.80</p>
-  <audio controls preload="none" src="../Audio/33e66e11b7ae3e01.m4a"></audio>
-  <p>冠词“il”发音不完整，不适合初级课程展示。</p>
-  <ul><li><b>漏读</b>「il」：冠词“il”的元音“i”缺失，与前词连读成了“persol”。</li></ul>
-  <p class="meta">模型听到：Ho persol biglietto.</p>
-  <p class="meta">转写模型听到：Ho perso il biglietto（和原文一致）</p>
-  <p class="meta">双辅音需人工听：biglietto</p>
-</section><section class="card">
-  <h2><span class="n">8</span>Certo, ecco. Grazie e buona giornata!</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>2eeba756b05ac40e.m4a</code> ·
-    严重度 medium · 置信度 0.90</p>
-  <audio controls preload="none" src="../Audio/2eeba756b05ac40e.m4a"></audio>
-  <p>首词“Certo”发音失真，开头辅音听起来像“zarto”，容易误导初学者对软音 c 的发音认知。</p>
-  <ul><li><b>读错</b>「Certo」：开头的辅音 c 发音像清塞擦音 z [ts]，且元音 e 过于开阔接近 a，听起来像“zarto”。</li></ul>
-  <p class="meta">模型听到：Zarto, ecco. Grazie e buona giornata!</p>
-  <p class="meta">转写模型听到：Certo. Ecco. Grazie e buona giornata.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：ecco</p>
-</section><section class="card">
-  <h2><span class="n">9</span>Un cappuccino e una brioche, per favore.</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>701c00a0780f9434.m4a</code> ·
-    严重度 medium · 置信度 0.85</p>
-  <audio controls preload="none" src="../Audio/701c00a0780f9434.m4a"></audio>
-  <p>“cappuccino”一词发音带有明显的英语送气特征且语调不自然，不适合作为初学者跟读示范。</p>
-  <ul><li><b>读错</b>「cappuccino」：词首的 c 带有明显的英语式送气音（听起来像 kha-pu-ci-no），不符合意大利语不送气清辅音的发音规范。</li><li><b>语调节奏</b>「Un cappuccino」：开头词组的语调起伏生硬怪异，带有明显的外语口音感。</li></ul>
-  <p class="meta">模型听到：Un cappuccino e una brioche, per favore.</p>
-  <p class="meta">转写模型听到：Un cappuccino e una brioche, per favore.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：cappuccino</p>
-</section><section class="card">
-  <h2><span class="n">10</span>A che ora chiude il museo?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>2d33feb46d176731.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/2d33feb46d176731.m4a"></audio>
-  <p>开头“che ora”发音不准确，粘连成了“chiura”。</p>
-  <ul><li><b>读错</b>「che ora」：“che ora”发音错误，听起来像“chiura”。</li></ul>
-  <p class="meta">模型听到：A chiura chiude il museo?</p>
-  <p class="meta">转写模型听到：A che ora chiude il museo?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">11</span>Altro?</h2>
-  <p class="meta">f1@1（Kore） · 慢速 · <code>1bf60bdd1be03acd.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/1bf60bdd1be03acd.m4a"></audio>
-  <p>该音频使用了美式英语口音朗读，不符合意大利语发音规则。</p>
-  <ul><li><b>读错</b>「Altro」：辅音r和词尾元音o使用了明显的美式英语发音。</li></ul>
-  <p class="meta">模型听到：Altro?</p>
-  <p class="meta">转写模型听到：Altro?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">12</span>Ciao!</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>45e16d8ff2404408.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/45e16d8ff2404408.m4a"></audio>
-  <p>目标词发音不准确，词尾的o被读成了i。</p>
-  <ul><li><b>读错</b>「Ciao」：词尾元音发音有误，听起来像“Ciai”。</li></ul>
-  <p class="meta">模型听到：Ciai!</p>
-  <p class="meta">转写模型听到：Ciao!（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">13</span>Ecco lo scontrino.</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>5ea3ee52923d2762.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/5ea3ee52923d2762.m4a"></audio>
-  <p>整体清晰，但 scontrino 词首辅音发音不够标准，可能误导初学者。</p>
-  <ul><li><b>读错</b>「scontrino」：词首的 s 发音偏向卷舌的 sh 音，不够标准。</li></ul>
-  <p class="meta">模型听到：Ecco lo scontrino.</p>
-  <p class="meta">转写模型听到：Ecco lo scontrino.（和原文一致）</p>
-  <p class="meta">双辅音需人工听：Ecco</p>
-</section><section class="card">
-  <h2><span class="n">14</span>Ho perso il biglietto.</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>810fe363eed78c08.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/810fe363eed78c08.m4a"></audio>
-  <p>“biglietto”的辅音组合“gli”发音有误，建议人工复核。</p>
-  <ul><li><b>读错</b>「biglietto」：词中的“gli”发音不标准，听起来像“y”音。</li></ul>
-  <p class="meta">模型听到：Ho perso il biyeto.</p>
-  <p class="meta">转写模型听到：Ho perso il biglietto（和原文一致）</p>
-  <p class="meta">双辅音需人工听：biglietto</p>
-</section><section class="card">
-  <h2><span class="n">15</span>Mamma mia!</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>187c359c5e8b73b7.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/187c359c5e8b73b7.m4a"></audio>
-  <p>发音呈英语口音且元音不准，同时慢速处理造成了明显的声音失真。</p>
-  <ul><li><b>读错</b>「Mamma mia」：带有明显英语口音，词尾元音弱化不准确。</li><li><b>放慢失真</b>「整句」：降速导致尾音严重沙哑失真。</li></ul>
-  <p class="meta">模型听到：Mama mia!</p>
-  <p class="meta">转写模型听到：Mamma mia!（和原文一致）</p>
-  <p class="meta">双辅音需人工听：Mamma</p>
-</section><section class="card">
-  <h2><span class="n">16</span>Me lo può scrivere?</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>ae2086d63c2bd9c7.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/ae2086d63c2bd9c7.m4a"></audio>
-  <p>“lo”的发音明显带有英语口音，不符合意大利语发音规范。</p>
-  <ul><li><b>读错</b>「lo」：元音被读成了类似英语的双元音/oʊ/。</li></ul>
-  <p class="meta">模型听到：Me lo può scrivere?</p>
-  <p class="meta">转写模型听到：Me lo può scrivere?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">17</span>Me lo può scrivere?</h2>
-  <p class="meta">m1@1（Charon） · 慢速 · <code>1dcc1e036b2a4e39.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/1dcc1e036b2a4e39.m4a"></audio>
-  <p>单词“può”发音有误，漏掉了其中的“u”音。</p>
-  <ul><li><b>读错</b>「può」：“può”读成了“po”，缺少“u”音。</li></ul>
-  <p class="meta">模型听到：Me lo po scrivere?</p>
-  <p class="meta">转写模型听到：Me lo può scrivere?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">18</span>Quant&#x27;è?</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>8d85ffc594058351.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/8d85ffc594058351.m4a"></audio>
-  <p>将“Quant&#x27;è?”误读为重音在首音节的“quante”。</p>
-  <ul><li><b>读错</b>「Quant&#x27;è」：重音错误地落在第一音节，读成了“quante”。</li></ul>
-  <p class="meta">模型听到：Quante</p>
-  <p class="meta">转写模型听到：Quant&#x27;è?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">19</span>biglietto</h2>
+  <h2><span class="n">6</span>biglietto</h2>
   <p class="meta">m1@1（Charon） · 原速 · <code>42950c0514e42b03.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/42950c0514e42b03.m4a"></audio>
@@ -220,17 +90,17 @@ code { font-size: 0.85em; }
   <p class="meta">转写模型听到：Biglietto（和原文一致）</p>
   <p class="meta">双辅音需人工听：biglietto</p>
 </section><section class="card">
-  <h2><span class="n">20</span>caffè</h2>
+  <h2><span class="n">7</span>caffè</h2>
   <p class="meta">f1@1（Kore） · 慢速 · <code>b6f9a4f718d95cdc.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/b6f9a4f718d95cdc.m4a"></audio>
-  <p>该词使用了英语发音而非意大利语发音。</p>
-  <ul><li><b>读错</b>「caffè」：按英语发音读作了 /kæfeɪ/，元音明显错误。</li></ul>
-  <p class="meta">模型听到：café</p>
+  <p>单词按英语发音朗读，元音错误。</p>
+  <ul><li><b>读错</b>「caffè」：使用了英语发音而非意大利语发音。</li></ul>
+  <p class="meta">模型听到：caffè (pronuncia inglese)</p>
   <p class="meta">转写模型听到：café（和原文不同）</p>
   <p class="meta">双辅音需人工听：caffè</p>
 </section><section class="card">
-  <h2><span class="n">21</span>caffè</h2>
+  <h2><span class="n">8</span>caffè</h2>
   <p class="meta">m1@1（Charon） · 原速 · <code>c51c0dbf7d04ade4.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/c51c0dbf7d04ade4.m4a"></audio>
@@ -240,7 +110,7 @@ code { font-size: 0.85em; }
   <p class="meta">转写模型听到：Caffè（和原文一致）</p>
   <p class="meta">双辅音需人工听：caffè</p>
 </section><section class="card">
-  <h2><span class="n">22</span>caffè</h2>
+  <h2><span class="n">9</span>caffè</h2>
   <p class="meta">m1@1（Charon） · 慢速 · <code>87599519e1091485.m4a</code> ·
     严重度 medium · 置信度 0.70</p>
   <audio controls preload="none" src="../Audio/87599519e1091485.m4a"></audio>
@@ -249,46 +119,6 @@ code { font-size: 0.85em; }
   <p class="meta">模型听到：cafe</p>
   <p class="meta">转写模型听到：caffè（和原文一致）</p>
   <p class="meta">双辅音需人工听：caffè</p>
-</section><section class="card">
-  <h2><span class="n">23</span>uscita</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>262267f686613e95.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/262267f686613e95.m4a"></audio>
-  <p>单词发音错误，多出了不该有的辅音r。</p>
-  <ul><li><b>读错</b>「uscita」：在第一个音节后多发了一个r音，听起来像urscita。</li></ul>
-  <p class="meta">模型听到：urscita</p>
-  <p class="meta">转写模型听到：Uscita（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">24</span>Scusi.</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>a53cfd927047f816.m4a</code> ·
-    严重度 medium · 置信度 0.85</p>
-  <audio controls preload="none" src="../Audio/a53cfd927047f816.m4a"></audio>
-  <p>发音开头带有明显的杂音（类似 p 的爆破音），且整体发音过于急促短促。</p>
-  <ul><li><b>杂音</b>「Scusi 开头」：音频开头有一声明显的爆破杂音，听起来像多了一个辅音 p。</li><li><b>截断</b>「Scusi 结尾」：词尾收音过于急促，略微有被截断的感觉。</li></ul>
-  <p class="meta">模型听到：Scusi</p>
-  <p class="meta">转写模型听到：Scusi?（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">25</span>Sono un euro e venti.</h2>
-  <p class="meta">m1@1（Charon） · 原速 · <code>0e48ebe7a8c71195.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/0e48ebe7a8c71195.m4a"></audio>
-  <p>音频在最后一个词处突然中断，发音不完整。</p>
-  <ul><li><b>截断</b>「venti」：末尾单词词尾被截断。</li></ul>
-  <p class="meta">模型听到：Sono un euro e vent-</p>
-  <p class="meta">转写模型听到：Sono un euro e venti.（和原文一致）</p>
-  
-</section><section class="card">
-  <h2><span class="n">26</span>Un euro e trenta, grazie.</h2>
-  <p class="meta">f1@1（Kore） · 原速 · <code>c0984323ce97b83a.m4a</code> ·
-    严重度 medium · 置信度 0.70</p>
-  <audio controls preload="none" src="../Audio/c0984323ce97b83a.m4a"></audio>
-  <p>音频末尾的单词被明显截断，发音不完整。</p>
-  <ul><li><b>截断</b>「grazie」：末尾单词发音被截断。</li></ul>
-  <p class="meta">模型听到：Un euro e trenta, grazi-</p>
-  <p class="meta">转写模型听到：Un euro e trenta, grazie.（和原文一致）</p>
-  
 </section>
 <details class="gem">
 <summary>双辅音需人工听（22 句，原速）</summary>

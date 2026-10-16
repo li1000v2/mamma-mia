@@ -1,0 +1,1370 @@
+{
+  "version": 1,
+  "recordings": {
+    "f1@1|A che ora apre?": {
+      "voice": "f1@1",
+      "text": "A che ora apre?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "127612cd330faff5.m4a",
+        "s": "5643d585a70f8417.m4a"
+      },
+      "at": "2026-10-16T12:10:10Z"
+    },
+    "f1@1|A che ora chiude il museo?": {
+      "voice": "f1@1",
+      "text": "A che ora chiude il museo?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "975d9b2d7fdac27e.m4a",
+        "s": "2d33feb46d176731.m4a"
+      },
+      "at": "2026-10-16T11:45:51Z"
+    },
+    "f1@1|A che ora chiude oggi?": {
+      "voice": "f1@1",
+      "text": "A che ora chiude oggi?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2b279185c4da2583.m4a",
+        "s": "70bbd66671a58acf.m4a"
+      },
+      "at": "2026-10-16T11:54:26Z"
+    },
+    "f1@1|Ah, JoJo! Allora benvenuto a Roma. Buona visita!": {
+      "voice": "f1@1",
+      "text": "Ah, JoJo! Allora benvenuto a Roma. Buona visita!",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "939e7b0689638d43.m4a",
+        "s": "0474769e4e14f470.m4a"
+      },
+      "at": "2026-10-16T11:46:55Z"
+    },
+    "f1@1|Aiuto!": {
+      "voice": "f1@1",
+      "text": "Aiuto!",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "c319c7b623a97d1f.m4a",
+        "s": "e46c3e50a84267a9.m4a"
+      },
+      "at": "2026-10-16T11:52:09Z"
+    },
+    "f1@1|Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.": {
+      "voice": "f1@1",
+      "text": "Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速被标出（漏读）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "8977b69cef75f08d.m4a",
+        "s": "133736d9d3f0b7ff.m4a"
+      },
+      "at": "2026-10-16T11:53:04Z"
+    },
+    "f1@1|Allora, cosa le porto?": {
+      "voice": "f1@1",
+      "text": "Allora, cosa le porto?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错、语调节奏）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "363df4f631fb050d.m4a",
+        "s": "f07739f1cea83d87.m4a"
+      },
+      "at": "2026-10-16T11:54:04Z"
+    },
+    "f1@1|Altro?": {
+      "voice": "f1@1",
+      "text": "Altro?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "6da90f9588b90d3c.m4a",
+        "s": "1bf60bdd1be03acd.m4a"
+      },
+      "at": "2026-10-16T11:45:06Z"
+    },
+    "f1@1|Andata e ritorno o solo andata?": {
+      "voice": "f1@1",
+      "text": "Andata e ritorno o solo andata?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（读错）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "6a6311cc7c7c7656.m4a",
+        "s": "f5ed306bfe3d66c9.m4a"
+      },
+      "at": "2026-10-16T11:59:18Z"
+    },
+    "f1@1|Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.": {
+      "voice": "f1@1",
+      "text": "Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "4a90e1cf51acd42d.m4a",
+        "s": "4cea08ea0ccdc6a0.m4a"
+      },
+      "at": "2026-10-16T11:44:40Z"
+    },
+    "f1@1|Buonasera!": {
+      "voice": "f1@1",
+      "text": "Buonasera!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f3466088e9ea5b44.m4a",
+        "s": "94d5e58a807d7bcd.m4a"
+      },
+      "at": "2026-10-16T12:01:19Z"
+    },
+    "f1@1|Buonasera, benvenuto!": {
+      "voice": "f1@1",
+      "text": "Buonasera, benvenuto!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错、截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "12fa12e69ac78399.m4a",
+        "s": "cf00462ffe58d699.m4a"
+      },
+      "at": "2026-10-16T11:59:43Z"
+    },
+    "f1@1|Buonasera, dove andiamo?": {
+      "voice": "f1@1",
+      "text": "Buonasera, dove andiamo?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（截断）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "73d75e8b85d42dc8.m4a",
+        "s": "1067636a9ae14764.m4a"
+      },
+      "at": "2026-10-16T11:49:08Z"
+    },
+    "f1@1|Buone feste!": {
+      "voice": "f1@1",
+      "text": "Buone feste!",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（截断、放慢失真）",
+        "新版本 2：原速干净，慢速被标出（读错）",
+        "新版本 3：原速干净，慢速被标出（截断）",
+        "新版本 4：原速干净，慢速干净；原速没筛成，慢速没筛成",
+        "都不干净，留下新版本 1"
+      ],
+      "files": {
+        "n": "910a4e681f407f34.m4a",
+        "s": "2aa0ff15824163b4.m4a"
+      },
+      "at": "2026-10-16T12:19:13Z"
+    },
+    "f1@1|Buongiorno! Posso aiutarla?": {
+      "voice": "f1@1",
+      "text": "Buongiorno! Posso aiutarla?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2bb5a90f1d676636.m4a",
+        "s": "dfa5c5988f16f080.m4a"
+      },
+      "at": "2026-10-16T11:51:34Z"
+    },
+    "f1@1|Buongiorno! Prego, dica.": {
+      "voice": "f1@1",
+      "text": "Buongiorno! Prego, dica.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "ac588818307b904b.m4a",
+        "s": "2ffd15e126718a7f.m4a"
+      },
+      "at": "2026-10-16T11:50:30Z"
+    },
+    "f1@1|Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono tre fermate.": {
+      "voice": "f1@1",
+      "text": "Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono tre fermate.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "fa42d65f486e955b.m4a",
+        "s": "ee86a4b3550c3237.m4a"
+      },
+      "at": "2026-10-16T11:58:31Z"
+    },
+    "f1@1|Certo! Dove devo premere?": {
+      "voice": "f1@1",
+      "text": "Certo! Dove devo premere?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（多出来的话），慢速被标出（多出来的话）",
+        "新版本 1：原速被标出（重音），慢速被标出（重音）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "72bf158dcb0f880d.m4a",
+        "s": "955b47306d61870e.m4a"
+      },
+      "at": "2026-10-16T12:12:03Z"
+    },
+    "f1@1|Certo! Ecco fatto. Va bene così?": {
+      "voice": "f1@1",
+      "text": "Certo! Ecco fatto. Va bene così?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速被标出（杂音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "e38dded37c8d3973.m4a",
+        "s": "20bd76ce5e71b3c5.m4a"
+      },
+      "at": "2026-10-16T11:46:00Z"
+    },
+    "f1@1|Certo, ecco. Grazie e buona giornata!": {
+      "voice": "f1@1",
+      "text": "Certo, ecco. Grazie e buona giornata!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "0a4b7176a2d6b969.m4a",
+        "s": "2eeba756b05ac40e.m4a"
+      },
+      "at": "2026-10-16T11:44:55Z"
+    },
+    "f1@1|Che giorno è oggi?": {
+      "voice": "f1@1",
+      "text": "Che giorno è oggi?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "9f3aa45a4d86e6f1.m4a",
+        "s": "d78580195319fe34.m4a"
+      },
+      "at": "2026-10-16T11:50:25Z"
+    },
+    "f1@1|Chiuso il lunedì.": {
+      "voice": "f1@1",
+      "text": "Chiuso il lunedì.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速被标出（重音），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "deca6797517ea273.m4a",
+        "s": "36f61b4fa662ebae.m4a"
+      },
+      "at": "2026-10-16T12:14:27Z"
+    },
+    "f1@1|Ci sono ancora posti liberi?": {
+      "voice": "f1@1",
+      "text": "Ci sono ancora posti liberi?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速被标出（截断），慢速被标出（截断）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "4979c0733346e8e3.m4a",
+        "s": "b5e4b72b89c24792.m4a"
+      },
+      "at": "2026-10-16T11:53:19Z"
+    },
+    "f1@1|Ciao!": {
+      "voice": "f1@1",
+      "text": "Ciao!",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "45e16d8ff2404408.m4a",
+        "s": "73c44d925efb17f8.m4a"
+      },
+      "at": "2026-10-16T11:44:38Z"
+    },
+    "f1@1|Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette.": {
+      "voice": "f1@1",
+      "text": "Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（杂音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a4e1edab992ab44a.m4a",
+        "s": "4a1762582f4314bc.m4a"
+      },
+      "at": "2026-10-16T12:04:05Z"
+    },
+    "f1@1|Devo validare il biglietto?": {
+      "voice": "f1@1",
+      "text": "Devo validare il biglietto?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "baa34889be56ccca.m4a",
+        "s": "6c091b27dc9949d5.m4a"
+      },
+      "at": "2026-10-16T11:45:29Z"
+    },
+    "f1@1|Di dov'è?": {
+      "voice": "f1@1",
+      "text": "Di dov'è?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "9adc61f23b8df103.m4a",
+        "s": "8812235e67dd2fc3.m4a"
+      },
+      "at": "2026-10-16T11:48:50Z"
+    },
+    "f1@1|Dieci minuti, più o meno.": {
+      "voice": "f1@1",
+      "text": "Dieci minuti, più o meno.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速被标出（漏读），慢速干净",
+        "新版本 1：原速被标出（截断），慢速干净",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a9cb30b26823f231.m4a",
+        "s": "00010eab351fed62.m4a"
+      },
+      "at": "2026-10-16T11:58:00Z"
+    },
+    "f1@1|Dove devo scendere?": {
+      "voice": "f1@1",
+      "text": "Dove devo scendere?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（截断）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "cedabe2ff9eb8e58.m4a",
+        "s": "f3a90493dfcdd4c3.m4a"
+      },
+      "at": "2026-10-16T11:46:15Z"
+    },
+    "f1@1|E da bere?": {
+      "voice": "f1@1",
+      "text": "E da bere?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（漏读）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "d1b5a970475eccf5.m4a",
+        "s": "a444b4793a6de5b5.m4a"
+      },
+      "at": "2026-10-16T12:01:19Z"
+    },
+    "f1@1|Ecco a lei, e buone feste!": {
+      "voice": "f1@1",
+      "text": "Ecco a lei, e buone feste!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2d3fc9aaa6b884e7.m4a",
+        "s": "29da035986fe4f81.m4a"
+      },
+      "at": "2026-10-16T11:48:26Z"
+    },
+    "f1@1|Ecco qua, per il mal di testa. Sono nove euro e sessanta.": {
+      "voice": "f1@1",
+      "text": "Ecco qua, per il mal di testa. Sono nove euro e sessanta.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（语调节奏、放慢失真）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "5c8dc59b3de8ad2b.m4a",
+        "s": "24d541041b17ae95.m4a"
+      },
+      "at": "2026-10-16T11:52:15Z"
+    },
+    "f1@1|Ho fame. C'è una pizzeria qui vicino?": {
+      "voice": "f1@1",
+      "text": "Ho fame. C'è una pizzeria qui vicino?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "76d91a1a3c8ff857.m4a",
+        "s": "a0bb47825566ed55.m4a"
+      },
+      "at": "2026-10-16T11:48:14Z"
+    },
+    "f1@1|Ho perso il biglietto.": {
+      "voice": "f1@1",
+      "text": "Ho perso il biglietto.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（漏读）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "810fe363eed78c08.m4a",
+        "s": "33e66e11b7ae3e01.m4a"
+      },
+      "at": "2026-10-16T12:09:25Z"
+    },
+    "f1@1|Ho perso il treno. A che ora parte il prossimo per Roma?": {
+      "voice": "f1@1",
+      "text": "Ho perso il treno. A che ora parte il prossimo per Roma?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（杂音），慢速干净",
+        "新版本 1：原速被标出（语调节奏），慢速被标出（语调节奏）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a14e96f7e3f3c4f4.m4a",
+        "s": "78e3a114bd8c4bfb.m4a"
+      },
+      "at": "2026-10-16T11:50:48Z"
+    },
+    "f1@1|Il menù, per favore.": {
+      "voice": "f1@1",
+      "text": "Il menù, per favore.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错、语调节奏），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "857879aef45e88a5.m4a",
+        "s": "3e575fe9269f7225.m4a"
+      },
+      "at": "2026-10-16T12:00:15Z"
+    },
+    "f1@1|Il treno partirà dal binario cinque anziché dal binario tre.": {
+      "voice": "f1@1",
+      "text": "Il treno partirà dal binario cinque anziché dal binario tre.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "d2b9bf841ca58abb.m4a",
+        "s": "6e8f6bcf5619c547.m4a"
+      },
+      "at": "2026-10-16T11:53:09Z"
+    },
+    "f1@1|L'ingresso? Giri a destra, è lì.": {
+      "voice": "f1@1",
+      "text": "L'ingresso? Giri a destra, è lì.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（其他）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2089989109dba405.m4a",
+        "s": "7439883bcf02d7e4.m4a"
+      },
+      "at": "2026-10-16T11:59:18Z"
+    },
+    "f1@1|L'ingresso? Giri a sinistra, è lì.": {
+      "voice": "f1@1",
+      "text": "L'ingresso? Giri a sinistra, è lì.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "17d7486efe7d9f7b.m4a",
+        "s": "ca9367f7584c95fa.m4a"
+      },
+      "at": "2026-10-16T11:51:18Z"
+    },
+    "f1@1|Me lo può scrivere?": {
+      "voice": "f1@1",
+      "text": "Me lo può scrivere?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速被标出（读错），慢速干净",
+        "新版本 2：原速干净，慢速被标出（读错）",
+        "新版本 3：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "ae2086d63c2bd9c7.m4a",
+        "s": "217be0b9eb085f58.m4a"
+      },
+      "at": "2026-10-16T12:05:13Z"
+    },
+    "f1@1|Mi dispiace! Anche il passaporto?": {
+      "voice": "f1@1",
+      "text": "Mi dispiace! Anche il passaporto?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a4223edf4f9c12f7.m4a",
+        "s": "8092042031e2e8d7.m4a"
+      },
+      "at": "2026-10-16T11:51:52Z"
+    },
+    "f1@1|Oggi chiudiamo alle diciannove e trenta.": {
+      "voice": "f1@1",
+      "text": "Oggi chiudiamo alle diciannove e trenta.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（漏读），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f5d778e5920a3718.m4a",
+        "s": "16559a06fd2b2fc0.m4a"
+      },
+      "at": "2026-10-16T11:57:49Z"
+    },
+    "f1@1|Oggi chiudiamo alle ventuno.": {
+      "voice": "f1@1",
+      "text": "Oggi chiudiamo alle ventuno.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速被标出（截断）",
+        "新版本 1：原速被标出（截断），慢速干净",
+        "新版本 2：原速被标出（读错、截断），慢速干净",
+        "新版本 3：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "76186825d5658523.m4a",
+        "s": "b6617f6bdf03367c.m4a"
+      },
+      "at": "2026-10-16T12:18:48Z"
+    },
+    "f1@1|Quanto costa fino all'aeroporto?": {
+      "voice": "f1@1",
+      "text": "Quanto costa fino all'aeroporto?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速被标出（漏读）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f94d51e6071a687f.m4a",
+        "s": "b4d6227c3e7eccb2.m4a"
+      },
+      "at": "2026-10-16T11:59:39Z"
+    },
+    "f1@1|Quanto costa questo ombrello? Va bene, lo prendo.": {
+      "voice": "f1@1",
+      "text": "Quanto costa questo ombrello? Va bene, lo prendo.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f43d7f2a3c4fd29d.m4a",
+        "s": "2a0ca6e9d5b7dd1d.m4a"
+      },
+      "at": "2026-10-16T11:52:56Z"
+    },
+    "f1@1|Sono da solo. Avete un tavolo libero?": {
+      "voice": "f1@1",
+      "text": "Sono da solo. Avete un tavolo libero?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "e8adb1c5a8af8df4.m4a",
+        "s": "511b7ea560342d89.m4a"
+      },
+      "at": "2026-10-16T11:53:16Z"
+    },
+    "f1@1|Sono sedici euro, grazie. Ecco il biglietto.": {
+      "voice": "f1@1",
+      "text": "Sono sedici euro, grazie. Ecco il biglietto.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速被标出（读错），慢速被标出（读错）",
+        "新版本 2：原速干净，慢速干净；原速被标出（截断），慢速干净",
+        "新版本 3：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "bc7a1d9b105d31e1.m4a",
+        "s": "9e4f88b5bf693f11.m4a"
+      },
+      "at": "2026-10-16T12:02:58Z"
+    },
+    "f1@1|Stasera le sarde in saor sono buonissime. Ha qualche allergia?": {
+      "voice": "f1@1",
+      "text": "Stasera le sarde in saor sono buonissime. Ha qualche allergia?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速被标出（重音），慢速被标出（重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "3bdb07d6ce69a7ac.m4a",
+        "s": "753fecc4a3dcf24b.m4a"
+      },
+      "at": "2026-10-16T12:01:23Z"
+    },
+    "f1@1|Tutto bene? Desidera un dolce o un caffè?": {
+      "voice": "f1@1",
+      "text": "Tutto bene? Desidera un dolce o un caffè?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "991f59d55538ef4d.m4a",
+        "s": "02e37bc2dc9dabd3.m4a"
+      },
+      "at": "2026-10-16T12:01:19Z"
+    },
+    "f1@1|Un cappuccino e una brioche, per favore.": {
+      "voice": "f1@1",
+      "text": "Un cappuccino e una brioche, per favore.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "145087e271565e7f.m4a",
+        "s": "701c00a0780f9434.m4a"
+      },
+      "at": "2026-10-16T11:54:22Z"
+    },
+    "f1@1|Un euro e trenta, grazie.": {
+      "voice": "f1@1",
+      "text": "Un euro e trenta, grazie.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "c0984323ce97b83a.m4a",
+        "s": "55b12f70d6068db1.m4a"
+      },
+      "at": "2026-10-16T11:55:00Z"
+    },
+    "f1@1|Una margherita, per favore.": {
+      "voice": "f1@1",
+      "text": "Una margherita, per favore.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f5389980e96ac37e.m4a",
+        "s": "6b96ed202589dccd.m4a"
+      },
+      "at": "2026-10-16T11:58:00Z"
+    },
+    "f1@1|Va bene, allora niente crostacei. Da bere, un bicchiere di vino?": {
+      "voice": "f1@1",
+      "text": "Va bene, allora niente crostacei. Da bere, un bicchiere di vino?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "d4f1946086786710.m4a",
+        "s": "1653ff1079a318b7.m4a"
+      },
+      "at": "2026-10-16T11:56:58Z"
+    },
+    "f1@1|Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?": {
+      "voice": "f1@1",
+      "text": "Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "97640039565c110a.m4a",
+        "s": "018e9c26dbb0e9e2.m4a"
+      },
+      "at": "2026-10-16T11:55:59Z"
+    },
+    "f1@1|caffè": {
+      "voice": "f1@1",
+      "text": "caffè",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：转写和原文对不上，没筛",
+        "新版本 2：转写和原文对不上，没筛",
+        "新版本 3：原速被标出（读错），慢速被标出（读错）",
+        "新版本 4：转写和原文对不上，没筛",
+        "都不干净，留下现在的版本"
+      ],
+      "files": {
+        "n": "d9890204c1d54ddf.m4a",
+        "s": "b6f9a4f718d95cdc.m4a"
+      },
+      "at": "2026-10-16T12:01:19Z"
+    },
+    "f1@1|uscita": {
+      "voice": "f1@1",
+      "text": "uscita",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "262267f686613e95.m4a",
+        "s": "a0e179f9176ca5cf.m4a"
+      },
+      "at": "2026-10-16T12:02:23Z"
+    },
+    "m1@1|Ah, JoJo! Qui ne vengono tanti. Buona visita!": {
+      "voice": "m1@1",
+      "text": "Ah, JoJo! Qui ne vengono tanti. Buona visita!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "611656146f43d74e.m4a",
+        "s": "8d187e32712de9df.m4a"
+      },
+      "at": "2026-10-16T12:01:19Z"
+    },
+    "m1@1|All'aeroporto di Fiumicino, per favore.": {
+      "voice": "m1@1",
+      "text": "All'aeroporto di Fiumicino, per favore.",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速被标出（读错），慢速被标出（读错）",
+        "新版本 2：原速被标出（读错），慢速被标出（读错）",
+        "新版本 3：原速被标出（读错），慢速被标出（读错）",
+        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "都不干净，留下现在的版本"
+      ],
+      "files": {
+        "n": "996ed8acc11c36f3.m4a",
+        "s": "5ff2b0a6afe484eb.m4a"
+      },
+      "at": "2026-10-16T12:20:07Z"
+    },
+    "m1@1|Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.": {
+      "voice": "m1@1",
+      "text": "Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "7180a1e0c8237425.m4a",
+        "s": "7ca5e6d24e9563f2.m4a"
+      },
+      "at": "2026-10-16T12:08:33Z"
+    },
+    "m1@1|Allora, cosa le porto?": {
+      "voice": "m1@1",
+      "text": "Allora, cosa le porto?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a628346a9befebb4.m4a",
+        "s": "db5c342de7a11677.m4a"
+      },
+      "at": "2026-10-16T12:15:12Z"
+    },
+    "m1@1|Attenzione! Il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre.": {
+      "voice": "m1@1",
+      "text": "Attenzione! Il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "0f1ed593dabb0cc9.m4a",
+        "s": "9d42df45136259d6.m4a"
+      },
+      "at": "2026-10-16T12:01:19Z"
+    },
+    "m1@1|Buonasera e benvenuto! Ha una prenotazione?": {
+      "voice": "m1@1",
+      "text": "Buonasera e benvenuto! Ha una prenotazione?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "27788d85e541647b.m4a",
+        "s": "cedec9759f3c67ea.m4a"
+      },
+      "at": "2026-10-16T11:59:56Z"
+    },
+    "m1@1|Buonasera! Desidera?": {
+      "voice": "m1@1",
+      "text": "Buonasera! Desidera?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "c8553d7bba9d5774.m4a",
+        "s": "5ed1e9580cd43eb8.m4a"
+      },
+      "at": "2026-10-16T12:01:37Z"
+    },
+    "m1@1|Buonasera! Dove la porto?": {
+      "voice": "m1@1",
+      "text": "Buonasera! Dove la porto?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "5d853b2511678c2c.m4a",
+        "s": "ad96cd78f61d4b4c.m4a"
+      },
+      "at": "2026-10-16T12:01:46Z"
+    },
+    "m1@1|Buonasera, dove andiamo?": {
+      "voice": "m1@1",
+      "text": "Buonasera, dove andiamo?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "3b08fe9825aa530a.m4a",
+        "s": "919ed2f0cfa8dc9a.m4a"
+      },
+      "at": "2026-10-16T12:14:12Z"
+    },
+    "m1@1|Buongiorno! Mi dica.": {
+      "voice": "m1@1",
+      "text": "Buongiorno! Mi dica.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错、放慢失真）",
+        "新版本 1：原速干净，慢速被标出（读错）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "6536a383d9365848.m4a",
+        "s": "3eed0553a758803b.m4a"
+      },
+      "at": "2026-10-16T12:16:59Z"
+    },
+    "m1@1|Buongiorno, biglietto, prego.": {
+      "voice": "m1@1",
+      "text": "Buongiorno, biglietto, prego.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速被标出（读错），慢速被标出（读错）",
+        "新版本 2：原速被标出（截断），慢速干净",
+        "新版本 3：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2402c9ea3d43512c.m4a",
+        "s": "9dccced12945a503.m4a"
+      },
+      "at": "2026-10-16T12:10:22Z"
+    },
+    "m1@1|Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono quattro fermate.": {
+      "voice": "m1@1",
+      "text": "Cerca il Colosseo? Prenda la metro B, direzione Laurentina: sono quattro fermate.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（放慢失真）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "64c31abb9a4f2dc9.m4a",
+        "s": "3ae2bee28bf246ef.m4a"
+      },
+      "at": "2026-10-16T12:10:57Z"
+    },
+    "m1@1|Circa venti minuti: oggi c'è tanta gente!": {
+      "voice": "m1@1",
+      "text": "Circa venti minuti: oggi c'è tanta gente!",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "8dbbcfb6ab7a1832.m4a",
+        "s": "1d81810594af2176.m4a"
+      },
+      "at": "2026-10-16T12:13:35Z"
+    },
+    "m1@1|Dieci minuti, più o meno.": {
+      "voice": "m1@1",
+      "text": "Dieci minuti, più o meno.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "e93f1db29f27baaa.m4a",
+        "s": "68f68d4cd7a7a1a6.m4a"
+      },
+      "at": "2026-10-16T11:58:00Z"
+    },
+    "m1@1|Dov'è la polizia?": {
+      "voice": "m1@1",
+      "text": "Dov'è la polizia?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "73937f181ad14f0e.m4a",
+        "s": "f75d5fb54179e5b6.m4a"
+      },
+      "at": "2026-10-16T12:04:09Z"
+    },
+    "m1@1|Dove devo scendere?": {
+      "voice": "m1@1",
+      "text": "Dove devo scendere?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（重音），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "ef9110cc3f133c6c.m4a",
+        "s": "8cd456f5debcef93.m4a"
+      },
+      "at": "2026-10-16T12:06:38Z"
+    },
+    "m1@1|Ecco a lei, e buone feste!": {
+      "voice": "m1@1",
+      "text": "Ecco a lei, e buone feste!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "37fb83635e62c5e4.m4a",
+        "s": "c98a3e52f7460bc0.m4a"
+      },
+      "at": "2026-10-16T12:11:03Z"
+    },
+    "m1@1|Ecco lo scontrino.": {
+      "voice": "m1@1",
+      "text": "Ecco lo scontrino.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "b498e8d8f4b26e4c.m4a",
+        "s": "5ea3ee52923d2762.m4a"
+      },
+      "at": "2026-10-16T12:09:36Z"
+    },
+    "m1@1|Ho prenotato una camera a nome di…": {
+      "voice": "m1@1",
+      "text": "Ho prenotato una camera a nome di…",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a0987113b2cf0708.m4a",
+        "s": "08f96620dbf485da.m4a"
+      },
+      "at": "2026-10-16T12:13:59Z"
+    },
+    "m1@1|L'ingresso? Giri a destra, è lì.": {
+      "voice": "m1@1",
+      "text": "L'ingresso? Giri a destra, è lì.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速被标出（重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "ee151c4278d22b93.m4a",
+        "s": "ca3a2a3d076c937f.m4a"
+      },
+      "at": "2026-10-16T12:10:50Z"
+    },
+    "m1@1|L'ingresso? Vada sempre dritto, è lì.": {
+      "voice": "m1@1",
+      "text": "L'ingresso? Vada sempre dritto, è lì.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "18a560ea17edba35.m4a",
+        "s": "7e4414bca104da5e.m4a"
+      },
+      "at": "2026-10-16T12:09:24Z"
+    },
+    "m1@1|Lo prendo.": {
+      "voice": "m1@1",
+      "text": "Lo prendo.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（杂音），慢速被标出（多出来的话）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "4e2ce327734aa8f3.m4a",
+        "s": "b49e346a2f4b1c2a.m4a"
+      },
+      "at": "2026-10-16T12:09:18Z"
+    },
+    "m1@1|Mamma mia!": {
+      "voice": "m1@1",
+      "text": "Mamma mia!",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（放慢失真）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "0dea86fb2b85f4f2.m4a",
+        "s": "187c359c5e8b73b7.m4a"
+      },
+      "at": "2026-10-16T12:14:00Z"
+    },
+    "m1@1|Me lo può scrivere?": {
+      "voice": "m1@1",
+      "text": "Me lo può scrivere?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "415bed1d7ba2d0b1.m4a",
+        "s": "1dcc1e036b2a4e39.m4a"
+      },
+      "at": "2026-10-16T12:08:06Z"
+    },
+    "m1@1|Mi può chiamare un taxi?": {
+      "voice": "m1@1",
+      "text": "Mi può chiamare un taxi?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "e343ec031601fb4d.m4a",
+        "s": "0300926b1ea7fb12.m4a"
+      },
+      "at": "2026-10-16T12:09:35Z"
+    },
+    "m1@1|Mi può fare la ricevuta?": {
+      "voice": "m1@1",
+      "text": "Mi può fare la ricevuta?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "c5988e4cbae11cdb.m4a",
+        "s": "66b7a837b3c72088.m4a"
+      },
+      "at": "2026-10-16T12:10:45Z"
+    },
+    "m1@1|Oggi chiudiamo alle diciotto.": {
+      "voice": "m1@1",
+      "text": "Oggi chiudiamo alle diciotto.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a513ddbdeeb3d750.m4a",
+        "s": "f9da519cf1b10342.m4a"
+      },
+      "at": "2026-10-16T12:18:40Z"
+    },
+    "m1@1|Paga in contanti o con la carta?": {
+      "voice": "m1@1",
+      "text": "Paga in contanti o con la carta?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "006a926e09d16f93.m4a",
+        "s": "21ba8fe5bc11e23c.m4a"
+      },
+      "at": "2026-10-16T12:16:39Z"
+    },
+    "m1@1|Quant'è?": {
+      "voice": "m1@1",
+      "text": "Quant'è?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "8d85ffc594058351.m4a",
+        "s": "4a827745fcea8b70.m4a"
+      },
+      "at": "2026-10-16T12:15:08Z"
+    },
+    "m1@1|Quanto costa fino all'aeroporto?": {
+      "voice": "m1@1",
+      "text": "Quanto costa fino all'aeroporto?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "fe156072f56ebf2e.m4a",
+        "s": "0c105d1a6a17930d.m4a"
+      },
+      "at": "2026-10-16T12:12:14Z"
+    },
+    "m1@1|Scusi.": {
+      "voice": "m1@1",
+      "text": "Scusi.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（杂音），慢速被标出（杂音、重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "a53cfd927047f816.m4a",
+        "s": "6d2d47712f0301f3.m4a"
+      },
+      "at": "2026-10-16T12:14:31Z"
+    },
+    "m1@1|Si può andare a piedi?": {
+      "voice": "m1@1",
+      "text": "Si può andare a piedi?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "e0b1a38451e59c1c.m4a",
+        "s": "d13e3c1ba99aa1be.m4a"
+      },
+      "at": "2026-10-16T12:14:43Z"
+    },
+    "m1@1|Solo andata o andata e ritorno?": {
+      "voice": "m1@1",
+      "text": "Solo andata o andata e ritorno?",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f5a6ea71f8d5d2af.m4a",
+        "s": "3fa257d2d5b42527.m4a"
+      },
+      "at": "2026-10-16T12:19:04Z"
+    },
+    "m1@1|Sono un euro e venti.": {
+      "voice": "m1@1",
+      "text": "Sono un euro e venti.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（截断），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "0e48ebe7a8c71195.m4a",
+        "s": "09f066e947c82a2a.m4a"
+      },
+      "at": "2026-10-16T12:19:45Z"
+    },
+    "m1@1|Sono un fan di JoJo.": {
+      "voice": "m1@1",
+      "text": "Sono un fan di JoJo.",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "e64c7b25453116be.m4a",
+        "s": "2bd2b8f1028a4af2.m4a"
+      },
+      "at": "2026-10-16T12:14:08Z"
+    },
+    "m1@1|Sono un po' stanco.": {
+      "voice": "m1@1",
+      "text": "Sono un po' stanco.",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（杂音），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速没筛成，慢速没筛成",
+        "新版本 2：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "新版本 3：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "都不干净，留下现在的版本"
+      ],
+      "files": {
+        "n": "8f77ba72762929c7.m4a",
+        "s": "23cfc836b616fec4.m4a"
+      },
+      "at": "2026-10-16T12:19:31Z"
+    },
+    "m1@1|Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.": {
+      "voice": "m1@1",
+      "text": "Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速没筛成，慢速没筛成",
+        "新版本 2：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "新版本 3：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "都不干净，留下新版本 1"
+      ],
+      "files": {
+        "n": "1c7ed9a7b848fec3.m4a",
+        "s": "962d8ae34cebc270.m4a"
+      },
+      "at": "2026-10-16T12:19:55Z"
+    },
+    "m1@1|Sì: prenda la prima a destra, poi all'incrocio giri a sinistra. La metro è lì.": {
+      "voice": "m1@1",
+      "text": "Sì: prenda la prima a destra, poi all'incrocio giri a sinistra. La metro è lì.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "64e27bfc74235fb2.m4a",
+        "s": "5406079a3a8f90c3.m4a"
+      },
+      "at": "2026-10-16T12:15:32Z"
+    },
+    "m1@1|Una margherita, per favore.": {
+      "voice": "m1@1",
+      "text": "Una margherita, per favore.",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "8a130810f19a2601.m4a",
+        "s": "5374250437ff4623.m4a"
+      },
+      "at": "2026-10-16T11:58:00Z"
+    },
+    "m1@1|Va bene! Sorrida… ecco fatto. Perché proprio qui?": {
+      "voice": "m1@1",
+      "text": "Va bene! Sorrida… ecco fatto. Perché proprio qui?",
+      "decision": "suspicious",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速被标出（漏读、多出来的话）",
+        "新版本 1：原速干净，慢速干净；原速没筛成，慢速没筛成",
+        "新版本 2：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "新版本 3：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
+        "都不干净，留下现在的版本"
+      ],
+      "files": {
+        "n": "ade0afef95cc89dd.m4a",
+        "s": "1a04265532f09de7.m4a"
+      },
+      "at": "2026-10-16T12:19:44Z"
+    },
+    "m1@1|Vuole anche qualcosa da bere?": {
+      "voice": "m1@1",
+      "text": "Vuole anche qualcosa da bere?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速被标出（重音）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "1dcdef607b77d4f7.m4a",
+        "s": "b58e64661a15a220.m4a"
+      },
+      "at": "2026-10-16T12:17:52Z"
+    }
+  }
+}

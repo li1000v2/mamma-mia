@@ -13,7 +13,8 @@ nothing to do with the line, are retried once with the clip as WAV and otherwise
 next run tries again. Flagged clips are also transcribed by checkModel (words only, not pronunciation),
 because the model now and then makes a whole line up.
 
-Results are cached by file name in reviews/audio-screen-cache.json, so a rerun only screens new clips.
+Results are cached in reviews/audio-screen-cache.json by file name, with a hash of the audio, so a rerun
+only screens new or changed clips (regenerated audio keeps its file name).
 Every run rewrites reviews/audio-screen-week<N>.md (suspicious clips and totals) and .html (the same
 clips with players; open it from reviews/ so ../Audio/ resolves).
 
@@ -32,6 +33,7 @@ import argparse
 import base64
 import concurrent.futures
 import difflib
+import hashlib
 import html
 import json
 import os
@@ -187,21 +189,21 @@ def parse_verdict(raw: str) -> dict:
 
 
 class Reviewer(Gemini):
-    def review(self, clip: Clip, model: str, tempo: float) -> dict:
-        entry = self._review(clip, model, tempo, as_wav=False)
+    def review(self, clip: Clip, model: str, tempo: float, audio: bytes | None = None) -> dict:
+        """Screens the clip's file, or `audio` (.m4a bytes for the clip, such as a new take) when given."""
+        audio = (AUDIO / clip.file).read_bytes() if audio is None else audio
+        entry = self._review(clip, model, tempo, audio, as_wav=False)
         problem = unusable(clip, entry)
         if problem:
             # Some .m4a clips get an unrelated answer every time, yet are heard fine as WAV.
-            entry = self._review(clip, model, tempo, as_wav=True)
+            entry = self._review(clip, model, tempo, audio, as_wav=True)
             problem = unusable(clip, entry)
         if problem:
             raise RuntimeError(f"unusable answer, not cached: {problem}")
         return entry
 
-    def _review(self, clip: Clip, model: str, tempo: float, as_wav: bool) -> dict:
-        audio, mime_type = (AUDIO / clip.file).read_bytes(), "audio/mp4"
-        if as_wav:
-            audio, mime_type = to_wav(audio), "audio/wav"
+    def _review(self, clip: Clip, model: str, tempo: float, audio: bytes, as_wav: bool) -> dict:
+        sent, mime_type = (to_wav(audio), "audio/wav") if as_wav else (audio, "audio/mp4")
         speed = "normal speed" if clip.speed == "n" else f"slow ({tempo}x)"
         prompt = PROMPT.format(
             text=clip.text,
@@ -212,7 +214,7 @@ class Reviewer(Gemini):
         )
         body = {
             "contents": [{"role": "user", "parts": [
-                {"inlineData": {"mimeType": mime_type, "data": base64.b64encode(audio).decode("ascii")}},
+                {"inlineData": {"mimeType": mime_type, "data": base64.b64encode(sent).decode("ascii")}},
                 {"text": prompt},
             ]}],
             "generationConfig": {
@@ -227,6 +229,7 @@ class Reviewer(Gemini):
         usage = data.get("usageMetadata", {})
         entry = {
             "key": clip.key,
+            "sha256": hashlib.sha256(audio).hexdigest(),
             "model": model,
             "promptRev": PROMPT_REV,
             "screenedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -241,9 +244,9 @@ class Reviewer(Gemini):
             entry["sentAs"] = "wav"
         return entry
 
-    def second_opinion(self, clip: Clip) -> str:
+    def second_opinion(self, clip: Clip, audio: bytes | None = None) -> str:
         """The clip transcribed by checkModel, the model gen_audio.py checks new clips with."""
-        return self.transcribe((AUDIO / clip.file).read_bytes(), "audio/mp4")
+        return self.transcribe((AUDIO / clip.file).read_bytes() if audio is None else audio, "audio/mp4")
 
 
 def to_wav(m4a: bytes) -> bytes:
@@ -289,10 +292,29 @@ def save_cache(entries: dict[str, dict]) -> None:
             time.sleep(0.2 * (attempt + 1))
 
 
+_hashes: dict[str, tuple[int, int, str]] = {}
+
+
+def audio_sha256(name: str) -> str | None:
+    """SHA-256 of an Audio/ file. Regenerated audio keeps its file name, so verdicts are tied to content."""
+    path = AUDIO / name
+    try:
+        stat = path.stat()
+    except FileNotFoundError:
+        return None
+    cached = _hashes.get(name)
+    if cached and cached[:2] == (stat.st_mtime_ns, stat.st_size):
+        return cached[2]
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    _hashes[name] = (stat.st_mtime_ns, stat.st_size, digest)
+    return digest
+
+
 def is_fresh(clip: Clip, entry: dict | None, model: str) -> bool:
-    """Cached, for this clip, model and prompt, and a usable answer (older runs cached some that are not)."""
-    return (bool(entry) and entry["key"] == clip.key and entry["model"] == model
-            and entry["promptRev"] == PROMPT_REV and unusable(clip, entry) is None)
+    """Cached for this clip's current audio, model and prompt, and a usable answer (older runs cached some
+    that are not)."""
+    return (bool(entry) and entry["key"] == clip.key and entry.get("sha256") == audio_sha256(clip.file)
+            and entry["model"] == model and entry["promptRev"] == PROMPT_REV and unusable(clip, entry) is None)
 
 
 def priority(entry: dict) -> tuple:
