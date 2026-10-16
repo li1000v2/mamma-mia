@@ -6,25 +6,7 @@
 
 ## 可疑片段
 
-### 1. All'aeroporto di Fiumicino, per favore.
-
-- 声线 m1@1（Charon） · 原速 · `996ed8acc11c36f3.m4a`
-- 问题：读错（严重度 medium，置信度 0.75）
-- 理由：首词元音发音有误，读成了口语误读形式。
-  - 读错「All'aeroporto」：将 aeroporto 误读为 ereoporto。
-- 模型听到：All'ereoporto di Fiumicino, per favore.
-- 双辅音需人工听：All
-
-### 2. All'aeroporto di Fiumicino, per favore.
-
-- 声线 m1@1（Charon） · 慢速 · `5ff2b0a6afe484eb.m4a`
-- 问题：读错（严重度 medium，置信度 0.75）
-- 理由：开头词汇“All'aeroporto”元音发音有误，听起来像“All'ereoporto”。
-  - 读错「All'aeroporto」：将“All'aeroporto”误读为了“All'ereoporto”。
-- 模型听到：All'ereoporto di Fiumicino, per favore.
-- 双辅音需人工听：All
-
-### 3. Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?
+### 1. Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?
 
 - 声线 m1@1（Charon） · 慢速 · `23e970c1156fba7a.m4a`
 - 问题：读错（严重度 medium，置信度 0.70）
@@ -77,9 +59,9 @@
 
 ## 统计
 
-- 本周音频：264 段（原速 132，慢速 132）
-- 已筛：262 段，未筛 2 段
-- 可疑：3 段（原速 1，慢速 2）
+- 本周音频：262 段（原速 131，慢速 131）
+- 已筛：260 段，未筛 2 段
+- 可疑：1 段（原速 0，慢速 1）
 - 含双辅音的句子：36 句
-- token：输入 182,744，输出 29,907，思考 151,854
-- 花费估算：262 次 × $0.004 ≈ $1.05（按实测单价；只重筛新片段时实际花费更少）
+- token：输入 181,397，输出 29,453，思考 149,633
+- 花费估算：260 次 × $0.004 ≈ $1.04（按实测单价；只重筛新片段时实际花费更少）

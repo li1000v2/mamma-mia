@@ -239,13 +239,25 @@ def write_report(log: dict[str, dict], cache: dict[str, dict], voice_names: dict
         return "；".join(notes) or "没有另一个声线"
 
     rows = [row for row in log.values() if (row["voice"], row["text"]) in current]
+    # A recording that is gone was dropped by hand: "lineVoices" in tts_voices.json keeps the other voice.
+    gone = sorted((row for row in log.values() if (row["voice"], row["text"]) not in current),
+                  key=lambda row: (row["text"], row["voice"]))
     counts = {kind: sum(1 for row in rows if row["decision"] == kind) for kind in ("replaced", "kept", "suspicious")}
     md = ["# 示范音频重新生成", "",
-          f"由 `tools/regen_audio.py` 生成，决定记在 `{LOG.name}`。处理过 {len(rows)} 条录音"
+          f"由 `tools/regen_audio.py` 生成，决定记在 `{LOG.name}`。处理过 {len(rows) + len(gone)} 条录音"
           "（一个声线说一句，原速和慢速一起判）；新版本复筛两次都干净才采用。", "",
           f"- 换成了新版本：{counts['replaced']} 条",
           f"- 保留现在的版本（复筛两次都干净，原来的标记是误报）：{counts['kept']} 条",
-          f"- 仍可疑（几个版本都不干净，留下最好的一版）：{counts['suspicious']} 条", ""]
+          f"- 仍可疑（几个版本都不干净，留下最好的一版）：{counts['suspicious']} 条",
+          f"- 改为只用另一个声线（这条录音已删）：{len(gone)} 条", ""]
+    if gone:
+        md += ["## 改为只用另一个声线", "",
+               "几个版本都读不对、另一个声线干净的句子，在 `tools/tts_voices.json` 的 `lineVoices` 里只留另一个声线。", ""]
+        for row in gone:
+            voice_id = row["voice"].split("@", 1)[0]
+            md += [f"### {row['text']}", "", f"- 删掉的声线 {row['voice']}（{voice_names.get(voice_id, '')}） · {row['at'][:10]}"]
+            md += [f"- {step}" for step in row["steps"]]
+            md.append("")
     for kind, title in (("suspicious", "仍可疑"), ("replaced", "换成了新版本"), ("kept", "保留现在的版本")):
         chosen = sorted((row for row in rows if row["decision"] == kind), key=lambda row: (row["text"], row["voice"]))
         if not chosen:

@@ -7,6 +7,7 @@
     { "id": "m1", "rev": 1, "voiceName": "Charon" }
   ],
   "lineVoices": {
-    "È una palla, non una pala.": ["f1"]
+    "È una palla, non una pala.": ["f1"],
+    "All'aeroporto di Fiumicino, per favore.": ["f1"]
   }
 }

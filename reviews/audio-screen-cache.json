@@ -7813,31 +7813,6 @@
       "confidence": 0.7,
       "modelOk": true
     },
-    "5ff2b0a6afe484eb.m4a": {
-      "key": "m1@1|s|All'aeroporto di Fiumicino, per favore.",
-      "sha256": "c5ed87d93c400a7d20d8e7361939eb217c4d054578a70c448318eba9fd7107d9",
-      "model": "gemini-4-argon",
-      "promptRev": 1,
-      "screenedAt": "2026-10-16T11:58:58Z",
-      "usage": {
-        "prompt": 712,
-        "output": 228,
-        "thoughts": 895
-      },
-      "ok": false,
-      "heard": "All'ereoporto di Fiumicino, per favore.",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "All'aeroporto",
-          "detail": "将“All'aeroporto”误读为了“All'ereoporto”。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "开头词汇“All'aeroporto”元音发音有误，听起来像“All'ereoporto”。",
-      "confidence": 0.75,
-      "modelOk": false
-    },
     "602b4207489552de.m4a": {
       "key": "f1@1|s|Buongiorno, prego!",
       "sha256": "cfebddaf2b24f52ccb612c1c0946732976b0a593a25cd01f6575226ca9af244a",
@@ -12438,31 +12413,6 @@
       "reason": "",
       "confidence": 0.7,
       "modelOk": true
-    },
-    "996ed8acc11c36f3.m4a": {
-      "key": "m1@1|n|All'aeroporto di Fiumicino, per favore.",
-      "sha256": "6b9d2a2fe4d5194621d1f6bd02c82ad1ef8f47b76e4982064d9d6a72f58c65c1",
-      "model": "gemini-4-argon",
-      "promptRev": 1,
-      "screenedAt": "2026-10-16T11:57:41Z",
-      "usage": {
-        "prompt": 635,
-        "output": 226,
-        "thoughts": 1326
-      },
-      "ok": false,
-      "heard": "All'ereoporto di Fiumicino, per favore.",
-      "issues": [
-        {
-          "type": "misread",
-          "where": "All'aeroporto",
-          "detail": "将 aeroporto 误读为 ereoporto。"
-        }
-      ],
-      "severity": "medium",
-      "reason": "首词元音发音有误，读成了口语误读形式。",
-      "confidence": 0.75,
-      "modelOk": false
     },
     "99fa058af2c2a79d.m4a": {
       "key": "f1@1|n|Circa venti minuti: oggi c'è tanta gente!",

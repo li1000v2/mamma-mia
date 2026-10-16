@@ -807,14 +807,15 @@
     "m1@1|All'aeroporto di Fiumicino, per favore.": {
       "voice": "m1@1",
       "text": "All'aeroporto di Fiumicino, per favore.",
-      "decision": "suspicious",
+      "decision": "dropped",
       "steps": [
         "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
         "新版本 1：原速被标出（读错），慢速被标出（读错）",
         "新版本 2：原速被标出（读错），慢速被标出（读错）",
         "新版本 3：原速被标出（读错），慢速被标出（读错）",
         "新版本 4：生成失败（服务按使用条款拒绝请求，HTTP 403）",
-        "都不干净，留下现在的版本"
+        "都不干净，留下现在的版本",
+        "改为只用 Kore（lineVoices），删掉了这条录音"
       ],
       "files": {
         "n": "996ed8acc11c36f3.m4a",
