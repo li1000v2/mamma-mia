@@ -1,6 +1,6 @@
 {
   "unit": "L01",
-  "intro": "意大利语基本是怎么写就怎么读，这一课只记四条规则。\n\n1. c、g 在 e、i 前读软音：ci≈チ、ce≈チェ（ciao、cena），gi≈ジ、ge≈ジェ（gelato、giorno）。在 a、o、u 前读硬音：ca≈カ（caffè）、go≈ゴ。\n2. 想在 e、i 前读硬音，就加一个 h：chi≈キ、che≈ケ（chiesa、anche），ghi≈ギ、ghe≈ゲ（spaghetti）。h 本身不发音。\n3. gn≈にゃ行：gnocchi≈ニョッキ。gli 的 g 不发音，舌面贴上颚，接近「リャ」行：biglietto、famiglia。\n4. sc 在 e、i 前≈シ／シェ（uscita、pesce），在 a、o、u 前读 sk（scusi≈スクージ）。\n\n先听原速，再跟着慢速读；每个词都对照上面的规则看一眼。",
+  "intro": "意大利语基本是怎么写就怎么读，这一课只记四条规则。\n\n1. c、g 在 e、i 前读软音：ci≈チ、ce≈チェ（cena），gi≈ジ、ge≈ジェ（gelato）。ci、gi 后面再跟 a、o、u 时，i 不单独发音，只表示读软音：ciao≈チャオ，giorno≈ジョルノ。在 a、o、u 前读硬音：ca≈カ（caffè）、go≈ゴ。\n2. 想在 e、i 前读硬音，就加一个 h：chi≈キ、che≈ケ（chiesa、anche），ghi≈ギ、ghe≈ゲ（spaghetti）。h 本身不发音。\n3. gn≈にゃ行：gnocchi≈ニョッキ。gli 的 g 不发音，舌面贴住上颚，接近「リャ」行，也像拼音“俩 liǎ”的 li-；gli 后面再跟元音时，i 也不单独发音：biglietto≈ビリェット、famiglia。\n4. sc 在 e、i 前≈シ／シェ，接近拼音 xi、xie（uscita、pesce）；在 a、o、u 前读 sk（scusi≈スクーズィ）。sch 也读 sk：pesche（桃子）≈ペスケ，pesce（鱼）≈ペッシェ。\n\n先听原速，再跟着慢速读；每个词都对照上面的规则看一眼。",
   "phrases": [
     {
       "id": "L01-01",
@@ -8,7 +8,7 @@
       "zh": "你好！／再见！",
       "scene": "general",
       "status": "draft",
-      "note": "ci 在元音 a 前读软音：ciao≈チャオ。只对朋友用；对店员、陌生人说 Buongiorno。"
+      "note": "cia 里的 i 只表示 c 读软音，本身不发音：ciao≈チャオ（两个音节），不是チアオ。只对朋友用；对店员、陌生人说 Buongiorno，下午起改说 Buonasera。"
     },
     {
       "id": "L01-02",
@@ -16,7 +16,7 @@
       "zh": "教堂",
       "scene": "general",
       "status": "draft",
-      "note": "ch 是硬音 k：chie≈キエ，整个词≈キエーザ。s 夹在两个元音之间常读成 z。"
+      "note": "ch 是硬音 k：chie≈キエ，整个词≈キエーザ。两个元音之间的 s，北方多读 z，中南部常读 s，两种都对。"
     },
     {
       "id": "L01-03",
@@ -24,7 +24,7 @@
       "zh": "意式土豆团子",
       "scene": "general",
       "status": "draft",
-      "note": "gno≈ニョ，cchi 是双辅音加硬音≈ッキ，合起来就是日语里的ニョッキ。"
+      "note": "gno≈ニョ，cchi 是双辅音加硬音≈ッキ，合起来就是日语里的ニョッキ。gn 夹在元音之间要读长一点：bagno（洗手间）≈バンニョ。"
     },
     {
       "id": "L01-04",
@@ -32,7 +32,7 @@
       "zh": "票",
       "scene": "general",
       "status": "draft",
-      "note": "gli 的 g 不发音，接近リェ；tt 要停一拍：≈ビリエット。买船票、火车票、门票都用这个词。"
+      "note": "gli 的 g 不发音，glie 是一拍≈リェ（不是リ・エ两拍），舌面贴住上颚；tt 要停一拍：≈ビリェット。买船票、火车票、门票都用这个词。"
     },
     {
       "id": "L01-05",
@@ -40,7 +40,7 @@
       "zh": "出口",
       "scene": "general",
       "status": "draft",
-      "note": "sci≈シ，夹在元音之间要读长一点：≈ウッシータ。车站和景点到处是 USCITA 的牌子。"
+      "note": "sci≈シ（拼音 xi），夹在元音之间要读长一点：≈ウッシータ，重音在 SCI：u-SCI-ta。车站和景点到处是 USCITA 的牌子。"
     }
   ]
 }

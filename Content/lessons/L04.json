@@ -1,6 +1,6 @@
 {
   "unit": "L04",
-  "intro": "0–20：zero, uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci, undici, dodici, tredici, quattordici, quindici, sedici, diciassette, diciotto, diciannove, venti。\n\n11–16 以 -dici 结尾，17–19 以 dici- 开头。最容易听混的是 due（2）／dodici（12）、tre（3）／tredici（13）、sei（6）／sedici（16）：听到 -dici 就是十几。\n\n价格的说法是“几 euro e 几十”：tre euro e cinquanta = 3.50 欧。口语里常省掉 euro，只说 tre e cinquanta。店员报总价常用 Sono…：Sono dodici euro。",
+  "intro": "0–20：zero, uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci, undici, dodici, tredici, quattordici, quindici, sedici, diciassette, diciotto, diciannove, venti。\n\n11–16 以 -dici 结尾，重音都在倒数第三个音节（UN-di-ci、DO-di-ci）；17–19 以 dici- 开头。最容易听混的是 due（2）／dodici（12）、tre（3）／tredici（13）、sei（6）／sedici（16）：听到 -dici 就是十几。\n\n价格的说法是“欧元数 + e + 分数”：tre euro e cinquanta = 3.50 欧。口语里常省掉 euro，只说 tre e cinquanta。euro 读≈エウロ（e、u 分开读），不是ユーロ；复数不变：un euro、due euro。店员报总价常用 Sono…：Sono dodici euro，这里的 Sono 是“一共是”，不是“我是”。",
   "phrases": [
     {
       "id": "L04-01",
@@ -9,7 +9,7 @@
       "frame": "quanto",
       "scene": "general",
       "status": "draft",
-      "note": "问一样东西的价钱。问好几样时用 Quanto costano?"
+      "note": "问一样东西的价钱。指着东西问可以说 Quanto costa questo?（这个多少钱？），问好几样用 Quanto costano?（这些多少钱？）。qu 读 kw≈クァ：QUAN-to。"
     },
     {
       "id": "L04-02",
@@ -17,7 +17,8 @@
       "zh": "一张票多少钱？",
       "frame": "quanto",
       "scene": "general",
-      "status": "draft"
+      "status": "draft",
+      "note": "Quanto costa 后面直接接东西，换成 un caffè、un cornetto 都行。"
     },
     {
       "id": "L04-03",
@@ -26,7 +27,7 @@
       "frame": "quanto",
       "scene": "general",
       "status": "draft",
-      "note": "结账时问总价最常用，是 Quanto è 的缩写。"
+      "note": "结账时问总价最常用，是 Quanto è 的缩写；重音在最后的 è：≈クァンテ。"
     },
     {
       "id": "L04-04",
@@ -34,7 +35,7 @@
       "zh": "一共十二欧。",
       "scene": "general",
       "status": "draft",
-      "note": "店员报价的说法。dodici（12）别听成 due（2）。"
+      "note": "店员报价的说法，这里的 Sono 是“一共是”。dodici（12）别听成 due（2）：听到 -dici 就是十几。"
     },
     {
       "id": "L04-05",
