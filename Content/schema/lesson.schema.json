@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lesson.schema.json",
+  "title": "Phrases taught in one lesson",
+  "type": "object",
+  "required": ["unit", "phrases"],
+  "additionalProperties": false,
+  "properties": {
+    "unit": { "type": "string", "pattern": "^L[0-9]{2}$" },
+    "phrases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "it", "zh", "scene", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^L[0-9]{2}-[0-9]{2}$" },
+          "it": { "type": "string", "minLength": 1 },
+          "zh": { "type": "string", "minLength": 1 },
+          "frame": { "type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]*$" },
+          "scene": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "status": {
+            "description": "draft → checked (cross-checked) → native (native speaker) → audio_ok (audio listened to)",
+            "enum": ["draft", "checked", "native", "audio_ok"]
+          },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

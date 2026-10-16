@@ -1,0 +1,39 @@
+{
+  "unit": "L05",
+  "phrases": [
+    {
+      "id": "L05-01",
+      "it": "Prendo un cappuccino.",
+      "zh": "我要一杯卡布奇诺。",
+      "frame": "prendo",
+      "scene": "bar",
+      "status": "draft"
+    },
+    {
+      "id": "L05-02",
+      "it": "Vorrei un caffè, per favore.",
+      "zh": "请给我一杯咖啡。",
+      "frame": "prendo",
+      "scene": "bar",
+      "status": "draft",
+      "note": "在意大利点 un caffè，端上来的就是一小杯浓缩咖啡。"
+    },
+    {
+      "id": "L05-03",
+      "it": "Al banco.",
+      "zh": "站在吧台喝。",
+      "scene": "bar",
+      "status": "draft",
+      "note": "回答 “Al banco o al tavolo?”（站着喝还是坐下）。坐下通常更贵。"
+    },
+    {
+      "id": "L05-04",
+      "it": "Un cappuccino e una brioche, per favore.",
+      "zh": "一杯卡布奇诺和一个羊角面包。",
+      "frame": "prendo",
+      "scene": "bar",
+      "status": "draft",
+      "note": "羊角面包在威尼斯常叫 brioche，在那不勒斯和罗马叫 cornetto。"
+    }
+  ]
+}

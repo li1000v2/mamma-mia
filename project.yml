@@ -1,0 +1,60 @@
+# XcodeGen project definition. Edit this, never the generated .xcodeproj.
+# CI runs `xcodegen generate` before every macOS build.
+name: MammaMia
+options:
+  bundleIdPrefix: io.github.li1000v2
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  developmentLanguage: zh-Hans
+settings:
+  base:
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # CI passes the short commit hash; shown on the 诊断 screen.
+    MM_GIT_COMMIT: ""
+packages:
+  MammaCore:
+    path: Packages/MammaCore
+targets:
+  MammaMia:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes:
+          - Info.plist
+      # Copied into the bundle as folders; the app reads them at launch.
+      - path: Content
+        type: folder
+        buildPhase: resources
+      - path: Audio
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: MammaCore
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: "Mamma mia!"
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        MMGitCommit: $(MM_GIT_COMMIT)
+        LSRequiresIPhoneOS: true
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSMicrophoneUsageDescription: 跟读和开口练习需要录下你的声音，录音只存在这台手机上。
+        NSSpeechRecognitionUsageDescription: 用 iPhone 自带的离线识别，判断你说的意大利语对方能不能听懂。
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.li1000v2.mammamia
+        PRODUCT_NAME: MammaMia
+        # Swift 5 mode keeps the UI layer's concurrency checking lenient; there is no local Mac
+        # to iterate on compiler errors. MammaCore builds in Swift 6 mode.
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+    scheme: {}

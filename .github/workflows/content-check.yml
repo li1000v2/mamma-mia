@@ -1,0 +1,35 @@
+name: content-check
+
+# JSON Schema validation, audio completeness, and a guard against committing personal trip data.
+on:
+  pull_request:
+    paths:
+      - "Content/**"
+      - "Audio/**"
+      - "tools/**"
+      - ".github/workflows/content-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "Content/**"
+      - "Audio/**"
+      - "tools/**"
+      - ".github/workflows/content-check.yml"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Validate content
+        run: python tools/validate_content.py
