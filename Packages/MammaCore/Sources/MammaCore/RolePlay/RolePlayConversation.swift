@@ -95,11 +95,12 @@ public struct RolePlayConversation: Hashable, Sendable {
         GeminiRequest.reply(system: RolePlayPrompt.system(for: role), contents: contents(), thinking: thinking)
     }
 
-    /// The request for the feedback card, once the session is over.
-    public func feedbackRequest(thinking: ThinkingLevel = .medium) -> JSONValue {
+    /// The request for the feedback card, once the session is over. `coursePhrases` are the
+    /// sentences the lessons before this challenge taught.
+    public func feedbackRequest(coursePhrases: [String] = [], thinking: ThinkingLevel = .medium) -> JSONValue {
         GeminiRequest.structured(
             system: RolePlayPrompt.feedbackSystem,
-            prompt: RolePlayPrompt.feedbackPrompt(role: role, lines: lines),
+            prompt: RolePlayPrompt.feedbackPrompt(role: role, lines: lines, coursePhrases: coursePhrases),
             schema: RolePlayPrompt.feedbackSchema,
             thinking: thinking
         )

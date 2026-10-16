@@ -86,7 +86,8 @@ struct RolePlayTests {
     @Test func historyStartsWithTheOpeningCueAndAlternates() throws {
         var conversation = RolePlayConversation(role: Self.pizzaiolo())
         #expect(conversation.needsOpening)
-        let opening = try #require(conversation.addRole(raw: "Buonasera! Dica.\n晚上好！请说。"))
+        let added = conversation.addRole(raw: "Buonasera! Dica.\n晚上好！请说。")
+        let opening = try #require(added)
         #expect(opening.text == "Buonasera! Dica.")
         #expect(opening.translation == "晚上好！请说。")
         conversation.addLearner("  siete aperti oggi ")
@@ -112,7 +113,8 @@ struct RolePlayTests {
         #expect(conversation.contents().isEmpty)
         conversation.addLearner("Scusi, dov'è il Colosseo?")
         #expect(conversation.contents().count == 1)
-        #expect(conversation.addRole(raw: "\n") == nil)
+        let silent = conversation.addRole(raw: "\n")
+        #expect(silent == nil)
         #expect(conversation.lines.count == 1)
     }
 
@@ -150,7 +152,7 @@ struct RolePlayTests {
         var conversation = RolePlayConversation(role: Self.pizzaiolo())
         conversation.addRole(raw: "Buonasera!\n晚上好！")
         conversation.addLearner("Io volere pizza")
-        let body = conversation.feedbackRequest()
+        let body = conversation.feedbackRequest(coursePhrases: ["Quanto devo aspettare?", "Buone feste!"])
         #expect(body["generationConfig"]?["thinkingConfig"]?["thinkingLevel"]?.stringValue == "MEDIUM")
         #expect(body["generationConfig"]?["responseMimeType"]?.stringValue == "application/json")
         let required: JSONValue = ["summary", "corrections", "expression"]
@@ -159,7 +161,13 @@ struct RolePlayTests {
         #expect(prompt.contains("ROLE: Buonasera!\n"))
         #expect(prompt.contains("LEARNER: Io volere pizza\n"))
         #expect(prompt.contains("外带一个披萨。"))
+        #expect(prompt.contains("Course phrases for this situation:\n- Quanto devo aspettare?\n- Buone feste!\n"))
         #expect(!prompt.contains("晚上好"))
+        let system = try #require(body["systemInstruction"]?["parts"]?[0]?["text"]?.stringValue)
+        #expect(system.contains("not a mistake"))
+
+        let withoutCourse = RolePlayPrompt.feedbackPrompt(role: Self.pizzaiolo(), lines: conversation.lines, coursePhrases: [])
+        #expect(!withoutCourse.contains("Course phrases"))
     }
 
     @Test func speechRequestSendsOnlyTheTextAndVoice() {
@@ -283,13 +291,16 @@ struct RolePlayTests {
         var allowance = TurnAllowance(dailyLimit: 10)
         #expect(TurnAllowance.defaultLimit == 40)
         for _ in 1...10 {
-            #expect(allowance.spend(on: monday))
+            let spent = allowance.spend(on: monday)
+            #expect(spent)
         }
-        #expect(!allowance.spend(on: monday))
+        let overLimit = allowance.spend(on: monday)
+        #expect(!overLimit)
         #expect(allowance.remaining(on: monday) == 0)
         #expect(allowance.used(on: monday) == 10)
         #expect(allowance.remaining(on: tuesday) == 10)
-        #expect(allowance.spend(on: tuesday))
+        let nextDay = allowance.spend(on: tuesday)
+        #expect(nextDay)
         #expect(allowance.used(on: tuesday) == 1)
         #expect(allowance.used(on: monday) == 0)
     }
@@ -376,13 +387,15 @@ struct RolePlayTests {
         let added = progress.addPractice(phrases, scheduler: scheduler, at: now)
         #expect(added.count == 4)
         #expect(progress.cards.count == 1 + 8)
-        #expect(progress.cards.filter { $0.id.phraseID.hasPrefix("RP-") }.allSatisfy(\.isNew))
+        let practiceCardsAreNew = progress.cards.filter { $0.id.phraseID.hasPrefix("RP-") }.allSatisfy(\.isNew)
+        #expect(practiceCardsAreNew)
         // Adding cards doesn't touch the reviewed one or the log.
         #expect(progress.cards[0] == reviewed)
         #expect(progress.reviews.count == 1)
 
         // The same sentence from another session keeps its cards.
-        #expect(progress.addPractice(phrases, scheduler: scheduler, at: now.addingTimeInterval(3600)).isEmpty)
+        let again = progress.addPractice(phrases, scheduler: scheduler, at: now.addingTimeInterval(3600))
+        #expect(again.isEmpty)
         #expect(progress.cards.count == 9)
         #expect(progress.practicePhrase(phrases[0].id)?.it == "Vorrei una pizza, per favore.")
 

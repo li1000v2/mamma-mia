@@ -49,7 +49,9 @@ public enum RolePlayPrompt {
         The learner's lines are what speech recognition heard, so they may contain recognition errors. Don't correct \
         capitalization, punctuation, missing accents, or words that only look wrong because of recognition. Correct \
         real mistakes a listener would notice: wrong words or forms, tu instead of Lei, a sentence that would be \
-        misunderstood or sounds rude.
+        misunderstood or sounds rude. A sentence that is already correct and polite is not a mistake, even if you \
+        would say it another way: leave it out. The course phrases listed below are correct; when one fits a \
+        correction, use it.
 
         Return JSON with:
         - summary: one or two sentences in Simplified Chinese: what went well, and the one thing to work on.
@@ -57,18 +59,18 @@ public enum RolePlayPrompt {
         short, natural, correct Italian sentence for what they meant (A1–A2, Lei); zh = its meaning in Simplified \
         Chinese; why = one short Simplified Chinese sentence on what changed and why. Leave the list empty when \
         nothing is worth correcting.
-        - expression: one useful Italian expression for this situation that the learner didn't use, with zh (its \
-        meaning in Simplified Chinese) and note (one short Simplified Chinese sentence on when to use it).
+        - expression: one useful Italian expression for this situation that the learner didn't use and that isn't \
+        among the course phrases, with zh (its meaning in Simplified Chinese) and note (one short Simplified Chinese \
+        sentence on when to use it).
         """
 
-    public static func feedbackPrompt(role: RolePlayRole, lines: [RolePlayLine]) -> String {
-        var text = """
-            Situation: \(role.setting)
-            The learner's task (in Chinese): \(role.task)
-
-            Conversation (ROLE is the other person, LEARNER is the learner):
-
-            """
+    /// `coursePhrases`: what the lessons before this challenge taught, so corrections agree with them.
+    public static func feedbackPrompt(role: RolePlayRole, lines: [RolePlayLine], coursePhrases: [String]) -> String {
+        var text = "Situation: \(role.setting)\nThe learner's task (in Chinese): \(role.task)\n\n"
+        if !coursePhrases.isEmpty {
+            text += "Course phrases for this situation:\n" + coursePhrases.map { "- \($0)\n" }.joined() + "\n"
+        }
+        text += "Conversation (ROLE is the other person, LEARNER is the learner):\n"
         for line in lines {
             switch line.speaker {
             case .role: text += "ROLE: \(line.text)\n"
