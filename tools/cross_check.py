@@ -3,7 +3,8 @@
 
 Each unit is sent to the model in batches: for a lesson its intro and every phrase (Italian,
 Chinese, note), for a challenge every line the other person says and every reply choice with its
-feedback. The model checks grammar, Lei towards strangers, naturalness and regional usage, the
+feedback, for the show cards (unit "showcards", Content/showcards.json) their sentences and the
+allergen names. The model checks grammar, Lei towards strangers, naturalness and regional usage, the
 Chinese translation, the kana / pinyin pronunciation hints, and whether each wrong choice is really
 wrong and each right one really right. Its structured answer becomes reviews/cross-check-<unit>.md.
 
@@ -13,6 +14,7 @@ review is OK may then be marked "checked" with "checkedText" set to its exact It
 Usage (from the repo root):
   python tools/cross_check.py --week 1          every unit of week 1
   python tools/cross_check.py L03 C01           just these units
+  python tools/cross_check.py showcards         the show cards' own sentences
   python tools/cross_check.py --dry-run L01     print the request instead of sending it
 
 Needs GOOGLE_CLOUD_PROJECT_NUMBER (environment or .env), and GOOGLE_API_KEY when the environment
@@ -106,7 +108,7 @@ RESPONSE_SCHEMA = {
 class Item:
     """One thing to review, with what the model needs to see and what the report shows."""
     id: str
-    kind: str  # "intro", "phrase", "npc" or "choice"
+    kind: str  # "intro", "phrase", "npc", "choice" or "allergen"
     data: dict
     shown: list[tuple[str, str]]  # (label, text) pairs quoted in the report
 
@@ -114,7 +116,7 @@ class Item:
 @dataclass
 class Unit:
     id: str
-    kind: str  # "lesson" or "challenge"
+    kind: str  # "lesson", "challenge" or "showcards"
     title: str
     context: dict
     items: list[Item] = field(default_factory=list)
@@ -191,12 +193,37 @@ def dialogue_unit(path: Path) -> Unit:
     return unit
 
 
+SHOW_CARDS = "showcards"
+# How the app puts the show cards together (MammaCore ShowCards.swift), so each sentence is judged in place.
+SHOW_CARD_LAYOUT = [
+    "酒店卡：go-to-address → 学习者填的酒店名 → 酒店地址 → Me lo può indicare sulla mappa?（课程句）",
+    "忌口卡：allergic-to → 选中的过敏原名称，一行一个 → not-even-a-little → 学习者自己写的忌口备注 → tell-the-cook",
+    "请写下来：Me lo può scrivere?（课程句）",
+    "请说慢一点：speak-slowly",
+    "紧急：112（大字号码）→ Aiuto!（课程句）→ call-112",
+]
+
+
+def show_card_unit(path: Path) -> Unit:
+    cards = load_json(path)
+    unit = Unit(SHOW_CARDS, "showcards", "出示卡", {"unit": SHOW_CARDS, "title": "出示卡", "cards": SHOW_CARD_LAYOUT})
+    for phrase in cards["phrases"]:
+        data = {key: phrase[key] for key in ("it", "zh", "note") if phrase.get(key)}
+        shown = [("it", phrase["it"]), ("zh", phrase["zh"])] + ([("note", phrase["note"])] if phrase.get("note") else [])
+        unit.items.append(Item(phrase["id"], "phrase", data, shown))
+    for allergen in cards["allergens"]:
+        unit.items.append(Item(f"allergen/{allergen['id']}", "allergen", {"it": allergen["it"]}, [("it", allergen["it"])]))
+    return unit
+
+
 def load_units(wanted: list[str], week: int | None) -> list[Unit]:
     course = load_json(CONTENT / "course.json")
     titles = {unit["id"]: unit["title"] for unit in course["units"]}
     if week is not None:
         wanted = wanted + [unit["id"] for unit in course["units"] if unit["week"] == week]
     files = {path.stem: path for folder in ("lessons", "dialogues") for path in (CONTENT / folder).glob("*.json")}
+    if (CONTENT / f"{SHOW_CARDS}.json").exists():
+        files[SHOW_CARDS] = CONTENT / f"{SHOW_CARDS}.json"
     order = [unit["id"] for unit in course["units"]]
     ids = sorted(set(wanted) or set(files), key=lambda unit: (order.index(unit) if unit in order else len(order), unit))
     units = []
@@ -204,7 +231,10 @@ def load_units(wanted: list[str], week: int | None) -> list[Unit]:
         if unit_id not in files:
             raise SystemExit(f"no content file for {unit_id}")
         path = files[unit_id]
-        units.append(lesson_unit(path, titles) if path.parent.name == "lessons" else dialogue_unit(path))
+        if unit_id == SHOW_CARDS:
+            units.append(show_card_unit(path))
+        else:
+            units.append(lesson_unit(path, titles) if path.parent.name == "lessons" else dialogue_unit(path))
     return units
 
 
@@ -237,9 +267,18 @@ def request_body(unit: Unit, items: list[Item], thinking: str) -> dict:
             payload["unit"] = {**unit.context, "intro": intro}  # context only; reviewed in another batch
     prompt = (
         "下面是一个单元的内容（JSON）。按说明逐条审查 items 里的每个条目。"
-        + ("这是课程单元：kind 为 intro 的是本课的讲解，phrase 是要教的句子。" if unit.kind == "lesson" else
-           "这是挑战剧本：npc 是对方说的台词，choice 是学习者在 intent 情境下可选的回答，correct 标明对错；"
-           "choice 的 after 是对方刚说的话，有多句时是随机抽一句的不同版本。")
+        + {
+            "lesson": "这是课程单元：kind 为 intro 的是本课的讲解，phrase 是要教的句子。",
+            "challenge": "这是挑战剧本：npc 是对方说的台词，choice 是学习者在 intent 情境下可选的回答，correct 标明对错；"
+                         "choice 的 after 是对方刚说的话，有多句时是随机抽一句的不同版本。",
+            "showcards": "这是出示卡：学习者在意大利把手机屏幕给对方（出租车司机、路人、服务员、药剂师、警察）看，"
+                         "也可以放示范音频给对方听，所以句子要让第一次见面的意大利人一看就懂、礼貌得体。"
+                         "unit.cards 说明每张卡上的句子怎么排；学习者自己填的内容（酒店名、地址、忌口备注）不在审查范围内。"
+                         "kind 为 phrase 的是卡上的固定句子，zh 是给学习者看的中文意思。"
+                         "kind 为 allergen 的是欧盟法规 (EU) No 1169/2011 附件二意大利文本里过敏原的名称原文（餐厅的过敏原表就用这些名称），"
+                         "会一行一个列在 allergic-to 那句后面：不要建议改写措辞，只指出和法规原文不一致的拼写，"
+                         "以及作为这样的列表项是否会让人看不懂。",
+        }[unit.kind]
         + "\n\n" + json.dumps(payload, ensure_ascii=False, indent=2)
     )
     return {

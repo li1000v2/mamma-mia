@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "showcards.schema.json",
+  "title": "The show cards' own sentences, and the allergen names the diet card lists",
+  "type": "object",
+  "required": ["version", "phrases", "allergens"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "phrases": {
+      "description": "Fixed Italian on the show cards that isn't a course phrase; course phrases are reused by id in the app.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "it", "zh", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$" },
+          "it": { "type": "string", "minLength": 1 },
+          "zh": { "type": "string", "minLength": 1 },
+          "note": { "type": "string", "minLength": 1 },
+          "status": {
+            "description": "draft → checked (cross-checked) → native (native speaker) → audio_ok (audio listened to)",
+            "enum": ["draft", "checked", "native", "audio_ok"]
+          },
+          "checkedText": {
+            "description": "The Italian text as it was when the phrase was marked checked or later; must equal it unless status is draft.",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "allergens": {
+      "description": "Annex II of Regulation (EU) No 1169/2011, in annex order, worded as Allergen.italian in MammaCore (the tests compare them).",
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "items": {
+        "type": "object",
+        "required": ["id", "it"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "enum": [
+              "gluten", "crustaceans", "eggs", "fish", "peanuts", "soybeans", "milk",
+              "nuts", "celery", "mustard", "sesame", "sulphites", "lupin", "molluscs"
+            ]
+          },
+          "it": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

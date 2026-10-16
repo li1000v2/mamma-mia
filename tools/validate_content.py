@@ -3,7 +3,9 @@
 
 Checks every JSON file against its schema in Content/schema, that a phrase past draft still has
 the text it was checked with (checkedText), that audio-reviewed phrases have audio for every voice
-and speed, that every manifest entry has its file, and that no real itinerary was committed. Cross-file id checks live in the MammaCore tests.
+and speed (a show-card line for one voice: it is played to people, not studied), that every manifest
+entry has its file, and that no real itinerary was committed. Cross-file id checks live in the
+MammaCore tests.
 
 Usage: python tools/validate_content.py
 """
@@ -56,9 +58,14 @@ def main() -> int:
     lesson_files = sorted((CONTENT / "lessons").glob("*.json"))
     dialogue_files = sorted((CONTENT / "dialogues").glob("*.json"))
     manifest_path = AUDIO / "manifest.json"
+    show_cards_path = CONTENT / "showcards.json"
     errors += schema_errors("course.schema.json", CONTENT / "course.json")
     errors += schema_errors("trip.schema.json", CONTENT / "trip.example.json")
     errors += schema_errors("audio-manifest.schema.json", manifest_path)
+    if show_cards_path.exists():
+        errors += schema_errors("showcards.schema.json", show_cards_path)
+    else:
+        errors.append(f"{rel(show_cards_path)} is missing; the show cards need it")
     for path in lesson_files:
         errors += schema_errors("lesson.schema.json", path)
     for path in dialogue_files:
@@ -77,14 +84,16 @@ def main() -> int:
             errors.append(f"{rel(manifest_path)}: {name} (for {key!r}) is missing from Audio/")
 
     phrases = [phrase for path in lesson_files for phrase in load(path)["phrases"]]
+    show_cards = load(show_cards_path)
+    card_phrases = show_cards["phrases"]
     first_with_text: dict[str, str] = {}
-    for phrase in phrases:
+    for phrase in phrases + card_phrases:
         text = " ".join(phrase["it"].lower().split())
         if text in first_with_text:
             warnings.append(f"{phrase['id']}: same Italian as {first_with_text[text]}; reuse one phrase or note why both exist")
         else:
             first_with_text[text] = phrase["id"]
-    for phrase in phrases:
+    for phrase in phrases + card_phrases:
         if phrase["status"] == "draft":
             continue
         checked_text = phrase.get("checkedText")
@@ -95,27 +104,38 @@ def main() -> int:
                 f"{phrase['id']}: status {phrase['status']} but {found}, not {phrase['it']!r}; "
                 "cross-check it again, or set status back to draft"
             )
-        missing = [
-            f"{voice}/{speed}"
-            for voice in manifest["voices"]
-            for speed in SPEEDS
-            if audio_key(phrase["it"], voice, speed) not in manifest["entries"]
-        ]
-        if not manifest["voices"]:
-            missing = ["(no voices configured)"]
+
+    def missing_audio(text: str, voices: list[str]) -> list[str]:
+        if not voices:
+            return ["(no voices configured)"]
+        return [f"{voice}/{speed}" for voice in voices for speed in SPEEDS
+                if audio_key(text, voice, speed) not in manifest["entries"]]
+
+    for phrase in phrases:
+        missing = missing_audio(phrase["it"], manifest["voices"])
         if missing:
             # Audio comes after cross-checking, so only an audio-reviewed phrase must have it.
             message = f"{phrase['id']}: no audio for {', '.join(missing)}"
             (errors if phrase["status"] == "audio_ok" else warnings).append(message)
+    # A show-card line is played to people, not studied: one voice with both speeds is enough.
+    card_lines = [(phrase["id"], phrase["it"], phrase["status"]) for phrase in card_phrases]
+    card_lines += [(f"allergen {item['id']}", item["it"], "draft") for item in show_cards["allergens"]]
+    for line_id, text, status in card_lines:
+        options = [missing_audio(text, [voice]) for voice in manifest["voices"]] or [missing_audio(text, [])]
+        if all(options):
+            message = f"showcards {line_id}: no voice has audio at both speeds"
+            (errors if status == "audio_ok" else warnings).append(message)
 
     if errors:
         return report(errors, warnings)
     for line in warnings:
         print(f"warning: {line}")
     drafts = sum(1 for phrase in phrases if phrase["status"] == "draft")
+    card_drafts = sum(1 for phrase in card_phrases if phrase["status"] == "draft")
     print(
         f"OK: {len(lesson_files)} lesson files, {len(phrases)} phrases ({drafts} draft), "
-        f"{len(dialogue_files)} dialogues, {len(manifest['entries'])} audio files"
+        f"{len(dialogue_files)} dialogues, {len(card_phrases)} show-card phrases ({card_drafts} draft), "
+        f"{len(manifest['entries'])} audio files"
     )
     return 0
 

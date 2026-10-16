@@ -16,10 +16,11 @@ because the model now and then makes a whole line up.
 Results are cached in reviews/audio-screen-cache.json by file name, with a hash of the audio, so a rerun
 only screens new or changed clips (regenerated audio keeps its file name).
 Every run rewrites reviews/audio-screen-week<N>.md (suspicious clips and totals) and .html (the same
-clips with players; open it from reviews/ so ../Audio/ resolves).
+clips with players; open it from reviews/ so ../Audio/ resolves); with --cards, audio-screen-cards.*.
 
 Usage (from the repo root):
   python tools/audio_review.py                 screen week 1 and write the report
+  python tools/audio_review.py --cards         screen the show cards' own lines (Content/showcards.json)
   python tools/audio_review.py --limit 10      screen at most 10 new clips
   python tools/audio_review.py --only palla    only clips whose file name or text matches
   python tools/audio_review.py --report-only   rewrite the report from the cache
@@ -46,7 +47,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from gen_audio import AUDIO, CONTENT, MANIFEST, MAX_PARALLEL, ROOT, Gemini, load_env, load_json, normalized
+from gen_audio import AUDIO, CONTENT, MANIFEST, MAX_PARALLEL, ROOT, Gemini, load_env, load_json, normalized, show_card_texts
 
 REVIEWS = ROOT / "reviews"
 CACHE = REVIEWS / "audio-screen-cache.json"
@@ -138,8 +139,21 @@ def week_texts(week: int) -> set[str]:
     return texts
 
 
-def clips_for(week: int) -> list[Clip]:
-    texts = week_texts(week)
+@dataclass
+class Selection:
+    """What one report covers: a course week, or the show cards."""
+    stem: str  # file name part: "week1" or "cards"
+    title: str  # "第 1 周" or "出示卡"
+    texts: set[str]
+
+
+def selection(week: int, cards: bool) -> Selection:
+    if cards:
+        return Selection("cards", "出示卡", set(show_card_texts()))
+    return Selection(f"week{week}", f"第 {week} 周", week_texts(week))
+
+
+def clips_for(texts: set[str]) -> list[Clip]:
     clips = []
     for key, name in load_json(MANIFEST)["entries"].items():
         voice, speed, text = key.split("|", 2)
@@ -336,7 +350,7 @@ def describe(clip: Clip, voice_names: dict[str, str]) -> str:
     return f"{clip.voice}（{name}）" if name else clip.voice
 
 
-def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: str, voice_names: dict[str, str]) -> tuple[Path, Path, list]:
+def write_reports(chosen: Selection, clips: list[Clip], cache: dict[str, dict], model: str, voice_names: dict[str, str]) -> tuple[Path, Path, list]:
     screened = [(clip, cache[clip.file]) for clip in clips if is_fresh(clip, cache.get(clip.file), model)]
     suspicious = sorted(((clip, entry) for clip, entry in screened if not entry["ok"]), key=lambda pair: priority(pair[1]))
     by_speed = {speed: sum(1 for clip, _ in suspicious if clip.speed == speed) for speed in SPEEDS}
@@ -345,12 +359,12 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
     gemination = sorted({clip.text for clip in clips if double_consonant_words(clip.text)})
     pending = len(clips) - len(screened)
 
-    md = [f"# 示范音频粗筛：第 {week} 周", ""]
+    md = [f"# 示范音频粗筛：{chosen.title}", ""]
     md.append(f"由 `tools/audio_review.py` 生成。模型 `{model}`（thinkingLevel HIGH）听每段音频并对照原文，"
               "只列出它认为有问题的片段；这些需要人去听。双辅音长短模型判断不了，不作为可疑理由，"
               "含双辅音的句子统一备注“双辅音需人工听”。")
     md.append("")
-    md.append(f"逐条点听：[audio-screen-week{week}.html](audio-screen-week{week}.html)（在仓库里用浏览器打开）。")
+    md.append(f"逐条点听：[audio-screen-{chosen.stem}.html](audio-screen-{chosen.stem}.html)（在仓库里用浏览器打开）。")
     md.append("")
     md.append("## 可疑片段")
     md.append("")
@@ -384,7 +398,8 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
     md.append("")
     md.append("## 统计")
     md.append("")
-    md.append(f"- 本周音频：{len(clips)} 段（原速 {sum(c.speed == 'n' for c in clips)}，慢速 {sum(c.speed == 's' for c in clips)}）")
+    md.append(f"- {'本周' if chosen.stem.startswith('week') else chosen.title}音频：{len(clips)} 段"
+              f"（原速 {sum(c.speed == 'n' for c in clips)}，慢速 {sum(c.speed == 's' for c in clips)}）")
     md.append(f"- 已筛：{len(screened)} 段" + (f"，未筛 {pending} 段" if pending else ""))
     md.append(f"- 可疑：{len(suspicious)} 段（原速 {by_speed['n']}，慢速 {by_speed['s']}）")
     md.append(f"- 含双辅音的句子：{len(gemination)} 句")
@@ -392,7 +407,7 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
     md.append(f"- 花费估算：{len(screened)} 次 × ${USD_PER_CLIP} ≈ ${cost:.2f}（按实测单价；只重筛新片段时实际花费更少）")
     md.append("")
     REVIEWS.mkdir(exist_ok=True)
-    md_path = REVIEWS / f"audio-screen-week{week}.md"
+    md_path = REVIEWS / f"audio-screen-{chosen.stem}.md"
     md_path.write_text("\n".join(md), encoding="utf-8", newline="\n")
 
     def esc(value: str) -> str:
@@ -433,7 +448,7 @@ def write_reports(week: int, clips: list[Clip], cache: dict[str, dict], model: s
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>音频粗筛 第 {week} 周</title>
+<title>音频粗筛 {esc(chosen.title)}</title>
 <style>
 :root {{ --bg: #fbfaf7; --fg: #1d1b18; --muted: #6b665e; --card: #fff; --line: #e4e0d8; --accent: #b4442b; }}
 @media (prefers-color-scheme: dark) {{
@@ -456,7 +471,7 @@ code {{ font-size: 0.85em; }}
 </head>
 <body>
 <main>
-<h1>示范音频粗筛 · 第 {week} 周</h1>
+<h1>示范音频粗筛 · {esc(chosen.title)}</h1>
 <p class="meta">已筛 {len(screened)} / {len(clips)} 段，可疑 {len(suspicious)} 段（原速 {by_speed['n']}，慢速 {by_speed['s']}）。
 模型 {esc(model)}，花费估算 ${cost:.2f}。按需要听的先后排列。</p>
 {''.join(cards) if cards else '<p>没有可疑片段。</p>'}
@@ -468,7 +483,7 @@ code {{ font-size: 0.85em; }}
 </body>
 </html>
 """
-    html_path = REVIEWS / f"audio-screen-week{week}.html"
+    html_path = REVIEWS / f"audio-screen-{chosen.stem}.html"
     html_path.write_text(page, encoding="utf-8", newline="\n")
     return md_path, html_path, suspicious
 
@@ -476,6 +491,7 @@ code {{ font-size: 0.85em; }}
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--week", type=int, default=1, help="which week's audio to screen (default 1)")
+    parser.add_argument("--cards", action="store_true", help="screen the show cards' own lines instead of a week")
     parser.add_argument("--limit", type=int, default=0, help="screen at most this many new clips")
     parser.add_argument("--only", action="append", default=[], metavar="TEXT",
                         help="only clips whose file name or text contains TEXT (repeatable)")
@@ -488,7 +504,8 @@ def main() -> int:
 
     config = load_json(Path(__file__).resolve().parent / "tts_voices.json")
     voice_names = {voice["id"]: voice["voiceName"] for voice in config["voices"]}
-    clips = clips_for(args.week)
+    chosen = selection(args.week, args.cards)
+    clips = clips_for(chosen.texts)
     cache = load_cache()
 
     selected = clips
@@ -506,7 +523,7 @@ def main() -> int:
     unchecked = [clip for clip in selected if clip.file not in todo_files and (AUDIO / clip.file).is_file()
                  and is_fresh(clip, cache.get(clip.file), args.model)
                  and not cache[clip.file]["ok"] and "checkHeard" not in cache[clip.file]]
-    print(f"week {args.week}: {len(clips)} clips, {len(selected)} selected, {len(todo)} to screen"
+    print(f"{chosen.stem}: {len(clips)} clips, {len(selected)} selected, {len(todo)} to screen"
           + (f", {len(unchecked)} flagged to transcribe" if unchecked else ""))
     for clip in missing:
         print(f"missing audio file: {clip.file} ({clip.voice} {clip.speed} {clip.text})")
@@ -558,7 +575,7 @@ def main() -> int:
                     save_cache(cache)  # saved as we go, so an interrupted run keeps its results
                 print(f"{label}: {'ok' if entry['ok'] else 'SUSPICIOUS ' + entry['reason']}")
 
-    md_path, html_path, suspicious = write_reports(args.week, clips, cache, args.model, voice_names)
+    md_path, html_path, suspicious = write_reports(chosen, clips, cache, args.model, voice_names)
     for line in failures:
         print(f"error: {line}")
     print(f"{len(suspicious)} suspicious; report: {md_path.relative_to(ROOT)}, {html_path.relative_to(ROOT)}")
