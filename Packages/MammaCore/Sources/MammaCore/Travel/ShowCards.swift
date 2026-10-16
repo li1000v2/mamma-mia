@@ -102,6 +102,10 @@ public struct ShowCard: Hashable, Sendable, Identifiable {
     /// The EU-wide emergency number; free to call in Italy.
     public static let emergencyNumber = "112"
 
+    /// The voice the show cards' own lines are generated in ("showCardVoices" in
+    /// tools/tts_voices.json). A card plays its course lines in it too, so it sounds like one person.
+    public static let voice = "f1"
+
     /// The sentences the cards are made of: course phrases, reused with their audio, and the show
     /// cards' own lines in Content/showcards.json. `ContentValidator` checks that they exist.
     public enum Source {
