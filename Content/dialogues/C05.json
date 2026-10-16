@@ -1,0 +1,104 @@
+{
+  "unit": "C05",
+  "title": "威尼斯→那不勒斯",
+  "goal": "在威尼斯 Santa Lucia 火车站的窗口买一张去那不勒斯的单程票，问清从几号站台出发；听懂晚点和改站台的广播，上车找到自己的座位。",
+  "speaker": "Stazione",
+  "voice": "f1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "ticket",
+      "npc": [
+        { "it": "Buongiorno, mi dica.", "zh": "【售票员】早上好，您要什么？" },
+        { "it": "Buongiorno! Prego, dica.", "zh": "【售票员】早上好！请说。" }
+      ],
+      "reply": {
+        "intent": "买一张去那不勒斯的票",
+        "frame": "numero",
+        "choices": [
+          { "it": "Buongiorno. Un biglietto per Napoli, per favore.", "correct": true },
+          { "it": "Buongiorno. Un biglietto da Napoli, per favore.", "correct": false, "feedback": "da 是“从”，这句成了“从那不勒斯出发的票”。去哪儿用 per：per Napoli。" },
+          { "it": "Buongiorno. Un binario per Napoli, per favore.", "correct": false, "feedback": "binario 是站台，票是 biglietto。" }
+        ]
+      }
+    },
+    {
+      "id": "andata",
+      "npc": [
+        { "it": "Solo andata o andata e ritorno?", "zh": "【售票员】单程还是往返？" },
+        { "it": "Andata e ritorno o solo andata?", "zh": "【售票员】往返还是单程？" }
+      ],
+      "reply": {
+        "intent": "只要单程，顺便问从几号站台出发",
+        "choices": [
+          { "it": "Solo andata, per favore. Da quale binario parte?", "correct": true },
+          { "it": "Andata e ritorno, per favore. Da quale binario parte?", "correct": false, "feedback": "andata e ritorno 是往返。你到了那不勒斯还要去罗马，不回威尼斯，买单程就行：Solo andata。" },
+          { "it": "Solo andata, per favore. Da quale biglietto parte?", "correct": false, "feedback": "biglietto 是票。问站台要说 Da quale binario parte?" }
+        ]
+      }
+    },
+    {
+      "id": "biglietto",
+      "npc": [
+        { "it": "Dal binario tre. Ecco il biglietto: carrozza otto, posto ventidue.", "zh": "【售票员】从 3 号站台出发。给您票：8 号车厢，22 号座位。", "answer": "8 号车厢", "distractors": ["18 号车厢", "3 号车厢"] },
+        { "it": "Dal binario tre. Ecco a lei: carrozza sei, posto quattordici.", "zh": "【售票员】从 3 号站台出发。给您：6 号车厢，14 号座位。", "answer": "6 号车厢", "distractors": ["16 号车厢", "14 号车厢"] },
+        { "it": "Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette.", "zh": "【售票员】从 3 号站台出发。给您票：12 号车厢，7 号座位。", "answer": "12 号车厢", "distractors": ["2 号车厢", "7 号车厢"] }
+      ],
+      "question": "你的座位在几号车厢？"
+    },
+    {
+      "id": "ritardo",
+      "npc": [
+        { "it": "Attenzione. Il treno per Napoli Centrale è in ritardo di circa quindici minuti. Ci scusiamo per il disagio.", "zh": "【广播】请注意，开往那不勒斯中央车站的火车晚点约 15 分钟。给您带来不便，敬请谅解。", "answer": "15 分钟", "distractors": ["50 分钟", "5 分钟"] },
+        { "it": "Attenzione. Il treno per Napoli Centrale partirà con un ritardo di circa quaranta minuti. Ci scusiamo per il disagio.", "zh": "【广播】请注意，开往那不勒斯中央车站的火车将晚点约 40 分钟出发。给您带来不便，敬请谅解。", "answer": "40 分钟", "distractors": ["14 分钟", "4 分钟"] },
+        { "it": "Attenzione. Il treno per Napoli Centrale è in ritardo di circa venticinque minuti. Ci scusiamo per il disagio.", "zh": "【广播】请注意，开往那不勒斯中央车站的火车晚点约 25 分钟。给您带来不便，敬请谅解。", "answer": "25 分钟", "distractors": ["35 分钟", "20 分钟"] }
+      ],
+      "question": "火车晚点多少分钟？"
+    },
+    {
+      "id": "cambio",
+      "npc": [
+        { "it": "Attenzione! Il treno per Napoli Centrale partirà dal binario cinque anziché dal binario tre.", "zh": "【广播】请注意！开往那不勒斯中央车站的火车改从 5 号站台出发，不是 3 号站台。", "answer": "5 号站台", "distractors": ["3 号站台", "15 号站台"] },
+        { "it": "Attenzione! Il treno per Napoli Centrale, anziché dal binario tre, partirà dal binario sette.", "zh": "【广播】请注意！开往那不勒斯中央车站的火车不从 3 号站台出发，改从 7 号站台出发。", "answer": "7 号站台", "distractors": ["3 号站台", "17 号站台"] },
+        { "it": "Attenzione! Il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre.", "zh": "【广播】请注意！开往那不勒斯中央车站的火车改从 13 号站台出发，不是 3 号站台。", "answer": "13 号站台", "distractors": ["3 号站台", "30 号站台"] }
+      ],
+      "question": "现在要去几号站台？"
+    }
+  ],
+  "followUps": {
+    "after": "cambio",
+    "min": 1,
+    "max": 1,
+    "pool": [
+      {
+        "id": "occupato",
+        "npc": [
+          { "it": "Sì? Mi dica.", "zh": "【乘客】嗯？有什么事吗？" }
+        ],
+        "reply": {
+          "intent": "有人坐在你的座位上，客气地告诉对方这是你的座位",
+          "choices": [
+            { "it": "Scusi, questo è il mio posto.", "correct": true },
+            { "it": "Scusi, questo è il suo posto.", "correct": false, "feedback": "il suo posto 是“您的座位”，等于说对方坐对了。自己的座位是 il mio posto。" },
+            { "it": "Scusi, questo è il mio binario.", "correct": false, "feedback": "binario 是站台。车上的座位是 posto。" }
+          ]
+        }
+      },
+      {
+        "id": "capotreno",
+        "npc": [
+          { "it": "Buongiorno, biglietto, prego.", "zh": "【列车员】您好，请出示车票。" }
+        ],
+        "reply": {
+          "intent": "把票给列车员，问自己的座位在哪儿",
+          "frame": "dove",
+          "choices": [
+            { "it": "Ecco. Scusi, dov'è il mio posto?", "correct": true },
+            { "it": "Ecco. Scusi, dov'è il binario?", "correct": false, "feedback": "你已经上车了。binario 是站台，座位是 posto：dov'è il mio posto?" },
+            { "it": "Ecco. Scusi, quanto costa il posto?", "correct": false, "feedback": "这是问座位多少钱。票已经买好了，要问的是座位在哪儿：Dov'è…?" }
+          ]
+        }
+      }
+    ]
+  }
+}
