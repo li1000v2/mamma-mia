@@ -1,8 +1,9 @@
 import SwiftUI
 import MammaCore
 
-/// Plays one offline scripted challenge with tap-to-answer replies. Each run reshuffles the
-/// follow-up questions, line variants and choices.
+/// Plays one offline scripted challenge. Replies can be said aloud and are matched to a choice by
+/// its words; when recognition can't run or nothing matches, you tap the choice instead. Each run
+/// reshuffles the follow-up questions, line variants and choices.
 struct ChallengePlayerView: View {
     @Environment(AppModel.self) private var model
     let unit: CourseUnit
@@ -22,6 +23,9 @@ struct ChallengePlayerView: View {
     @State private var feedback: String?
     @State private var answered: String?
     @State private var said: [Int: String] = [:]
+    /// What recognition heard for replies that were spoken, by beat.
+    @State private var heard: [Int: String] = [:]
+    @State private var spokenNote: String?
     @State private var result: ChallengeRun?
 
     private var beat: DialogueBeat? {
@@ -55,7 +59,10 @@ struct ChallengePlayerView: View {
         .onAppear {
             if beats.isEmpty { restart() }
         }
-        .onDisappear { model.audio.stop() }
+        .onDisappear {
+            model.audio.stop()
+            model.recorder.stop()
+        }
     }
 
     // MARK: Transcript
@@ -64,7 +71,7 @@ struct ChallengePlayerView: View {
         VStack(alignment: .leading, spacing: 6) {
             bubble(speaker: script.speaker, text: beat.line.it, detail: beat.line.zh, mine: false)
             if let reply = said[beat.id] {
-                bubble(speaker: "你", text: reply, detail: nil, mine: true)
+                bubble(speaker: "你", text: reply, detail: heard[beat.id].map { "识别到：\($0)" }, mine: true)
             }
         }
     }
@@ -208,6 +215,19 @@ struct ChallengePlayerView: View {
                         .font(.callout)
                 }
             }
+            if model.speech.isUsable {
+                SayItButton(recordingID: "reply", title: "直接说出来", prominent: false) { attempt in
+                    hear(attempt, for: reply)
+                }
+            } else {
+                // Without recognition there's nothing to match a spoken reply against: tap only.
+                SpeechStatusNote()
+            }
+            if let spokenNote {
+                Text(spokenNote)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
             ForEach(reply.choices, id: \.it) { choice in
                 Button {
                     pick(choice)
@@ -283,6 +303,26 @@ struct ChallengePlayerView: View {
         }
     }
 
+    /// Treats a spoken reply like tapping the choice it matches; otherwise the choices stay to tap.
+    private func hear(_ attempt: SpokenAttempt, for reply: DialogueReply) {
+        guard let beat, stage == .reply, beat.reply == reply else { return }
+        guard let transcript = attempt.transcript else {
+            spokenNote = "这次没能识别，点选你想说的那句。"
+            return
+        }
+        guard let index = ReplyMatcher.match(transcript, choices: reply.choices.map(\.it)) else {
+            let what = transcript.isEmpty ? "（什么也没听到）" : "「\(transcript)」"
+            spokenNote = "识别到\(what)，没对上任何一句。点选你想说的那句。"
+            return
+        }
+        let choice = reply.choices[index]
+        spokenNote = "识别到「\(transcript)」→ \(choice.it)"
+        if choice.correct {
+            heard[beat.id] = transcript
+        }
+        pick(choice)
+    }
+
     private func pick(_ choice: DialogueChoice) {
         guard let beat else { return }
         if tally.choose(choice) {
@@ -300,6 +340,7 @@ struct ChallengePlayerView: View {
         showChinese = false
         hint = nil
         feedback = nil
+        spokenNote = nil
         answered = nil
         if let beat {
             Task { await model.audio.say(beat.line.it, voice: script.voice) }
@@ -325,8 +366,10 @@ struct ChallengePlayerView: View {
         showChinese = false
         hint = nil
         feedback = nil
+        spokenNote = nil
         answered = nil
         said = [:]
+        heard = [:]
         result = nil
         if let first = beats.first {
             Task { await model.audio.say(first.line.it, voice: script.voice) }

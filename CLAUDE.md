@@ -30,6 +30,12 @@
 - 每段新音频都用 `checkModel` 转写回来和原文比对，对不上会重试；还对不上就在输出里报 warning，需要人去听。
 - app 里没有音频的句子会退回 iOS 自带的意大利语语音。挑战剧本可以用 `voice` 指定角色的声线。
 
+## 开口说（离线识别）
+
+- `App/Services/SpeechService.swift`：SpeechAnalyzer + SpeechTranscriber（it_IT），设备不支持就退到 DictationTranscriber，再不行只保留录音对比和自评。模型经 AssetInventory 下载，状态显示在「诊断、日志与备份」。
+- 判定在 MammaCore 的 `Speech/`：识别结果和目标句逐词对齐，忽略大小写、标点和重音，只判断“对方能不能听懂”，不打发音分。
+- 识别只是提示：复习照旧自评打分。挑战里说出的回复按选项的词匹配，对不上就点选；选项之间要差至少一个听得出的词，只差标点或重音的两个选项只能点选。
+
 ## 免费 Apple ID 的限制
 
 - 只有一个 app target，不加任何扩展（小组件等）：扩展也占 3 个侧载名额。

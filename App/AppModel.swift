@@ -15,6 +15,7 @@ final class AppModel {
     let scheduler = ReviewScheduler()
     let audio = AudioService()
     let recorder = Recorder()
+    let speech = SpeechService()
     private let store: ProgressStore
 
     init() {
@@ -24,6 +25,7 @@ final class AppModel {
         configureAudioSession()
         loadContent()
         loadProgress()
+        Task { await speech.refresh() }
     }
 
     /// Follows the device time zone, which changes when the phone lands in Italy.

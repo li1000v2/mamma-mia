@@ -251,63 +251,72 @@ private struct ShadowRow: View {
     }
 }
 
+/// Say it from the Chinese first; then the answer, lined up with what offline recognition heard.
 private struct SpeakStep: View {
     @Environment(AppModel.self) private var model
     let phrases: [Phrase]
     @State private var index = 0
     @State private var revealed = false
+    @State private var attempt: SpokenAttempt?
 
     var body: some View {
         if phrases.isEmpty {
             ContentUnavailableView("这一课还没有句子", systemImage: "text.bubble")
         } else {
             let phrase = phrases[min(index, phrases.count - 1)]
-            let buttonTitle: String = if !revealed {
-                "我说完了，看答案"
-            } else if index + 1 < phrases.count {
-                "下一句"
-            } else {
-                "再来一轮"
-            }
-            VStack(spacing: 20) {
+            VStack(spacing: 16) {
                 Text("\(index + 1) / \(phrases.count)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                Spacer()
-                Text(phrase.zh)
-                    .font(.title2.weight(.semibold))
-                    .multilineTextAlignment(.center)
+                ScrollView {
+                    VStack(spacing: 20) {
+                        Text(phrase.zh)
+                            .font(.title2.weight(.semibold))
+                            .multilineTextAlignment(.center)
+                        if revealed {
+                            SpokenAnswer(text: phrase.it, attempt: attempt)
+                        } else {
+                            Text("先用意大利语说出来，再看答案和识别结果")
+                                .font(.callout)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 24)
+                }
+                .defaultScrollAnchor(.center)
                 if revealed {
-                    Text(phrase.it)
-                        .font(.title3)
-                        .multilineTextAlignment(.center)
-                    HStack(spacing: 28) {
-                        SpeakButton(text: phrase.it)
-                        SpeakButton(text: phrase.it, speed: .slow)
-                    }
-                } else {
-                    Text("先用意大利语说出来，再看答案")
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                Button {
-                    if revealed {
+                    Button {
                         revealed = false
+                        attempt = nil
                         index = (index + 1) % phrases.count
-                    } else {
-                        revealed = true
-                        Task { await model.audio.say(phrase.it) }
+                    } label: {
+                        Text(index + 1 < phrases.count ? "下一句" : "再来一轮")
+                            .frame(maxWidth: .infinity)
                     }
-                } label: {
-                    Text(buttonTitle)
-                        .frame(maxWidth: .infinity)
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                } else {
+                    SayItButton(recordingID: "say-\(phrase.id)") { result in
+                        // A late result after skipping ahead belongs to a sentence no longer shown.
+                        guard !revealed, phrases[min(index, phrases.count - 1)].id == phrase.id else { return }
+                        attempt = result
+                        reveal(phrase)
+                    }
+                    Button("不说了，直接看答案") {
+                        reveal(phrase)
+                    }
+                    .font(.callout)
                 }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
             }
             .padding()
         }
+    }
+
+    private func reveal(_ phrase: Phrase) {
+        model.recorder.stop()
+        revealed = true
+        Task { await model.audio.say(phrase.it) }
     }
 }
 
