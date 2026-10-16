@@ -69,7 +69,7 @@ struct TodayView: View {
     private var reviewSection: some View {
         let plan = model.todayPlan
         return Section("复习") {
-            if plan.due.isEmpty && plan.boosted.isEmpty && plan.new.isEmpty {
+            if plan.due.isEmpty && plan.boosted.isEmpty && plan.packed.isEmpty && plan.new.isEmpty {
                 Label("今天的复习都做完了", systemImage: "checkmark.circle")
                     .foregroundStyle(.secondary)
             } else {
@@ -88,11 +88,14 @@ struct TodayView: View {
         }
     }
 
-    /// "到期 12 张 · 行程加练 5 张 · 新卡 10 张"; the boost count only appears near the trip.
+    /// "到期 12 张 · 行程加练 5 张 · 城市包 20 张 · 新卡 10 张"; the trip's counts only appear near it.
     private func planSummary(_ plan: DailyPlan) -> String {
         var parts = ["到期 \(plan.due.count) 张"]
         if !plan.boosted.isEmpty {
             parts.append("行程加练 \(plan.boosted.count) 张")
+        }
+        if !plan.packed.isEmpty {
+            parts.append("城市包 \(plan.packed.count) 张")
         }
         parts.append("新卡 \(plan.new.count) 张")
         return parts.joined(separator: " · ")

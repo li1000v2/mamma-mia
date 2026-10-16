@@ -48,6 +48,8 @@ targets:
           - UIInterfaceOrientationPortrait
         NSMicrophoneUsageDescription: 跟读和开口练习需要录下你的声音，录音只存在这台手机上。
         NSSpeechRecognitionUsageDescription: 用 iPhone 自带的离线识别，判断你说的意大利语对方能不能听懂。
+        # Add-only: show cards are saved into Photos as images; the app never reads the library.
+        NSPhotoLibraryAddUsageDescription: 把出示卡存成图片放进相册，app 打不开时也能从「照片」里拿出来给人看。
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: io.github.li1000v2.mammamia
