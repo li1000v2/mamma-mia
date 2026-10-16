@@ -1,0 +1,121 @@
+{
+  "unit": "C09",
+  "title": "突发状况",
+  "goal": "钱包在街上被偷了，你冲进最近的药店求助：先说钱包被偷了，回答药剂师的问题；再说自己不舒服、头疼，买点药，听清价格，用手机付款；最后听清去警察局要多久，请药剂师帮你叫出租车。",
+  "speaker": "Farmacista",
+  "voice": "f1",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "aiuto",
+      "npc": [
+        { "it": "Buongiorno, mi dica.", "zh": "您好，您需要什么？" },
+        { "it": "Buonasera! Desidera?", "zh": "晚上好！您要点什么？" }
+      ],
+      "reply": {
+        "intent": "求救，说钱包被偷了",
+        "frame": "passato",
+        "choices": [
+          { "it": "Aiuto! Mi hanno rubato il portafoglio!", "correct": true },
+          { "it": "Aiuto! Ho rubato il portafoglio!", "correct": false, "feedback": "Ho rubato 是“我偷了”，这句成了你偷了钱包。被偷要说 Mi hanno rubato…" },
+          { "it": "Aiuto! Ho bisogno di un portafoglio!", "correct": false, "feedback": "这是“我需要一个钱包”，听起来像要买钱包。被偷要说 Mi hanno rubato il portafoglio。" }
+        ]
+      }
+    },
+    {
+      "id": "come_sta",
+      "npc": [
+        { "it": "Allora chiami subito il 112, è il numero per le emergenze. Ma lei come si sente? È un po' pallido.", "zh": "那您马上打 112，这是紧急电话。您自己感觉怎么样？脸色有点白。" },
+        { "it": "Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?", "zh": "好。先打 112，再去警察局。您还好吗？" }
+      ],
+      "reply": {
+        "intent": "说自己不太舒服，头疼",
+        "frame": "non",
+        "choices": [
+          { "it": "Non mi sento bene. Ho mal di testa.", "correct": true },
+          { "it": "Mi sento bene. Ho mal di testa.", "correct": false, "feedback": "Mi sento bene 是“我感觉很好”，和头疼矛盾。前面要加 Non。" },
+          { "it": "Sono mal di testa.", "correct": false, "feedback": "Sono 是“我是”。说头疼用 Ho：Ho mal di testa。" }
+        ]
+      }
+    },
+    {
+      "id": "farmaco",
+      "npc": [
+        { "it": "Allora le do qualcosa per il mal di testa. Sono sei euro e trenta.", "zh": "那我给您拿点治头疼的。一共六欧三十。", "answer": "6.30 €", "distractors": ["6.13 €", "16.30 €"] },
+        { "it": "Ecco, questo è per il mal di testa. Sono sette euro e quaranta.", "zh": "给您，这是治头疼的。一共七欧四十。", "answer": "7.40 €", "distractors": ["7.14 €", "17.40 €"] },
+        { "it": "Ecco qua, per il mal di testa. Sono nove euro e sessanta.", "zh": "给您，治头疼的。一共九欧六十。", "answer": "9.60 €", "distractors": ["9.16 €", "19.60 €"] }
+      ],
+      "question": "要付多少钱？",
+      "reply": {
+        "intent": "钱包没了，问能不能用手机付",
+        "frame": "posso",
+        "choices": [
+          { "it": "Posso pagare con il telefono?", "correct": true },
+          { "it": "Posso pagare in contanti?", "correct": false, "feedback": "现金在被偷的钱包里。这次要问能不能用手机付：con il telefono。" },
+          { "it": "Posso pagare il telefono?", "correct": false, "feedback": "少了 con，这句成了“我能付这部手机的钱吗？”。用手机付是 pagare con il telefono。" }
+        ]
+      }
+    },
+    {
+      "id": "taxi",
+      "npc": [
+        { "it": "Sì, certo. La polizia però è un po' lontana: in taxi sono dieci minuti.", "zh": "可以。不过警察局有点远，打车要十分钟。", "answer": "10 分钟", "distractors": ["12 分钟", "20 分钟"] },
+        { "it": "Sì, certo. La polizia però è un po' lontana: in taxi sono quindici minuti.", "zh": "可以。不过警察局有点远，打车要十五分钟。", "answer": "15 分钟", "distractors": ["5 分钟", "50 分钟"] },
+        { "it": "Sì, certo. La polizia però è un po' lontana: in taxi sono venti minuti.", "zh": "可以。不过警察局有点远，打车要二十分钟。", "answer": "20 分钟", "distractors": ["2 分钟", "12 分钟"] }
+      ],
+      "question": "打车去警察局要几分钟？",
+      "reply": {
+        "intent": "请她帮你叫一辆出租车",
+        "frame": "mipuo",
+        "choices": [
+          { "it": "Mi può chiamare un taxi, per favore?", "correct": true },
+          { "it": "Mi può chiamare un medico?", "correct": false, "feedback": "medico 是医生。你要的是出租车：Mi può chiamare un taxi?" },
+          { "it": "Mi può pagare un taxi?", "correct": false, "feedback": "pagare 是“付钱”，这句成了请她替你付车费。叫车是 chiamare。" }
+        ]
+      }
+    },
+    {
+      "id": "coraggio",
+      "npc": [
+        { "it": "Certo, lo chiamo subito. Coraggio, e buona fortuna!", "zh": "好的，我马上叫。挺住，祝您好运！" },
+        { "it": "Fatto: il taxi arriva subito. Coraggio!", "zh": "叫好了，车马上就到。挺住！" }
+      ]
+    }
+  ],
+  "followUps": {
+    "after": "aiuto",
+    "min": 1,
+    "max": 2,
+    "pool": [
+      {
+        "id": "passaporto",
+        "npc": [
+          { "it": "Oh no! Le hanno rubato anche il passaporto?", "zh": "哎呀！护照也被偷了吗？" },
+          { "it": "Mi dispiace! Anche il passaporto?", "zh": "真遗憾！护照也被偷了吗？" }
+        ],
+        "reply": {
+          "intent": "说护照还在，只丢了钱包",
+          "choices": [
+            { "it": "No, solo il portafoglio.", "correct": true },
+            { "it": "Sì, solo il portafoglio.", "correct": false, "feedback": "Sì 是“对，护照也被偷了”，和 solo il portafoglio（只有钱包）矛盾。" },
+            { "it": "No, ho perso il passaporto.", "correct": false, "feedback": "这是“没有，我把护照弄丢了”，前后矛盾。护照还在，就说 No, solo il portafoglio。" }
+          ]
+        }
+      },
+      {
+        "id": "numero",
+        "npc": [
+          { "it": "Deve chiamare la polizia. Sa che numero chiamare?", "zh": "您得报警。知道打哪个号码吗？" }
+        ],
+        "reply": {
+          "intent": "说出欧盟统一的紧急电话",
+          "choices": [
+            { "it": "Sì, il 112.", "correct": true },
+            { "it": "Sì, il 110.", "correct": false, "feedback": "110 是中国的报警电话。在意大利和整个欧盟打 112。" },
+            { "it": "Sì, il 911.", "correct": false, "feedback": "911 是美国的紧急电话。在意大利和整个欧盟打 112。" }
+          ]
+        }
+      }
+    ]
+  }
+}
