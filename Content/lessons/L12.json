@@ -27,7 +27,7 @@
       "zh": "不好意思，我没点这个。",
       "frame": "non",
       "scene": "restaurant",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Scusi, non ho ordinato questo.",
       "note": "ordinare（点菜）→ ordinato：or-di-NA-to，r 后面直接接 d，中间不加元音。前面加 Non 是“没……”；h 不发音，non 的 n 直接连到 ho 上。上错菜，或者账单上多了东西时用。"
     },
@@ -36,7 +36,7 @@
       "it": "Il conto, per favore.",
       "zh": "请结账。",
       "scene": "restaurant",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Il conto, per favore.",
       "note": "conto 是账单，读 CON-to，n 后面直接接 t，中间不加元音。服务员一般不会主动拿来，要自己叫。"
     },
@@ -45,7 +45,7 @@
       "it": "Che cos'è il coperto?",
       "zh": "coperto（座位费）是什么？",
       "scene": "restaurant",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Che cos'è il coperto?",
       "note": "coperto 是座位费，读 co-PER-to，r 弹一下直接接 t，不加元音。按人头收，含面包和餐具，菜单上会写金额，是正常收费。servizio 是服务费，有的店才收。"
     }

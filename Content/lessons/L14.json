@@ -17,7 +17,7 @@
       "it": "Solo andata o andata e ritorno?",
       "zh": "单程还是往返？",
       "scene": "train",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Solo andata o andata e ritorno?",
       "note": "售票员常问的话，听懂就行。"
     },
@@ -26,7 +26,7 @@
       "it": "Solo andata, per favore.",
       "zh": "单程，谢谢。",
       "scene": "train",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Solo andata, per favore.",
       "note": "要往返就说 Andata e ritorno, per favore。"
     },
@@ -35,7 +35,7 @@
       "it": "Da quale binario parte?",
       "zh": "从几号站台出发？",
       "scene": "train",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Da quale binario parte?",
       "note": "回答一般是 Dal binario tre（从 3 号站台）。站台号没听清就请对方写下来：Me lo può scrivere?"
     },

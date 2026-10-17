@@ -17,7 +17,7 @@
       "it": "Contanti o carta?",
       "zh": "现金还是刷卡？",
       "scene": "bar",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Contanti o carta?",
       "note": "店员常问的话，听懂就行。也可能听到 bancomat（借记卡）。"
     },
@@ -26,7 +26,7 @@
       "it": "Con la carta, grazie.",
       "zh": "刷卡，谢谢。",
       "scene": "bar",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Con la carta, grazie.",
       "note": "回答上一句。付现金就说 In contanti。"
     },

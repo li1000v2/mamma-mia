@@ -3,10 +3,12 @@
 
 Checks every JSON file against its schema in Content/schema, that a phrase past draft still has
 the text it was checked with (checkedText), that audio-reviewed phrases have audio for every voice
-and speed (a show-card or pilgrimage-spot line for one voice: those are said on the spot, not studied),
-that the role-play fillers have audio in every voice and each role's voice has a Gemini voice name,
-that every manifest entry has its file, and that no real itinerary was committed. Cross-file id checks
-live in the MammaCore tests.
+the line is generated for (all of them unless lineVoices in tools/tts_voices.json limits it) at both
+speeds, each clip with a current, clean verdict from tools/audio_review.py in
+reviews/audio-screen-cache.json (a show-card or pilgrimage-spot line needs one voice: those are said
+on the spot, not studied), that the role-play fillers have audio in every voice and each role's voice
+has a Gemini voice name, that every manifest entry has its file, and that no real itinerary was
+committed. Cross-file id checks live in the MammaCore tests.
 
 Usage: python tools/validate_content.py
 """
@@ -18,10 +20,13 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+import audio_review as screening
+
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "Content"
 SCHEMAS = CONTENT / "schema"
 AUDIO = ROOT / "Audio"
+TTS_CONFIG = ROOT / "tools" / "tts_voices.json"
 
 SPEEDS = ("n", "s")
 
@@ -38,6 +43,20 @@ def load(path: Path):
 
 def rel(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
+
+
+def screening_problem(clip: screening.Clip, cache: dict[str, dict]) -> str | None:
+    """Why a clip has no clean screening verdict from tools/audio_review.py, or None."""
+    entry = cache.get(clip.file)
+    if entry is None:
+        return "has not been screened"
+    if not screening.is_fresh(clip, entry, screening.MODEL):
+        if entry.get("key") != clip.key or entry.get("sha256") != screening.audio_sha256(clip.file):
+            return "changed after it was screened"
+        return "has no current verdict (an older model or prompt, or an unusable answer)"
+    if not entry["ok"]:
+        return "was flagged by the screen"
+    return None
 
 
 def schema_errors(schema_name: str, path: Path) -> list[str]:
@@ -121,12 +140,36 @@ def main() -> int:
         return [f"{voice}/{speed}" for voice in voices for speed in SPEEDS
                 if audio_key(text, voice, speed) not in manifest["entries"]]
 
+    line_voices = load(TTS_CONFIG).get("lineVoices", {})
+
+    def course_voices(text: str) -> list[str]:
+        """The voices a course line is generated for: all of them unless lineVoices limits it (gen_audio.py)."""
+        allowed = line_voices.get(text)
+        return [voice for voice in manifest["voices"] if allowed is None or voice.split("@", 1)[0] in allowed]
+
+    cache = screening.load_cache()
     for phrase in phrases:
-        missing = missing_audio(phrase["it"], manifest["voices"])
+        voices = course_voices(phrase["it"])
+        missing = missing_audio(phrase["it"], voices)
         if missing:
             # Audio comes after cross-checking, so only an audio-reviewed phrase must have it.
             message = f"{phrase['id']}: no audio for {', '.join(missing)}"
             (errors if phrase["status"] == "audio_ok" else warnings).append(message)
+        if phrase["status"] != "audio_ok":
+            continue
+        # audio_ok rests on the screen: every clip the line has needs a current, clean verdict, so a
+        # regenerated clip, or one flagged when screened again, takes the phrase back to checked.
+        for voice in voices:
+            for speed in SPEEDS:
+                key = audio_key(phrase["it"], voice, speed)
+                if key not in manifest["entries"]:
+                    continue  # reported as missing above
+                problem = screening_problem(screening.Clip(key, manifest["entries"][key], voice, speed, phrase["it"]), cache)
+                if problem:
+                    errors.append(
+                        f"{phrase['id']}: status audio_ok but its {voice}/{speed} clip {problem}; "
+                        "screen it with tools/audio_review.py, or set status back to checked"
+                    )
     # A show-card line is played to people, not studied: one voice with both speeds is enough.
     card_lines = [(phrase["id"], phrase["it"], phrase["status"]) for phrase in card_phrases]
     card_lines += [(f"allergen {item['id']}", item["it"], "draft") for item in show_cards["allergens"]]
@@ -161,10 +204,11 @@ def main() -> int:
     for line in warnings:
         print(f"warning: {line}")
     drafts = sum(1 for phrase in phrases if phrase["status"] == "draft")
+    audio_ok = sum(1 for phrase in phrases if phrase["status"] == "audio_ok")
     card_drafts = sum(1 for phrase in card_phrases if phrase["status"] == "draft")
     spot_drafts = sum(1 for item in spot_phrases + spots["spots"] if item["status"] == "draft")
     print(
-        f"OK: {len(lesson_files)} lesson files, {len(phrases)} phrases ({drafts} draft), "
+        f"OK: {len(lesson_files)} lesson files, {len(phrases)} phrases ({drafts} draft, {audio_ok} audio_ok), "
         f"{len(dialogue_files)} dialogues, {len(card_phrases)} show-card phrases ({card_drafts} draft), "
         f"{len(spots['spots'])} spots and {len(spot_phrases)} spot phrases ({spot_drafts} draft), "
         f"{len(manifest['entries'])} audio files"

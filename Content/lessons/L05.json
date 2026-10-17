@@ -27,7 +27,7 @@
       "it": "Al banco.",
       "zh": "站在吧台喝。",
       "scene": "bar",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Al banco.",
       "note": "回答 “Al banco o al tavolo?”（站着喝还是坐下）。坐下通常更贵。"
     },
@@ -46,7 +46,7 @@
       "it": "Al banco o al tavolo?",
       "zh": "站在吧台喝，还是坐下？",
       "scene": "bar",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Al banco o al tavolo?",
       "note": "收银员常问的话，听懂就行。回答 Al banco 或 Al tavolo。tavolo 重音在倒数第三个音节：TA-vo-lo。"
     }

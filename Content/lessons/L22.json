@@ -37,7 +37,7 @@
       "it": "Serve la prenotazione?",
       "zh": "需要预约吗？",
       "scene": "sights",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Serve la prenotazione?",
       "note": "serve 是“需要（某样东西）”：SER-ve。prenotazione 重音在 ZIO：pre-no-ta-ZIO-ne，z 像日语ツ的辅音部分；不像的是后面不带う，直接接 io。回答 Sì, serve 或 No, non serve。热门景点常要提前在网上约时段，出发前查一下官网。"
     },
@@ -47,7 +47,7 @@
       "zh": "几点关门？",
       "frame": "ache",
       "scene": "sights",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "A che ora chiude?",
       "note": "chiude 的 ch 是硬音 k，重音 CHIU-de，u 要圆唇。回答多用 24 小时制（L10）。很多景点关门前就停止入场，可以接着问 A che ora è l'ultimo ingresso?（最晚几点能进？）"
     }

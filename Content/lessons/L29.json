@@ -16,7 +16,7 @@
       "it": "Piove?",
       "zh": "在下雨吗？",
       "scene": "smalltalk",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Piove?",
       "note": "piove 是“下雨”，不用主语。两个音节 PIO-ve，io 连成一拍。问明天：Domani piove?（明天下雨吗？）。下雪是 nevica。"
     },

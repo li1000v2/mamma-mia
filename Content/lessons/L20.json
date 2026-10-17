@@ -7,7 +7,7 @@
       "it": "Giri a destra.",
       "zh": "往右转。",
       "scene": "directions",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Giri a destra.",
       "note": "giri 来自 girare（转），是对“您”的命令式：GI-ri。gi 读软音，像英语 j（jeep）；不像的是后面的 i 是纯元音，口型从头到尾不变，r 要舌尖弹一下。destra 是右，sinistra 是左：只听开头，de- 右，si- 左。"
     },
@@ -25,7 +25,7 @@
       "it": "Prenda la seconda a sinistra.",
       "zh": "第二个路口左转。",
       "scene": "directions",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Prenda la seconda a sinistra.",
       "note": "prenda 来自 prendere（拿、走），la seconda 后面省掉了 strada（路），直译“走左手边第二条路”。第一条是 la prima，第三条是 la terza。prenda、prima 开头的 pr 连着读，中间不加元音。"
     },
@@ -34,7 +34,7 @@
       "it": "Al semaforo giri a sinistra.",
       "zh": "到红绿灯那儿左转。",
       "scene": "directions",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Al semaforo giri a sinistra.",
       "note": "semaforo 是红绿灯，重音在倒数第三个音节：se-MA-fo-ro，别读成 se-ma-FO-ro。al = a + il，“在……那儿”；al 的 l 后面直接接下一个词，不加元音。"
     },

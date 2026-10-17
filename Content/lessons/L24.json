@@ -7,7 +7,7 @@
       "it": "Sto solo guardando, grazie.",
       "zh": "我只是看看，谢谢。",
       "scene": "shopping",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Sto solo guardando, grazie.",
       "note": "回答店员的 Posso aiutarla?（需要帮忙吗？）。Sto 只有一个音节。guardando 是“正在看”，重音 guar-DAN-do：gu 读 gw，像英语 Gwen 开头；不像的是 r 要舌尖弹一下，不能像英语那样卷舌或把 a 拖成别的音。"
     },
@@ -27,7 +27,7 @@
       "zh": "这件有别的尺码吗？",
       "frame": "avete",
       "scene": "shopping",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ce l'ha in un'altra taglia?",
       "note": "ce l'ha 是“您有它吗”：ce 的 c 读软音，像英语 ch；不像的是不送气，e 是纯元音。h 不发音，l'ha 就读 la。要大一号就问 Ce l'ha più grande?。"
     },
@@ -37,7 +37,7 @@
       "zh": "我买了（就要这个）。",
       "frame": "prendo",
       "scene": "shopping",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Lo prendo.",
       "note": "和点单的 Prendo… 是同一个动词，lo 放在前面：lo PREN-do。看中的是阴性的东西就说 La prendo。"
     },
@@ -46,7 +46,7 @@
       "it": "Ci penso, grazie.",
       "zh": "我再想想，谢谢。",
       "scene": "shopping",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ci penso, grazie.",
       "note": "不想买时客气地离开。ci penso 直译“我想想这件事”。penso 的 p 不送气，接近拼音 b；但拼音的 b 是清音，意大利语自己的 b 要带声带振动，两者别混。"
     }

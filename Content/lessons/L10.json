@@ -8,7 +8,7 @@
       "zh": "几点开门？",
       "frame": "ache",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "A che ora apre?",
       "note": "apre 是 aprire（开）的“它”的形式，读 A-pre。pr 像英语 pray 的 pr；哪里不像：英语的 p 送气、r 卷舌，这里 p 不送气，r 是舌尖弹一下。回答：Alle nove（9 点）、Alle dieci e mezza（10 点半）。"
     },
@@ -18,7 +18,7 @@
       "zh": "几点关门？",
       "frame": "ache",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "A che ora chiude?",
       "note": "chiude 读 CHIU-de：ch 是 k，不送气，像拼音 g（拼音的 g 本来就是清音）；哪里不像：拼音的 g 不接 i，chiu 要保持硬的 k，别滑成拼音的 jiu。u 要圆唇。问具体的地方就加在后面：A che ora chiude il museo?"
     },

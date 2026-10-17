@@ -17,7 +17,7 @@
       "zh": "我该在哪站下车？",
       "frame": "dove",
       "scene": "metro",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Dove devo scendere?",
       "note": "devo 是“我得”，scendere 是“下车”，重音在倒数第三个音节：SCEN-de-re。sce 像英语 sh（she）；不像的是后面的 e 是纯元音，不能滑成 ei。对方会答 Alla fermata…（在……站下）。"
     },
@@ -26,7 +26,7 @@
       "it": "Quante fermate sono?",
       "zh": "要坐几站？",
       "scene": "metro",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Quante fermate sono?",
       "note": "fermate 是 fermata 的复数，所以“多少”也用阴性复数 quante：QUAN-te。回答 Sono tre fermate（三站）。数字没听清就请对方写下来（L03）。"
     },
@@ -35,7 +35,7 @@
       "it": "Questo autobus va in centro?",
       "zh": "这趟公交去市中心吗？",
       "scene": "metro",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Questo autobus va in centro?",
       "note": "上车前问司机最稳。去一个区域用 in（in centro），去具体地点用 a（al Colosseo）。autobus 重音在第一个音节：AU-to-bus，u 要圆唇，词尾的 s 后面不加元音；外来语的读法在这里不可信。centro 的 ce 读软音，tr 中间不加元音。"
     },

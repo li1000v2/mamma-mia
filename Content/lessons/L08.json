@@ -17,7 +17,7 @@
       "it": "Quale linea va a San Marco?",
       "zh": "哪条线去圣马可？",
       "scene": "boat",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Quale linea va a San Marco?",
       "note": "quale 是“哪一个”，重音 QUA-le。qu 像英语 quick 的 qu；哪里不像：英语的 k 送气，这里不送气。把 San Marco 换成要去的站名就行：Quale linea va a Rialto?"
     },

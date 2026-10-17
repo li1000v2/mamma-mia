@@ -8,7 +8,7 @@
       "zh": "我用……的名字订了一间房。",
       "frame": "passato",
       "scene": "hotel",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ho prenotato una camera a nome di…",
       "note": "prenotare（预订）→ prenotato：pre-no-TA-to，pr 中间不加元音。…处说你订房时用的姓（cognome）。外国姓前台常听不清，可以拼一遍或写下来。前台也可能先问 A che nome?（用什么名字订的？）。"
     },
@@ -18,7 +18,7 @@
       "zh": "我已经在网上付过了。",
       "frame": "passato",
       "scene": "hotel",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ho già pagato online.",
       "note": "pagare → pagato；già 是“已经”，放在 ho 和过去分词中间。online 照英语读。前台要你付房费、可你订房时已经付过，就这样说。"
     },
@@ -28,7 +28,7 @@
       "zh": "早餐几点？",
       "frame": "ache",
       "scene": "hotel",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "A che ora è la colazione?",
       "note": "colazione 读 co-la-ZIO-ne。z 读 ts，像日语ツ开头的 ts；哪里不像：ツ 后面带着う，这里 ts 直接接 io，zio 只占一个音节。A che ora…? 是 L10 的句框，这里先整句记。想问含不含早餐：La colazione è inclusa?"
     },
