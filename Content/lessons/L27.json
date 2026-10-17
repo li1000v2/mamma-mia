@@ -8,7 +8,8 @@
       "zh": "您能帮我叫辆出租车吗？",
       "frame": "mipuo",
       "scene": "taxi",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Mi può chiamare un taxi?",
       "note": "在酒店前台、餐厅结账时说。chiamare 重音在 MA：chia-MA-re。"
     },
     {
@@ -16,7 +17,8 @@
       "it": "All'aeroporto di Fiumicino, per favore.",
       "zh": "请去菲乌米奇诺机场。",
       "scene": "taxi",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "All'aeroporto di Fiumicino, per favore.",
       "note": "上车说目的地加 per favore 就行。all' = a + l'。罗马另一个机场是 Ciampino，别说混。per 的 r 后面不加元音，直接接 favore。"
     },
     {
@@ -25,7 +27,8 @@
       "zh": "到机场要多少钱？",
       "frame": "quanto",
       "scene": "taxi",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quanto costa fino all'aeroporto?",
       "note": "fino a 是“一直到”，fino a + l' = fino all'。上车前问。罗马市中心去机场常有固定价，可以再问一句 C'è una tariffa fissa?（有固定价吗？）。costa 的 st 中间不加元音。"
     },
     {
@@ -33,7 +36,8 @@
       "it": "Quanto tempo ci vuole?",
       "zh": "要多长时间？",
       "scene": "taxi",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quanto tempo ci vuole?",
       "note": "ci vuole 是“需要（多少时间）”。司机常答 Ci vogliono quaranta minuti（要四十分钟）、Circa mezz'ora（大约半小时）。赶飞机时一定要问。"
     },
     {
@@ -42,7 +46,8 @@
       "zh": "您能给我开张收据吗？",
       "frame": "mipuo",
       "scene": "taxi",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Mi può fare la ricevuta?",
       "note": "ricevuta 是收据，重音在 VU：ri-ce-VU-ta。想刷卡就先问一句：Posso pagare con la carta? con 的 n 后面不加元音。"
     }
   ]

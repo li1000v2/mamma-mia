@@ -4,7 +4,7 @@
   "goal": "在斗兽场的售票处买一张全价票，听清票价；问入口往哪边走；再请这位工作人员帮你拍张照，和她聊上两句。",
   "speaker": "Addetta",
   "voice": "f1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "ticket",

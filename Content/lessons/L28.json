@@ -7,7 +7,8 @@
       "it": "Piacere, mi chiamo…",
       "zh": "幸会，我叫……。",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Piacere, mi chiamo…",
       "note": "省略号换成自己的名字。Piacere 是“幸会”，初次见面握手时说，对方会回 Piacere 或 Piacere mio。"
     },
     {
@@ -15,7 +16,8 @@
       "it": "Di dov'è?",
       "zh": "您是哪里人？",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Di dov'è?",
       "note": "闲聊时最常被问的一句，听懂就行。di 是“从”，dov'è = dove è，重音在最后的 è 上。对朋友就说 Di dove sei?"
     },
     {
@@ -24,7 +26,8 @@
       "zh": "我是中国人，但住在日本。",
       "frame": "sono",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Sono cinese, ma vivo in Giappone.",
       "note": "用来回答 Di dov'è?（您是哪里人？）。ma 是“但是”；国家前面用 in，城市前面用 a（vivo a Pechino）。Giappone 的 gi 像英语 jam 的 j，i 不单独读出来，直接接 a；不像的是这个 a 要张大嘴读成纯的 a，不是 jam 里那个扁的 a。pp 是双辅音，像日语促音っ，先停一拍再发 p，不过 p 不送气，接近拼音的 b。重音在 PO。"
     },
     {
@@ -32,7 +35,8 @@
       "it": "È la mia prima volta in Italia.",
       "zh": "这是我第一次来意大利。",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "È la mia prima volta in Italia.",
       "note": "prima volta 是“第一次”。对方常接着问 Le piace l'Italia?（您喜欢意大利吗？），回答 Sì, moltissimo!（非常喜欢！）。"
     },
     {
@@ -40,7 +44,8 @@
       "it": "Parlo solo un po' d'italiano.",
       "zh": "我只会一点意大利语。",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Parlo solo un po' d'italiano.",
       "note": "意大利人常夸你的意大利语，先说 Grazie!，再接这句。un po' d'italiano 就是 un po' di italiano，di 碰上元音缩成 d'。"
     }
   ]

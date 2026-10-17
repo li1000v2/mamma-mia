@@ -4,7 +4,7 @@
   "goal": "你在罗马街头，想去斗兽场。向路人打听：先问斗兽场在哪儿，再问附近有没有地铁站，听懂一串指路，最后问清在哪站下车、要坐几站。",
   "speaker": "Passante",
   "voice": "m1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "ask",

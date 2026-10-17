@@ -7,7 +7,8 @@
       "it": "Giri a destra.",
       "zh": "往右转。",
       "scene": "directions",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Giri a destra.",
       "note": "giri 来自 girare（转），是对“您”的命令式：GI-ri。gi 读软音，像英语 j（jeep）；不像的是后面的 i 是纯元音，口型从头到尾不变，r 要舌尖弹一下。destra 是右，sinistra 是左：只听开头，de- 右，si- 左。"
     },
     {
@@ -15,7 +16,8 @@
       "it": "Vada sempre dritto.",
       "zh": "一直往前走。",
       "scene": "directions",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Vada sempre dritto.",
       "note": "vada 来自 andare（走），sempre dritto 是“一直直走”，也有人说 diritto。dritto 的 dr 中间不加元音；tt 像促音っ，停一拍再发 t；不像的是 t 不送气。"
     },
     {
@@ -23,7 +25,8 @@
       "it": "Prenda la seconda a sinistra.",
       "zh": "第二个路口左转。",
       "scene": "directions",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Prenda la seconda a sinistra.",
       "note": "prenda 来自 prendere（拿、走），la seconda 后面省掉了 strada（路），直译“走左手边第二条路”。第一条是 la prima，第三条是 la terza。prenda、prima 开头的 pr 连着读，中间不加元音。"
     },
     {
@@ -31,7 +34,8 @@
       "it": "Al semaforo giri a sinistra.",
       "zh": "到红绿灯那儿左转。",
       "scene": "directions",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Al semaforo giri a sinistra.",
       "note": "semaforo 是红绿灯，重音在倒数第三个音节：se-MA-fo-ro，别读成 se-ma-FO-ro。al = a + il，“在……那儿”；al 的 l 后面直接接下一个词，不加元音。"
     },
     {
@@ -39,7 +43,8 @@
       "it": "Vada dritto fino all'incrocio, poi giri a destra.",
       "zh": "直走到十字路口，然后右转。",
       "scene": "directions",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Vada dritto fino all'incrocio, poi giri a destra.",
       "note": "incrocio 是十字路口，重音 in-CRO-cio：cr 中间不加元音；cio 的 i 不发音，只表示 c 读软音，像英语 ch，但不送气。fino a 是“一直到”，poi 是“然后”。一长串指路就是这样一段段连起来的。"
     }
   ]

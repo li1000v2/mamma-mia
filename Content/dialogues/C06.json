@@ -4,7 +4,7 @@
   "goal": "碰上节日，那不勒斯很多店的营业时间都变了。在一家披萨店门口问今天开不开、几点关门，外带一个玛格丽特披萨，问清要等多久，最后互道 Buone feste。",
   "speaker": "Pizzaiolo",
   "voice": "m1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "aperto",

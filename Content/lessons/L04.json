@@ -8,7 +8,8 @@
       "zh": "多少钱？",
       "frame": "quanto",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quanto costa?",
       "note": "问一样东西的价钱。指着东西问可以说 Quanto costa questo?（这个多少钱？），问好几样用 Quanto costano?（这些多少钱？）。qu 读 kw，接近英语 quick 的 qu；不像的是英语的 k 送气，这里不送气，也不能按拼音 q 读。重音在 QUAN：QUAN-to。"
     },
     {
@@ -17,7 +18,8 @@
       "zh": "一张票多少钱？",
       "frame": "quanto",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quanto costa un biglietto?",
       "note": "Quanto costa 后面直接接东西，换成 un caffè、un cornetto 都行。"
     },
     {
@@ -26,7 +28,8 @@
       "zh": "一共多少钱？",
       "frame": "quanto",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quant'è?",
       "note": "结账时问总价最常用，是 Quanto è 的缩写；重音在最后的 è：quan-TÈ。"
     },
     {
@@ -34,7 +37,8 @@
       "it": "Sono dodici euro.",
       "zh": "一共十二欧。",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Sono dodici euro.",
       "note": "店员报价的说法，这里的 Sono 是“一共是”。dodici（12）别听成 due（2）：听到 -dici 就是十几。"
     },
     {
@@ -42,7 +46,8 @@
       "it": "Tre euro e cinquanta.",
       "zh": "三欧五十（3.50 欧）。",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Tre euro e cinquanta.",
       "note": "cinquanta（50）和 quindici（15）容易混：-anta 是几十，-dici 是十几。"
     }
   ]

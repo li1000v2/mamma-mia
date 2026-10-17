@@ -8,7 +8,8 @@
       "zh": "有一个人的位子吗？",
       "frame": "avete",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Avete un tavolo per una persona?",
       "note": "per una persona 是“一个人”，两个人说 per due persone。per 以 r 结尾，舌尖弹一下就接下一个词，后面不加元音；persona 读 per-SO-na。"
     },
     {
@@ -16,7 +17,8 @@
       "it": "Il menù, per favore.",
       "zh": "请给我菜单。",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Il menù, per favore.",
       "note": "menù 重音在最后：me-NÙ，ù 要圆唇。日语外来语メニュー多了一个 y 的音，别照着读：n 后面直接接 u。也有人把菜单叫 la carta，这时 carta 不是银行卡。"
     },
     {
@@ -24,7 +26,8 @@
       "it": "Che cosa mi consiglia?",
       "zh": "您推荐什么？",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Che cosa mi consiglia?",
       "note": "mi 是“给我”，consiglia 是“您推荐”，读 con-SI-glia。glia 像日语リャ；哪里不像：リャ是舌尖轻弹，glia 是舌面整个贴住上颚，i 不单独发音。con 的 n 后面直接接 s，不加元音。口语也常说 Cosa mi consiglia?。服务员回答 Le consiglio…（我推荐您……）。"
     },
     {
@@ -33,7 +36,8 @@
       "zh": "我要这个。",
       "frame": "prendo",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Prendo questo.",
       "note": "看不懂菜名时指着菜单说。要两样就说 Prendo questo e questo。Prendo 的 pr、questo 的 st 中间都不加元音；qu 像英语 quick 的 qu，哪里不像：英语的 k 送气，这里不送气。"
     },
     {
@@ -42,7 +46,8 @@
       "zh": "请来一瓶不带气的水。",
       "frame": "prendo",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Un'acqua naturale, per favore.",
       "note": "acqua 是阴性、元音开头，una 缩成 un'（L07）。acqua 读 AC-qua：cq 是双辅音，像日语促音っ那样先停一拍再发 qua；哪里不像：停完接的是 kw，嘴唇要先圆起来，日语的う是扁的。naturale 是不带气的，frizzante 是带气的。餐厅里点的水一般是瓶装的，会算在账单上。"
     }
   ]

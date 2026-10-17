@@ -8,7 +8,8 @@
       "zh": "请给我一个玛格丽特披萨。",
       "frame": "prendo",
       "scene": "pizzeria",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Una margherita, per favore.",
       "note": "margherita 本身就指这款披萨，不用再说 pizza。"
     },
     {
@@ -17,7 +18,8 @@
       "zh": "我想要一个折起来吃的街头披萨。",
       "frame": "prendo",
       "scene": "pizzeria",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Vorrei una pizza a portafoglio.",
       "note": "对折再对折、边走边吃的那不勒斯街头披萨。Vorrei 比 Prendo 客气。"
     },
     {
@@ -25,7 +27,8 @@
       "it": "Qui o da portare via?",
       "zh": "在这儿吃还是外带？",
       "scene": "pizzeria",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Qui o da portare via?",
       "note": "店员常问的话，听懂就行。"
     },
     {
@@ -33,7 +36,8 @@
       "it": "Da portare via, per favore.",
       "zh": "外带，谢谢。",
       "scene": "pizzeria",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Da portare via, per favore.",
       "note": "在店里吃就说 Qui, per favore。"
     },
     {
@@ -41,7 +45,8 @@
       "it": "Quanto devo aspettare?",
       "zh": "要等多久？",
       "scene": "pizzeria",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quanto devo aspettare?",
       "note": "回答常是 Dieci minuti（10 分钟）或 Un quarto d'ora（一刻钟，15 分钟）。"
     }
   ]

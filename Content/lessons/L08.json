@@ -8,7 +8,8 @@
       "zh": "水上巴士的站在哪里？",
       "frame": "dove",
       "scene": "boat",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Dov'è la fermata del vaporetto?",
       "note": "del = di + il（……的）。del 以 l 结尾，读完直接接 vaporetto，中间不加元音。威尼斯的船站是水边浮着的小平台，站名写在上面。"
     },
     {
@@ -16,7 +17,8 @@
       "it": "Quale linea va a San Marco?",
       "zh": "哪条线去圣马可？",
       "scene": "boat",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quale linea va a San Marco?",
       "note": "quale 是“哪一个”，重音 QUA-le。qu 像英语 quick 的 qu；哪里不像：英语的 k 送气，这里不送气。把 San Marco 换成要去的站名就行：Quale linea va a Rialto?"
     },
     {
@@ -24,7 +26,8 @@
       "it": "Questo vaporetto va a Rialto?",
       "zh": "这班船去里亚托吗？",
       "scene": "boat",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Questo vaporetto va a Rialto?",
       "note": "上船前跟船员确认方向。questo 是“这个”：QUE-sto，st 中间不加元音。Rialto 读 ri-AL-to，l 紧接 t，像英语 salt 的 lt；哪里不像：英语 t 前的 l 发得暗，这里的 l 清亮，舌尖顶住上齿龈。对方说 No, è dall'altra parte，意思是要到对面坐反方向的船。"
     },
     {
@@ -32,7 +35,8 @@
       "it": "Devo validare il biglietto?",
       "zh": "要验票吗？",
       "scene": "boat",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Devo validare il biglietto?",
       "note": "devo 是“我得、我必须”，后面接动词原形。威尼斯的船票一般要在上船前，在站台入口的读卡机上碰一下；没验票被查到会罚款。也会听到 obliterare、timbrare，意思差不多。"
     },
     {
@@ -41,7 +45,8 @@
       "zh": "在哪儿可以买票？",
       "frame": "dove",
       "scene": "boat",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Dove posso comprare il biglietto?",
       "note": "dove（哪里）+ posso（我可以）+ 动词原形。comprare 读 com-PRA-re：m、p、r 连着发，p 和 r 中间不加元音。售票处叫 biglietteria，也有自动售票机。"
     }
   ]

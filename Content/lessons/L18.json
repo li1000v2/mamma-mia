@@ -7,7 +7,8 @@
       "it": "Oggi è festa?",
       "zh": "今天是节日吗？",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Oggi è festa?",
       "note": "festa 是节日、假日，也指派对。"
     },
     {
@@ -15,7 +16,8 @@
       "it": "È aperto anche oggi?",
       "zh": "今天也开门吗？",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "È aperto anche oggi?",
       "note": "anche 是“也”，过节时这么问最自然。不开门的回答是 Oggi siamo chiusi（今天我们不开）。"
     },
     {
@@ -24,7 +26,8 @@
       "zh": "今天几点关门？",
       "frame": "ache",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "A che ora chiude oggi?",
       "note": "chiude 是“关门”，apre 是“开门”。"
     },
     {
@@ -32,7 +35,8 @@
       "it": "Oggi chiudiamo alle venti.",
       "zh": "今天我们 20 点关门。",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Oggi chiudiamo alle venti.",
       "note": "店员的回答，听懂就行。chiudiamo 是“我们关门”；alle venti 就是 20:00。"
     },
     {
@@ -40,7 +44,8 @@
       "it": "Buone feste!",
       "zh": "节日快乐！",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Buone feste!",
       "note": "从 12 月初到新年都可以说。回答 Grazie, anche a lei!（谢谢，也祝您节日快乐！）"
     }
   ]
