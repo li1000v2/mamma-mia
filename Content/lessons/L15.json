@@ -7,7 +7,7 @@
       "it": "Il treno per Napoli è in partenza dal binario tre.",
       "zh": "开往那不勒斯的火车即将从 3 号站台出发。",
       "scene": "train",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Il treno per Napoli è in partenza dal binario tre.",
       "note": "听懂就行。per Napoli 是“开往那不勒斯”，dal binario 是“从……站台”。"
     },
@@ -25,7 +25,7 @@
       "it": "Il treno è in ritardo di quindici minuti.",
       "zh": "火车晚点 15 分钟。",
       "scene": "train",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Il treno è in ritardo di quindici minuti.",
       "note": "听懂就行。quindici（15）别听成 cinquanta（50）。"
     },
@@ -34,7 +34,7 @@
       "it": "Il treno partirà dal binario cinque anziché dal binario tre.",
       "zh": "火车改从 5 号站台出发，不是 3 号。",
       "scene": "train",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Il treno partirà dal binario cinque anziché dal binario tre.",
       "note": "听懂就行。anziché 后面的 3 号是原来的站台，要去的是 5 号。partirà 是“将出发”。"
     },

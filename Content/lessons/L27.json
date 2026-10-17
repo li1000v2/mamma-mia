@@ -8,7 +8,7 @@
       "zh": "您能帮我叫辆出租车吗？",
       "frame": "mipuo",
       "scene": "taxi",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Mi può chiamare un taxi?",
       "note": "在酒店前台、餐厅结账时说。chiamare 重音在 MA：chia-MA-re。"
     },
@@ -36,7 +36,7 @@
       "it": "Quanto tempo ci vuole?",
       "zh": "要多长时间？",
       "scene": "taxi",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Quanto tempo ci vuole?",
       "note": "ci vuole 是“需要（多少时间）”。司机常答 Ci vogliono quaranta minuti（要四十分钟）、Circa mezz'ora（大约半小时）。赶飞机时一定要问。"
     },
@@ -46,7 +46,7 @@
       "zh": "您能给我开张收据吗？",
       "frame": "mipuo",
       "scene": "taxi",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Mi può fare la ricevuta?",
       "note": "ricevuta 是收据，重音在 VU：ri-ce-VU-ta。想刷卡就先问一句：Posso pagare con la carta? con 的 n 后面不加元音。"
     }

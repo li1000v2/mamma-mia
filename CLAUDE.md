@@ -93,7 +93,13 @@
 
 ## 内容规则
 
-- 句子状态依次是 draft → checked（交叉校对）→ native（母语者抽检，可选）→ audio_ok（音频听审过）。没校对过的不许标 checked。出示卡的句子（`showcards.json`）、巡礼点的句子和地名（`spots.json`）同样适用。
+- 句子状态依次是 draft → checked（交叉校对）→ native（母语者抽检，可选）→ audio_ok（示范音频审过，见下一条）。没校对过的不许标 checked。出示卡的句子（`showcards.json`）、巡礼点的句子和地名（`spots.json`）同样适用。
+- 课程句标 audio_ok 要同时满足三条：
+  - 已经是 checked；
+  - 拼写里没有双辅音（按 `audio_review.py` 的 `DOUBLE`，cq 也算）；
+  - 这句生成的每段示范音频（该有的每个声线，遵守 `lineVoices`；原速和慢速都算）在 `reviews/audio-screen-cache.json` 里都有当前有效（`audio_review.is_fresh`）、判为没问题的粗筛结果。
+
+  粗筛判断不了双辅音长短，所以含双辅音的句子留在 checked，等有人（最好是母语者）听过再标。录音重新生成、或重筛后结果不再干净，这句就要退回 checked。`validate_content.py` 会拦 audio_ok 句子的音频缺失和粗筛不干净；双辅音那条它不查，因为人听过以后可以标。出示卡和巡礼点的句子暂时不按这条标 audio_ok，校验也只查课程句。
 - 状态不是 draft 的句子必须带 `checkedText`，且等于 `it`：审核结论只对审过的那段原文有效，改了原文就要重新校对或退回 draft（`validate_content.py` 会拦）。
 - 对陌生人一律用 Lei；自述句用阳性（Sono arrivato、Sono stanco）。
 - 发音讲解：

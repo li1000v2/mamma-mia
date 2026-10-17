@@ -7,7 +7,7 @@
       "it": "Aiuto!",
       "zh": "救命！",
       "scene": "emergency",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Aiuto!",
       "note": "只在真正紧急时喊。欧盟统一的紧急电话是 112，在意大利免费拨打。"
     },
@@ -37,7 +37,7 @@
       "zh": "警察局在哪儿？",
       "frame": "dove",
       "scene": "emergency",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Dov'è la polizia?",
       "note": "口语说 la polizia 就行，正式说法是 il commissariato 或 la questura。报案也可以找宪兵 carabinieri。Dov'è 的重音在最后的 è 上。"
     },

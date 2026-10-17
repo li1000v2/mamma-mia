@@ -7,7 +7,7 @@
       "it": "Ciao!",
       "zh": "你好！／再见！",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ciao!",
       "note": "cia 里的 i 不发音，只表示 c 读软音：ciao 是 cia-o 两个音节，不是 ci-a-o 三个。只对朋友用；对店员、陌生人说 Buongiorno，下午起改说 Buonasera。"
     },
@@ -16,7 +16,7 @@
       "it": "chiesa",
       "zh": "教堂",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "chiesa",
       "note": "ch 是硬音 k；chie 是一个音节，chiesa 是 CHIE-sa 两个音节。两个元音之间的 s，北方多读 z，中南部常读 s，两种都对。"
     },
@@ -43,7 +43,7 @@
       "it": "uscita",
       "zh": "出口",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "uscita",
       "note": "sc 在 i 前读 sh，接近英语 she 的 sh；后面的 i 照常读出来，不像 ciao 里的 i 那样不发音。sc 夹在两个元音之间要读长一点。重音在 SCI：u-SCI-ta。车站和景点到处是 USCITA 的牌子。"
     }

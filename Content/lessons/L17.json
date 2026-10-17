@@ -8,7 +8,7 @@
       "zh": "请给我一个玛格丽特披萨。",
       "frame": "prendo",
       "scene": "pizzeria",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Una margherita, per favore.",
       "note": "margherita 本身就指这款披萨，不用再说 pizza。"
     },
@@ -27,7 +27,7 @@
       "it": "Qui o da portare via?",
       "zh": "在这儿吃还是外带？",
       "scene": "pizzeria",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Qui o da portare via?",
       "note": "店员常问的话，听懂就行。"
     },
@@ -36,7 +36,7 @@
       "it": "Da portare via, per favore.",
       "zh": "外带，谢谢。",
       "scene": "pizzeria",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Da portare via, per favore.",
       "note": "在店里吃就说 Qui, per favore。"
     },

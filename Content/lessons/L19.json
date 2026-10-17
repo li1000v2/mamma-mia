@@ -17,7 +17,7 @@
       "it": "È lontano?",
       "zh": "远吗？",
       "scene": "directions",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "È lontano?",
       "note": "常听到的回答：È qui vicino（就在附近）、È un po' lontano（有点远）。lontano 重音在 TA：lon-TA-no。"
     },
@@ -26,7 +26,7 @@
       "it": "Si può andare a piedi?",
       "zh": "能走着去吗？",
       "scene": "directions",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Si può andare a piedi?",
       "note": "si può 是“（一般人）可以……”，a piedi 是“步行”，piedi 是“脚”。può 只有一个音节，u 要圆唇撅起来，日语的う是扁的。piedi 的 ie 合成一拍：PIE-di。回答常带时间：Sì, sono dieci minuti a piedi（可以，走路十分钟）。也常听到 Ci si può andare a piedi?，意思一样。"
     },

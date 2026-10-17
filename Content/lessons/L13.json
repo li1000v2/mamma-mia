@@ -7,7 +7,7 @@
       "it": "il primo dicembre",
       "zh": "12 月 1 日",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "il primo dicembre",
       "note": "1 号用序数词 primo（第一）；其余日子直接用数字：il due、il tre、il venti。pr 中间不加元音，r 要弹：PRI-mo。"
     },
@@ -34,7 +34,7 @@
       "it": "Chiuso il lunedì.",
       "zh": "每周一休息。",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Chiuso il lunedì.",
       "note": "店门口、景点门口常见的告示。il lunedì 带冠词，是“每个星期一”。"
     },
@@ -43,7 +43,7 @@
       "it": "Sono centoventi euro.",
       "zh": "一共一百二十欧。",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Sono centoventi euro.",
       "note": "cento + venti 连成一个词，重音在 VEN：cen-to-VEN-ti。euro 复数不变，读 EU-ro：从 e 滑到圆唇的 u，两个元音都要发出来；外来语ユーロ不可信，开头不是“优”。"
     }

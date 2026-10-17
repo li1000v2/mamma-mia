@@ -7,7 +7,7 @@
       "it": "Piacere, mi chiamo…",
       "zh": "幸会，我叫……。",
       "scene": "smalltalk",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Piacere, mi chiamo…",
       "note": "省略号换成自己的名字。Piacere 是“幸会”，初次见面握手时说，对方会回 Piacere 或 Piacere mio。"
     },
@@ -16,7 +16,7 @@
       "it": "Di dov'è?",
       "zh": "您是哪里人？",
       "scene": "smalltalk",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Di dov'è?",
       "note": "闲聊时最常被问的一句，听懂就行。di 是“从”，dov'è = dove è，重音在最后的 è 上。对朋友就说 Di dove sei?"
     },
@@ -35,7 +35,7 @@
       "it": "È la mia prima volta in Italia.",
       "zh": "这是我第一次来意大利。",
       "scene": "smalltalk",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "È la mia prima volta in Italia.",
       "note": "prima volta 是“第一次”。对方常接着问 Le piace l'Italia?（您喜欢意大利吗？），回答 Sì, moltissimo!（非常喜欢！）。"
     },
@@ -44,7 +44,7 @@
       "it": "Parlo solo un po' d'italiano.",
       "zh": "我只会一点意大利语。",
       "scene": "smalltalk",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Parlo solo un po' d'italiano.",
       "note": "意大利人常夸你的意大利语，先说 Grazie!，再接这句。un po' d'italiano 就是 un po' di italiano，di 碰上元音缩成 d'。"
     }

@@ -8,7 +8,7 @@
       "zh": "我有点累。",
       "frame": "sono",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Sono un po' stanco.",
       "note": "sono 是“我是”。un po' 是“一点儿”。"
     },
@@ -17,7 +17,7 @@
       "it": "Scusi, è libero questo posto?",
       "zh": "请问，这个座位空着吗？",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Scusi, è libero questo posto?",
       "note": "è 是“（它）是”，libero 是“空着、没人占”，重音在第一个音节：LI-be-ro。回答 Sì, è libero（空着）或 No, è occupato（有人）。火车、咖啡吧、船上都用得上。"
     },
@@ -37,7 +37,7 @@
       "zh": "您有英文菜单吗？",
       "frame": "avete",
       "scene": "restaurant",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ha il menù in inglese?",
       "note": "Ha…? 是用 Lei 问“您有……吗”。问店家也常说 Avete…?（你们有……吗）。"
     },
@@ -47,7 +47,7 @@
       "zh": "还有空位吗？",
       "frame": "avete",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ci sono ancora posti liberi?",
       "note": "posti 是复数，所以用 ci sono。ancora 是“还”。餐厅、火车、景点都能问。"
     }

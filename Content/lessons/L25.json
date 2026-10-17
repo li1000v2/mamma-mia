@@ -8,7 +8,7 @@
       "zh": "我不太舒服。",
       "frame": "non",
       "scene": "pharmacy",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Non mi sento bene.",
       "note": "mi sento 是“我感觉”，bene 是“好”，前面加 Non 就是“感觉不好”。身体不舒服时先说这句，药店、酒店前台都能用。non 词尾的 n 后面不加元音，直接连到 mi。"
     },
@@ -17,7 +17,7 @@
       "it": "Ho mal di testa.",
       "zh": "我头疼。",
       "scene": "pharmacy",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ho mal di testa.",
       "note": "Ho mal di + 部位：mal di gola（嗓子疼）、mal di pancia（肚子疼）、mal di denti（牙疼）。testa 的 t 不送气，像拼音 d；但拼音 d 对应的是意大利语的 t，意大利语自己的 d 要振动声带，是另一个音。重音在 TE：TE-sta。"
     },
@@ -46,7 +46,7 @@
       "zh": "我需要看医生。",
       "frame": "bisogno",
       "scene": "pharmacy",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ho bisogno di un medico.",
       "note": "重音在第一个音节：ME-di-co，ME 读得响、读得长，不靠音调高低。药剂师要是说 Deve andare dal medico，意思是“您得去看医生”。"
     }

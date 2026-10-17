@@ -8,7 +8,7 @@
       "zh": "您能帮我拍张照吗？",
       "frame": "mipuo",
       "scene": "sights",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Mi può fare una foto?",
       "note": "先说 Scusi 叫住对方，再问这句。fare una foto 是“拍照”。può 只有一个音节，重音在 ò 上。"
     },
@@ -17,7 +17,7 @@
       "it": "Basta premere qui.",
       "zh": "按这里就行。",
       "scene": "sights",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Basta premere qui.",
       "note": "basta 是“只要……就行”（Basta così 是“就这些”）：BA-sta，st 中间不加元音。premere 是“按”，重音在倒数第三个音节：PRE-me-re。"
     },
@@ -26,7 +26,7 @@
       "it": "Ancora una, per favore.",
       "zh": "请再拍一张。",
       "scene": "sights",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ancora una, per favore.",
       "note": "una 指的是 la foto（阴性），所以不说 uno。ancora 重音在 CO：an-CO-ra；重音放到 AN 上就成了“船锚”。"
     },
@@ -46,7 +46,7 @@
       "zh": "我是 JoJo 迷。",
       "frame": "sono",
       "scene": "sights",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Sono un fan di JoJo.",
       "note": "fan 是英语外来词，意大利语里元音多读得像 e，词尾的 n 后面不加元音；日语外来语的读法在这里不可信。男女都用，女生说 una fan。彩蛋：作品里的 giorno、vento、oro 都是日常词——giorno 是“一天、白天”（buongiorno 就是“好的一天”），vento 是“风”，oro 是“金子”。"
     }

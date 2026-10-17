@@ -38,7 +38,7 @@
       "zh": "我要找个取款机。您能告诉我最近的在哪儿吗？",
       "frame": "bisogno",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Ho bisogno di un bancomat. Mi può dire dov'è il più vicino?",
       "note": "这句组合了 Ho bisogno di…、Mi può…? 和 Dov'è…? 三个句框。bancomat 是取款机（ATM）。Mi può dire…? 是“您能告诉我……吗”，后面直接接要问的事。il più vicino 是“最近的”。"
     },
@@ -48,7 +48,7 @@
       "zh": "我一个人。有空桌吗？",
       "frame": "sono",
       "scene": "restaurant",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Sono da solo. Avete un tavolo libero?",
       "note": "这句组合了 Sono… 和 Avete…? 两个句框。服务员问 Quanti siete?（几位？）时这样答。da solo 是阳性。"
     }

@@ -18,7 +18,7 @@
       "zh": "这附近有车站吗？",
       "frame": "avete",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "C'è una fermata qui vicino?",
       "note": "fermata 以 -a 结尾，是阴性，用 una。C'è…? 是“有……吗”，qui vicino 是“这附近”。fermata 指公交、水上巴士的站；火车站是 la stazione。C'è 的 c 像英语 ch；哪里不像：英语 ch 会带一点送气，这里不送气。"
     },
@@ -38,7 +38,7 @@
       "zh": "请给我一杯 spritz。",
       "frame": "prendo",
       "scene": "bar",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Uno spritz, per favore.",
       "note": "spritz 以 s+辅音开头，不用 un，用 uno。spr 三个辅音连着发，像英语 spring 的 spr；哪里不像：r 是舌尖弹一下，不是英语的卷舌 r。日语外来语スプリッツ在 s、p 后面都加了う，别照着读。spritz 是威尼斯一带常喝的橙色开胃酒，含酒精。同类的词：uno zaino（一个背包）、uno sconto（一个折扣）。succo（果汁）的 s 后面是元音，所以还是 un succo。"
     },
@@ -48,7 +48,7 @@
       "zh": "出口在哪里？",
       "frame": "dove",
       "scene": "general",
-      "status": "checked",
+      "status": "audio_ok",
       "checkedText": "Dov'è l'uscita?",
       "note": "uscita 以元音开头，la 缩成 l'，和后面连成一个词读：l'u-SCI-ta。sc 在 i 前像英语 sh，后面的 i 照常读；哪里不像：夹在两个元音之间的 sc 要拉长，英语的 sh 没这么长。u 要圆唇，日语的う是扁的。同样的还有 l'aeroporto（机场）、l'hotel：h 不发音，重音在最后 o-TEL，日语外来语ホテル的 h 和词尾的う都不要。"
     }
