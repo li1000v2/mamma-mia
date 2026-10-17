@@ -7,7 +7,8 @@
       "it": "Mamma mia!",
       "zh": "我的天哪！",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Mamma mia!",
       "note": "mm 是双辅音：嘴唇闭着把 m 多哼一拍，就像日语拨音ン后面再接一个 m。重音在 MAM 和 MI：MAM-ma MI-a。"
     },
     {
@@ -15,7 +16,8 @@
       "it": "caffè",
       "zh": "咖啡（意式浓缩）",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "caffè",
       "note": "重音在最后的 è：caf-FÈ，è 的嘴比日语え张得大一点。ff 是双辅音，f 要拉长；c 不送气，接近拼音 g。"
     },
     {
@@ -23,7 +25,8 @@
       "it": "Napoli",
       "zh": "那不勒斯",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Napoli",
       "note": "重音在倒数第三个音节：NA-po-li，第一个 a 读得又响又长。这是例外，不按“倒数第二个音节”的规则，别读成 na-PO-li。"
     },
     {
@@ -31,15 +34,17 @@
       "it": "Grazie mille!",
       "zh": "太感谢了！",
       "scene": "general",
-      "status": "draft",
-      "note": "grazie 开头的 gr 中间不加元音；z 读 ts，接近日语ツ的辅音、拼音 z，日语里常见的“グラッチェ”是错的。重音在 GRA：GRA-zie。mille 的 ll 是双辅音，l 要拉长：MIL-le。"
+      "status": "checked",
+      "checkedText": "Grazie mille!",
+      "note": "grazie 开头的 gr 中间不加元音；z 读 ts，接近日语ツ的辅音、拼音 z；不像的是它夹在两个元音之间要先停一拍，后面直接接 ie，不带ツ的う。日语里常见的“グラッチェ”把 ts 读成了 ch，是错的。重音在 GRA：GRA-zie。mille 的 ll 是双辅音，l 要拉长：MIL-le。"
     },
     {
       "id": "L02-06",
       "it": "È una palla, non una pala.",
       "zh": "是球，不是铲子。",
       "scene": "general",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "È una palla, non una pala.",
       "note": "palla（球）和 pala（铲子）只差一个 l：palla 的 a 短，l 要含住多占一拍；pala 的 a 拖长，l 一带而过。用假名比长短大概是 パッラ／パーラ，但以音频为准。È una… 是“这是一个……”，non una… 是“不是一个……”。"
     }
   ]

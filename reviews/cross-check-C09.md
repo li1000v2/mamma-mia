@@ -1,12 +1,12 @@
 # 交叉校对：C09 突发状况
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 33 条：32 条 OK，1 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
 ## 需要看的条目
 
-- **C09/aiuto/npc2**：建议，场景是在药店，药剂师说的“Desidera?”译成“您要点什么？”听起来像餐厅或咖啡馆点单，在药店说“您需要什么？”更自然。
+- **C09/come_sta/npc2**：建议，上一句学习者刚进店喊“Aiuto! Mi hanno rubato il portafoglio!”（救命！我的钱包被偷了！），药剂师回“Va bene.”（好/行）在语境上过于冷淡且不合逻辑，真实场景中通常会先安抚或表示同情（如 Stia tranquillo / Mi dispiace）。（另有 1 处）
 
 ## 逐条结果
 
@@ -15,14 +15,10 @@
 - **it**：Buongiorno, mi dica.
 - **zh**：您好，您需要什么？
 
-### C09/aiuto/npc2 — ✏️ 建议修改
+### C09/aiuto/npc2 — ✅ OK
 
 - **it**：Buonasera! Desidera?
-- **zh**：晚上好！您要点什么？
-
-| 字段 | 级别 | 问题 | 建议写法 |
-| --- | --- | --- | --- |
-| zh | 建议 | 场景是在药店，药剂师说的“Desidera?”译成“您要点什么？”听起来像餐厅或咖啡馆点单，在药店说“您需要什么？”更自然。 | 晚上好！您需要什么？ |
+- **zh**：晚上好！您需要什么？
 
 ### C09/aiuto/choice1 — ✅ OK
 
@@ -43,10 +39,15 @@
 - **it**：Allora chiami subito il 112, è il numero per le emergenze. Ma lei come si sente? È un po' pallido.
 - **zh**：那您马上打 112，这是紧急电话。您自己感觉怎么样？脸色有点白。
 
-### C09/come_sta/npc2 — ✅ OK
+### C09/come_sta/npc2 — ✏️ 建议修改
 
 - **it**：Va bene. Prima chiami il 112, poi vada alla polizia. Ma lei sta bene?
 - **zh**：好。先打 112，再去警察局。您还好吗？
+
+| 字段 | 级别 | 问题 | 建议写法 |
+| --- | --- | --- | --- |
+| it | 建议 | 上一句学习者刚进店喊“Aiuto! Mi hanno rubato il portafoglio!”（救命！我的钱包被偷了！），药剂师回“Va bene.”（好/行）在语境上过于冷淡且不合逻辑，真实场景中通常会先安抚或表示同情（如 Stia tranquillo / Mi dispiace）。 | Mi dispiace! Prima chiami il 112, poi vada alla polizia. Ma lei sta bene? |
+| zh | 建议 | 配合意大利语修改，避免对“救命！我钱包被偷了！”回答“好。”。 | 太糟糕了！先打 112，再去警察局。您还好吗？ |
 
 ### C09/come_sta/choice1 — ✅ OK
 
@@ -168,8 +169,6 @@
 ### C09/numero/choice1 — ✅ OK
 
 - **✔ 正确选项**：Sì, il 112.
-
-补充：意大利语里电话号码前常加阳性定冠词 il；112 在意大利既可以按百位数读作 centododici，也常逐个数字读作 uno-uno-due。
 
 ### C09/numero/choice2 — ✅ OK
 

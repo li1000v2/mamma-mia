@@ -1,13 +1,14 @@
 {
   "unit": "L18",
-  "intro": "意大利的法定节日（festa、giorno festivo）里，很多店会关门、提前关门或者换营业时间；餐馆和旅游区反倒常常照开。别猜，直接问。\n\n日期固定的全国性节日，例如：1 月 1 日 Capodanno（元旦）、1 月 6 日 Epifania（主显节）、12 月 8 日 Immacolata（圣母无染原罪节）、12 月 25 日 Natale（圣诞节）、12 月 26 日 Santo Stefano（圣斯德望日）。复活节和第二天的 Pasquetta 每年日期不同。各城市还有自己的守护圣人节。\n\n12 月 8 日的 Immacolata 也算圣诞季的开始，街上挂灯、摆圣诞树和 presepe（耶稣诞生场景）。从这时到新年，见面道别都可以说 Buone feste!（节日快乐！），对方会回 Grazie, anche a lei!（谢谢，也祝您节日快乐！）。\n\n问营业：Oggi è festa?（今天是节日吗？）、È aperto anche oggi?（今天也开门吗？）、A che ora chiude oggi?（今天几点关门？）。回答用 24 小时制：Oggi chiudiamo alle venti（今天我们 20 点关门）。公交时刻表常分成 feriali（周一到周六）和 festivi（周日和节假日）两套。\n\n发音（先听示范音频，以音频为准，下面只是帮你找音）：\n- chiude 的 chiu 像日语キュ。哪里不像：u 要圆唇往前突，日语的う是扁的；重音在 CHIU：CHIU-de。\n- oggi 的 gg 像英语 judge 的 j，但要先停一拍：OG-gi。哪里不像：英语的 j 前面没有这一拍停顿。\n- Immacolata 的 mm 要先闭上嘴停一拍再发：im-ma-co-LA-ta。\n- buone 的 uo 是 u、o 连着读，u 同样要圆唇：BUO-ne FE-ste。feste、festa 的 st 中间不加元音。",
+  "intro": "意大利的法定节日（festa、giorno festivo）里，很多店会关门、提前关门或者换营业时间；餐馆和旅游区反倒常常照开。别猜，直接问。\n\n日期固定的全国性节日，例如：1 月 1 日 Capodanno（元旦）、1 月 6 日 Epifania（主显节）、12 月 8 日 Immacolata（圣母无染原罪节）、12 月 25 日 Natale（圣诞节）、12 月 26 日 Santo Stefano（圣斯德望日）。复活节和第二天的 Pasquetta 每年日期不同。各城市还有自己的守护圣人节。\n\n12 月 8 日的 Immacolata 也算圣诞季的开始，街上挂灯、摆圣诞树和 presepe（耶稣诞生场景）。从这时到新年，见面道别都可以说 Buone feste!（节日快乐！），对方会回 Grazie, anche a lei!（谢谢，也祝您节日快乐！）。\n\n问营业：Oggi è festa?（今天是节日吗？）、È aperto anche oggi?（今天也开门吗？）、A che ora chiude oggi?（今天几点关门？）。回答用 24 小时制：Oggi chiudiamo alle venti（今天我们 20 点关门）。公交时刻表常分成 feriali（周一到周六）和 festivi（周日和节假日）两套。\n\n发音（先听示范音频，以音频为准，下面只是帮你找音）：\n- chiude 的 chiu 像日语キュ。哪里不像：u 要圆唇往前突，日语的う是扁的；重音在 CHIU：CHIU-de。\n- oggi 的 gg 像英语 judge 的 j，但要先停一拍：OG-gi。哪里不像：英语的 j 前面没有这一拍停顿。\n- Immacolata 的 mm 是闭着嘴把 m 多哼一拍，是拉长，不是停：im-ma-co-LA-ta。\n- buone 的 uo 是 u、o 连着读，u 同样要圆唇：BUO-ne FE-ste。feste、festa 的 st 中间不加元音。",
   "phrases": [
     {
       "id": "L18-01",
       "it": "Oggi è festa?",
       "zh": "今天是节日吗？",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Oggi è festa?",
       "note": "festa 是节日、假日，也指派对。"
     },
     {
@@ -15,7 +16,8 @@
       "it": "È aperto anche oggi?",
       "zh": "今天也开门吗？",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "È aperto anche oggi?",
       "note": "anche 是“也”，过节时这么问最自然。不开门的回答是 Oggi siamo chiusi（今天我们不开）。"
     },
     {
@@ -24,7 +26,8 @@
       "zh": "今天几点关门？",
       "frame": "ache",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "A che ora chiude oggi?",
       "note": "chiude 是“关门”，apre 是“开门”。"
     },
     {
@@ -32,7 +35,8 @@
       "it": "Oggi chiudiamo alle venti.",
       "zh": "今天我们 20 点关门。",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Oggi chiudiamo alle venti.",
       "note": "店员的回答，听懂就行。chiudiamo 是“我们关门”；alle venti 就是 20:00。"
     },
     {
@@ -40,7 +44,8 @@
       "it": "Buone feste!",
       "zh": "节日快乐！",
       "scene": "holiday",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Buone feste!",
       "note": "从 12 月初到新年都可以说。回答 Grazie, anche a lei!（谢谢，也祝您节日快乐！）"
     }
   ]

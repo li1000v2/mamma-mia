@@ -8,7 +8,8 @@
       "zh": "请给我一张全价票。",
       "frame": "numero",
       "scene": "sights",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Un biglietto intero, per favore.",
       "note": "售票员常问 Intero o ridotto?。ridotto 是优惠票，谁能买各处规定不同，看窗口告示；不符合就买 intero。un 的 u 要圆唇，n 直接连下一个词。"
     },
     {
@@ -17,7 +18,8 @@
       "zh": "门票多少钱？",
       "frame": "quanto",
       "scene": "sights",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quanto costa l'ingresso?",
       "note": "ingresso 在这里是“入场（费）”。门口写着 Ingresso libero 或 Ingresso gratuito，就是免费入场。costa 的 st 中间不加元音：CO-sta。"
     },
     {
@@ -26,7 +28,8 @@
       "zh": "入口在哪儿？",
       "frame": "dove",
       "scene": "sights",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Dov'è l'ingresso?",
       "note": "ingresso 也是“入口”：in-GRES-so。gr 像英语 green 的 gr；不像的是 r 要舌尖弹一下，不卷舌。ss 把 s 的嘶声拉长一拍。有的牌子写 Entrata；出口是 Uscita（L01）。"
     },
     {
@@ -34,7 +37,8 @@
       "it": "Serve la prenotazione?",
       "zh": "需要预约吗？",
       "scene": "sights",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Serve la prenotazione?",
       "note": "serve 是“需要（某样东西）”：SER-ve。prenotazione 重音在 ZIO：pre-no-ta-ZIO-ne，z 像日语ツ的辅音部分；不像的是后面不带う，直接接 io。回答 Sì, serve 或 No, non serve。热门景点常要提前在网上约时段，出发前查一下官网。"
     },
     {
@@ -43,7 +47,8 @@
       "zh": "几点关门？",
       "frame": "ache",
       "scene": "sights",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "A che ora chiude?",
       "note": "chiude 的 ch 是硬音 k，重音 CHIU-de，u 要圆唇。回答多用 24 小时制（L10）。很多景点关门前就停止入场，可以接着问 A che ora è l'ultimo ingresso?（最晚几点能进？）"
     }
   ]

@@ -7,7 +7,8 @@
       "it": "Quale linea va al Colosseo?",
       "zh": "哪条线去斗兽场？",
       "scene": "metro",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quale linea va al Colosseo?",
       "note": "quale 是“哪一个”：QUA-le；linea 是线路，重音在倒数第三个音节：LI-ne-a。把 al Colosseo 换成别的目的地就能问任何地方。"
     },
     {
@@ -16,7 +17,8 @@
       "zh": "我该在哪站下车？",
       "frame": "dove",
       "scene": "metro",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Dove devo scendere?",
       "note": "devo 是“我得”，scendere 是“下车”，重音在倒数第三个音节：SCEN-de-re。sce 像英语 sh（she）；不像的是后面的 e 是纯元音，不能滑成 ei。对方会答 Alla fermata…（在……站下）。"
     },
     {
@@ -24,7 +26,8 @@
       "it": "Quante fermate sono?",
       "zh": "要坐几站？",
       "scene": "metro",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Quante fermate sono?",
       "note": "fermate 是 fermata 的复数，所以“多少”也用阴性复数 quante：QUAN-te。回答 Sono tre fermate（三站）。数字没听清就请对方写下来（L03）。"
     },
     {
@@ -32,7 +35,8 @@
       "it": "Questo autobus va in centro?",
       "zh": "这趟公交去市中心吗？",
       "scene": "metro",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Questo autobus va in centro?",
       "note": "上车前问司机最稳。去一个区域用 in（in centro），去具体地点用 a（al Colosseo）。autobus 重音在第一个音节：AU-to-bus，u 要圆唇，词尾的 s 后面不加元音；外来语的读法在这里不可信。centro 的 ce 读软音，tr 中间不加元音。"
     },
     {
@@ -40,7 +44,8 @@
       "it": "Permesso, scendo alla prossima.",
       "zh": "借过，我下一站下。",
       "scene": "metro",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Permesso, scendo alla prossima.",
       "note": "Permesso 是“借过”，车上挤、要穿过人群时说：per-MES-so。per 的 r 弹一下就接 m，中间不加元音；ss 像促音っ占一拍，但不是停顿，s 的嘶声要一直持续。alla prossima（PROS-si-ma）是“在下一站”。别人问你 Scende alla prossima?（您下一站下吗？），不下就侧身让开。"
     }
   ]

@@ -4,7 +4,7 @@
   "goal": "从机场进威尼斯：先在机场售票处买一张去 Piazzale Roma（威尼斯的汽车总站）的票；坐巴士到了 Piazzale Roma，问哪条船去 Rialto、要不要验票；再到酒店报名字入住，听清城市税一共多少钱，选刷卡。对方依次是机场售票员、船站的工作人员和酒店前台。",
   "speaker": "Personale",
   "voice": "f1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "aeroporto",

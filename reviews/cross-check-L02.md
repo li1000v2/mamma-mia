@@ -1,6 +1,6 @@
 # 交叉校对：L02 发音②：元音、重音、双辅音
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -50,7 +50,7 @@
 
 - **it**：Grazie mille!
 - **zh**：太感谢了！
-- **note**：grazie 开头的 gr 中间不加元音；z 读 ts，接近日语ツ的辅音、拼音 z，日语里常见的“グラッチェ”是错的。重音在 GRA：GRA-zie。mille 的 ll 是双辅音，l 要拉长：MIL-le。
+- **note**：grazie 开头的 gr 中间不加元音；z 读 ts，接近日语ツ的辅音、拼音 z；不像的是它夹在两个元音之间要先停一拍，后面直接接 ie，不带ツ的う。日语里常见的“グラッチェ”把 ts 读成了 ch，是错的。重音在 GRA：GRA-zie。mille 的 ll 是双辅音，l 要拉长：MIL-le。
 
 ### L02-06 — ✅ OK
 

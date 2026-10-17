@@ -1,6 +1,6 @@
 # 交叉校对：C04 威尼斯晚餐
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 35 条：35 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -20,7 +20,7 @@
 
 - **✔ 正确选项**：Buonasera! Avete un tavolo per una persona?
 
-补充：口语里“一个人”也常简说成 per uno（Avete un tavolo per uno?）。
+补充：口语中也常把 per una persona 简化成 per uno（Avete un tavolo per uno? / C'è un tavolo per uno?）。
 
 ### C04/tavolo/choice2 — ✅ OK
 
@@ -146,11 +146,11 @@
 - **it**：Va bene, allora niente crostacei. Da bere? Acqua naturale o frizzante?
 - **zh**：好的，那就不放虾蟹。喝点什么？不带气的水还是带气的？
 
-补充：在威尼斯等北方地区，不带气和带气的水除了说 naturale / frizzante，也很常听到 liscia（不带气）和 gassata（带气）。
-
 ### C04/acqua/choice1 — ✅ OK
 
 - **✔ 正确选项**：Naturale, grazie.
+
+补充：不带气的水除了最通用的 acqua naturale，有时也会听到服务员说 acqua liscia（而微气泡水叫 leggera 或 leggermente frizzante）。
 
 ### C04/acqua/choice2 — ✅ OK
 
@@ -171,7 +171,7 @@
 
 - **✔ 正确选项**：No, grazie. Un'acqua naturale, per favore.
 
-补充：在餐馆里点水时，直接说 Un'acqua naturale（省略 bottiglia）是很地道的口语说法，服务员默认会上一瓶不带气的水；也可以完整说 Una bottiglia d'acqua naturale。
+补充：口语中直接说 Un'acqua naturale 就能表示要一瓶（或一份）不带气的水，也可以完整说 Una bottiglia d'acqua naturale。
 
 ### C04/vino/choice2 — ✅ OK
 

@@ -1,6 +1,6 @@
 # 交叉校对：L15 火车站②：听广播
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -28,7 +28,7 @@
 
 </details>
 
-补充：米兰、博洛尼亚、那不勒斯等城市的主火车站叫 Centrale，而威尼斯、佛罗伦萨、罗马的主站分别是 Venezia Santa Lucia、Firenze Santa Maria Novella（简称 SMN）和 Roma Termini。
+补充：行程中的三大城市里，那不勒斯主站叫 Napoli Centrale，而罗马主站叫 Roma Termini，威尼斯主岛车站叫 Venezia Santa Lucia（大陆站叫 Venezia Mestre）。另外广播播报站台紧迫时，经常会听到一句固定提醒：Allontanarsi dalla linea gialla（请远离黄线）。
 
 ### L15-01 — ✅ OK
 
@@ -36,15 +36,11 @@
 - **zh**：开往那不勒斯的火车即将从 3 号站台出发。
 - **note**：听懂就行。per Napoli 是“开往那不勒斯”，dal binario 是“从……站台”。
 
-补充：车站广播开头还常有一句经典套话：Allontanarsi dalla linea gialla（请退到黄线以外）。
-
 ### L15-02 — ✅ OK
 
 - **it**：Il treno da Roma è in arrivo al binario due.
 - **zh**：从罗马开来的火车即将到达 2 号站台。
-- **note**：听懂就行。da Roma 是“从罗马来”，per Roma 是“开往罗马”；到达用 al，出发用 dal。
-
-补充：正式广播里“从某地开来”也常用 proveniente da...（例如 proveniente da Roma）。
+- **note**：听懂就行。da Roma 是“从罗马来”，per Roma 是“开往罗马”；到达用 al，出发用 dal。正式广播里常说 proveniente da Roma（从罗马开来的），意思一样。
 
 ### L15-03 — ✅ OK
 
@@ -64,4 +60,4 @@
 - **zh**：8 号车厢，22 号座位。
 - **note**：车票上的车厢号和座位号。到了座位发现有人坐着，就说 Scusi, questo è il mio posto（不好意思，这是我的座位）。
 
-补充：现在意大利高铁（Frecciarossa、Italo）的座位号通常是“数字+字母”（如 22A、22B），和飞机类似。
+补充：现在意大利的高铁（Frecciarossa、Italo）座位号多采用“数字+字母”的编号方式（如 22A、22B），和飞机座位类似。

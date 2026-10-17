@@ -7,7 +7,8 @@
       "it": "Oggi fa freddo.",
       "zh": "今天很冷。",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Oggi fa freddo.",
       "note": "Fa + 形容词说天气：fa caldo（热）、fa fresco（凉快）。特别冷就说 Fa molto freddo。重音：OG-gi、FRED-do。"
     },
     {
@@ -15,7 +16,8 @@
       "it": "Piove?",
       "zh": "在下雨吗？",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Piove?",
       "note": "piove 是“下雨”，不用主语。两个音节 PIO-ve，io 连成一拍。问明天：Domani piove?（明天下雨吗？）。下雪是 nevica。"
     },
     {
@@ -23,7 +25,8 @@
       "it": "Che bello!",
       "zh": "真美！／太好了！",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Che bello!",
       "note": "Che + 形容词表示感叹：Che freddo!（好冷！）、Che buono!（真好吃！）。看到风景、听到好消息都能说。bello 的 ll 要多占一拍。"
     },
     {
@@ -32,7 +35,8 @@
       "zh": "今天涨水吗？",
       "frame": "avete",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "C'è l'acqua alta oggi?",
       "note": "C'è…? 是“有……吗”。acqua alta 是威尼斯秋冬的涨水，低处会被淹，出门前问酒店前台。"
     },
     {
@@ -40,7 +44,8 @@
       "it": "Ho freddo.",
       "zh": "我觉得冷。",
       "scene": "smalltalk",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Ho freddo.",
       "note": "天气冷说 Fa freddo，自己觉得冷说 Ho freddo。别说 Sono freddo。同样用 Ho 的还有 Ho fame（饿）、Ho sete（渴）。"
     }
   ]

@@ -4,7 +4,7 @@
   "goal": "在威尼斯 Santa Lucia 火车站的窗口买一张去那不勒斯的单程票，问清从几号站台出发；听懂晚点和改站台的广播，上车找到自己的座位。",
   "speaker": "Stazione",
   "voice": "f1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "ticket",

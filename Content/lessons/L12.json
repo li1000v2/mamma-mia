@@ -8,7 +8,8 @@
       "zh": "我对虾蟹类过敏。",
       "frame": "sono",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Sono allergico ai crostacei.",
       "note": "例句，按需要换词：alle arachidi（花生）、alla frutta a guscio（坚果）、al latte（牛奶）。crostacei 指虾、蟹、龙虾这一类，读 cro-STA-ce-i：cr、st 中间都不加元音；ce 的 c 像英语 ch，哪里不像：英语 ch 会带一点送气，这里不送气。allergico 读 al-LER-gi-co：ll 要把 l 持续发长一拍，不是停顿。"
     },
     {
@@ -16,7 +17,8 @@
       "it": "Senza formaggio, per favore.",
       "zh": "请不要放奶酪。",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Senza formaggio, per favore.",
       "note": "senza 是“不要、不加”，后面直接接名词。读 SEN-za，z 读 ts，像日语ツ开头的 ts；哪里不像：ツ 后面带着う，这里 ts 直接接 a。换词：senza cipolla（不要洋葱）、senza aglio（不要蒜）。"
     },
     {
@@ -25,7 +27,8 @@
       "zh": "不好意思，我没点这个。",
       "frame": "non",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Scusi, non ho ordinato questo.",
       "note": "ordinare（点菜）→ ordinato：or-di-NA-to，r 后面直接接 d，中间不加元音。前面加 Non 是“没……”；h 不发音，non 的 n 直接连到 ho 上。上错菜，或者账单上多了东西时用。"
     },
     {
@@ -33,7 +36,8 @@
       "it": "Il conto, per favore.",
       "zh": "请结账。",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Il conto, per favore.",
       "note": "conto 是账单，读 CON-to，n 后面直接接 t，中间不加元音。服务员一般不会主动拿来，要自己叫。"
     },
     {
@@ -41,7 +45,8 @@
       "it": "Che cos'è il coperto?",
       "zh": "coperto（座位费）是什么？",
       "scene": "restaurant",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Che cos'è il coperto?",
       "note": "coperto 是座位费，读 co-PER-to，r 弹一下直接接 t，不加元音。按人头收，含面包和餐具，菜单上会写金额，是正常收费。servizio 是服务费，有的店才收。"
     }
   ]

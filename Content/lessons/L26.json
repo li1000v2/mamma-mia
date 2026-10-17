@@ -7,7 +7,8 @@
       "it": "Aiuto!",
       "zh": "救命！",
       "scene": "emergency",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Aiuto!",
       "note": "只在真正紧急时喊。欧盟统一的紧急电话是 112，在意大利免费拨打。"
     },
     {
@@ -16,7 +17,8 @@
       "zh": "我把护照弄丢了。",
       "frame": "passato",
       "scene": "emergency",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Ho perso il passaporto.",
       "note": "perso 是 perdere（丢）的过去分词，不规则，要单独记。换词：Ho perso il telefono（手机）、Ho perso la borsa（包）。passaporto 重音在 POR：pas-sa-POR-to。"
     },
     {
@@ -25,7 +27,8 @@
       "zh": "我的钱包被偷了。",
       "frame": "passato",
       "scene": "emergency",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Mi hanno rubato il portafoglio.",
       "note": "字面是“（有人）偷了我的钱包”，hanno 指不知道是谁的“他们”，被偷都这么说。hanno 的 h 不发音，nn 要多占一拍。portafoglio 重音在 FO：por-ta-FO-glio。gli 像日语リャ行的辅音；不像的是舌尖不弹，而是舌面贴住上颚，让气从舌头两边出来，夹在元音之间还要多占一拍。"
     },
     {
@@ -34,7 +37,8 @@
       "zh": "警察局在哪儿？",
       "frame": "dove",
       "scene": "emergency",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Dov'è la polizia?",
       "note": "口语说 la polizia 就行，正式说法是 il commissariato 或 la questura。报案也可以找宪兵 carabinieri。Dov'è 的重音在最后的 è 上。"
     },
     {
@@ -43,7 +47,8 @@
       "zh": "我想报案。",
       "frame": "prendo",
       "scene": "emergency",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Vorrei fare una denuncia.",
       "note": "Vorrei 是“我想要”，客气的说法。东西被偷、证件丢了都要先报案，拿到报案证明（也叫 denuncia），补办证件、找保险都要用。denuncia 重音在 NUN：de-NUN-cia，cia 里的 i 不单独发音。"
     }
   ]

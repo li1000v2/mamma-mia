@@ -1,12 +1,8 @@
 # 交叉校对：C01 听不懂也不慌
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
-- 18 条：17 条 OK，1 条建议修改（其中 0 处标为错误）
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
+- 18 条：18 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
-
-## 需要看的条目
-
-- **C01/fast/choice2**：建议，店员刚才问的是特殊疑问句“cosa le do?（给您拿什么？）”，回答“Sì, grazie”并不是让对方以为已经选好了，而是答非所问。
 
 ## 逐条结果
 
@@ -15,20 +11,16 @@
 - **it**：Buongiorno! Allora, oggi abbiamo cornetti alla crema, al cioccolato e integrali: cosa le do?
 - **zh**：早上好！今天有奶油、巧克力和全麦的羊角面包，您要什么？
 
-补充：地区差异补充：羊角面包在中南部（如罗马、佛罗伦萨）通常叫 cornetto，而在北方（如威尼斯、米兰）当地人更常叫 brioche。不过在旅游区说 cornetto 店员都能听懂。
+补充：羊角面包在罗马、那不勒斯等中南部地区叫 cornetto，而在威尼斯等北方地区常叫 brioche（不过说 cornetto 店员也都听得懂）。
 
 ### C01/fast/choice1 — ✅ OK
 
 - **✔ 正确选项**：Scusi, non ho capito. Più piano, per favore.
 
-### C01/fast/choice2 — ✏️ 建议修改
+### C01/fast/choice2 — ✅ OK
 
 - **✘ 错误选项**：Sì, grazie.
-- **feedback**：还没听懂就说“好的，谢谢”，对方会以为你已经选好了。先说没听懂。
-
-| 字段 | 级别 | 问题 | 建议写法 |
-| --- | --- | --- | --- |
-| feedback | 建议 | 店员刚才问的是特殊疑问句“cosa le do?（给您拿什么？）”，回答“Sì, grazie”并不是让对方以为已经选好了，而是答非所问。 | 还没听懂对方在问什么就说“好的，谢谢”，会造成答非所问。听不懂时先直说没听懂。 |
+- **feedback**：还没听懂对方在问什么就说“好的，谢谢”，会答非所问。听不懂时先直说没听懂。
 
 ### C01/fast/choice3 — ✅ OK
 

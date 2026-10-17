@@ -8,7 +8,8 @@
       "zh": "一张去那不勒斯的票，谢谢。",
       "frame": "numero",
       "scene": "train",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Un biglietto per Napoli, per favore.",
       "note": "第一个 per 是“去往”，per favore 是“请”。"
     },
     {
@@ -16,7 +17,8 @@
       "it": "Solo andata o andata e ritorno?",
       "zh": "单程还是往返？",
       "scene": "train",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Solo andata o andata e ritorno?",
       "note": "售票员常问的话，听懂就行。"
     },
     {
@@ -24,7 +26,8 @@
       "it": "Solo andata, per favore.",
       "zh": "单程，谢谢。",
       "scene": "train",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Solo andata, per favore.",
       "note": "要往返就说 Andata e ritorno, per favore。"
     },
     {
@@ -32,7 +35,8 @@
       "it": "Da quale binario parte?",
       "zh": "从几号站台出发？",
       "scene": "train",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "Da quale binario parte?",
       "note": "回答一般是 Dal binario tre（从 3 号站台）。站台号没听清就请对方写下来：Me lo può scrivere?"
     },
     {
@@ -41,7 +45,8 @@
       "zh": "下一班去罗马的火车几点开？",
       "frame": "ache",
       "scene": "train",
-      "status": "draft",
+      "status": "checked",
+      "checkedText": "A che ora parte il prossimo treno per Roma?",
       "note": "prossimo 是“下一个”。回答用 24 小时制，比如 Alle quattordici e dieci（14:10）。"
     }
   ]

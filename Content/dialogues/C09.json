@@ -4,7 +4,7 @@
   "goal": "钱包在街上被偷了，你冲进最近的药店求助：先说钱包被偷了，回答药剂师的问题；再说自己不舒服、头疼，买点药，听清价格，用手机付款；最后听清去警察局要多久，请药剂师帮你叫出租车。",
   "speaker": "Farmacista",
   "voice": "f1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "aiuto",

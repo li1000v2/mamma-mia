@@ -1,6 +1,6 @@
 # 交叉校对：L07 阴阳性与冠词
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -48,10 +48,8 @@
 - **zh**：请给我一杯 spritz。
 - **note**：spritz 以 s+辅音开头，不用 un，用 uno。spr 三个辅音连着发，像英语 spring 的 spr；哪里不像：r 是舌尖弹一下，不是英语的卷舌 r。日语外来语スプリッツ在 s、p 后面都加了う，别照着读。spritz 是威尼斯一带常喝的橙色开胃酒，含酒精。同类的词：uno zaino（一个背包）、uno sconto（一个折扣）。succo（果汁）的 s 后面是元音，所以还是 un succo。
 
-补充：在威尼斯点 spritz 时，店员有时会追问要哪种苦味利口酒打底：最常见偏甜的是 Aperol（Uno spritz Aperol），偏苦的是 Campari，威尼斯本地特色则是 Select。
-
 ### L07-05 — ✅ OK
 
 - **it**：Dov'è l'uscita?
 - **zh**：出口在哪里？
-- **note**：uscita 以元音开头，la 缩成 l'，和后面连成一个词读：l'u-SCI-ta。sci 像英语 sh；哪里不像：夹在两个元音之间的 sc 要拉长，英语的 sh 没这么长。u 要圆唇，日语的う是扁的。同样的还有 l'aeroporto（机场）、l'hotel：h 不发音，重音在最后 o-TEL，日语外来语ホテル的 h 和词尾的う都不要。
+- **note**：uscita 以元音开头，la 缩成 l'，和后面连成一个词读：l'u-SCI-ta。sc 在 i 前像英语 sh，后面的 i 照常读；哪里不像：夹在两个元音之间的 sc 要拉长，英语的 sh 没这么长。u 要圆唇，日语的う是扁的。同样的还有 l'aeroporto（机场）、l'hotel：h 不发音，重音在最后 o-TEL，日语外来语ホテル的 h 和词尾的う都不要。

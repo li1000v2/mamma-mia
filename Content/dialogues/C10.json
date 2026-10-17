@@ -4,7 +4,7 @@
   "goal": "在罗马玩一整天：早上在咖啡吧点一杯卡布奇诺和一个羊角面包；路人给你指地铁，记住要坐几站；在斗兽场听清入场时间，买一张全价票；午餐点一份 carbonara；在小店听清帽子的价格并买下；最后打车去菲乌米奇诺机场，听清路上要多久。",
   "speaker": "Gente di Roma",
   "voice": "m1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "colazione",

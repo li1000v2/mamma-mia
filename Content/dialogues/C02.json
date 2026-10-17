@@ -4,7 +4,7 @@
   "goal": "在收银台点一杯卡布奇诺和一个羊角面包，站在吧台喝，刷卡付款，拿到小票。",
   "speaker": "Cassiere",
   "voice": "m1",
-  "status": "draft",
+  "status": "checked",
   "nodes": [
     {
       "id": "order",
