@@ -1,12 +1,8 @@
 # 交叉校对：L10 时间与营业时间
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
-- 6 条：5 条 OK，1 条建议修改（其中 1 处标为错误）
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
+- 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
-
-## 需要看的条目
-
-- **L10-05**：错误，quindici 的重音在第一音节（['kwinditʃi]），应标为 QUIN-di-ci，而不是 quin-DI-ci。
 
 ## 逐条结果
 
@@ -32,6 +28,8 @@
 - **zh**：几点开门？
 - **note**：apre 是 aprire（开）的“它”的形式，读 A-pre。pr 像英语 pray 的 pr；哪里不像：英语的 p 送气、r 卷舌，这里 p 不送气，r 是舌尖弹一下。回答：Alle nove（9 点）、Alle dieci e mezza（10 点半）。
 
+补充：如果直接问店员“你们几点开门/关门”，意大利人也常说复数形式 A che ora aprite? / A che ora chiudete?；用单数 apre / chiude 指代店面或博物馆在任何场景下都通用。
+
 ### L10-02 — ✅ OK
 
 - **it**：A che ora chiude?
@@ -50,12 +48,10 @@
 - **zh**：不，今天不开门。
 - **note**：听懂就行。chiuso 读 CHIU-so，和 chiude 同一个开头。门口写着 CHIUSO 就是关门；chiuso per ferie 是“休假，暂停营业”。
 
-### L10-05 — ✏️ 建议修改
+补充：除了 chiuso per ferie，门口常见告示还有 giorno di chiusura 或 chiuso per turno（固定公休日/轮休）。
+
+### L10-05 — ✅ OK
 
 - **it**：Alle quindici e trenta.
 - **zh**：下午三点半（15:30）。
-- **note**：24 小时制：alle + 小时 + e + 分钟。quindici（quin-DI-ci，15）别听成 cinque（CIN-que，5）；trenta（TREN-ta，30）别听成 tredici（TRE-di-ci，13），tr 中间不加元音。口语也说 alle tre e mezza。
-
-| 字段 | 级别 | 问题 | 建议写法 |
-| --- | --- | --- | --- |
-| note | 错误 | quindici 的重音在第一音节（['kwinditʃi]），应标为 QUIN-di-ci，而不是 quin-DI-ci。 | 24 小时制：alle + 小时 + e + 分钟。quindici（QUIN-di-ci，15）别听成 cinque（CIN-que，5）；trenta（TREN-ta，30）别听成 tredici（TRE-di-ci，13），tr 中间不加元音。口语也说 alle tre e mezza。 |
+- **note**：24 小时制：alle + 小时 + e + 分钟。quindici（QUIN-di-ci，15）别听成 cinque（CIN-que，5）；trenta（TREN-ta，30）别听成 tredici（TRE-di-ci，13），tr 中间不加元音。口语也说 alle tre e mezza。

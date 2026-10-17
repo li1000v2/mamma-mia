@@ -1,6 +1,6 @@
 # 交叉校对：L03 礼貌与救场
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -30,8 +30,6 @@
 - **zh**：我没听懂。
 - **note**：ho capito 是“我懂了”，前面加 Non 就是否定。h 不发音，ho 就读 o；non 的最后一个 n 后面不加元音。重音在 PI：ca-PI-to。
 
-补充：自然语流中 Non ho 常连读作 no-nò，学习者慢速分开读也完全不影响理解。
-
 ### L03-03 — ✅ OK
 
 - **it**：Può ripetere, per favore?
@@ -42,9 +40,7 @@
 
 - **it**：Più piano, per favore.
 - **zh**：请说慢一点。
-- **note**：piano 在这里是“慢”。也可以说 Più lentamente, per favore，或者说整句 Può parlare più piano?（您能说慢一点吗？）。più 只有一个音节，i 一带而过，接近英语 pew。
-
-补充：piano 兼有“慢”和“小声”的意思，但在听不懂对方说话的语境下说 Più piano，对方一般都能明白是请他说慢一点。
+- **note**：piano 在这里是“慢”。也可以说 Più lentamente, per favore，或者说整句 Può parlare più piano?（您能说慢一点吗？）。più 只有一个音节：i 一带而过，马上滑到重读的 ù 上，u 要圆唇往前撅；p 不送气，接近拼音 b。
 
 ### L03-05 — ✅ OK
 

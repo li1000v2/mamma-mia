@@ -1,6 +1,6 @@
 {
   "unit": "L01",
-  "intro": "意大利语基本是怎么写就怎么读，这一课记四条规则。先听每个词的示范音频，再对照规则看拼写；下面借日语、英语和拼音帮你找到那个音，每条都写了哪里不像，最后以音频为准。\n\n1. c、g 在 e、i 前读软音：ce、ci 的辅音接近英语 church 的 ch，日语チ的辅音也差不多；ge、gi 接近英语 jam 的 j，日语ジ的辅音也差不多。ci、gi 后面再跟 a、o、u 时，i 本身不发音，只表示前面读软音：ciao 是 cia-o 两个音节，giorno 是 gior-no。在 a、o、u 前读硬音 k、g：caffè、gola。\n2. 想在 e、i 前读硬音，就加一个 h：che、chi 读 ke、ki，ghe、ghi 读 ge、gi（chiesa、anche、spaghetti）。h 本身不发音。\n3. gn 接近日语にゃ行的辅音（gnocchi、bagno）；不像的地方：夹在两个元音之间时要读长一点。gli 的 g 不发音，舌面整个贴住上颚发 l，接近拼音的 l 但舌头抬高；不像的地方：日语リャ是舌尖弹一下，这里舌面贴住不动。gli 后面再跟元音时，i 也不单独发音：biglietto、famiglia。\n4. sc 在 e、i 前读 sh，接近英语 she 的 sh（uscita、pesce），夹在两个元音之间要读长；在 a、o、u 前，以及 sch，都读 sk（scusi；pesche 桃子 ≠ pesce 鱼）。\n\n还有一条最容易被母语带偏：辅音连在一起时，中间不加元音。scusi 开头的 sc 是一口气的 sk，不要读出“su”；pr、gr、str 也一样。英语里本来就有这类连缀（school、price、street），可以借英语的感觉。",
+  "intro": "意大利语基本是怎么写就怎么读，这一课记四条规则。先听每个词的示范音频，再对照规则看拼写；下面借日语、英语和拼音帮你找到那个音，每条都写了哪里不像，最后以音频为准。\n\n1. c、g 在 e、i 前读软音：ce、ci 的辅音接近英语 church 的 ch，日语チ的辅音也差不多；ge、gi 接近英语 jam 的 j，日语ジ的辅音也差不多。不像的地方：英语的 ch 常带一口气，意大利语不送气；日语ジ夹在元音中间时常读得很松，舌头不完全堵住，意大利语的 gi 每次都要先堵住再放开。ci、gi 后面再跟 a、o、u 时，i 本身不发音，只表示前面读软音：ciao 是 cia-o 两个音节，giorno 是 gior-no。在 a、o、u 前读硬音 k、g：caffè、gola。\n2. 想在 e、i 前读硬音，就加一个 h：che、chi 读 ke、ki，ghe、ghi 读 ge、gi（chiesa、anche、spaghetti）。h 本身不发音。\n3. gn 接近日语にゃ行的辅音（gnocchi、bagno）；不像的地方：夹在两个元音之间时要读长一点。gli 的 g 不发音，舌面整个贴住上颚发 l，接近拼音的 l 但舌头抬高；不像的地方：日语リャ是舌尖弹一下，这里舌面贴住不动。gli 后面再跟元音时，i 也不单独发音：biglietto、famiglia。\n4. sc 在 e、i 前读 sh，接近英语 she 的 sh（uscita、pesce），夹在两个元音之间要读长；sci 后面再跟 a、o、u 时，i 也不发音：lasciare 的 scia 只是 sh 加 a。在 a、o、u 前，以及 sch，都读 sk（scusi；pesche 桃子 ≠ pesce 鱼）。\n\n还有一条最容易被母语带偏：辅音连在一起时，中间不加元音。scusi 开头的 sc 是一口气的 sk，不要读出“su”；pr、gr、str 也一样。英语里本来就有这类连缀（school、price、street），可以借英语的感觉。",
   "phrases": [
     {
       "id": "L01-01",
@@ -40,7 +40,7 @@
       "zh": "出口",
       "scene": "general",
       "status": "draft",
-      "note": "sci 读 sh，接近英语 she 的 sh；夹在两个元音之间要读长一点。重音在 SCI：u-SCI-ta。车站和景点到处是 USCITA 的牌子。"
+      "note": "sc 在 i 前读 sh，接近英语 she 的 sh；后面的 i 照常读出来，不像 ciao 里的 i 那样不发音。sc 夹在两个元音之间要读长一点。重音在 SCI：u-SCI-ta。车站和景点到处是 USCITA 的牌子。"
     }
   ]
 }

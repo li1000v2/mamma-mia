@@ -1,6 +1,6 @@
 # 交叉校对：L18 节日与营业
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -21,7 +21,7 @@
 > 发音（先听示范音频，以音频为准，下面只是帮你找音）：
 > - chiude 的 chiu 像日语キュ。哪里不像：u 要圆唇往前突，日语的う是扁的；重音在 CHIU：CHIU-de。
 > - oggi 的 gg 像英语 judge 的 j，但要先停一拍：OG-gi。哪里不像：英语的 j 前面没有这一拍停顿。
-> - Immacolata 的 mm 要先闭上嘴停一拍再发：im-ma-co-LA-ta。
+> - Immacolata 的 mm 是闭着嘴把 m 多哼一拍，是拉长，不是停：im-ma-co-LA-ta。
 > - buone 的 uo 是 u、o 连着读，u 同样要圆唇：BUO-ne FE-ste。feste、festa 的 st 中间不加元音。
 
 </details>
@@ -38,8 +38,6 @@
 - **zh**：今天也开门吗？
 - **note**：anche 是“也”，过节时这么问最自然。不开门的回答是 Oggi siamo chiusi（今天我们不开）。
 
-补充：对店员当面或电话询问时，意大利人也常直接用复数问 Siete aperti anche oggi?（你们今天也营业吗？），两种说法都很地道。
-
 ### L18-03 — ✅ OK
 
 - **it**：A che ora chiude oggi?
@@ -52,7 +50,7 @@
 - **zh**：今天我们 20 点关门。
 - **note**：店员的回答，听懂就行。chiudiamo 是“我们关门”；alle venti 就是 20:00。
 
-补充：口语里店员也常用 12 小时制回答，比如 alle otto（8 点，指晚上 8 点）。
+补充：口语里店员也常直接用 12 小时制说 alle otto（八点）。
 
 ### L18-05 — ✅ OK
 

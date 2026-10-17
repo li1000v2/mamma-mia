@@ -1,6 +1,6 @@
 # 交叉校对：L20 问路②：听懂指路
 
-- 模型：gemini-4-argon（思考级别 HIGH），2026-10-16
+- 模型：gemini-4-argon（思考级别 HIGH），2026-10-17
 - 6 条：6 条 OK，0 条建议修改（其中 0 处标为错误）
 - 这份报告由 `tools/cross_check.py` 生成，只是机器审校意见：逐条判断后手动改内容文件。改完、确认没问题的句子才能标 `checked`，同时把 `checkedText` 设成它的意大利语原文。
 
@@ -12,7 +12,7 @@
 
 > 别人给你指路时，用的是对“您”（Lei）的命令式。这一课只要求听懂，不用自己说。
 >
-> 动作只有三个：Giri（您转）、Vada（您走）、Prenda（您走哪条路，直译“您拿”）。
+> 动作只有三个：Giri（您转）、Vada（您走）、Prenda（您走哪条路，直译“您拿”）。也有人不用命令式，直接说 gira、va、prende（您转、您走、您走哪条路）：听的时候认出 gir-、va-、prend- 这几个开头就行。
 >
 > 方向：a destra（往右）、a sinistra（往左）。两个词都以 -stra 结尾，只听开头：de- 是右，si- 是左。sempre dritto 是“一直往前”。
 >
@@ -32,9 +32,7 @@
 
 - **it**：Giri a destra.
 - **zh**：往右转。
-- **note**：giri 来自 girare（转），是对“您”的命令式：GI-ri。gi 读软音，像英语 j（jeep）；不像的是后面的 i 短而纯，r 要舌尖弹一下。destra 是右，sinistra 是左：只听开头，de- 右，si- 左。
-
-补充：指路时除了用 girare（Giri a destra），口语中也常说 voltare（Volti a destra）或 svoltare（Svolti a destra），意思一样。
+- **note**：giri 来自 girare（转），是对“您”的命令式：GI-ri。gi 读软音，像英语 j（jeep）；不像的是后面的 i 是纯元音，口型从头到尾不变，r 要舌尖弹一下。destra 是右，sinistra 是左：只听开头，de- 右，si- 左。
 
 ### L20-02 — ✅ OK
 
@@ -48,7 +46,7 @@
 - **zh**：第二个路口左转。
 - **note**：prenda 来自 prendere（拿、走），la seconda 后面省掉了 strada（路），直译“走左手边第二条路”。第一条是 la prima，第三条是 la terza。prenda、prima 开头的 pr 连着读，中间不加元音。
 
-补充：la prima / la seconda 后面省略的除了 strada、via，在指路时也很常是 traversa（岔路、横街），有时对方会完整说出 Prenda la seconda traversa a sinistra。
+补充：指路时除了省掉 strada，有时也会明确说 traversa（岔路、横街），比如 la seconda traversa a sinistra。
 
 ### L20-04 — ✅ OK
 
