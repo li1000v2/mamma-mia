@@ -21,6 +21,7 @@ final class AppModel {
     let recorder = Recorder()
     let speech = SpeechService()
     let notifier = CityPackNotifier()
+    let rolePlay = RolePlayService()
     private let store: ProgressStore
 
     init() {
@@ -64,15 +65,18 @@ final class AppModel {
         }
     }
 
+    /// A lesson phrase, or a sentence role-play feedback added to reviews.
     func phrase(for card: ReviewCard) -> Phrase? {
-        phrasesByID[card.id.phraseID]
+        phrasesByID[card.id.phraseID] ?? progress.practicePhrase(card.id.phraseID)?.phrase
     }
 
     // MARK: Reviews
 
-    /// Cards whose phrase is still in the bundled content; a later build may drop or rename phrases.
+    /// Cards whose phrase is still in the bundled content (a later build may drop or rename
+    /// phrases) or among the role-play phrases.
     var activeCards: [ReviewCard] {
-        progress.cards.filter { phrasesByID[$0.id.phraseID] != nil }
+        let practice = Set(progress.practicePhrases.map(\.id))
+        return progress.cards.filter { phrasesByID[$0.id.phraseID] != nil || practice.contains($0.id.phraseID) }
     }
 
     var newCardsStartedToday: Int {
@@ -134,6 +138,22 @@ final class AppModel {
         progress.add(run)
         save()
         AppLog.shared.write("Challenge \(run.unit) \(run.passed ? "passed" : "not passed"), hints \(run.hintsUsed), mistakes \(run.mistakes)")
+    }
+
+    /// Role-play feedback: new cards for its sentences, like finishing a lesson. Returns the new ones.
+    @discardableResult
+    func addPracticePhrases(_ phrases: [PracticePhrase]) -> [PracticePhrase] {
+        let added = progress.addPractice(phrases, scheduler: scheduler, at: .now)
+        save()
+        return added
+    }
+
+    func removePracticePhrase(_ id: String) {
+        if let phrase = progress.practicePhrase(id) {
+            PracticeAudio.delete(for: phrase.it)
+        }
+        progress.removePractice(id)
+        save()
     }
 
     // MARK: Trip

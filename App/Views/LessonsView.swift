@@ -41,6 +41,19 @@ struct ChallengesView: View {
                     ForEach(content.course.units.filter { $0.kind == .challenge }) { unit in
                         UnitLink(unit: unit)
                     }
+                    if content.rolePlay != nil {
+                        Section {
+                            NavigationLink {
+                                RolePlaySettingsView()
+                            } label: {
+                                Label("在线对话设置", systemImage: "key")
+                            }
+                        } header: {
+                            Text("在线 AI 角色扮演")
+                        } footer: {
+                            Text("每个挑战都可以和 AI 扮演的角色自由对话（在挑战页里）。需要联网和你自己的 Google key，只作加练，不计入通关；离线挑战不受影响。")
+                        }
+                    }
                 }
             }
             .navigationTitle("情境挑战")
@@ -91,6 +104,24 @@ struct UnitDetailView: View {
                     } label: {
                         Label("开始挑战", systemImage: "bubble.left.and.bubble.right.fill")
                             .font(.headline)
+                    }
+                }
+                if let role = model.content?.rolePlay?.role(for: unit.id) {
+                    Section {
+                        NavigationLink {
+                            RolePlayView(unit: unit, role: role)
+                        } label: {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Label("AI 角色扮演：\(role.name)", systemImage: "waveform.and.mic")
+                                Text(role.zh)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    } header: {
+                        Text("在线加练")
+                    } footer: {
+                        Text("需要联网，不计入通关。key 和每日上限在「对话 → 在线对话设置」。")
                     }
                 }
                 if !runs.isEmpty {

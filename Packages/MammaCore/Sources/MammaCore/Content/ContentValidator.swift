@@ -141,6 +141,28 @@ public enum ContentValidator {
             }
         }
 
+        if let rolePlay = bundle.rolePlay {
+            let file = "roleplay.json"
+            for id in duplicates(rolePlay.roles.map(\.unit)) { report(file, "more than one role for \(id)") }
+            if rolePlay.fillers.isEmpty { report(file, "has no fillers") }
+            for filler in rolePlay.fillers where filler.trimmingCharacters(in: .whitespaces).isEmpty {
+                report(file, "has an empty filler")
+            }
+            for role in rolePlay.roles {
+                if !challengeIDs.contains(role.unit) { report(file, "role for \(role.unit), which is not a challenge in course.json") }
+                if !sceneIDs.contains(role.scene) { report(file, "role \(role.unit) uses unknown scene \(role.scene)") }
+                if [role.name, role.zh, role.setting, role.task].contains(where: { $0.trimmingCharacters(in: .whitespaces).isEmpty }) {
+                    report(file, "role \(role.unit) has empty text")
+                }
+                guard let audio = bundle.audio else { continue }
+                if audio.profile(for: role.voice) == nil {
+                    report(file, "role \(role.unit) uses voice \(role.voice), which the audio manifest doesn't have")
+                } else if audio.voiceName(for: role.voice) == nil {
+                    report(file, "role \(role.unit): the audio manifest has no Gemini voice name for \(role.voice)")
+                }
+            }
+        }
+
         if let trip {
             for issue in trip.issues(knownCities: Set(course.cities.map(\.id))) {
                 report("trip", "\(issue)")

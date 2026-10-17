@@ -93,6 +93,12 @@ def course_texts() -> list[str]:
     return list(dict.fromkeys(texts))
 
 
+def role_play_fillers() -> list[str]:
+    """The online role-play plays these ("Allora…") in the role's voice while the reply is on its way."""
+    path = CONTENT / "roleplay.json"
+    return list(load_json(path)["fillers"]) if path.exists() else []
+
+
 def show_card_texts() -> list[str]:
     """The show cards' own Italian: their sentences, then the allergen names the diet card lists.
     Course phrases on the cards are the course's lines already."""
@@ -104,8 +110,9 @@ def show_card_texts() -> list[str]:
 
 
 def spoken_texts() -> list[str]:
-    """Every Italian line the app can play, in course order then the show cards, without duplicates."""
-    return list(dict.fromkeys(course_texts() + show_card_texts()))
+    """Every Italian line the app can play: the course in order, the role-play fillers, then the show
+    cards, without duplicates."""
+    return list(dict.fromkeys(course_texts() + role_play_fillers() + show_card_texts()))
 
 
 UNITS = ["zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove", "dieci", "undici",
@@ -266,9 +273,9 @@ def main() -> int:
     texts = spoken_texts()
 
     line_voices: dict[str, list[str]] = dict(config.get("lineVoices", {}))
-    course = set(course_texts())
+    course = set(course_texts() + role_play_fillers())
     for text in show_card_texts():
-        if text not in course:  # a course line keeps every voice
+        if text not in course:  # a course line (or a filler, said by every role) keeps every voice
             line_voices.setdefault(text, config.get("showCardVoices", list(profiles)))
     entries: dict[str, str] = dict(manifest["entries"])
     wanted: set[str] = set()
@@ -326,7 +333,13 @@ def main() -> int:
             if path.name not in used:
                 path.unlink()
 
-    manifest = {"version": manifest["version"], "voices": list(profiles.values()), "entries": dict(sorted(entries.items()))}
+    manifest = {
+        "version": manifest["version"],
+        "voices": list(profiles.values()),
+        # The app's online role-play speaks live in the same voices.
+        "voiceNames": {voice["id"]: voice["voiceName"] for voice in config["voices"]},
+        "entries": dict(sorted(entries.items())),
+    }
     # newline="\n": keep LF on Windows too, like the rest of the repository.
     tmp = tempfile.NamedTemporaryFile("w", encoding="utf-8", newline="\n", dir=AUDIO, suffix=".json", delete=False)
     with tmp:

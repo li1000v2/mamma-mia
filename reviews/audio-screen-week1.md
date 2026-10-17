@@ -12,6 +12,8 @@
 
 这些句子含双辅音，长短要人去听（不计入可疑）：
 
+- Allora, vediamo… — Allora
+- Allora… — Allora
 - Buongiorno! Allora, oggi abbiamo cornetti alla crema, al cioccolato e integrali: cosa le do? — Allora, oggi, abbiamo, cornetti, alla, cioccolato
 - Certo, ecco. Grazie e buona giornata! — ecco
 - Certo. Ecco lo scontrino. — Ecco
@@ -37,9 +39,9 @@
 
 ## 统计
 
-- 本周音频：192 段（原速 96，慢速 96）
-- 已筛：192 段
+- 本周音频：208 段（原速 104，慢速 104）
+- 已筛：208 段
 - 可疑：0 段（原速 0，慢速 0）
-- 含双辅音的句子：22 句
-- token：输入 126,268，输出 20,983，思考 102,603
-- 花费估算：192 次 × $0.004 ≈ $0.77（按实测单价；只重筛新片段时实际花费更少）
+- 含双辅音的句子：24 句
+- token：输入 136,422，输出 22,587，思考 109,320
+- 花费估算：208 次 × $0.004 ≈ $0.83（按实测单价；只重筛新片段时实际花费更少）
