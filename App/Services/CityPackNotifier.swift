@@ -2,8 +2,9 @@ import Foundation
 import Observation
 import UserNotifications
 
-/// The evening reminders for the city packs: local notifications, scheduled on this phone only (a
-/// free Apple ID has no push). Nothing about the trip is written to the log.
+/// The trip's evening reminders: the city packs, the check before leaving and refreshing the signature
+/// on the way. Local notifications, scheduled on this phone only (a free Apple ID has no push).
+/// Nothing about the trip is written to the log.
 @MainActor
 @Observable
 final class CityPackNotifier {
@@ -20,6 +21,8 @@ final class CityPackNotifier {
     }
 
     static let idPrefix = "citypack-"
+    /// The check before leaving and the signature refresh on the way.
+    static let departurePrefix = "departure-"
 
     private(set) var permission = Permission.unknown
     private let presenter = ForegroundPresenter()
@@ -44,11 +47,11 @@ final class CityPackNotifier {
         return permission == .allowed
     }
 
-    /// Replaces the scheduled city-pack reminders with those of `reminders` still ahead. Without
-    /// permission it only clears the old ones.
-    func reschedule(_ reminders: [Reminder]) async {
+    /// Replaces the scheduled reminders whose ids start with `prefix` with those of `reminders` still
+    /// ahead. Without permission it only clears the old ones.
+    func reschedule(_ reminders: [Reminder], prefix: String) async {
         let center = UNUserNotificationCenter.current()
-        let old = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(Self.idPrefix) }
+        let old = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(prefix) }
         center.removePendingNotificationRequests(withIdentifiers: old)
         await refreshPermission()
         guard permission == .allowed else { return }
@@ -63,7 +66,7 @@ final class CityPackNotifier {
             do {
                 try await center.add(UNNotificationRequest(identifier: reminder.id, content: content, trigger: trigger))
             } catch {
-                AppLog.shared.write("A city-pack reminder couldn't be scheduled: \(error.localizedDescription)")
+                AppLog.shared.write("A reminder couldn't be scheduled: \(error.localizedDescription)")
             }
         }
     }

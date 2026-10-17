@@ -47,13 +47,13 @@ enum PhotoExport {
         }
     }
 
-    /// Renders and saves `cards`; the message to show either way.
-    static func export(_ cards: [ShowCard], titled title: (ShowCard) -> String) async -> String {
+    /// Renders and saves `cards`: the message to show either way, and whether they were saved.
+    static func export(_ cards: [ShowCard], titled title: (ShowCard) -> String) async -> (message: String, saved: Bool) {
         do {
             try await save(images(of: cards, titled: title))
-            return message(saving: cards.count, error: nil)
+            return (message(saving: cards.count, error: nil), true)
         } catch {
-            return message(saving: cards.count, error: error)
+            return (message(saving: cards.count, error: error), false)
         }
     }
 }

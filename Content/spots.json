@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "commonPhrases": ["L23-01", "L23-02", "L23-03", "L23-05"],
+  "phrases": [
+    {
+      "id": "bus-to-centre",
+      "it": "Dov'è la fermata dell'autobus per il centro?",
+      "zh": "去市中心的公交车站在哪儿？",
+      "status": "checked",
+      "checkedText": "Dov'è la fermata dell'autobus per il centro?"
+    },
+    {
+      "id": "way-to-parco-virgiliano",
+      "it": "Come si arriva al Parco Virgiliano?",
+      "zh": "维吉尔公园怎么去？",
+      "note": "Come si arriva a…? 是问“怎么去某地”的万能句，换上别的地名也能用。",
+      "status": "checked",
+      "checkedText": "Come si arriva al Parco Virgiliano?"
+    },
+    {
+      "id": "train-stops-at-pompei",
+      "it": "Questo treno ferma a Pompei Scavi?",
+      "zh": "这趟火车在庞贝遗址站停吗？",
+      "note": "Pompei Scavi 是环维苏威铁路（Circumvesuviana）的站名，站牌上写的是 Pompei Scavi – Villa dei Misteri。",
+      "status": "checked",
+      "checkedText": "Questo treno ferma a Pompei Scavi?"
+    },
+    {
+      "id": "last-boat-to-napoli",
+      "it": "A che ora parte l'ultimo aliscafo per Napoli?",
+      "zh": "回那不勒斯的末班快船几点开？",
+      "note": "aliscafo 是水翼快船；慢一些的大渡轮叫 traghetto。",
+      "status": "checked",
+      "checkedText": "A che ora parte l'ultimo aliscafo per Napoli?"
+    },
+    {
+      "id": "line-to-san-giorgio",
+      "it": "Quale linea va a San Giorgio?",
+      "zh": "哪条线去圣乔治岛？",
+      "note": "和第 8 课的 Quale linea va a San Marco? 是同一句，只换了地名。",
+      "status": "checked",
+      "checkedText": "Quale linea va a San Giorgio?"
+    },
+    {
+      "id": "up-the-bell-tower",
+      "it": "Si può salire sul campanile?",
+      "zh": "可以上钟楼吗？",
+      "status": "checked",
+      "checkedText": "Si può salire sul campanile?"
+    }
+  ],
+  "spots": [
+    {
+      "id": "santa-lucia",
+      "city": "venezia",
+      "it": "Stazione di Venezia Santa Lucia",
+      "zh": "威尼斯圣卢西亚火车站",
+      "note": "Lucia 的重音在 ci 上，ci 和后面的 a 分成两个音节。",
+      "address": "Fondamenta Santa Lucia, 30121 Venezia VE",
+      "latitude": 45.44083,
+      "longitude": 12.32083,
+      "phrases": ["L08-01", "L08-05", "L08-04"],
+      "status": "checked",
+      "checkedText": "Stazione di Venezia Santa Lucia"
+    },
+    {
+      "id": "san-giorgio",
+      "city": "venezia",
+      "it": "Chiesa di San Giorgio Maggiore",
+      "zh": "圣乔治马焦雷教堂",
+      "address": "Isola di San Giorgio Maggiore, 30124 Venezia VE",
+      "latitude": 45.42939,
+      "longitude": 12.34328,
+      "phrases": ["line-to-san-giorgio", "up-the-bell-tower", "L23-04"],
+      "status": "checked",
+      "checkedText": "Chiesa di San Giorgio Maggiore"
+    },
+    {
+      "id": "capodichino",
+      "city": "napoli",
+      "it": "Aeroporto di Napoli-Capodichino",
+      "zh": "那不勒斯卡波迪基诺机场",
+      "note": "Capodichino 的重音在 chi 上；ch 在 i 前面读 k 的音。",
+      "address": "Viale Fulco Ruffo di Calabria, 80144 Napoli NA",
+      "latitude": 40.87791,
+      "longitude": 14.28257,
+      "pin": "图钉标在航站楼（Terminal 1）。",
+      "phrases": ["bus-to-centre", "L23-04"],
+      "status": "checked",
+      "checkedText": "Aeroporto di Napoli-Capodichino"
+    },
+    {
+      "id": "posillipo",
+      "city": "napoli",
+      "it": "Collina di Posillipo",
+      "zh": "波西利波山丘",
+      "note": "Posillipo 的重音在第二个音节 sil 上，不在最后；ll 是双辅音。",
+      "address": "Viale Virgilio, 80123 Napoli NA",
+      "latitude": 40.79848,
+      "longitude": 14.17909,
+      "pin": "整座山丘是一片住宅区，图钉标在山顶的维吉尔公园（Parco Virgiliano）。",
+      "phrases": ["way-to-parco-virgiliano", "L19-03", "L29-03"],
+      "status": "checked",
+      "checkedText": "Collina di Posillipo"
+    },
+    {
+      "id": "pompei",
+      "city": "napoli",
+      "dayTrip": true,
+      "it": "Scavi di Pompei",
+      "zh": "庞贝古城遗址",
+      "note": "Pompei 的重音在最后的 pei 上，ei 连着读。",
+      "address": "Via Villa dei Misteri, 80045 Pompei NA",
+      "latitude": 40.74851,
+      "longitude": 14.48309,
+      "pin": "图钉标在 Porta Marina 入口，从 Pompei Scavi – Villa dei Misteri 火车站走几分钟就到。",
+      "phrases": ["train-stops-at-pompei", "L22-01", "L22-03", "L22-05"],
+      "status": "checked",
+      "checkedText": "Scavi di Pompei"
+    },
+    {
+      "id": "capri",
+      "city": "napoli",
+      "dayTrip": true,
+      "it": "Isola di Capri",
+      "zh": "卡普里岛",
+      "note": "Capri 的重音在前面的 Ca 上，不在 pri。",
+      "address": "Marina Grande, 80073 Capri NA",
+      "latitude": 40.55625,
+      "longitude": 14.23879,
+      "pin": "图钉标在 Marina Grande 港，从那不勒斯来的船在这里靠岸。",
+      "phrases": ["last-boat-to-napoli", "L14-01"],
+      "status": "checked",
+      "checkedText": "Isola di Capri"
+    },
+    {
+      "id": "colosseo",
+      "city": "roma",
+      "it": "Colosseo",
+      "zh": "罗马斗兽场",
+      "note": "重音在 se 上；ss 是双辅音。",
+      "address": "Piazza del Colosseo, 1, 00184 Roma RM",
+      "latitude": 41.89026,
+      "longitude": 12.49238,
+      "phrases": ["L19-01", "L21-01", "L22-04", "L22-01"],
+      "status": "checked",
+      "checkedText": "Colosseo"
+    }
+  ]
+}

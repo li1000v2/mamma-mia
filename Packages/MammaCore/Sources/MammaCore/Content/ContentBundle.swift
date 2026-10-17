@@ -19,6 +19,8 @@ public struct ContentBundle: Sendable {
     public let showCardContent: ShowCardContent?
     /// The online role-play's roles and fillers (roleplay.json), when the build has them.
     public let rolePlay: RolePlayContent?
+    /// The pilgrimage spots (spots.json); nil when the content has none.
+    public let spotContent: SpotContent?
 
     public init(
         course: Course,
@@ -26,7 +28,8 @@ public struct ContentBundle: Sendable {
         dialogues: [DialogueScript] = [],
         audio: AudioManifest?,
         showCardContent: ShowCardContent? = nil,
-        rolePlay: RolePlayContent? = nil
+        rolePlay: RolePlayContent? = nil,
+        spotContent: SpotContent? = nil
     ) {
         self.course = course
         self.lessons = lessons.sorted { $0.unit < $1.unit }
@@ -34,10 +37,11 @@ public struct ContentBundle: Sendable {
         self.audio = audio
         self.showCardContent = showCardContent
         self.rolePlay = rolePlay
+        self.spotContent = spotContent
     }
 
     /// Loads course.json, every lessons/*.json and dialogues/*.json and, when present,
-    /// showcards.json, roleplay.json and the audio manifest.
+    /// showcards.json, roleplay.json, spots.json and the audio manifest.
     public static func load(contentDirectory: URL, audioDirectory: URL? = nil) throws -> ContentBundle {
         let course: Course = try decode(contentDirectory.appendingPathComponent("course.json"))
         let lessons: [LessonContent] = try decodeAll(in: contentDirectory.appendingPathComponent("lessons", isDirectory: true))
@@ -55,6 +59,12 @@ public struct ContentBundle: Sendable {
             rolePlay = try decode(rolePlayFile)
         }
 
+        var spotContent: SpotContent?
+        let spots = contentDirectory.appendingPathComponent("spots.json")
+        if FileManager.default.fileExists(atPath: spots.path) {
+            spotContent = try decode(spots)
+        }
+
         var audio: AudioManifest?
         if let audioDirectory {
             let manifest = audioDirectory.appendingPathComponent("manifest.json")
@@ -63,7 +73,7 @@ public struct ContentBundle: Sendable {
             }
         }
         return ContentBundle(course: course, lessons: lessons, dialogues: dialogues, audio: audio,
-                             showCardContent: showCardContent, rolePlay: rolePlay)
+                             showCardContent: showCardContent, rolePlay: rolePlay, spotContent: spotContent)
     }
 
     public var phrases: [Phrase] { lessons.flatMap(\.phrases) }

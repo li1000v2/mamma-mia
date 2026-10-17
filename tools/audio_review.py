@@ -16,11 +16,13 @@ because the model now and then makes a whole line up.
 Results are cached in reviews/audio-screen-cache.json by file name, with a hash of the audio, so a rerun
 only screens new or changed clips (regenerated audio keeps its file name).
 Every run rewrites reviews/audio-screen-week<N>.md (suspicious clips and totals) and .html (the same
-clips with players; open it from reviews/ so ../Audio/ resolves); with --cards, audio-screen-cards.*.
+clips with players; open it from reviews/ so ../Audio/ resolves); with --cards, audio-screen-cards.*,
+and with --spots, audio-screen-spots.*.
 
 Usage (from the repo root):
   python tools/audio_review.py                 screen week 1 and write the report
   python tools/audio_review.py --cards         screen the show cards' own lines (Content/showcards.json)
+  python tools/audio_review.py --spots         screen the pilgrimage spots' own lines (Content/spots.json)
   python tools/audio_review.py --limit 10      screen at most 10 new clips
   python tools/audio_review.py --only palla    only clips whose file name or text matches
   python tools/audio_review.py --report-only   rewrite the report from the cache
@@ -48,7 +50,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from gen_audio import (AUDIO, CONTENT, MANIFEST, MAX_PARALLEL, ROOT, Gemini, load_env, load_json, normalized,
-                       role_play_fillers, show_card_texts)
+                       role_play_fillers, show_card_texts, spot_texts)
 
 REVIEWS = ROOT / "reviews"
 CACHE = REVIEWS / "audio-screen-cache.json"
@@ -142,15 +144,17 @@ def week_texts(week: int) -> set[str]:
 
 @dataclass
 class Selection:
-    """What one report covers: a course week, or the show cards."""
-    stem: str  # file name part: "week1" or "cards"
-    title: str  # "第 1 周" or "出示卡"
+    """What one report covers: a course week, the show cards or the pilgrimage spots."""
+    stem: str  # file name part: "week1", "cards" or "spots"
+    title: str  # "第 1 周", "出示卡" or "巡礼点"
     texts: set[str]
 
 
-def selection(week: int, cards: bool) -> Selection:
+def selection(week: int, cards: bool, spots: bool = False) -> Selection:
     if cards:
         return Selection("cards", "出示卡", set(show_card_texts()))
+    if spots:
+        return Selection("spots", "巡礼点", set(spot_texts()))
     return Selection(f"week{week}", f"第 {week} 周", week_texts(week))
 
 
@@ -493,6 +497,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--week", type=int, default=1, help="which week's audio to screen (default 1)")
     parser.add_argument("--cards", action="store_true", help="screen the show cards' own lines instead of a week")
+    parser.add_argument("--spots", action="store_true", help="screen the pilgrimage spots' own lines instead of a week")
     parser.add_argument("--limit", type=int, default=0, help="screen at most this many new clips")
     parser.add_argument("--only", action="append", default=[], metavar="TEXT",
                         help="only clips whose file name or text contains TEXT (repeatable)")
@@ -505,7 +510,7 @@ def main() -> int:
 
     config = load_json(Path(__file__).resolve().parent / "tts_voices.json")
     voice_names = {voice["id"]: voice["voiceName"] for voice in config["voices"]}
-    chosen = selection(args.week, args.cards)
+    chosen = selection(args.week, args.cards, args.spots)
     clips = clips_for(chosen.texts)
     cache = load_cache()
 

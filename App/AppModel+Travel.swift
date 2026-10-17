@@ -55,17 +55,23 @@ extension AppModel {
         }
     }
 
-    /// Asks for notification permission, then schedules the reminders.
-    func enableCityPackReminders() async {
+    /// Asks for notification permission, then schedules the trip's reminders.
+    func enableReminders() async {
         if await notifier.requestPermission() {
-            await notifier.reschedule(cityPackReminders)
+            await notifier.reschedule(cityPackReminders, prefix: CityPackNotifier.idPrefix)
+            await notifier.reschedule(departureReminders, prefix: CityPackNotifier.departurePrefix)
         }
     }
 
-    /// Brings the scheduled reminders in line with the trip, e.g. after it was edited.
-    func rescheduleCityPackReminders() {
-        let reminders = cityPackReminders
-        Task { await notifier.reschedule(reminders) }
+    /// Brings the scheduled reminders in line with the trip, e.g. after it was edited: the city
+    /// packs, the check before leaving and the signature refresh on the way.
+    func rescheduleTripReminders() {
+        let packs = cityPackReminders
+        let departure = departureReminders
+        Task {
+            await notifier.reschedule(packs, prefix: CityPackNotifier.idPrefix)
+            await notifier.reschedule(departure, prefix: CityPackNotifier.departurePrefix)
+        }
     }
 
     private var cityPackReminders: [CityPackNotifier.Reminder] {

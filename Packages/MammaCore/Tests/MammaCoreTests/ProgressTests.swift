@@ -97,6 +97,46 @@ struct ProgressTests {
         #expect(plain == oldBackup)
     }
 
+    @Test func spotNotesAndCheckInsTravelWithTheBackup() throws {
+        var progress = try sampleProgress()
+        let plain = try ProgressStore.encode(progress)
+        // No spots yet, no key: the file reads the same to builds from before the pilgrimage layer.
+        #expect(!String(decoding: plain, as: UTF8.self).contains("spotLogs"))
+
+        progress.checkIn(atSpot: "colosseo", on: start.addingTimeInterval(86_400))
+        progress.setNote("示例备注", forSpot: "colosseo")
+        progress.setNote("示例", forSpot: "capri")
+        let restored = try ProgressStore.decode(ProgressStore.encode(progress))
+        #expect(restored == progress)
+        #expect(restored.spotLogs["colosseo"] == SpotLog(note: "示例备注", checkIns: [start.addingTimeInterval(86_400)]))
+        #expect(restored.spotLogs["capri"]?.checkIns == [])
+    }
+
+    @Test func damagedSpotLogsDoNotCostTheLearningRecord() throws {
+        let json = #"""
+        {"version": 1, "completedUnits": {"L01": "2030-03-01T08:00:00Z"},
+         "spotLogs": {"colosseo": {"checkIns": ["yesterday"]}}}
+        """#
+        let progress = try ProgressStore.decode(Data(json.utf8))
+        #expect(progress.isCompleted("L01"))
+        #expect(progress.spotLogs.isEmpty)
+    }
+
+    @Test func restoringKeepsThePhonesSpotLogsOnlyWhenTheBackupHasNone() throws {
+        var phone = StudyProgress()
+        phone.checkIn(atSpot: "colosseo", on: start)
+
+        let oldBackup = try sampleProgress()
+        let (restored, _) = phone.restoring(oldBackup)
+        #expect(restored.spotLogs == phone.spotLogs)
+        #expect(restored.cards == oldBackup.cards)
+
+        var newBackup = try sampleProgress()
+        newBackup.setNote("示例", forSpot: "capri")
+        let (replaced, _) = phone.restoring(newBackup)
+        #expect(replaced == newBackup)
+    }
+
     @Test func storeKeepsTheTripUntilItIsCleared() throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         defer { try? FileManager.default.removeItem(at: directory) }

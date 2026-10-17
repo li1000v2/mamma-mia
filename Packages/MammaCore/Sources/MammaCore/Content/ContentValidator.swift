@@ -163,6 +163,40 @@ public enum ContentValidator {
             }
         }
 
+        if let content = bundle.spotContent {
+            let file = "spots.json"
+            let cardPhraseIDs = Set(bundle.showCardContent?.phrases.map(\.id) ?? [])
+            let ownIDs = Set(content.phrases.map(\.id))
+            func blank(_ text: String) -> Bool { text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+            for id in duplicates(content.spots.map(\.id)) { report(file, "duplicate spot id \(id)") }
+            for id in duplicates(content.phrases.map(\.id)) { report(file, "duplicate phrase id \(id)") }
+            for phrase in content.phrases {
+                if phraseIDs.contains(phrase.id) || cardPhraseIDs.contains(phrase.id) {
+                    report(file, "phrase id \(phrase.id) is also a lesson or show-card phrase")
+                }
+                if blank(phrase.it) || blank(phrase.zh) { report(file, "phrase \(phrase.id) has empty text") }
+            }
+            for id in content.commonPhrases where !phraseIDs.contains(id) {
+                report(file, "common phrase \(id) is not a lesson phrase")
+            }
+            var used = Set(content.commonPhrases)
+            for spot in content.spots {
+                if course.city(spot.city) == nil { report(file, "spot \(spot.id) is in unknown city \(spot.city)") }
+                if [spot.it, spot.zh, spot.address].contains(where: blank) { report(file, "spot \(spot.id) has empty text") }
+                if !(-90...90).contains(spot.latitude) || !(-180...180).contains(spot.longitude) {
+                    report(file, "spot \(spot.id) has coordinates off the map")
+                }
+                if spot.phrases.isEmpty { report(file, "spot \(spot.id) has no phrases") }
+                for id in spot.phrases where !phraseIDs.contains(id) && !ownIDs.contains(id) {
+                    report(file, "spot \(spot.id) uses phrase \(id), which doesn't exist")
+                }
+                used.formUnion(spot.phrases)
+            }
+            for phrase in content.phrases where !used.contains(phrase.id) {
+                report(file, "phrase \(phrase.id) is not used by any spot")
+            }
+        }
+
         if let trip {
             for issue in trip.issues(knownCities: Set(course.cities.map(\.id))) {
                 report("trip", "\(issue)")

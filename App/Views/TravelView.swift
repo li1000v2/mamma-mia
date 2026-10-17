@@ -1,9 +1,10 @@
 import SwiftUI
 import MammaCore
 
-/// 随身, by date. Before the trip: the countdown, the city packs ahead and the trip form. During it:
-/// today's city and the sentences the day first needs. After it: a short recap. Show cards and the
-/// emergency phrases are one tap away throughout.
+/// 随身, by date. Before the trip: the countdown, the check before leaving, the city packs ahead and
+/// the trip form. During it: today's city, the sentences the day first needs, and a nudge when the
+/// signature needs refreshing. After it: a short recap. Show cards, the emergency phrases and the
+/// pilgrimage spots are one tap away throughout.
 struct TravelView: View {
     @Environment(AppModel.self) private var model
     @State private var editing = false
@@ -43,16 +44,13 @@ struct TravelView: View {
                         TravelEntry(title: "应急句", detail: "求助、药店，紧急电话 112", systemImage: "cross.case")
                     }
                 }
-                // The pilgrimage spots and the check before leaving are later work; they go here.
-                Section {
-                    Label("巡礼点", systemImage: "mappin.and.ellipse")
-                    Label("出发前自检", systemImage: "checklist")
-                } header: {
-                    Text("以后加入")
-                } footer: {
-                    Text("巡礼点和出发前自检会在之后的版本里加进来。")
+                Section("巡礼") {
+                    NavigationLink {
+                        PilgrimageView()
+                    } label: {
+                        TravelEntry(title: "巡礼点", detail: model.pilgrimageSummary, systemImage: "mappin.and.ellipse")
+                    }
                 }
-                .foregroundStyle(.secondary)
                 if let trip = model.trip {
                     TripSummary(trip: trip)
                     Section {
@@ -141,6 +139,11 @@ private struct TripTodaySections: View {
         case .before:
             Section("出发前") {
                 TripStatus(trip: trip)
+                NavigationLink {
+                    DepartureCheckView()
+                } label: {
+                    DepartureCheckEntry(trip: trip, today: today)
+                }
                 Button {
                     editing = true
                 } label: {
@@ -151,6 +154,7 @@ private struct TripTodaySections: View {
         case .during:
             Section("今天") {
                 TripStatus(trip: trip)
+                SigningRefreshRow(today: today)
                 if model.cityPacks.contains(where: { $0.arrival > today }) {
                     CityPackReminderRow()
                 }
@@ -194,7 +198,59 @@ private struct CityPackSchedule: View {
     }
 }
 
-/// Turns the city-pack reminders on, or says why they won't come.
+/// The departure check in 随身 before the trip: what's left, and on its evening a nudge to do it.
+private struct DepartureCheckEntry: View {
+    @Environment(AppModel.self) private var model
+    let trip: Trip
+    let today: LocalDate
+
+    var body: some View {
+        let check = model.departureCheck
+        let left = check?.todo.count ?? 0
+        let ready = check?.isReady ?? false
+        let tonight = trip.departureCheckTime?.day == today
+        Label {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(tonight ? "今晚做一遍出发前自检" : "出发前自检")
+                    .font(.headline)
+                Text(left > 0 ? "还有 \(left) 项要处理" : ready ? "都准备好了" : "检查中……")
+                    .font(.subheadline)
+                    .foregroundStyle(tonight && left > 0 ? Color.orange : Color.secondary)
+            }
+        } icon: {
+            Image(systemName: ready ? "checkmark.seal" : "checklist")
+        }
+        .task {
+            await model.countAudio()
+        }
+    }
+}
+
+/// On the way, from the evening the reminder comes, or at once when the signature was meant to be
+/// refreshed before leaving: refresh it before it runs out.
+private struct SigningRefreshRow: View {
+    @Environment(AppModel.self) private var model
+    let today: LocalDate
+
+    var body: some View {
+        switch model.signingPlan {
+        case .refreshOnTheWay(let expires, let day)? where today >= day:
+            row("签名 \(model.tripTimeText(expires)) 到期：今晚连上酒店 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签一次。")
+        case .refreshBeforeLeaving(let expires)?:
+            row("签名 \(model.tripTimeText(expires)) 就到期：尽快连上 Wi-Fi，打开 LocalDevVPN 和 SideStore 续签。")
+        default:
+            EmptyView()
+        }
+    }
+
+    private func row(_ text: String) -> some View {
+        Label(text, systemImage: "signature")
+            .font(.subheadline)
+            .foregroundStyle(.orange)
+    }
+}
+
+/// Turns the trip's reminders on, or says why they won't come.
 private struct CityPackReminderRow: View {
     @Environment(AppModel.self) private var model
 
@@ -203,7 +259,7 @@ private struct CityPackReminderRow: View {
             switch model.notifier.permission {
             case .notAsked:
                 Button {
-                    Task { await model.enableCityPackReminders() }
+                    Task { await model.enableReminders() }
                 } label: {
                     Label("开启城市包提醒", systemImage: "bell")
                 }
@@ -297,20 +353,30 @@ struct ScenePhrasesView: View {
 
 /// A sentence to use on the spot: the Italian large, its meaning, normal and slow audio.
 struct TravelPhraseRow: View {
-    let phrase: Phrase
+    let it: String
+    let zh: String
+
+    init(phrase: Phrase) {
+        self.init(it: phrase.it, zh: phrase.zh)
+    }
+
+    init(it: String, zh: String) {
+        self.it = it
+        self.zh = zh
+    }
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(phrase.it)
+                Text(it)
                     .font(.title3.weight(.semibold))
-                Text(phrase.zh)
+                Text(zh)
                     .foregroundStyle(.secondary)
             }
             Spacer(minLength: 8)
             VStack(spacing: 14) {
-                SpeakButton(text: phrase.it)
-                SpeakButton(text: phrase.it, speed: .slow)
+                SpeakButton(text: it)
+                SpeakButton(text: it, speed: .slow)
             }
         }
         .padding(.vertical, 4)

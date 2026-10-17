@@ -77,7 +77,7 @@ struct ShowCardsView: View {
         exporting = true
         exportMessage = nil
         Task {
-            exportMessage = await PhotoExport.export(cards) { model.title(of: $0) }
+            exportMessage = await model.exportToPhotos(cards).message
             exporting = false
         }
     }
@@ -221,7 +221,7 @@ struct ShowCardDetailView: View {
         saving = true
         saveMessage = nil
         Task {
-            saveMessage = await PhotoExport.export([card]) { model.title(of: $0) }
+            saveMessage = await model.exportToPhotos([card]).message
             saving = false
         }
     }

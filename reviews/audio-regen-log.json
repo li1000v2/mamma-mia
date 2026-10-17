@@ -42,6 +42,34 @@
       },
       "at": "2026-10-16T11:54:26Z"
     },
+    "f1@1|A che ora parte l'ultimo aliscafo per Napoli?": {
+      "voice": "f1@1",
+      "text": "A che ora parte l'ultimo aliscafo per Napoli?",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "d13cd0cb844e1cc0.m4a",
+        "s": "5a386859a3c0dde7.m4a"
+      },
+      "at": "2026-10-16T20:06:36Z"
+    },
+    "f1@1|Aeroporto di Napoli-Capodichino": {
+      "voice": "f1@1",
+      "text": "Aeroporto di Napoli-Capodichino",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "5197656a471cf7db.m4a",
+        "s": "e9b552db38d04ec1.m4a"
+      },
+      "at": "2026-10-16T20:06:46Z"
+    },
     "f1@1|Ah, JoJo! Allora benvenuto a Roma. Buona visita!": {
       "voice": "f1@1",
       "text": "Ah, JoJo! Allora benvenuto a Roma. Buona visita!",
@@ -322,6 +350,20 @@
       },
       "at": "2026-10-16T18:57:46Z"
     },
+    "f1@1|Chiesa di San Giorgio Maggiore": {
+      "voice": "f1@1",
+      "text": "Chiesa di San Giorgio Maggiore",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "2385ef62a04c6e6d.m4a",
+        "s": "43f49401cc6915b2.m4a"
+      },
+      "at": "2026-10-16T20:17:30Z"
+    },
     "f1@1|Chiuso il lunedì.": {
       "voice": "f1@1",
       "text": "Chiuso il lunedì.",
@@ -363,6 +405,23 @@
         "s": "73c44d925efb17f8.m4a"
       },
       "at": "2026-10-16T11:44:38Z"
+    },
+    "f1@1|Colosseo": {
+      "voice": "f1@1",
+      "text": "Colosseo",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（读错）",
+        "新版本 1：原速被标出（读错），慢速被标出（读错）",
+        "新版本 2：原速被标出（读错），慢速干净",
+        "新版本 3：原速被标出（读错），慢速被标出（读错）",
+        "新版本 4：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "34b1b235104b0f2a.m4a",
+        "s": "50679f288efe7016.m4a"
+      },
+      "at": "2026-10-16T20:13:06Z"
     },
     "f1@1|Dal binario tre. Ecco il biglietto: carrozza dodici, posto sette.": {
       "voice": "f1@1",
@@ -716,6 +775,20 @@
       },
       "at": "2026-10-16T11:52:56Z"
     },
+    "f1@1|Scavi di Pompei": {
+      "voice": "f1@1",
+      "text": "Scavi di Pompei",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "28e89608700652b1.m4a",
+        "s": "b04db28076f63455.m4a"
+      },
+      "at": "2026-10-16T20:11:10Z"
+    },
     "f1@1|Sono da solo. Avete un tavolo libero?": {
       "voice": "f1@1",
       "text": "Sono da solo. Avete un tavolo libero?",
@@ -758,6 +831,20 @@
         "s": "753fecc4a3dcf24b.m4a"
       },
       "at": "2026-10-16T12:01:23Z"
+    },
+    "f1@1|Stazione di Venezia Santa Lucia": {
+      "voice": "f1@1",
+      "text": "Stazione di Venezia Santa Lucia",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速干净",
+        "新版本 1：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "f19e87b172536248.m4a",
+        "s": "961331ca9330be4b.m4a"
+      },
+      "at": "2026-10-16T20:12:41Z"
     },
     "f1@1|Tutto bene? Desidera un dolce o un caffè?": {
       "voice": "f1@1",

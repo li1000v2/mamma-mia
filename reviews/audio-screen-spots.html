@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频粗筛 巡礼点</title>
+<style>
+:root { --bg: #fbfaf7; --fg: #1d1b18; --muted: #6b665e; --card: #fff; --line: #e4e0d8; --accent: #b4442b; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171614; --fg: #ece8e1; --muted: #a39d93; --card: #22201d; --line: #36332e; --accent: #e8836b; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, "PingFang SC", system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 16px 0; }
+.card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+.n { color: var(--accent); margin-right: 8px; }
+.meta { color: var(--muted); font-size: 0.875rem; margin: 4px 0; }
+audio { width: 100%; margin: 8px 0; }
+ul { padding-left: 20px; }
+.gem li { margin-bottom: 12px; }
+.gem label { display: block; font-size: 0.875rem; color: var(--muted); }
+code { font-size: 0.85em; }
+</style>
+</head>
+<body>
+<main>
+<h1>示范音频粗筛 · 巡礼点</h1>
+<p class="meta">已筛 26 / 26 段，可疑 0 段（原速 0，慢速 0）。
+模型 gemini-4-argon，花费估算 $0.10。按需要听的先后排列。</p>
+<p>没有可疑片段。</p>
+<details class="gem">
+<summary>双辅音需人工听（5 句，原速）</summary>
+<ul><li><p>Chiesa di San Giorgio Maggiore <span class="meta">— Maggiore</span></p><label>f1@1<audio controls preload="none" src="../Audio/2385ef62a04c6e6d.m4a"></audio></label></li><li><p>Collina di Posillipo <span class="meta">— Collina, Posillipo</span></p><label>f1@1<audio controls preload="none" src="../Audio/be4041b24eae984e.m4a"></audio></label></li><li><p>Colosseo <span class="meta">— Colosseo</span></p><label>f1@1<audio controls preload="none" src="../Audio/34b1b235104b0f2a.m4a"></audio></label></li><li><p>Come si arriva al Parco Virgiliano? <span class="meta">— arriva</span></p><label>f1@1<audio controls preload="none" src="../Audio/7639e4f5f59b1602.m4a"></audio></label></li><li><p>Dov&#x27;è la fermata dell&#x27;autobus per il centro? <span class="meta">— dell</span></p><label>f1@1<audio controls preload="none" src="../Audio/912988e07a941daa.m4a"></audio></label></li></ul>
+</details>
+</main>
+</body>
+</html>
