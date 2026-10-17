@@ -1540,6 +1540,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "10f00a6738b6114f.m4a": {
+      "key": "m1@1|n|Dunque…",
+      "sha256": "dfb65ce2293b7b92e32929235bb28012a292cdbece7e0a6b4c7ccc3753181eb1",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:45:57Z",
+      "usage": {
+        "prompt": 587,
+        "output": 97,
+        "thoughts": 261
+      },
+      "ok": true,
+      "heard": "Dunque",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "1106fcfa5979d206.m4a": {
       "key": "f1@1|n|Sono cinese. Vivo a Shanghai.",
       "sha256": "476825a6c194d082aba33a95bbef407cff12bd1becc24f6e5b4811d8dc19283f",
@@ -1956,6 +1975,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.75,
+      "modelOk": true
+    },
+    "15a089878cf82e46.m4a": {
+      "key": "f1@1|s|Allora, vediamo…",
+      "sha256": "98628dccc0793aae189c3bb1f97129512251ef6b5135b1d5938e93b37acd14c1",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:44:22Z",
+      "usage": {
+        "prompt": 686,
+        "output": 59,
+        "thoughts": 146
+      },
+      "ok": true,
+      "heard": "Allora, vediamo…",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 1.0,
       "modelOk": true
     },
     "1653ff1079a318b7.m4a": {
@@ -2579,6 +2617,25 @@
       },
       "ok": true,
       "heard": "Carrozza otto, posto ventidue.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "1e5fa1c43101e407.m4a": {
+      "key": "m1@1|s|Allora, vediamo…",
+      "sha256": "339e4d2b5d5597dbfa84666e0735f9a4ed30268995bb5bbe1303d9695315a174",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:44:44Z",
+      "usage": {
+        "prompt": 710,
+        "output": 116,
+        "thoughts": 554
+      },
+      "ok": true,
+      "heard": "Allora, vediamo...",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -5303,6 +5360,25 @@
       "confidence": 0.95,
       "modelOk": true
     },
+    "3b03cc3f67ebc7a8.m4a": {
+      "key": "m1@1|n|Allora…",
+      "sha256": "f955ab0ee1bb4b077860348c97e3abbd7be2b400890997609366ed5dcc2a8016",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:47:43Z",
+      "usage": {
+        "prompt": 587,
+        "output": 53,
+        "thoughts": 128
+      },
+      "ok": true,
+      "heard": "Allora",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 1.0,
+      "modelOk": true
+    },
     "3b08fe9825aa530a.m4a": {
       "key": "m1@1|n|Buonasera, dove andiamo?",
       "sha256": "43074cb16f37e184afccd91361320841c05f9feffeb56e229b571b5ce43dea9e",
@@ -7239,6 +7315,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.98,
+      "modelOk": true
+    },
+    "5201522af4f4f69f.m4a": {
+      "key": "f1@1|s|Vediamo…",
+      "sha256": "834157e69cbe7807beef8eb992ef8b280215e732d3097540e4da59b0c2cb187a",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:46:24Z",
+      "usage": {
+        "prompt": 660,
+        "output": 114,
+        "thoughts": 471
+      },
+      "ok": true,
+      "heard": "Vediamo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "521a6e98ccb59c8a.m4a": {
@@ -9179,6 +9274,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "6a79fdcde622b7c2.m4a": {
+      "key": "f1@1|n|Allora…",
+      "sha256": "064736d6f9ebecdeea52a6640464a8a57ce2d799d5240e56a0aac2fc531b6f8b",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:50:10Z",
+      "usage": {
+        "prompt": 595,
+        "output": 96,
+        "thoughts": 393
+      },
+      "ok": true,
+      "heard": "Allora",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "6aedd1f76728c57c.m4a": {
       "key": "f1@1|n|Attenzione. Il treno per Napoli Centrale è in ritardo di circa venticinque minuti. Ci scusiamo per il disagio.",
       "sha256": "a8ec768345491e2050fac4f3992ab71329ff0de141db0f1c8fceb2d66a0e8dec",
@@ -10452,6 +10566,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "78e90f22ea9c2a4d.m4a": {
+      "key": "f1@1|n|Dunque…",
+      "sha256": "ced0dd54dafd9d0c06984fcf3034f5ae79488d006670b1808e0d20350127b05e",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:45:35Z",
+      "usage": {
+        "prompt": 593,
+        "output": 134,
+        "thoughts": 514
+      },
+      "ok": true,
+      "heard": "Dunque",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "795086565f598256.m4a": {
       "key": "f1@1|s|Sì: vada dritto fino al semaforo, poi giri a destra. La metro è lì.",
       "sha256": "e0916516faeba013090500b438e9f5c2d216929313d96a95df9999cfdc2728a4",
@@ -10963,6 +11096,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.98,
+      "modelOk": true
+    },
+    "7f2d78c22ccc532e.m4a": {
+      "key": "m1@1|s|Allora…",
+      "sha256": "c19b3bd604155772c0a5cb95332c4775a34d62b8bc47a0ba715edb26025bda67",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:47:55Z",
+      "usage": {
+        "prompt": 650,
+        "output": 106,
+        "thoughts": 375
+      },
+      "ok": true,
+      "heard": "Allora",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
       "modelOk": true
     },
     "7f449caab2c77204.m4a": {
@@ -12929,6 +13081,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "96e7bb2a295d7754.m4a": {
+      "key": "f1@1|n|Vediamo…",
+      "sha256": "e0f8a63ab54e8db1b52dd31b89b2ab8d67c925db98ccc7d3fae9b4d33f98e43c",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:46:20Z",
+      "usage": {
+        "prompt": 595,
+        "output": 93,
+        "thoughts": 269
+      },
+      "ok": true,
+      "heard": "Vediamo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
     "97080d804bc07e1d.m4a": {
       "key": "m1@1|s|Quanto tempo ci vuole?",
       "sha256": "e49af9b90a55bb16c082d35a59ced910b2d3e6cb522486975e37c917f1a1aae6",
@@ -14734,6 +14905,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "a70c6ae0b65b41bc.m4a": {
+      "key": "m1@1|n|Allora, vediamo…",
+      "sha256": "6125f2756218300a2cd731d39390e8d93a993de1bd22e20e61a1bbe4f64348ff",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:44:31Z",
+      "usage": {
+        "prompt": 633,
+        "output": 105,
+        "thoughts": 303
+      },
+      "ok": true,
+      "heard": "Allora, vediamo...",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 1.0,
+      "modelOk": true
+    },
     "a7846aa9315fd793.m4a": {
       "key": "m1@1|n|Allora chiami subito il 112, è il numero per le emergenze. Ma lei come si sente? È un po' pallido.",
       "sha256": "0cb0b14989df35b74333c9e51b62e186e967d709f9134a2a0ffa9607c2493811",
@@ -16419,6 +16609,25 @@
       },
       "ok": true,
       "heard": "caffè",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "b73a335744f4cdb1.m4a": {
+      "key": "m1@1|s|Vediamo…",
+      "sha256": "3fccc069e8a39fb65ea30387c252d9f566484195eb81586baaa44099039ebde5",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:47:11Z",
+      "usage": {
+        "prompt": 670,
+        "output": 107,
+        "thoughts": 722
+      },
+      "ok": true,
+      "heard": "Vediamo...",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -18192,6 +18401,25 @@
       "confidence": 0.75,
       "modelOk": true
     },
+    "cd5adcf7f7b0c989.m4a": {
+      "key": "m1@1|s|Dunque…",
+      "sha256": "cd6bed7bc7baf8984ddfe046c5a83f4a796f9fabc24be7d59adb25016b5a1d9c",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:46:06Z",
+      "usage": {
+        "prompt": 652,
+        "output": 58,
+        "thoughts": 292
+      },
+      "ok": true,
+      "heard": "Dunque",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.95,
+      "modelOk": true
+    },
     "cd6a10f4e366c133.m4a": {
       "key": "m1@1|n|Le consiglio il risotto al nero di seppia, è tipico di Venezia. Ha allergie o intolleranze?",
       "sha256": "2e8f69e3dfb05cd2117cd73016af889062aa2c42839fb945a90e92546a207096",
@@ -18870,6 +19098,25 @@
       },
       "ok": true,
       "heard": "Ho già pagato online.",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "d5dea3bfff1116e8.m4a": {
+      "key": "f1@1|s|Dunque…",
+      "sha256": "0efea4c0e3a610ad86d0bff890069aa6daabf8b4179c054d835823448d3fb3da",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:46:08Z",
+      "usage": {
+        "prompt": 658,
+        "output": 152,
+        "thoughts": 765
+      },
+      "ok": true,
+      "heard": "Dunque…",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -22354,6 +22601,25 @@
       "confidence": 0.7,
       "modelOk": true
     },
+    "fa670e7a3dd7a896.m4a": {
+      "key": "f1@1|s|Allora…",
+      "sha256": "79deb9e06ed84ce12255e080d85194ff8abdfb3bc462710e1271814667d3d892",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:50:45Z",
+      "usage": {
+        "prompt": 660,
+        "output": 110,
+        "thoughts": 711
+      },
+      "ok": true,
+      "heard": "Allora",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.8,
+      "modelOk": true
+    },
     "fa7d2a400c43bc1b.m4a": {
       "key": "m1@1|n|Scusi, come si scrive?",
       "sha256": "5da9fd88d9a21225ba05d03754c1348504e0b9162b0de19d2870d45fb65a0684",
@@ -22367,6 +22633,25 @@
       },
       "ok": true,
       "heard": "Scusi, come si scrive?",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.7,
+      "modelOk": true
+    },
+    "faabfa27ded59da6.m4a": {
+      "key": "f1@1|n|Allora, vediamo…",
+      "sha256": "4959a130a755bf0116fecb39454592b8e5ee17b6a34013cb5e26cb56243cfd29",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:44:16Z",
+      "usage": {
+        "prompt": 615,
+        "output": 107,
+        "thoughts": 503
+      },
+      "ok": true,
+      "heard": "Allora, vediamo.",
       "issues": [],
       "severity": "none",
       "reason": "",
@@ -22656,6 +22941,25 @@
       "severity": "none",
       "reason": "",
       "confidence": 0.7,
+      "modelOk": true
+    },
+    "ff06ca6dec444704.m4a": {
+      "key": "m1@1|n|Vediamo…",
+      "sha256": "40438ed2a19cd89488bb805ba9324580c39324c49b4ba4b5f94ab98e55c22c24",
+      "model": "gemini-4-argon",
+      "promptRev": 1,
+      "screenedAt": "2026-10-16T18:46:33Z",
+      "usage": {
+        "prompt": 603,
+        "output": 97,
+        "thoughts": 310
+      },
+      "ok": true,
+      "heard": "Vediamo",
+      "issues": [],
+      "severity": "none",
+      "reason": "",
+      "confidence": 0.75,
       "modelOk": true
     },
     "ff3d56c1a937a9b5.m4a": {

@@ -184,14 +184,16 @@ final class SpeechService {
     // MARK: Transcription
 
     /// What the recognizer heard in a recording; nil with the reason when it can't run.
-    func recognize(_ url: URL) async -> (transcript: String?, note: String?) {
+    /// `logText` false keeps the words out of the log: free conversation can hold a name or a hotel.
+    func recognize(_ url: URL, logText: Bool = true) async -> (transcript: String?, note: String?) {
         if let reason = unavailableReason {
             return (nil, reason)
         }
         do {
             let started = Date.now
             let transcript = try await transcribe(url)
-            AppLog.shared.write("Speech: heard \"\(transcript)\" in \(String(format: "%.1f", Date.now.timeIntervalSince(started)))s")
+            let heard = logText ? "\"\(transcript)\"" : "\(transcript.split(separator: " ").count) words"
+            AppLog.shared.write("Speech: heard \(heard) in \(String(format: "%.1f", Date.now.timeIntervalSince(started)))s")
             return (transcript, nil)
         } catch {
             AppLog.shared.write("Speech: transcription failed: \(error)")

@@ -13,6 +13,9 @@ public struct AudioManifest: Codable, Sendable {
     public let voices: [String]
     /// Entry key → file name inside Audio/.
     public let entries: [String: String]
+    /// Gemini voice name for each voice id ("f1": "Kore"), so live speech in the online role-play
+    /// sounds like the recordings. Absent from manifests written before the role-play.
+    public var voiceNames: [String: String]? = nil
 
     /// Must stay identical to the key the audio tool computes: "<voice>|<speed>|<text>".
     public static func key(text: String, voice: String, speed: Speed) -> String {
@@ -21,6 +24,22 @@ public struct AudioManifest: Codable, Sendable {
 
     public func file(text: String, voice: String, speed: Speed) -> String? {
         entries[Self.key(text: text, voice: voice, speed: speed)]
+    }
+
+    /// The current profile of a voice id: "f1" → "f1@2".
+    public func profile(for voice: String) -> String? {
+        voices.first { $0 == voice || $0.hasPrefix(voice + "@") }
+    }
+
+    /// The Gemini voice behind a voice id ("f1" or "f1@2") → "Kore".
+    public func voiceName(for voice: String) -> String? {
+        let id = voice.split(separator: "@").first.map(String.init) ?? voice
+        return voiceNames?[id]
+    }
+
+    /// The recording of `text` in this voice ("f1"), without falling back to another one.
+    public func file(for text: String, speed: Speed, onlyIn voice: String) -> String? {
+        profile(for: voice).flatMap { file(text: text, voice: $0, speed: speed) }
     }
 
     /// The file to play for `text`: in the `preferred` voice ("f1" matches "f1@2") when given,

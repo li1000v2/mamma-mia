@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "roleplay.schema.json",
+  "title": "Online AI role-play: one role per challenge, and the fillers played while the reply is on its way",
+  "type": "object",
+  "required": ["version", "fillers", "roles"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "fillers": {
+      "description": "Short Italian hesitation words; tools/gen_audio.py makes audio for them in every voice.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/text" }
+    },
+    "roles": { "type": "array", "items": { "$ref": "#/$defs/role" } }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "role": {
+      "type": "object",
+      "required": ["unit", "name", "zh", "voice", "scene", "opens", "setting", "task"],
+      "additionalProperties": false,
+      "properties": {
+        "unit": { "type": "string", "pattern": "^C[0-9]{2}$" },
+        "name": { "description": "The role's name as shown, in Italian.", "$ref": "#/$defs/text" },
+        "zh": { "description": "Who the role is, in Chinese.", "$ref": "#/$defs/text" },
+        "voice": {
+          "description": "Voice id from tools/tts_voices.json; live speech and the fillers use it.",
+          "type": "string",
+          "pattern": "^[a-z0-9]+$"
+        },
+        "scene": { "description": "Scene id in course.json for the phrases this role-play's feedback adds.", "type": "string" },
+        "opens": { "description": "Whether the role speaks first.", "type": "boolean" },
+        "setting": { "description": "Who the role is and what happens, in English, for the model.", "$ref": "#/$defs/text" },
+        "task": { "description": "What the learner tries to do, in Chinese.", "$ref": "#/$defs/text" }
+      }
+    }
+  }
+}

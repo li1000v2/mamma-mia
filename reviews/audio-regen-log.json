@@ -124,6 +124,21 @@
       },
       "at": "2026-10-16T11:54:04Z"
     },
+    "f1@1|Allora…": {
+      "voice": "f1@1",
+      "text": "Allora…",
+      "decision": "replaced",
+      "steps": [
+        "现在的版本复筛：原速被标出（读错），慢速被标出（放慢失真）",
+        "新版本 1：原速被标出（重音），慢速被标出（重音）",
+        "新版本 2：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "6a79fdcde622b7c2.m4a",
+        "s": "fa670e7a3dd7a896.m4a"
+      },
+      "at": "2026-10-16T18:50:45Z"
+    },
     "f1@1|Altro?": {
       "voice": "f1@1",
       "text": "Altro?",
@@ -999,6 +1014,19 @@
         "s": "db5c342de7a11677.m4a"
       },
       "at": "2026-10-16T12:15:12Z"
+    },
+    "m1@1|Allora…": {
+      "voice": "m1@1",
+      "text": "Allora…",
+      "decision": "kept",
+      "steps": [
+        "现在的版本复筛：原速干净，慢速干净；原速干净，慢速干净"
+      ],
+      "files": {
+        "n": "3b03cc3f67ebc7a8.m4a",
+        "s": "7f2d78c22ccc532e.m4a"
+      },
+      "at": "2026-10-16T18:47:55Z"
     },
     "m1@1|Attenzione! Il treno per Napoli Centrale partirà dal binario tredici anziché dal binario tre.": {
       "voice": "m1@1",
